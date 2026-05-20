@@ -1,4 +1,5 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { readdirSync } from "node:fs";
 import path from "node:path";
 
 const ROOT = process.cwd();
@@ -8,6 +9,7 @@ const SITE_URL = "https://minoxidilencdmx.com";
 
 const reserved = new Set(["", "shop", "blog", "producto", "categoria-producto", "assets"]);
 const writtenRoutes = new Set();
+let localImageMap;
 
 function escapeHtml(value = "") {
   return String(value)
@@ -74,8 +76,34 @@ function routeToFile(route) {
 async function writeRoute(route, html) {
   const file = routeToFile(route);
   await mkdir(path.dirname(file), { recursive: true });
-  await writeFile(file, repairMojibake(html), "utf8");
+  await writeFile(file, localizeWordPressMedia(repairMojibake(html)), "utf8");
   writtenRoutes.add(normalizeRoute(route));
+}
+
+function buildLocalImageMap() {
+  if (localImageMap) return localImageMap;
+  localImageMap = new Map();
+  const imagesDir = path.join(DIST, "assets", "images");
+  try {
+    for (const file of readdirSync(imagesDir, { withFileTypes: true })) {
+      if (file.isFile()) localImageMap.set(file.name.toLowerCase(), `/assets/images/${file.name}`);
+    }
+  } catch {}
+  return localImageMap;
+}
+
+function localizeWordPressMedia(html = "") {
+  const images = buildLocalImageMap();
+  const fallback = images.get("minoxidil-mexico.jpg") || "/assets/images/minoxidil-mexico.jpg";
+  return String(html)
+    .replace(/(?:https?:\/\/[^"'()\s,>]+)?\/wp-content\/uploads\/(?:\d{4}\/\d{2}\/)?([^"'()\s,>]+)/gi, (_match, filename) => {
+      const clean = filename.split(/[?#]/)[0].toLowerCase();
+      return images.get(clean) || fallback;
+    })
+    .replace(/src="data:image\/gif;base64,[^"]*"\s+data-src="([^"]+)"/gi, 'src="$1"')
+    .replace(/\s+data-src="\/assets\/images\/([^"]+)"/gi, "")
+    .replace(/\s+srcset="[^"]*"/gi, "")
+    .replace(/\s+data-srcset="[^"]*"/gi, "");
 }
 
 function normalizeRoute(route = "/") {
