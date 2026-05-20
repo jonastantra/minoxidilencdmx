@@ -1,6 +1,7 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { readdirSync } from "node:fs";
 import path from "node:path";
+import sharp from "sharp";
 
 const ROOT = process.cwd();
 const DATA_FILE = path.join(ROOT, "content", "site-data.json");
@@ -10,6 +11,7 @@ const SITE_URL = "https://minoxidilencdmx.com";
 const reserved = new Set(["", "shop", "blog", "producto", "categoria-producto", "assets"]);
 const writtenRoutes = new Set();
 let localImageMap;
+let imageMetaMap = new Map();
 
 function escapeHtml(value = "") {
   return String(value)
@@ -83,8 +85,62 @@ function routeToFile(route) {
 async function writeRoute(route, html) {
   const file = routeToFile(route);
   await mkdir(path.dirname(file), { recursive: true });
-  await writeFile(file, localizeWordPressMedia(repairMojibake(html)), "utf8");
+  const output = optimizeHtmlImages(localizeWordPressMedia(repairMojibake(html)));
+  await writeFile(file, output, "utf8");
   writtenRoutes.add(normalizeRoute(route));
+}
+
+function imageKeyFromSrc(src = "") {
+  try {
+    const clean = src.startsWith("http") ? new URL(src).pathname : src;
+    if (!clean.startsWith("/assets/images/")) return "";
+    return decodeURIComponent(clean.split(/[?#]/)[0]).toLowerCase();
+  } catch {
+    return "";
+  }
+}
+
+function optimizedImageSrc(src = "") {
+  const key = imageKeyFromSrc(src);
+  const meta = key ? imageMetaMap.get(key) : null;
+  return meta?.webp || src;
+}
+
+function optimizeInlineImageUrls(html = "") {
+  return String(html).replace(/url\((['"]?)(\/assets\/images\/[^)'"]+\.(?:jpe?g|png))\1\)/gi, (_match, quote = "", src) => {
+    const optimized = optimizedImageSrc(src);
+    return `url(${quote}${optimized}${quote})`;
+  });
+}
+
+function addOrReplaceAttr(tag, name, value) {
+  const attr = `${name}="${escapeHtml(value)}"`;
+  if (new RegExp(`\\s${name}=`, "i").test(tag)) return tag.replace(new RegExp(`\\s${name}="[^"]*"`, "i"), ` ${attr}`);
+  return tag.replace(/>$/, ` ${attr}>`);
+}
+
+function optimizeHtmlImages(html = "") {
+  let content = optimizeInlineImageUrls(html);
+  let meaningfulImageIndex = 0;
+  content = content.replace(/<img\b[^>]*>/gi, (tag) => {
+    const srcMatch = tag.match(/\ssrc="([^"]+)"/i);
+    if (!srcMatch) return tag;
+    const originalSrc = srcMatch[1];
+    const key = imageKeyFromSrc(originalSrc);
+    const meta = key ? imageMetaMap.get(key) : null;
+    let next = tag;
+    if (meta?.webp) next = next.replace(originalSrc, meta.webp);
+    if (meta?.width && !/\swidth=/i.test(next)) next = addOrReplaceAttr(next, "width", String(meta.width));
+    if (meta?.height && !/\sheight=/i.test(next)) next = addOrReplaceAttr(next, "height", String(meta.height));
+    if (!/\sdecoding=/i.test(next)) next = addOrReplaceAttr(next, "decoding", "async");
+    const isLogo = /\bbrand-logo\b/i.test(next);
+    const isMeaningful = key && !isLogo;
+    if (isMeaningful) meaningfulImageIndex += 1;
+    if (!/\sloading=/i.test(next)) next = addOrReplaceAttr(next, "loading", isMeaningful && meaningfulImageIndex === 1 ? "eager" : "lazy");
+    if (isMeaningful && meaningfulImageIndex === 1 && !/\sfetchpriority=/i.test(next)) next = addOrReplaceAttr(next, "fetchpriority", "high");
+    return next;
+  });
+  return content;
 }
 
 function buildLocalImageMap() {
@@ -111,6 +167,51 @@ function localizeWordPressMedia(html = "") {
     .replace(/\s+data-src="\/assets\/images\/([^"]+)"/gi, "")
     .replace(/\s+srcset="[^"]*"/gi, "")
     .replace(/\s+data-srcset="[^"]*"/gi, "");
+}
+
+async function optimizeImageAssets() {
+  imageMetaMap = new Map();
+  const imagesDir = path.join(DIST, "assets", "images");
+  let files = [];
+  try {
+    files = readdirSync(imagesDir, { withFileTypes: true }).filter((file) => file.isFile()).map((file) => file.name);
+  } catch {
+    return;
+  }
+  await Promise.all(files.map(async (file) => {
+    const ext = path.extname(file).toLowerCase();
+    if (![".jpg", ".jpeg", ".png"].includes(ext)) return;
+    const absolute = path.join(imagesDir, file);
+    const sourcePath = `/assets/images/${file}`;
+    const key = sourcePath.toLowerCase();
+    try {
+      const image = sharp(absolute, { failOn: "none" }).rotate();
+      const metadata = await image.metadata();
+      if (!metadata.width || !metadata.height) return;
+      const targetWidth = Math.min(metadata.width, 1600);
+      const ratio = targetWidth / metadata.width;
+      const targetHeight = Math.round(metadata.height * ratio);
+      const webpName = `${path.basename(file, ext)}.webp`;
+      const webpPath = path.join(imagesDir, webpName);
+      await sharp(absolute, { failOn: "none" })
+        .rotate()
+        .resize({ width: targetWidth, withoutEnlargement: true })
+        .webp({ quality: 78, effort: 4 })
+        .toFile(webpPath);
+      imageMetaMap.set(key, {
+        width: targetWidth,
+        height: targetHeight,
+        webp: `/assets/images/${webpName}`
+      });
+      imageMetaMap.set(`/assets/images/${webpName}`.toLowerCase(), {
+        width: targetWidth,
+        height: targetHeight,
+        webp: `/assets/images/${webpName}`
+      });
+    } catch {
+      imageMetaMap.set(key, { width: 0, height: 0, webp: sourcePath });
+    }
+  }));
 }
 
 function normalizeRoute(route = "/") {
@@ -315,6 +416,8 @@ function layout(data, page) {
   const title = page.title ? `${page.title} | ${data.siteTitle}` : data.siteTitle;
   const description = page.description || data.description;
   const image = page.image || data.products[0]?.image || "";
+  const preloadImage = page.preloadImage || image;
+  const preloadHref = preloadImage ? optimizedImageSrc(preloadImage) : "";
   const canonical = `${SITE_URL}${page.path || "/"}`.replace(/\/+$/, "/");
   return `<!doctype html>
 <html lang="es-MX">
@@ -328,7 +431,10 @@ function layout(data, page) {
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:type" content="${page.type || "website"}">
   ${image ? `<meta property="og:image" content="${SITE_URL}${escapeHtml(image)}">` : ""}
-  <link rel="stylesheet" href="/assets/site.css">
+  ${preloadHref ? `<link rel="preload" as="image" href="${escapeHtml(preloadHref)}">` : ""}
+  <link rel="preconnect" href="https://api.whatsapp.com">
+  <link rel="preload" href="/assets/site.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/site.css"></noscript>
   <script type="application/ld+json">${JSON.stringify(structuredData(data, page))}</script>
 </head>
 <body class="${page.bodyClass || ""}">
@@ -1177,7 +1283,7 @@ async function writeRedirectArtifacts(data, routes) {
   const redirects = legacyRedirects(data);
   const index = redirectIndex(data, routes, redirects);
   await writeFile(path.join(DIST, "redirects.json"), `${JSON.stringify(index, null, 2)}\n`, "utf8");
-  await writeFile(path.join(DIST, "404.html"), notFoundPage(data, index), "utf8");
+  await writeFile(path.join(DIST, "404.html"), optimizeHtmlImages(localizeWordPressMedia(repairMojibake(notFoundPage(data, index)))), "utf8");
 
   const netlifyLines = [
     "# Legacy WordPress -> static site redirects",
@@ -1371,6 +1477,7 @@ async function main() {
   await mkdir(path.join(DIST, "assets"), { recursive: true });
   await cp(path.join(ROOT, "public"), DIST, { recursive: true, force: true });
   await mkdir(path.join(DIST, "assets"), { recursive: true });
+  await optimizeImageAssets();
   await writeFile(path.join(DIST, "assets", "site.css"), css.trim(), "utf8");
   await writeFile(path.join(DIST, "assets", "site.js"), js.trim(), "utf8");
   await writeFile(path.join(DIST, ".nojekyll"), "", "utf8");

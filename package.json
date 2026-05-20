@@ -11,5 +11,8 @@
     "audit:urls": "node scripts/audit-live-urls.mjs",
     "audit:static": "node scripts/audit-static-dependencies.mjs",
     "dev": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }
