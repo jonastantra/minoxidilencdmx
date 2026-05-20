@@ -7,6 +7,7 @@ const DIST = path.join(ROOT, "dist");
 const SITE_URL = "https://minoxidilencdmx.com";
 
 const reserved = new Set(["", "shop", "blog", "producto", "categoria-producto", "assets"]);
+const writtenRoutes = new Set();
 
 function escapeHtml(value = "") {
   return String(value)
@@ -56,6 +57,7 @@ async function writeRoute(route, html) {
   const file = routeToFile(route);
   await mkdir(path.dirname(file), { recursive: true });
   await writeFile(file, html, "utf8");
+  writtenRoutes.add(normalizeRoute(route));
 }
 
 function normalizeRoute(route = "/") {
@@ -157,6 +159,7 @@ function legacyRedirects(data) {
   }
 
   const aliases = {
+    "/producto/": "/shop/",
     "/tienda/": "/shop/",
     "/tienda-online/": "/shop/",
     "/comprar-minoxidil/": "/shop/",
@@ -229,6 +232,32 @@ function formatDate(date) {
   return new Intl.DateTimeFormat("es-MX", { year: "numeric", month: "long", day: "numeric" }).format(new Date(date));
 }
 
+function isoDate(date) {
+  if (!date) return "";
+  const parsed = new Date(date);
+  if (Number.isNaN(parsed.getTime())) return "";
+  return parsed.toISOString().slice(0, 10);
+}
+
+function productImage(product, data) {
+  if (product.image) return product.image;
+  const related = data.products.find((item) =>
+    item.id !== product.id &&
+    item.image &&
+    item.categories?.some((category) => product.categories?.some((own) => own.slug === category.slug))
+  );
+  return related?.image || data.products.find((item) => item.image)?.image || data.heroImages[0] || "";
+}
+
+function structuredData(data, page) {
+  const base = [organizationSchema(data), websiteSchema(data)];
+  const pageSchema = page.schema ? (Array.isArray(page.schema) ? page.schema : [page.schema]) : [];
+  return {
+    "@context": "https://schema.org",
+    "@graph": [...base, ...pageSchema]
+  };
+}
+
 function layout(data, page) {
   const title = page.title ? `${page.title} | ${data.siteTitle}` : data.siteTitle;
   const description = page.description || data.description;
@@ -247,7 +276,7 @@ function layout(data, page) {
   <meta property="og:type" content="${page.type || "website"}">
   ${image ? `<meta property="og:image" content="${SITE_URL}${escapeHtml(image)}">` : ""}
   <link rel="stylesheet" href="/assets/site.css">
-  <script type="application/ld+json">${JSON.stringify(page.schema || organizationSchema(data))}</script>
+  <script type="application/ld+json">${JSON.stringify(structuredData(data, page))}</script>
 </head>
 <body class="${page.bodyClass || ""}">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -304,37 +333,155 @@ function layout(data, page) {
 
 function organizationSchema(data) {
   return {
-    "@context": "https://schema.org",
-    "@type": "Store",
+    "@type": ["Store", "LocalBusiness"],
+    "@id": `${SITE_URL}/#localbusiness`,
     name: data.brand,
     url: SITE_URL,
+    image: `${SITE_URL}${data.heroImages[0] || data.products[0]?.image || ""}`,
     telephone: "+52 55 6938 0408",
     email: data.email,
-    address: data.locations[0],
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Plaza Guelatao Local 76 Pasillo 5",
+      addressLocality: "Iztapalapa",
+      addressRegion: "Ciudad de Mexico",
+      postalCode: "09100",
+      addressCountry: "MX"
+    },
+    areaServed: ["Ciudad de Mexico", "Estado de Mexico", "Mexico"],
+    openingHours: "Tu-Su 12:00-17:00",
     sameAs: Object.values(data.social || {}).filter(Boolean)
   };
 }
 
-function productSchema(product, data) {
+function websiteSchema(data) {
   return {
-    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: SITE_URL,
+    name: data.siteTitle,
+    inLanguage: "es-MX",
+    publisher: { "@id": `${SITE_URL}/#localbusiness` }
+  };
+}
+
+function breadcrumbSchema(items) {
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${SITE_URL}${item.path}`
+    }))
+  };
+}
+
+function productSchema(product, data) {
+  const image = productImage(product, data);
+  const schema = {
     "@type": "Product",
+    "@id": `${SITE_URL}${product.path}#product`,
     name: product.name,
-    image: product.image ? `${SITE_URL}${product.image}` : undefined,
+    image: image ? `${SITE_URL}${image}` : undefined,
     description: product.excerpt,
-    brand: data.brand,
+    category: product.categories?.map((category) => category.name).join(", "),
+    brand: {
+      "@type": "Brand",
+      name: /kirkland/i.test(product.name) ? "Kirkland" : data.brand
+    },
     offers: {
       "@type": "Offer",
       priceCurrency: "MXN",
       price: Number(String(product.price).replace(/[^\d.]/g, "")) || undefined,
       availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-      url: `${SITE_URL}${product.path}`
+      itemCondition: "https://schema.org/NewCondition",
+      url: `${SITE_URL}${product.path}`,
+      seller: { "@id": `${SITE_URL}/#localbusiness` }
     }
   };
+  if (Number(product.rating) > 0 && Number(product.reviewCount) > 0) {
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: String(product.rating),
+      reviewCount: Number(product.reviewCount)
+    };
+  }
+  return schema;
+}
+
+function articleSchema(post, data) {
+  const image = post.image || data.heroImages[0] || data.products[0]?.image || "";
+  return {
+    "@type": "Article",
+    "@id": `${SITE_URL}${post.path}#article`,
+    headline: post.title,
+    description: post.excerpt,
+    image: image ? `${SITE_URL}${image}` : undefined,
+    datePublished: post.date,
+    dateModified: post.modified || post.date,
+    author: { "@type": "Organization", name: data.brand },
+    publisher: { "@id": `${SITE_URL}/#localbusiness` },
+    mainEntityOfPage: `${SITE_URL}${post.path}`,
+    inLanguage: "es-MX"
+  };
+}
+
+function itemListSchema(name, pathName, items) {
+  return {
+    "@type": "ItemList",
+    name,
+    url: `${SITE_URL}${pathName}`,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `${SITE_URL}${item.path}`,
+      name: item.name || item.title
+    }))
+  };
+}
+
+function sitemapEntry(route, data, meta) {
+  const normalized = normalizeRoute(route);
+  const item = meta.get(normalized) || {};
+  const lastmod = item.lastmod || new Date().toISOString().slice(0, 10);
+  const changefreq = item.changefreq || (normalized.startsWith("/producto/") ? "weekly" : normalized.startsWith("/blog/") ? "weekly" : "monthly");
+  const priority = item.priority || (normalized === "/" ? "1.0" : normalized.startsWith("/shop/") ? "0.9" : normalized.startsWith("/producto/") ? "0.8" : "0.6");
+  return [
+    "  <url>",
+    `    <loc>${SITE_URL}${normalized}</loc>`,
+    `    <lastmod>${lastmod}</lastmod>`,
+    `    <changefreq>${changefreq}</changefreq>`,
+    `    <priority>${priority}</priority>`,
+    "  </url>"
+  ].join("\n");
+}
+
+function sitemapMeta(data, blogTotalPages) {
+  const meta = new Map();
+  const today = new Date().toISOString().slice(0, 10);
+  const set = (route, values) => meta.set(normalizeRoute(route), values);
+  set("/", { lastmod: today, changefreq: "weekly", priority: "1.0" });
+  set("/shop/", { lastmod: today, changefreq: "weekly", priority: "0.9" });
+  set("/contact/", { lastmod: today, changefreq: "monthly", priority: "0.8" });
+  set("/contacto/", { lastmod: today, changefreq: "monthly", priority: "0.7" });
+  for (const product of data.products) set(product.path, { lastmod: today, changefreq: "weekly", priority: "0.8" });
+  for (const category of data.categories) {
+    set(category.path, { lastmod: today, changefreq: "weekly", priority: "0.75" });
+    set(`/categoria-producto/${category.slug}/`, { lastmod: today, changefreq: "weekly", priority: "0.65" });
+  }
+  for (let page = 1; page <= blogTotalPages; page += 1) {
+    set(page === 1 ? "/blog/" : `/blog/page/${page}/`, { lastmod: today, changefreq: "weekly", priority: page === 1 ? "0.8" : "0.5" });
+  }
+  for (const post of data.posts) set(post.path, { lastmod: isoDate(post.modified || post.date) || today, changefreq: "monthly", priority: "0.65" });
+  for (const page of data.pages) set(page.path, { lastmod: isoDate(page.modified || page.date) || today, changefreq: "monthly", priority: "0.5" });
+  return meta;
 }
 
 function productCard(product, data) {
   const cats = product.categories.slice(0, 1).map((category) => category.name).join("");
+  const image = productImage(product, data);
   const cleanName = product.name
     .replace(/\s*\|\s*Crecimiento de Barba y Cabello/gi, "")
     .replace(/\s+/g, " ")
@@ -348,7 +495,7 @@ function productCard(product, data) {
   return `<article class="product-card shop-card" data-category="${product.categories.map((category) => category.slug).join(" ")}">
     <a class="product-image shop-image" href="${product.path}">
       <span class="product-badge">${escapeHtml(chips[0] || "Producto")}</span>
-      ${product.image ? `<img src="${product.image}" alt="${escapeHtml(product.name)}" loading="lazy">` : ""}
+      ${image ? `<img src="${image}" alt="${escapeHtml(product.name)}" loading="lazy">` : ""}
     </a>
     <div class="product-copy shop-copy">
       <span class="eyebrow">${escapeHtml(cats || "Tratamiento capilar")}</span>
@@ -522,18 +669,29 @@ function shopPage(data) {
         <div class="product-grid searchable">${data.products.map((product) => productCard(product, data)).join("")}</div>
       </div>
     </section>`;
-  return layout(data, { title: "Tienda", path: "/shop/", description: "Compra minoxidil, biotina, dermaroller y productos para barba y cabello por WhatsApp.", body });
+  return layout(data, {
+    title: "Tienda",
+    path: "/shop/",
+    description: "Compra minoxidil, biotina, dermaroller y productos para barba y cabello por WhatsApp.",
+    schema: [
+      itemListSchema("Catalogo de productos Minoxidil en CDMX", "/shop/", data.products),
+      breadcrumbSchema([{ name: "Inicio", path: "/" }, { name: "Tienda", path: "/shop/" }])
+    ],
+    body
+  });
 }
 
 function productPage(product, data) {
   const related = data.products
     .filter((item) => item.id !== product.id && item.categories.some((category) => product.categories.some((own) => own.slug === category.slug)))
     .slice(0, 4);
+  const fallbackImage = productImage(product, data);
   const gallery = product.images.length > 1 ? product.images : product.images.slice(0, 1);
+  const visibleGallery = gallery.length ? gallery : [{ src: fallbackImage, alt: product.name }];
   const body = `
     <section class="product-detail">
       <div class="gallery">
-        ${gallery.map((image) => `<img src="${image.src}" alt="${escapeHtml(image.alt || product.name)}">`).join("")}
+        ${visibleGallery.map((image) => image.src ? `<img src="${image.src}" alt="${escapeHtml(image.alt || product.name)}">` : "").join("")}
       </div>
       <div class="detail-copy">
         <span class="eyebrow">${escapeHtml(product.categories.map((category) => category.name).slice(0, 3).join(" / "))}</span>
@@ -555,9 +713,17 @@ function productPage(product, data) {
     title: product.name,
     path: product.path,
     description: product.excerpt,
-    image: product.image,
+    image: fallbackImage,
     type: "product",
-    schema: productSchema(product, data),
+    schema: [
+      productSchema(product, data),
+      breadcrumbSchema([
+        { name: "Inicio", path: "/" },
+        { name: "Tienda", path: "/shop/" },
+        { name: product.categories[0]?.name || "Producto", path: product.categories[0]?.path || "/shop/" },
+        { name: product.name, path: product.path }
+      ])
+    ],
     body
   });
 }
@@ -577,7 +743,16 @@ function categoryPage(category, data) {
       </aside>
       <div class="product-grid">${products.map((product) => productCard(product, data)).join("")}</div>
     </section>`;
-  return layout(data, { title: category.name, path: category.path, description: `Productos de ${category.name} en Minoxidil Todo Mexico.`, body });
+  return layout(data, {
+    title: category.name,
+    path: category.path,
+    description: `Productos de ${category.name} en Minoxidil Todo Mexico: precios, disponibilidad y pedido por WhatsApp en CDMX y envios a Mexico.`,
+    schema: [
+      itemListSchema(`Productos de ${category.name}`, category.path, products),
+      breadcrumbSchema([{ name: "Inicio", path: "/" }, { name: "Tienda", path: "/shop/" }, { name: category.name, path: category.path }])
+    ],
+    body
+  });
 }
 
 function blogPage(data, pageNumber = 1, perPage = 24) {
@@ -621,7 +796,16 @@ function blogPage(data, pageNumber = 1, perPage = 24) {
     ${pagination}`;
   const pathName = current === 1 ? "/blog/" : `/blog/page/${current}/`;
   const title = current === 1 ? "Blog" : `Blog - Página ${current}`;
-  return layout(data, { title, path: pathName, description: "Guias y consejos sobre minoxidil, crecimiento de barba y cabello.", body });
+  return layout(data, {
+    title,
+    path: pathName,
+    description: "Guias y consejos sobre minoxidil, crecimiento de barba y cabello en CDMX y Mexico.",
+    schema: [
+      itemListSchema("Blog de minoxidil, barba y cabello", pathName, posts),
+      breadcrumbSchema([{ name: "Inicio", path: "/" }, { name: "Blog", path: "/blog/" }])
+    ],
+    body
+  });
 }
 
 function articlePage(post, data) {
@@ -635,7 +819,18 @@ function articlePage(post, data) {
       ${post.image ? `<img class="article-image" src="${post.image}" alt="${escapeHtml(post.title)}">` : ""}
       <div class="article-content">${cleanHtml(post.content)}</div>
     </article>`;
-  return layout(data, { title: post.title, path: post.path, description: post.excerpt, image: post.image, type: "article", body });
+  return layout(data, {
+    title: post.title,
+    path: post.path,
+    description: post.excerpt,
+    image: post.image,
+    type: "article",
+    schema: [
+      articleSchema(post, data),
+      breadcrumbSchema([{ name: "Inicio", path: "/" }, { name: "Blog", path: "/blog/" }, { name: post.title, path: post.path }])
+    ],
+    body
+  });
 }
 
 function genericPage(page, data) {
@@ -1003,7 +1198,9 @@ async function main() {
     "/my-account/"
   ];
   const uniqueRoutes = [...new Set(routes)].filter(Boolean);
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${uniqueRoutes.map((route) => `  <url><loc>${SITE_URL}${route}</loc></url>`).join("\n")}\n</urlset>\n`;
+  const sitemapRoutes = [...writtenRoutes].sort();
+  const meta = sitemapMeta(data, blogTotalPages);
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapRoutes.map((route) => sitemapEntry(route, data, meta)).join("\n")}\n</urlset>\n`;
   await writeFile(path.join(DIST, "sitemap.xml"), sitemap, "utf8");
   await writeFile(path.join(DIST, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`, "utf8");
   const redirects = await writeRedirectArtifacts(data, uniqueRoutes);

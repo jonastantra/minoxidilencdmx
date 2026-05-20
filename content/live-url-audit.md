@@ -1,11 +1,11 @@
 # Auditoria de URLs vivas de WordPress
 
-Generado: 2026-05-15T09:06:21.451Z
+Generado: 2026-05-20T01:49:07.437Z
 Sitemaps revisados desde: https://minoxidilencdmx.com/sitemap_index.xml
 
 - URLs vivas detectadas: 368
-- Cubiertas por pagina estatica: 360
-- Cubiertas por redireccion 301: 8
+- Cubiertas por pagina estatica: 359
+- Cubiertas por redireccion 301: 9
 - Pendientes sin ruta exacta ni redireccion: 0
 
 ## Pendientes
@@ -22,4 +22,5 @@ No quedaron URLs vivas pendientes.
 - /category/testimonios/ -> /testimonios/
 - /category/youtube/ -> /youtube-videos/
 - /home/ -> /
+- /producto/ -> /shop/
 

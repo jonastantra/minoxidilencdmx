@@ -1,7 +1,7 @@
 # Auditoria de redirecciones
 
-Generado: 2026-05-15T09:01:13.965Z
-Reglas 301 generadas: 251
+Generado: 2026-05-20T01:49:03.755Z
+Reglas 301 generadas: 252
 Rutas indexadas para 404 inteligente: 426
 
 ## Tipos cubiertos
@@ -135,4 +135,4 @@ Rutas indexadas para 404 inteligente: 426
 - /product_cat/rimel-crecimiento-de-pestanas/ -> /categoria-producto/rimel-crecimiento-de-pestanas/ (woocommerce taxonomy)
 - /product_cat/shampoo-y-acondicionador/ -> /categoria-producto/barba-y-bigote/shampoo-y-acondicionador/ (woocommerce taxonomy)
 
-... 131 reglas mas en dist/redirects.json
+... 132 reglas mas en dist/redirects.json
