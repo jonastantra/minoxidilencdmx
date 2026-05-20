@@ -523,6 +523,11 @@ function homePage(data) {
   const featured = data.products.slice(0, 8);
   const hero = pickImage(data, "diseno-sin-titulo-1", 0);
   const before = pickImage(data, "antes", 1);
+  const storeImage = "/assets/images/diseno-sin-titulo-2.jpg";
+  const resultImage = "/assets/images/antes.jpg";
+  const avatarJuan = "/assets/images/1-3.png";
+  const avatarPatricia = "/assets/images/3-1.png";
+  const avatarCarlos = "/assets/images/2-2.png";
   const body = `
     <section class="wp-hero home-hero" style="--hero-image:url('${hero}')">
       <div class="wp-hero-inner">
@@ -558,6 +563,69 @@ function homePage(data) {
       <div class="photo-stack">
         ${hero ? `<img src="${hero}" alt="Vitrina con minoxidil Kirkland">` : ""}
         ${before ? `<img src="${before}" alt="Antes y despues con minoxidil">` : ""}
+      </div>
+    </section>
+    <section class="home-feature section-wide">
+      <div class="home-feature-media">
+        <img src="${storeImage}" alt="Vitrina de productos Minoxidil Kirkland en la sucursal">
+      </div>
+      <div class="home-feature-copy">
+        <span class="eyebrow">Minoxidil todo MÃ©xico en la Ciudad de MÃ©xico</span>
+        <h2>Transforma tu cabello en la Ãºnica sucursal de crecimiento en la ciudad.</h2>
+        <p>Crecimiento capilar sin vueltas: productos visibles, asesorÃ­a directa y compra por WhatsApp antes de pasar a la sucursal.</p>
+        <div class="benefit-list">
+          <article><b>★</b><div><h3>Productos de calidad</h3><p>Minoxidil Kirkland, espuma, biotina, dermaroller y tratamientos seleccionados para barba y cabello.</p></div></article>
+          <article><b>▰</b><div><h3>Variedad de tratamientos</h3><p>Opciones para crecimiento de barba, recuperaciÃ³n capilar, mantenimiento y cuidado diario.</p></div></article>
+          <article><b>●</b><div><h3>Ofertas y promociones</h3><p>Te confirmamos precio, existencia y promociones actuales directamente por WhatsApp.</p></div></article>
+        </div>
+      </div>
+    </section>
+    <section class="video-proof section-wide">
+      <div class="proof-card">
+        <div class="proof-video">
+          <iframe title="Video de resultados con minoxidil" src="https://rumble.com/embed/v4365zo/?pub=1tu8ug" loading="lazy" allowfullscreen></iframe>
+          <img src="${resultImage}" alt="Antes y despues con minoxidil">
+        </div>
+        <div class="proof-stats">
+          <div><strong>979K</strong><span>Ventas del producto</span></div>
+          <div><strong>50,000K</strong><span>Clientes atendidos</span></div>
+          <div><strong>15 aÃ±os</strong><span>Experiencia en cuidado capilar</span></div>
+          <div><strong>250K</strong><span>EnvÃ­os a todo MÃ©xico</span></div>
+        </div>
+      </div>
+      <div class="proof-copy">
+        <h2>Cambia tu look, cambia tu vida. Mira el video ahora.</h2>
+        <p>En Minoxidil Todo MÃ©xico nos importa que compres con informaciÃ³n clara: resultados reales, constancia y expectativas honestas antes de empezar.</p>
+      </div>
+    </section>
+    <section class="home-cta">
+      <h2>Â¿Tienes alguna pregunta? No dudes en ponerte en contacto con nosotros.</h2>
+      <a class="button secondary" href="/contact/">Contactarnos</a>
+    </section>
+    <section class="community-section section-wide">
+      <img src="${resultImage}" alt="Resultados antes y despues con minoxidil">
+      <div>
+        <span class="eyebrow">Comunidad y seguimiento</span>
+        <h2>En Minoxidil Todo MÃ©xico construimos mÃ¡s que cabello: construimos confianza.</h2>
+        <p>Nuestro equipo te orienta para elegir tratamiento, resolver dudas y mantener una rutina sencilla. Si vienes a CDMX o compras desde otro estado, te atendemos directo por WhatsApp.</p>
+        <ul>
+          <li>Tratamientos para barba y cabello.</li>
+          <li>Productos visibles y asesorÃ­a antes de comprar.</li>
+          <li>EnvÃ­os rÃ¡pidos y seguros a todo MÃ©xico.</li>
+          <li>Expectativas claras para medir resultados.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="testimonials-section section-wide">
+      <div class="section-heading centered">
+        <span class="eyebrow">Testimonios</span>
+        <h2>Lo que la gente dice sobre nosotros</h2>
+        <p>Experiencias de clientes que buscaron un lugar con productos reales, atenciÃ³n directa y seguimiento.</p>
+      </div>
+      <div class="testimonial-grid">
+        <article><div><img src="${avatarJuan}" alt="Juan Madrigal"><span><strong>Juan Madrigal</strong><small>Ciudad de MÃ©xico</small></span></div><p>Â«Antes de descubrir este lugar mi barba era irregular y mi cabello sin vida. Con asesorÃ­a y constancia notÃ© un cambio real.Â»</p></article>
+        <article><div><img src="${avatarPatricia}" alt="Patricia Rivas"><span><strong>Patricia Rivas</strong><small>Guadalajara</small></span></div><p>Â«DespuÃ©s de probar varios productos, aquÃ­ me explicaron quÃ© usar y cÃ³mo hacerlo. Mi cabello se ve mÃ¡s fuerte.Â»</p></article>
+        <article><div><img src="${avatarCarlos}" alt="Carlos Marroquin"><span><strong>Carlos Marroquin</strong><small>Monterrey</small></span></div><p>Â«Buscaba resultados reales y atenciÃ³n clara. Me ayudaron a elegir producto y resolver dudas antes de comprar.Â»</p></article>
       </div>
     </section>
     <section class="section">
@@ -1141,6 +1209,11 @@ a{text-decoration:none}.menu a:hover,.footer a:hover,.section-heading a:hover{te
 @media (max-width:1200px){.product-grid,.shop-layout .product-grid,.shop-layout:not(:has(.toolbar)) .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:980px){.topbar{display:none}.nav,.header-overlay .nav{min-height:72px}.menu,.header-overlay .menu{top:76px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:8px;padding:1rem}.header-overlay .menu a{color:var(--ink)}.shop-layout,.shop-layout:not(:has(.toolbar)){grid-template-columns:1fr}.service-grid,.contact-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.article{margin:1.5rem 1rem;padding:1.5rem}.wp-hero{min-height:560px}}
 @media (max-width:620px){.brand-logo{width:42px;height:42px}.brand strong,.header-overlay .brand strong{font-size:1.05rem}.menu-toggle{background:#fff;border:1px solid var(--line);border-radius:8px}.product-grid,.shop-layout .product-grid,.shop-layout:not(:has(.toolbar)) .product-grid,.service-grid,.contact-info-grid{grid-template-columns:1fr}.shop-hero,.page-hero.compact{text-align:left}.footer{grid-template-columns:1fr}.wp-hero h1{font-size:2.35rem}.article header h1{font-size:2rem}}
+.section-wide{width:min(1240px,calc(100% - 2rem));margin:0 auto;padding:5rem 0}.home-feature{display:grid;grid-template-columns:.95fr 1fr;gap:3.5rem;align-items:center}.home-feature-media img{width:100%;height:640px;object-fit:cover;border-radius:8px;box-shadow:var(--shadow)}.home-feature-copy h2,.proof-copy h2,.community-section h2,.testimonials-section h2{font-size:clamp(2rem,4vw,3.55rem);line-height:1.08;margin:.55rem 0 1rem;font-weight:900;text-wrap:balance}.home-feature-copy>p,.proof-copy p,.community-section p,.testimonials-section .section-heading p{color:var(--muted);font-size:1.02rem}.benefit-list{display:grid;gap:1rem;margin-top:2rem}.benefit-list article{display:grid;grid-template-columns:72px 1fr;gap:1.25rem;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:1.3rem;box-shadow:0 12px 34px rgba(7,29,54,.06)}.benefit-list b{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-size:1.35rem}.benefit-list h3{margin:.1rem 0 .35rem}.benefit-list p{margin:0;color:var(--muted)}
+.video-proof{text-align:center}.proof-card{overflow:hidden;border-radius:8px;background:var(--deep);box-shadow:var(--shadow)}.proof-video{position:relative;background:#000}.proof-video iframe,.proof-video img{width:100%;aspect-ratio:16/7;display:block;border:0;object-fit:cover}.proof-video iframe{position:absolute;inset:0;z-index:2}.proof-video img{opacity:.52}.proof-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);padding:2rem 1rem}.proof-stats div{display:grid;gap:.35rem;color:#fff}.proof-stats strong{font-size:1.75rem;line-height:1}.proof-stats span{color:#7fc4ff;font-weight:800;font-size:.9rem}.proof-copy{max-width:760px;margin:1.8rem auto 0}.home-cta{width:min(1240px,calc(100% - 2rem));margin:3rem auto 5rem;background:linear-gradient(135deg,#126bb8,#1784d6);color:#fff;border-radius:8px;padding:3rem clamp(1.4rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;gap:2rem}.home-cta h2{font-size:clamp(1.7rem,3vw,2.6rem);line-height:1.18;margin:0;max-width:760px}.home-cta .button.secondary{background:#fff;color:var(--brand);border-color:#fff}
+.community-section{display:grid;grid-template-columns:.92fr 1fr;gap:3.5rem;align-items:center}.community-section>img{width:100%;border-radius:8px;box-shadow:var(--shadow)}.community-section ul{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1.5rem}.community-section li{position:relative;padding-left:1.65rem;color:#30445b}.community-section li:before{content:"";position:absolute;left:0;top:.42rem;width:.72rem;height:.72rem;border-radius:50%;background:var(--brand)}.testimonials-section{padding-top:3rem}.section-heading.centered{display:block;text-align:center;max-width:760px;margin:0 auto 2rem}.testimonial-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}.testimonial-grid article{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 34px rgba(7,29,54,.06);padding:1.6rem}.testimonial-grid article>div{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem}.testimonial-grid img{width:64px;height:64px;border-radius:4px;object-fit:cover}.testimonial-grid strong{display:block}.testimonial-grid small{display:block;color:var(--muted);margin-top:.2rem}.testimonial-grid p{color:#30445b;margin:0}
+@media (max-width:980px){.home-feature,.community-section{grid-template-columns:1fr}.home-feature-media img{height:420px}.proof-stats{grid-template-columns:repeat(2,1fr)}.home-cta{display:grid}.testimonial-grid{grid-template-columns:1fr}.community-section ul{grid-template-columns:1fr}.proof-video iframe,.proof-video img{aspect-ratio:16/9}}
+@media (max-width:620px){.section-wide{padding:3.5rem 0}.home-feature-media img{height:330px}.benefit-list article{grid-template-columns:1fr}.proof-stats{grid-template-columns:1fr}.home-cta{margin:2rem auto 3rem;padding:2rem 1.2rem}.testimonial-grid article{padding:1.25rem}}
 `;
 
 const js = `
