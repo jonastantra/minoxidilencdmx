@@ -655,7 +655,8 @@ function contactPage(data, route = "/contact/") {
   const hero = "/assets/images/diseno-sin-titulo-2.jpg";
   const neza = "/assets/images/2-6.jpg";
   const wa = whatsappLink(data, "Quiero visitar la sucursal o comprar minoxidil");
-  const map = "https://www.google.com/maps?q=Calzada%20Ignacio%20Zaragoza%20406%20Juan%20Escutia%20Iztapalapa%2009100%20Ciudad%20de%20Mexico&output=embed";
+  const mapGuelatao = "https://www.google.com/maps?q=Calzada%20Ignacio%20Zaragoza%20406%20Juan%20Escutia%20Iztapalapa%2009100%20Ciudad%20de%20Mexico&output=embed";
+  const mapNeza = "https://www.google.com/maps?q=Oriente%2010%20224%20Colonia%20Reforma%20Ciudad%20Nezahualcoyotl%2057840%20Estado%20de%20Mexico&output=embed";
   const body = `
     <section class="wp-hero contact-hero" style="--hero-image:url('${hero}')">
       <div class="wp-hero-inner">
@@ -686,7 +687,34 @@ function contactPage(data, route = "/contact/") {
         <article><b>▯</b><h3>WhatsApp y números</h3><p><a href="${wa}">55-6938-0408</a></p></article>
       </div>
     </section>
-    <section class="contact-main">
+    <section class="map-section section-wide">
+      <div class="section-heading centered">
+        <span class="eyebrow">Mapas</span>
+        <h2>Elige la ubicaciÃ³n que te quede mejor</h2>
+        <p>Antes de venir, escrÃ­benos por WhatsApp para confirmar existencia, horario y punto exacto de entrega.</p>
+      </div>
+      <div class="map-grid">
+        <article class="map-card">
+          <div class="map-card-copy">
+            <span>Plaza Guelatao</span>
+            <h3>Local 76, Pasillo 5</h3>
+            <p>Calz. Ignacio Zaragoza 406, Juan Escutia, Iztapalapa, 09100 Ciudad de MÃ©xico, CDMX.</p>
+            <a class="button secondary" href="https://www.google.com/maps/search/?api=1&query=Calzada+Ignacio+Zaragoza+406+Juan+Escutia+Iztapalapa" target="_blank" rel="noreferrer">Abrir en Google Maps</a>
+          </div>
+          <iframe title="Mapa Plaza Guelatao Minoxidil" src="${mapGuelatao}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </article>
+        <article class="map-card">
+          <div class="map-card-copy">
+            <span>Oficinas en Neza</span>
+            <h3>Colonia Reforma</h3>
+            <p>Oriente 10 #224, Col. Reforma, 57840 Ciudad NezahualcÃ³yotl, Estado de MÃ©xico.</p>
+            <a class="button secondary" href="https://www.google.com/maps/search/?api=1&query=Oriente+10+224+Colonia+Reforma+Ciudad+Nezahualcoyotl" target="_blank" rel="noreferrer">Abrir en Google Maps</a>
+          </div>
+          <iframe title="Mapa oficinas Neza Minoxidil" src="${mapNeza}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </article>
+      </div>
+    </section>
+    <section class="contact-main contact-summary">
       <div class="contact-copy">
         <span class="eyebrow">Plaza Guelatao</span>
         <h2>Estamos dentro de Plaza Guelatao, local 76.</h2>
@@ -700,9 +728,6 @@ function contactPage(data, route = "/contact/") {
           <span>Biotina, dermaroller y shampoos</span>
           <span>Asesoría para barba y cabello</span>
         </div>
-      </div>
-      <div class="map-panel">
-        <iframe title="Mapa de sucursal Minoxidil en CDMX" src="${map}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </section>
     <section class="contact-final">
@@ -1212,8 +1237,10 @@ a{text-decoration:none}.menu a:hover,.footer a:hover,.section-heading a:hover{te
 .section-wide{width:min(1240px,calc(100% - 2rem));margin:0 auto;padding:5rem 0}.home-feature{display:grid;grid-template-columns:.95fr 1fr;gap:3.5rem;align-items:center}.home-feature-media img{width:100%;height:640px;object-fit:cover;border-radius:8px;box-shadow:var(--shadow)}.home-feature-copy h2,.proof-copy h2,.community-section h2,.testimonials-section h2{font-size:clamp(2rem,4vw,3.55rem);line-height:1.08;margin:.55rem 0 1rem;font-weight:900;text-wrap:balance}.home-feature-copy>p,.proof-copy p,.community-section p,.testimonials-section .section-heading p{color:var(--muted);font-size:1.02rem}.benefit-list{display:grid;gap:1rem;margin-top:2rem}.benefit-list article{display:grid;grid-template-columns:72px 1fr;gap:1.25rem;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:1.3rem;box-shadow:0 12px 34px rgba(7,29,54,.06)}.benefit-list b{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-size:1.35rem}.benefit-list h3{margin:.1rem 0 .35rem}.benefit-list p{margin:0;color:var(--muted)}
 .video-proof{text-align:center}.proof-card{overflow:hidden;border-radius:8px;background:var(--deep);box-shadow:var(--shadow)}.proof-video{position:relative;background:#000}.proof-video iframe,.proof-video img{width:100%;aspect-ratio:16/7;display:block;border:0;object-fit:cover}.proof-video iframe{position:absolute;inset:0;z-index:2}.proof-video img{opacity:.52}.proof-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);padding:2rem 1rem}.proof-stats div{display:grid;gap:.35rem;color:#fff}.proof-stats strong{font-size:1.75rem;line-height:1}.proof-stats span{color:#7fc4ff;font-weight:800;font-size:.9rem}.proof-copy{max-width:760px;margin:1.8rem auto 0}.home-cta{width:min(1240px,calc(100% - 2rem));margin:3rem auto 5rem;background:linear-gradient(135deg,#126bb8,#1784d6);color:#fff;border-radius:8px;padding:3rem clamp(1.4rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;gap:2rem}.home-cta h2{font-size:clamp(1.7rem,3vw,2.6rem);line-height:1.18;margin:0;max-width:760px}.home-cta .button.secondary{background:#fff;color:var(--brand);border-color:#fff}
 .community-section{display:grid;grid-template-columns:.92fr 1fr;gap:3.5rem;align-items:center}.community-section>img{width:100%;border-radius:8px;box-shadow:var(--shadow)}.community-section ul{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1.5rem}.community-section li{position:relative;padding-left:1.65rem;color:#30445b}.community-section li:before{content:"";position:absolute;left:0;top:.42rem;width:.72rem;height:.72rem;border-radius:50%;background:var(--brand)}.testimonials-section{padding-top:3rem}.section-heading.centered{display:block;text-align:center;max-width:760px;margin:0 auto 2rem}.testimonial-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}.testimonial-grid article{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 34px rgba(7,29,54,.06);padding:1.6rem}.testimonial-grid article>div{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem}.testimonial-grid img{width:64px;height:64px;border-radius:4px;object-fit:cover}.testimonial-grid strong{display:block}.testimonial-grid small{display:block;color:var(--muted);margin-top:.2rem}.testimonial-grid p{color:#30445b;margin:0}
+.map-section{padding-top:3rem}.map-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}.map-card{overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 16px 44px rgba(7,29,54,.08);display:grid;grid-template-rows:auto minmax(360px,1fr)}.map-card-copy{padding:1.4rem;display:grid;gap:.55rem}.map-card-copy span{color:var(--brand);font-weight:900;text-transform:uppercase;font-size:.78rem}.map-card-copy h3{font-size:1.55rem;line-height:1.1;margin:0}.map-card-copy p{color:var(--muted);margin:0}.map-card-copy .button{justify-self:start;margin-top:.6rem}.map-card iframe{width:100%;height:100%;min-height:360px;border:0;display:block}.contact-summary{display:block;text-align:center;max-width:900px}.contact-summary .contact-copy{max-width:720px;margin:0 auto}.contact-summary .contact-actions,.contact-summary .mini-list{justify-content:center}.contact-summary .mini-list{max-width:620px;margin-left:auto;margin-right:auto}
 @media (max-width:980px){.home-feature,.community-section{grid-template-columns:1fr}.home-feature-media img{height:420px}.proof-stats{grid-template-columns:repeat(2,1fr)}.home-cta{display:grid}.testimonial-grid{grid-template-columns:1fr}.community-section ul{grid-template-columns:1fr}.proof-video iframe,.proof-video img{aspect-ratio:16/9}}
-@media (max-width:620px){.section-wide{padding:3.5rem 0}.home-feature-media img{height:330px}.benefit-list article{grid-template-columns:1fr}.proof-stats{grid-template-columns:1fr}.home-cta{margin:2rem auto 3rem;padding:2rem 1.2rem}.testimonial-grid article{padding:1.25rem}}
+@media (max-width:980px){.map-grid{grid-template-columns:1fr}.map-card{grid-template-rows:auto 340px}}
+@media (max-width:620px){.section-wide{padding:3.5rem 0}.home-feature-media img{height:330px}.benefit-list article{grid-template-columns:1fr}.proof-stats{grid-template-columns:1fr}.home-cta{margin:2rem auto 3rem;padding:2rem 1.2rem}.testimonial-grid article{padding:1.25rem}.map-card{grid-template-rows:auto 300px}.map-card iframe{min-height:300px}.map-card-copy .button{width:100%}}
 `;
 
 const js = `
