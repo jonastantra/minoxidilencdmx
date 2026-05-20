@@ -29,6 +29,24 @@ function decodeEntities(value = "") {
     .replace(/&gt;/g, ">");
 }
 
+function repairMojibake(value = "") {
+  let text = String(value);
+  const replacements = [
+    ["ÃƒÂ¡", "á"], ["ÃƒÂ©", "é"], ["ÃƒÂ­", "í"], ["ÃƒÂ³", "ó"], ["ÃƒÂº", "ú"], ["ÃƒÂ±", "ñ"],
+    ["ÃƒÂ", "Á"], ["ÃƒÂ‰", "É"], ["ÃƒÂ", "Í"], ["ÃƒÂ“", "Ó"], ["ÃƒÂš", "Ú"], ["ÃƒÂ‘", "Ñ"],
+    ["Ã¡", "á"], ["Ã©", "é"], ["Ã­", "í"], ["Ã³", "ó"], ["Ãº", "ú"], ["Ã±", "ñ"],
+    ["Ã", "Á"], ["Ã‰", "É"], ["Ã", "Í"], ["Ã“", "Ó"], ["Ãš", "Ú"], ["Ã‘", "Ñ"],
+    ["Â¿", "¿"], ["Â¡", "¡"], ["Â«", "«"], ["Â»", "»"], ["Â°", "°"], ["Â£", "£"],
+    ["â€“", "–"], ["â€”", "—"], ["â€œ", "“"], ["â€", "”"], ["â€˜", "‘"], ["â€™", "’"], ["â€¦", "…"],
+    ["âœ“", "✓"], ["â˜…", "★"], ["â™¥", "♥"], ["â–£", "▣"], ["â—‡", "◇"], ["â—·", "◷"],
+    ["âŒ–", "⌖"], ["â†—", "↗"], ["âœ‰", "✉"], ["â–¯", "▯"]
+  ];
+  for (let pass = 0; pass < 2; pass += 1) {
+    for (const [bad, good] of replacements) text = text.replaceAll(bad, good);
+  }
+  return text;
+}
+
 function stripTags(value = "") {
   return decodeEntities(String(value).replace(/<[^>]+>/g, " "))
     .replace(/\[[^\]]+\]/g, " ")
@@ -56,7 +74,7 @@ function routeToFile(route) {
 async function writeRoute(route, html) {
   const file = routeToFile(route);
   await mkdir(path.dirname(file), { recursive: true });
-  await writeFile(file, html, "utf8");
+  await writeFile(file, repairMojibake(html), "utf8");
   writtenRoutes.add(normalizeRoute(route));
 }
 
