@@ -1,6 +1,6 @@
 # Auditoria de redirecciones
 
-Generado: 2026-05-20T03:47:58.910Z
+Generado: 2026-05-20T04:05:27.527Z
 Reglas 301 generadas: 252
 Rutas indexadas para 404 inteligente: 426
 

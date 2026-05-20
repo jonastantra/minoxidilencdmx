@@ -56,6 +56,13 @@ function stripTags(value = "") {
     .trim();
 }
 
+function normalizeText(value = "") {
+  return String(value)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
 function cleanHtml(value = "") {
   return String(value)
     .replace(/<script[\s\S]*?<\/script>/gi, "")
@@ -948,15 +955,19 @@ function blogPage(data, pageNumber = 1, perPage = 24) {
 }
 
 function articlePage(post, data) {
+  const shopBlock = articleShopBlock(post, data);
   const body = `
-    <article class="article">
-      <header>
-        <span class="eyebrow">Guia</span>
-        <h1>${escapeHtml(post.title)}</h1>
-        <time>${formatDate(post.date)}</time>
-      </header>
-      ${post.image ? `<img class="article-image" src="${post.image}" alt="${escapeHtml(post.title)}">` : ""}
-      <div class="article-content">${cleanHtml(post.content)}</div>
+    <article class="article article-with-shop">
+      <div class="article-main">
+        <header>
+          <span class="eyebrow">Guia</span>
+          <h1>${escapeHtml(post.title)}</h1>
+          <time>${formatDate(post.date)}</time>
+        </header>
+        ${post.image ? `<img class="article-image" src="${post.image}" alt="${escapeHtml(post.title)}">` : ""}
+        <div class="article-content">${cleanHtml(post.content)}</div>
+      </div>
+      ${shopBlock}
     </article>`;
   return layout(data, {
     title: post.title,
@@ -970,6 +981,47 @@ function articlePage(post, data) {
     ],
     body
   });
+}
+
+function relatedArticleProducts(post, data) {
+  const text = normalizeText(`${post.title} ${post.slug} ${post.excerpt || ""}`);
+  const productMatches = [
+    [/biotina|vitamina|unas|uñas/i, ["biotina"]],
+    [/shampoo|caida|caída|alopecia|coronilla|frontal|postparto/i, ["shampoo", "biotina", "minoxidil-3-meses"]],
+    [/dermaroller|roller|microaguja/i, ["skin-roller", "derma"]],
+    [/espuma|foam/i, ["foam", "espuma"]],
+    [/balsamo|bálsamo|jabon|jabón|aceite|cera/i, ["balsamo", "jabon", "aceite", "cera"]],
+    [/kirkland|original|pirata|rogaine|liquido|líquido/i, ["kirkland", "3-meses", "6-meses"]],
+    [/barba|bigote|candado|mejilla|hueco|lampino/i, ["3-meses", "kit-del-barbon", "skin-roller"]]
+  ];
+  const wanted = productMatches.find(([regex]) => regex.test(text))?.[1] || ["3-meses", "6-meses", "biotina"];
+  const picked = [];
+  for (const token of wanted) {
+    const item = data.products.find((product) => normalizeText(`${product.name} ${product.slug}`).includes(normalizeText(token)));
+    if (item && !picked.some((product) => product.path === item.path)) picked.push(item);
+  }
+  for (const product of data.products) {
+    if (picked.length >= 3) break;
+    if (!picked.some((item) => item.path === product.path)) picked.push(product);
+  }
+  return picked.slice(0, 3);
+}
+
+function articleShopBlock(post, data) {
+  const products = relatedArticleProducts(post, data);
+  return `<aside class="article-shop" aria-label="Productos y asesoria">
+    <span class="eyebrow">Sucursal y venta</span>
+    <h2>¿Quieres comprar minoxidil o revisar tu caso?</h2>
+    <p>Te atendemos por WhatsApp antes de que compres: barba, cabello, entradas, coronilla, cejas o rutina de mantenimiento.</p>
+    <a class="button" href="${whatsappLink(data, `Hola, vengo de la entrada ${post.title} y quiero orientación para comprar minoxidil`)}">Pedir orientación</a>
+    <div class="article-products">
+      ${products.map((product) => `<a href="${product.path}">
+        <img src="${product.image}" alt="${escapeHtml(product.name)}" loading="lazy">
+        <strong>${escapeHtml(product.name)}</strong>
+        <span>${escapeHtml(product.price || "Ver producto")}</span>
+      </a>`).join("")}
+    </div>
+  </aside>`;
 }
 
 function genericPage(page, data) {
@@ -1275,7 +1327,7 @@ a{text-decoration:none}.menu a:hover,.footer a:hover,.section-heading a:hover{te
 .shop-layout,.shop-layout:not(:has(.toolbar)){max-width:1240px;grid-template-columns:280px 1fr;gap:1.5rem;background:var(--bg);padding:2.5rem 1rem 4rem}.shop-layout .category-links.vertical a,.category-links.vertical a{background:#fff;border-color:var(--line);box-shadow:none;color:var(--ink)}.shop-layout .category-links.vertical a.active,.shop-layout .category-links.vertical a:hover,.category-links a.active{background:var(--brand);border-color:var(--brand);color:#fff}.category-links span,.shop-layout .category-links.vertical a span{color:var(--brand-2)}
 .toolbar{padding:1rem;margin-bottom:1.25rem}.toolbar input{border-color:var(--line);background:#fff}.product-grid,.shop-layout .product-grid,.shop-layout:not(:has(.toolbar)) .product-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.15rem}.shop-card,.product-card{border-color:var(--line);box-shadow:0 12px 34px rgba(7,29,54,.06)}.shop-card:hover{border-color:#b7c9dc;box-shadow:0 20px 54px rgba(7,29,54,.12)}.shop-image,.product-image{background:#f7fafd}.product-badge{color:var(--brand);border-color:var(--line)}.shop-copy .eyebrow{color:var(--brand-2)}.product-meta span{border-color:var(--line);background:#f8fbff;color:var(--muted)}.shop-actions strong,.product-actions strong,.price{color:#0d5796}.shop-actions .button{background:var(--brand);border-color:var(--brand)}
 .post-grid{padding-top:2.5rem}.post-card{overflow:hidden}.post-card div{padding:1.2rem}.post-card h2{font-size:1.14rem;margin:.6rem 0}.post-card a{color:var(--ink)}.post-card img{aspect-ratio:16/9}.blog-pagination{max-width:1240px}.page-dots strong{background:var(--brand);border-color:var(--brand)}
-.article{max-width:900px;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 34px rgba(7,29,54,.06);margin:3rem auto;padding:3rem}.article header{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:1.6rem}.article header h1{font-size:clamp(2rem,4.4vw,3.6rem)}.article-content h2,.article-content h3{color:var(--ink)}.article-content a{color:var(--brand)}.article-image{border-radius:8px}
+.article{max-width:900px;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 34px rgba(7,29,54,.06);margin:3rem auto;padding:3rem}.article header{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:1.6rem}.article header h1{font-size:clamp(2rem,4.4vw,3.6rem)}.article-content h2,.article-content h3{color:var(--ink)}.article-content a{color:var(--brand)}.article-image{border-radius:8px}.article-with-shop{max-width:1180px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:2rem;align-items:start}.article-main{min-width:0}.article-shop{position:sticky;top:110px;background:#f7faf8;border:1px solid #d9e7de;border-radius:8px;padding:1.25rem;box-shadow:0 12px 30px rgba(15,70,41,.08)}.article-shop h2{font-size:1.35rem;line-height:1.15;margin:.35rem 0 .7rem}.article-shop p{font-size:.95rem;color:#405466}.article-shop .button{width:100%;justify-content:center;margin:.5rem 0 1rem}.article-products{display:grid;gap:.75rem}.article-products a{display:grid;grid-template-columns:62px 1fr;gap:.7rem;align-items:center;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:8px;padding:.65rem}.article-products img{width:62px;height:62px;object-fit:contain;background:#fff}.article-products strong{font-size:.86rem;line-height:1.18}.article-products span{color:var(--brand-strong);font-weight:800;font-size:.9rem}@media(max-width:980px){.article-with-shop{display:block}.article-shop{position:static;margin-top:2rem}}
 .contact-final{background:linear-gradient(135deg,#071d36,#126bb8)}.map-panel iframe,.location-photo,.feature-image,.gallery img{border-radius:8px;box-shadow:0 18px 50px rgba(7,29,54,.12)}
 .footer{background:var(--deep);color:#fff;grid-template-columns:1.2fr 1fr 1fr}.footer p,.footer a{color:rgba(255,255,255,.78)}.float-wa{background:#25d366;color:#082814}
 @media (max-width:1200px){.product-grid,.shop-layout .product-grid,.shop-layout:not(:has(.toolbar)) .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}

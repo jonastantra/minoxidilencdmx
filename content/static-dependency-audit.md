@@ -1,6 +1,6 @@
 # Auditoria de dependencias estaticas
 
-Fecha: 2026-05-20T03:48:03.171Z
+Fecha: 2026-05-20T04:05:54.532Z
 
 ## Resultado
 
@@ -19,7 +19,7 @@ Estado: listo para publicar como sitio estatico.
 
 Estos no son dependencias de WordPress. Son salidas funcionales o embeds que se mantienen a proposito:
 
-- api.whatsapp.com: 2418
+- api.whatsapp.com: 2709
 - www.google.com: 5
 - rumble.com: 3
 
