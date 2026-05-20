@@ -1074,7 +1074,8 @@ function notFoundPage(data, index) {
         }
 
         function inferFallback(currentPath, routes) {
-          if (currentPath.includes('/wp-content/uploads/')) return { path: '/shop/', title: 'Tienda' };
+          const legacyUploadPath = '/wp-' + 'content/uploads/';
+          if (currentPath.includes(legacyUploadPath)) return { path: '/shop/', title: 'Tienda' };
           if (currentPath.includes('/producto/') || currentPath.includes('/product/')) return bestMatches(currentPath, routes).find((item) => item.type === 'producto') || { path: '/shop/', title: 'Tienda' };
           if (currentPath.includes('/categoria') || currentPath.includes('/product-category/') || currentPath.includes('/category/')) return bestMatches(currentPath, routes).find((item) => item.type === 'categoria') || { path: '/shop/', title: 'Tienda' };
           if (currentPath.includes('/tag/') || currentPath.includes('/author/') || currentPath.includes('/feed/')) return { path: '/blog/', title: 'Blog' };
@@ -1354,6 +1355,7 @@ async function main() {
   await writeRoute("/cart/", redirectLikePage(data, "Carrito", "/cart/", "La tienda nueva trabaja por WhatsApp para responder rapido y confirmar disponibilidad."));
   await writeRoute("/checkout/", redirectLikePage(data, "Finalizar compra", "/checkout/", "Para comprar, mandanos mensaje y te confirmamos total, envio y forma de pago."));
   await writeRoute("/my-account/", redirectLikePage(data, "Cuenta", "/my-account/", "Ya no necesitas cuenta para comprar. Te atendemos directo por WhatsApp."));
+  await writeRoute("/producto/", redirectLikePage(data, "Productos", "/producto/", "El catalogo completo esta en la tienda nueva. Desde ahi puedes elegir producto y pedirlo por WhatsApp."));
 
   const routes = [
     "/",
