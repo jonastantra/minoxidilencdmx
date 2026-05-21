@@ -454,6 +454,7 @@ function layout(data, page) {
       <div class="menu" id="menu">
         <a href="/">Inicio</a>
         <a href="/contact/">Sucursal en CDMX</a>
+        <a href="/sucursales-y-entregas/">Sucursales y entregas</a>
         <a href="/blog/">Blog</a>
         <a href="/shop/">Tienda</a>
         <a href="/categoria-producto/minoxidil-kirkland/">Minoxidil</a>
@@ -625,6 +626,7 @@ function sitemapMeta(data, blogTotalPages) {
   set("/shop/", { lastmod: today, changefreq: "weekly", priority: "0.9" });
   set("/contact/", { lastmod: today, changefreq: "monthly", priority: "0.8" });
   set("/contacto/", { lastmod: today, changefreq: "monthly", priority: "0.7" });
+  set("/sucursales-y-entregas/", { lastmod: today, changefreq: "monthly", priority: "0.8" });
   for (const product of data.products) set(product.path, { lastmod: today, changefreq: "weekly", priority: "0.8" });
   for (const category of data.categories) {
     set(category.path, { lastmod: today, changefreq: "weekly", priority: "0.75" });
@@ -761,6 +763,19 @@ function homePage(data) {
       <h2>Â¿Tienes alguna pregunta? No dudes en ponerte en contacto con nosotros.</h2>
       <a class="button secondary" href="/contact/">Contactarnos</a>
     </section>
+    <section class="location-feature section-wide">
+      <div>
+        <span class="eyebrow">Sucursal, oficinas y entrega local</span>
+        <h2>Tres formas seguras de recibir tu tratamiento.</h2>
+        <p>Recoge en Plaza Guelatao, coordina en oficinas de Neza o agenda entrega personal en zona oriente. Producto visible, compra clara y pago con confianza.</p>
+        <a class="button" href="/sucursales-y-entregas/">Ver pagina dedicada</a>
+      </div>
+      <div class="location-feature-grid">
+        <article><strong>Plaza Guelatao</strong><span>Local 76, Pasillo 5</span></article>
+        <article><strong>Oficinas Neza</strong><span>Oriente 10 #224</span></article>
+        <article><strong>Zona Oriente</strong><span>Chalco, La Paz, Ixtapaluca, Neza e Iztapalapa</span></article>
+      </div>
+    </section>
     <section class="community-section section-wide">
       <img src="${resultImage}" alt="Resultados antes y despues con minoxidil">
       <div>
@@ -896,6 +911,48 @@ function contactPage(data, route = "/contact/") {
       <a class="button dark" href="${wa}">Hablar ahora</a>
     </section>`;
   return layout(data, { title: "Sucursal y Contacto", path: route, description: "Sucursal en CDMX, oficinas en Neza y WhatsApp para comprar minoxidil y tratamientos capilares.", image: hero, bodyClass: "contact-page", body });
+}
+
+function locationsPage(data) {
+  const wa = whatsappLink(data, "Quiero informacion de sucursales y entregas personales");
+  const body = `
+    <section class="page-hero compact">
+      <span class="eyebrow">Compra presencial y entrega personal</span>
+      <h1>Sucursales, oficinas y puntos de entrega en CDMX Oriente.</h1>
+      <p>Esta pagina concentra las opciones para comprar minoxidil sin vueltas: puedes visitar el local, pasar por oficinas o acordar un punto publico de entrega.</p>
+    </section>
+    <section class="location-dedicated section-wide">
+      <article class="location-dedicated-card main">
+        <span>01 / Tienda fisica</span>
+        <h2>Plaza Guelatao Local 76</h2>
+        <p>La opcion para quien quiere revisar producto, preguntar rutina y pagar al momento. Escribe antes de venir para confirmar existencia.</p>
+        <strong>Calz. Ignacio Zaragoza 406, Juan Escutia, Iztapalapa.</strong>
+        <a class="button" href="${wa}">Agendar visita</a>
+      </article>
+      <article class="location-dedicated-card">
+        <span>02 / Oficina</span>
+        <h2>Neza Reforma</h2>
+        <p>Punto de apoyo para clientes de Estado de Mexico Oriente y recolecciones rapidas.</p>
+        <strong>Oriente 10 #224, Colonia Reforma.</strong>
+        <a class="button secondary" href="${wa}">Recoger en Neza</a>
+      </article>
+      <article class="location-dedicated-card accent">
+        <span>03 / Entrega personal</span>
+        <h2>Chalco, La Paz, Ixtapaluca, Neza e Iztapalapa</h2>
+        <p>Acordamos punto publico, recibes tu producto, revisas y pagas al recibir. Ideal para evitar anticipos y envios locales lentos.</p>
+        <strong>Metro La Paz, Metro Guelatao, Plaza Sendero y puntos acordados.</strong>
+        <a class="button" href="${wa}">Coordinar entrega</a>
+      </article>
+    </section>
+    <section class="section contact-panel">
+      <div>
+        <span class="eyebrow">Antes de moverte</span>
+        <h2>Confirma producto, horario y punto exacto por WhatsApp.</h2>
+        <p>Asi evitamos esperas, confirmamos disponibilidad y te decimos la mejor ruta segun tu zona.</p>
+      </div>
+      <a class="button" href="${wa}">WhatsApp 55 6938 0408</a>
+    </section>`;
+  return layout(data, { title: "Sucursales y entregas", path: "/sucursales-y-entregas/", description: "Sucursales y puntos de entrega personal para comprar minoxidil en CDMX, Neza y zona oriente.", bodyClass: "locations-page", body });
 }
 
 function shopPage(data) {
@@ -1442,9 +1499,10 @@ a{text-decoration:none}.menu a:hover,.footer a:hover,.section-heading a:hover{te
 .section-wide{width:min(1240px,calc(100% - 2rem));margin:0 auto;padding:5rem 0}.home-feature{display:grid;grid-template-columns:.95fr 1fr;gap:3.5rem;align-items:center}.home-feature-media img{width:100%;height:640px;object-fit:cover;border-radius:8px;box-shadow:var(--shadow)}.home-feature-copy h2,.proof-copy h2,.community-section h2,.testimonials-section h2{font-size:clamp(2rem,4vw,3.55rem);line-height:1.08;margin:.55rem 0 1rem;font-weight:900;text-wrap:balance}.home-feature-copy>p,.proof-copy p,.community-section p,.testimonials-section .section-heading p{color:var(--muted);font-size:1.02rem}.benefit-list{display:grid;gap:1rem;margin-top:2rem}.benefit-list article{display:grid;grid-template-columns:72px 1fr;gap:1.25rem;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:1.3rem;box-shadow:0 12px 34px rgba(7,29,54,.06)}.benefit-list b{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-size:1.35rem}.benefit-list h3{margin:.1rem 0 .35rem}.benefit-list p{margin:0;color:var(--muted)}
 .video-proof{text-align:center}.proof-card{overflow:hidden;border-radius:8px;background:var(--deep);box-shadow:var(--shadow)}.proof-video{position:relative;background:#000}.proof-video iframe,.proof-video img{width:100%;aspect-ratio:16/7;display:block;border:0;object-fit:cover}.proof-video iframe{position:absolute;inset:0;z-index:2}.proof-video img{opacity:.52}.proof-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);padding:2rem 1rem}.proof-stats div{display:grid;gap:.35rem;color:#fff}.proof-stats strong{font-size:1.75rem;line-height:1}.proof-stats span{color:#7fc4ff;font-weight:800;font-size:.9rem}.proof-copy{max-width:760px;margin:1.8rem auto 0}.home-cta{width:min(1240px,calc(100% - 2rem));margin:3rem auto 5rem;background:linear-gradient(135deg,#126bb8,#1784d6);color:#fff;border-radius:8px;padding:3rem clamp(1.4rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;gap:2rem}.home-cta h2{font-size:clamp(1.7rem,3vw,2.6rem);line-height:1.18;margin:0;max-width:760px}.home-cta .button.secondary{background:#fff;color:var(--brand);border-color:#fff}
 .community-section{display:grid;grid-template-columns:.92fr 1fr;gap:3.5rem;align-items:center}.community-section>img{width:100%;border-radius:8px;box-shadow:var(--shadow)}.community-section ul{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1.5rem}.community-section li{position:relative;padding-left:1.65rem;color:#30445b}.community-section li:before{content:"";position:absolute;left:0;top:.42rem;width:.72rem;height:.72rem;border-radius:50%;background:var(--brand)}.testimonials-section{padding-top:3rem}.section-heading.centered{display:block;text-align:center;max-width:760px;margin:0 auto 2rem}.testimonial-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}.testimonial-grid article{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 34px rgba(7,29,54,.06);padding:1.6rem}.testimonial-grid article>div{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem}.testimonial-grid img{width:64px;height:64px;border-radius:4px;object-fit:cover}.testimonial-grid strong{display:block}.testimonial-grid small{display:block;color:var(--muted);margin-top:.2rem}.testimonial-grid p{color:#30445b;margin:0}
+.location-feature{display:grid;grid-template-columns:.92fr 1.08fr;gap:2rem;align-items:stretch}.location-feature>div:first-child{background:#061326;color:#fff;border-radius:8px;padding:2rem}.location-feature p{color:#c8d4e2;line-height:1.7}.location-feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.location-feature-grid article,.location-dedicated-card{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 34px rgba(7,29,54,.06);display:flex;flex-direction:column;gap:.75rem;padding:1.5rem}.location-feature-grid strong{font-size:1.2rem}.location-feature-grid span{color:var(--muted)}.location-dedicated{display:grid;grid-template-columns:1.1fr .9fr .9fr;gap:1rem}.location-dedicated-card{min-height:360px}.location-dedicated-card.main{background:#061326;color:#fff}.location-dedicated-card.main p{color:#c8d4e2}.location-dedicated-card.accent{border-color:var(--brand);box-shadow:inset 4px 0 0 var(--brand)}.location-dedicated-card span{color:var(--brand);font-weight:900;text-transform:uppercase;font-size:.78rem;letter-spacing:.08em}.location-dedicated-card h2{font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.05;margin:.2rem 0}.location-dedicated-card p{color:var(--muted);line-height:1.7}.location-dedicated-card strong{margin-top:auto}
 .map-section{padding-top:3rem}.map-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}.map-card{overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 16px 44px rgba(7,29,54,.08);display:grid;grid-template-rows:auto minmax(360px,1fr)}.map-card-copy{padding:1.4rem;display:grid;gap:.55rem}.map-card-copy span{color:var(--brand);font-weight:900;text-transform:uppercase;font-size:.78rem}.map-card-copy h3{font-size:1.55rem;line-height:1.1;margin:0}.map-card-copy p{color:var(--muted);margin:0}.map-card-copy .button{justify-self:start;margin-top:.6rem}.map-card iframe{width:100%;height:100%;min-height:360px;border:0;display:block}.contact-summary{display:block;text-align:center;max-width:900px}.contact-summary .contact-copy{max-width:720px;margin:0 auto}.contact-summary .contact-actions,.contact-summary .mini-list{justify-content:center}.contact-summary .mini-list{max-width:620px;margin-left:auto;margin-right:auto}
 .contact-panel{background:linear-gradient(135deg,#071d36,#126bb8);color:#fff;border-radius:8px;padding:3rem;box-shadow:var(--shadow)}.contact-panel h2{color:#fff}.contact-panel p{color:rgba(255,255,255,.84)}.contact-panel .eyebrow{color:#ffd47a}.contact-panel .button{background:#fff;color:var(--brand);border-color:#fff}.contact-panel .button:hover{background:#eef6ff;color:#0d5796;border-color:#eef6ff}
-@media (max-width:980px){.home-feature,.community-section{grid-template-columns:1fr}.home-feature-media img{height:420px}.proof-stats{grid-template-columns:repeat(2,1fr)}.home-cta{display:grid}.testimonial-grid{grid-template-columns:1fr}.community-section ul{grid-template-columns:1fr}.proof-video iframe,.proof-video img{aspect-ratio:16/9}}
+@media (max-width:980px){.home-feature,.community-section,.location-feature,.location-dedicated{grid-template-columns:1fr}.location-feature-grid{grid-template-columns:1fr}.home-feature-media img{height:420px}.proof-stats{grid-template-columns:repeat(2,1fr)}.home-cta{display:grid}.testimonial-grid{grid-template-columns:1fr}.community-section ul{grid-template-columns:1fr}.proof-video iframe,.proof-video img{aspect-ratio:16/9}}
 @media (max-width:980px){.map-grid{grid-template-columns:1fr}.map-card{grid-template-rows:auto 340px}}
 @media (max-width:620px){.section-wide{padding:3.5rem 0}.home-feature-media img{height:330px}.benefit-list article{grid-template-columns:1fr}.proof-stats{grid-template-columns:1fr}.home-cta{margin:2rem auto 3rem;padding:2rem 1.2rem}.testimonial-grid article{padding:1.25rem}.map-card{grid-template-rows:auto 300px}.map-card iframe{min-height:300px}.map-card-copy .button{width:100%}}
 `;
@@ -1492,6 +1550,7 @@ async function main() {
   }
   await writeRoute("/contact/", contactPage(data, "/contact/"));
   await writeRoute("/contacto/", contactPage(data, "/contacto/"));
+  await writeRoute("/sucursales-y-entregas/", locationsPage(data));
 
   for (const product of data.products) {
     await writeRoute(product.path, productPage(product, data));
