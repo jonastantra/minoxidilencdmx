@@ -116,7 +116,9 @@ const lines = [
   "## Redirecciones usadas",
   "",
   ...redirected.slice(0, 120).map((item) => `- ${item.route} -> ${item.to}`),
-  redirected.length > 120 ? `\n... ${redirected.length - 120} redirecciones mas cubren URLs vivas.` : ""
+  ...(redirected.length > 120
+    ? [`... ${redirected.length - 120} redirecciones mas cubren URLs vivas.`]
+    : redirected.length ? [] : ["Ninguna."])
 ];
 
 await writeFile(REPORT, `${lines.join("\n")}\n`, "utf8");

@@ -1,7 +1,7 @@
 # Auditoria de redirecciones
 
-Generado: 2026-07-18T06:14:24.567Z
-Reglas 301 generadas: 565
+Generado: 2026-07-18T06:23:50.939Z
+Reglas 301 generadas: 564
 Rutas indexadas para 404 inteligente: 402
 
 ## Tipos cubiertos
@@ -79,7 +79,6 @@ Rutas indexadas para 404 inteligente: 402
 - /barba/ -> /guias/minoxidil-para-barba/ (legacy thin post consolidated by search intent)
 - /beneficios/ -> /guias/comprar-minoxidil-cdmx/ (legacy thin post consolidated by search intent)
 - /blog-2/ -> /blog/ (manual alias)
-- /blog/ -> /guias/comprar-minoxidil-cdmx/ (legacy thin post consolidated by search intent)
 - /blog/page/10/ -> /blog/ (legacy blog pagination consolidated)
 - /blog/page/11/ -> /blog/ (legacy blog pagination consolidated)
 - /blog/page/12/ -> /blog/ (legacy blog pagination consolidated)
@@ -134,5 +133,6 @@ Rutas indexadas para 404 inteligente: 402
 - /categoria-producto/shampoo/ -> /categoria-producto/cabello/shampoo/ (flattened product category)
 - /categoria-producto/shampoos-maximus/ -> /categoria-producto/marcas/maximus/shampoos-maximus/ (flattened product category)
 - /categoria-producto/suavecito/ -> /categoria-producto/marcas/suavecito/ (flattened product category)
+- /categoria/aceite/ -> /categoria-producto/barba-y-bigote/aceite/ (spanish category alias)
 
-... 445 reglas mas en dist/redirects.json
+... 444 reglas mas en dist/redirects.json

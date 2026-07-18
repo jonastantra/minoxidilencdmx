@@ -1592,7 +1592,8 @@ function staticRedirectPage(data, rule) {
 }
 
 async function writeRedirectArtifacts(data, routes) {
-  const redirects = legacyRedirects(data);
+  const publishedRouteKeys = new Set(routes.map(routeKey));
+  const redirects = legacyRedirects(data).filter((rule) => !publishedRouteKeys.has(routeKey(rule.from)));
   const index = redirectIndex(data, routes, redirects);
   await writeFile(path.join(DIST, "redirects.json"), `${JSON.stringify(index, null, 2)}\n`, "utf8");
   await writeFile(path.join(DIST, "404.html"), optimizeHtmlImages(localizeWordPressMedia(repairMojibake(notFoundPage(data, index)))), "utf8");

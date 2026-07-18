@@ -83,7 +83,20 @@ try {
   const redirectData = JSON.parse(await readFile(path.join(root, "dist", "redirects.json"), "utf8"));
   redirectMap = new Map((redirectData.redirects || []).map((item) => [redirectKey(item.from), item.to]));
 } catch {}
-const redirectedLegacyPosts = data.posts.filter((post) => redirectMap.has(redirectKey(post.path))).length;
+const legacyPostCoverage = await Promise.all(data.posts.map(async (post) => {
+  if (redirectMap.has(redirectKey(post.path))) return true;
+  const route = String(post.path || "/").replace(/^\/+|\/+$/g, "");
+  const file = route
+    ? path.join(root, "dist", route, "index.html")
+    : path.join(root, "dist", "index.html");
+  try {
+    const html = await readFile(file, "utf8");
+    return !/http-equiv=["']refresh["']/i.test(html);
+  } catch {
+    return false;
+  }
+}));
+const coveredLegacyPosts = legacyPostCoverage.filter(Boolean).length;
 const renderedProducts = await Promise.all(data.products.map(async (product) => {
   const file = path.join(root, "dist", product.path.replace(/^\/+|\/+$/g, ""), "index.html");
   try {
@@ -106,7 +119,7 @@ Fecha: ${new Date().toISOString()}
 - Fichas de producto renderizadas: ${renderedProducts.length}
 - Fichas con menos de 250 palabras: ${renderedProducts.filter((item) => item.words < 250).length}
 - Fichas que todavía muestran prefacio de asistente IA: ${renderedProducts.filter((item) => item.aiPreface).length}
-- Entradas heredadas cubiertas por redirección temática: ${redirectedLegacyPosts} de ${data.posts.length}
+- Entradas heredadas cubiertas por redirección temática o ruta canónica: ${coveredLegacyPosts} de ${data.posts.length}
 
 ## Inventario heredado retirado del índice
 
@@ -139,6 +152,6 @@ ${pages.filter((item) => item.placeholder || item.wordpressMarkup || item.words 
 await writeFile(path.join(root, "content", "content-quality-audit.md"), report, "utf8");
 console.log(report.split("\n").slice(0, 24).join("\n"));
 
-if (guideAudit.some((item) => item.words < 250) || renderedProducts.some((item) => item.words < 250 || item.aiPreface) || redirectedLegacyPosts !== data.posts.length) {
+if (guideAudit.some((item) => item.words < 250) || renderedProducts.some((item) => item.words < 250 || item.aiPreface) || coveredLegacyPosts !== data.posts.length) {
   process.exitCode = 1;
 }
