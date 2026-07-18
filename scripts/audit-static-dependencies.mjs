@@ -4,9 +4,9 @@ import path from "node:path";
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
-const SITE_HOST = "minoxidilencdmx.com";
+const SITE_HOSTS = new Set(["minoxidilencdmx.com", "www.minoxidilencdmx.com"]);
 const REPORT = path.join(ROOT, "content", "static-dependency-audit.md");
-const allowedExternalHosts = new Set(["api.whatsapp.com", "www.google.com", "rumble.com"]);
+const allowedExternalHosts = new Set(["api.whatsapp.com", "www.google.com", "rumble.com", "medlineplus.gov", "www.accessdata.fda.gov"]);
 
 const files = [];
 
@@ -77,8 +77,10 @@ for (const file of checkedFiles) {
 
     if (/^https?:\/\//i.test(ref)) {
       const url = new URL(ref);
-      if (url.host === SITE_HOST) {
-        if (!routeExists(url.pathname, allDistFiles)) localAssetMissing.push({ file: distPath(file), ref });
+      if (SITE_HOSTS.has(url.host)) {
+        let pathname = url.pathname;
+        try { pathname = decodeURIComponent(pathname); } catch {}
+        if (!routeExists(pathname, allDistFiles)) localAssetMissing.push({ file: distPath(file), ref });
       } else {
         addSample(externalHosts, url.host, file, ref);
         if (!allowedExternalHosts.has(url.host)) addSample(unexpectedExternalHosts, url.host, file, ref);

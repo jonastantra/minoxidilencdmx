@@ -1,9 +1,9 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
-const SITE_URL = "https://minoxidilencdmx.com";
+const SITE_URL = "https://www.minoxidilencdmx.com";
 const REPORT = path.join(ROOT, "content", "live-url-audit.md");
 
 function normalizeRoute(url = "/") {
@@ -35,9 +35,21 @@ function locs(xml) {
 }
 
 async function liveUrls() {
-  const index = await fetchXml(`${SITE_URL}/sitemap_index.xml`);
-  const sitemapUrls = locs(index);
+  let index;
+  let source;
+  try {
+    source = `${SITE_URL}/sitemap_index.xml`;
+    index = await fetchXml(source);
+  } catch {
+    source = `${SITE_URL}/sitemap.xml`;
+    index = await fetchXml(source);
+  }
+  const discovered = locs(index);
+  const sitemapUrls = /<sitemapindex/i.test(index) ? discovered : [];
   const urls = new Set();
+  if (!sitemapUrls.length) {
+    for (const loc of discovered) urls.add(normalizeRoute(loc));
+  }
   for (const sitemapUrl of sitemapUrls) {
     try {
       const xml = await fetchXml(sitemapUrl);
@@ -48,12 +60,24 @@ async function liveUrls() {
       console.warn(error.message);
     }
   }
-  return [...urls].sort();
+  return { urls: [...urls].sort(), source };
 }
 
 async function distUrls() {
   const sitemap = await readFile(path.join(DIST, "sitemap.xml"), "utf8");
-  return new Set(locs(sitemap).map(key));
+  const routes = new Set(locs(sitemap).map(key));
+  async function walk(dir) {
+    for (const entry of await readdir(dir, { withFileTypes: true })) {
+      const file = path.join(dir, entry.name);
+      if (entry.isDirectory()) await walk(file);
+      else if (entry.name === "index.html") {
+        const relative = path.relative(DIST, path.dirname(file)).replace(/\\/g, "/");
+        routes.add(key(relative ? `/${relative}/` : "/"));
+      }
+    }
+  }
+  await walk(DIST);
+  return routes;
 }
 
 async function redirectUrls() {
@@ -61,15 +85,16 @@ async function redirectUrls() {
   return new Map((data.redirects || []).map((rule) => [key(rule.from), rule]));
 }
 
-const [live, built, redirects] = await Promise.all([liveUrls(), distUrls(), redirectUrls()]);
+const [liveResult, built, redirects] = await Promise.all([liveUrls(), distUrls(), redirectUrls()]);
+const live = liveResult.urls;
 const covered = [];
 const redirected = [];
 const missing = [];
 
 for (const route of live) {
   const routeKey = key(route);
-  if (built.has(routeKey)) covered.push(route);
-  else if (redirects.has(routeKey)) redirected.push({ route, to: redirects.get(routeKey).to });
+  if (redirects.has(routeKey)) redirected.push({ route, to: redirects.get(routeKey).to });
+  else if (built.has(routeKey)) covered.push(route);
   else missing.push(route);
 }
 
@@ -77,7 +102,7 @@ const lines = [
   "# Auditoria de URLs vivas de WordPress",
   "",
   `Generado: ${new Date().toISOString()}`,
-  `Sitemaps revisados desde: ${SITE_URL}/sitemap_index.xml`,
+  `Sitemaps revisados desde: ${liveResult.source}`,
   "",
   `- URLs vivas detectadas: ${live.length}`,
   `- Cubiertas por pagina estatica: ${covered.length}`,
