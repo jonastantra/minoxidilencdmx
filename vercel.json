@@ -14,13 +14,2831 @@
       ]
     }
   ],
-  "routes": [
+  "redirects": [
     {
-      "handle": "filesystem"
+      "source": "/✅como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil-2/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
     },
     {
-      "src": "/(.*)",
-      "dest": "/404.html"
+      "source": "/✅como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/1-2/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/10-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/11-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/12-2/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/13-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/14-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/15-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/16-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/17-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/18-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/19-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/2-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/20-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/21-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/22-2/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/23-2/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/24-2/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/25-2/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/26-2/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/27-2/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/28-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/29-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/3-2/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/30-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/31-2/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/32-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/33-2/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/34-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/35-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/36-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/37-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/38-2/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/39-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/4-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/40-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/41-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/42-2/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/43-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/44-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/45-2/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/46-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/47-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/48-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/49-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/5-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/50-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/6-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/7-2/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/8-2/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/9-2/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/about/",
+      "destination": "/quienes-somos/",
+      "permanent": true
+    },
+    {
+      "source": "/acondicionador/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/advertencias/",
+      "destination": "/guias/efectos-secundarios-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/ahorra-tiempo-y-dinero-la-mejor-forma-de-hacer-crecer-tu-barba-john-barbas/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/alternativas/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/aplica-de-esta-forma-el-minoxidil-y-olvidate-de-la-caida-de-cabello/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/aplicacion-adecuada-de-minoxidil/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/aplicacion/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/aumento/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/barba-y-bigote-con-minoxidil/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/beneficios/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/blog-2/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/10/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/11/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/12/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/13/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/14/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/15/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/16/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/17/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/18/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/19/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/2/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/20/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/21/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/22/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/23/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/24/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/25/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/26/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/27/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/28/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/29/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/3/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/30/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/4/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/5/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/6/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/7/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/8/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/9/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/carrito/",
+      "destination": "/cart/",
+      "permanent": true
+    },
+    {
+      "source": "/cart-2/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/cart/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/aceite/",
+      "destination": "/categoria-producto/barba-y-bigote/aceite/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/anticaida-y-recuperar-cabello/",
+      "destination": "/categoria-producto/cabello/anticaida-y-recuperar-cabello/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/balsamos/",
+      "destination": "/categoria-producto/barba-y-bigote/balsamos/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/beard-pro/",
+      "destination": "/categoria-producto/marcas/beard-pro/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/ceras-para-barba-y-bigote/",
+      "destination": "/categoria-producto/barba-y-bigote/ceras-para-barba-y-bigote/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/crecimiento-de-barba/",
+      "destination": "/categoria-producto/barba-y-bigote/crecimiento-de-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/jabones/",
+      "destination": "/categoria-producto/barba-y-bigote/jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/kirkland/",
+      "destination": "/categoria-producto/marcas/kirkland/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/kits/",
+      "destination": "/categoria-producto/barba-y-bigote/kits/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/maximus-beard/",
+      "destination": "/categoria-producto/marcas/maximus-beard/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/maximus/",
+      "destination": "/categoria-producto/marcas/maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/minoxidil-foam-espuma/",
+      "destination": "/categoria-producto/minoxidil/minoxidil-foam-espuma/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/minoxidil-kirkland/",
+      "destination": "/categoria-producto/minoxidil/minoxidil-kirkland/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/peines/",
+      "destination": "/categoria-producto/barba-y-bigote/peines/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/pomade/",
+      "destination": "/categoria-producto/cabello/pomade/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/quioco/",
+      "destination": "/categoria-producto/marcas/quioco/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/regrowe/",
+      "destination": "/categoria-producto/marcas/regrowe/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/rimel-crecimiento-de-pestanas-y-cejas/",
+      "destination": "/categoria-producto/marcas/maximus/rimel-crecimiento-de-pestanas-y-cejas/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/shampoo-y-acondicionador/",
+      "destination": "/categoria-producto/barba-y-bigote/shampoo-y-acondicionador/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/shampoo/",
+      "destination": "/categoria-producto/cabello/shampoo/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/shampoos-maximus/",
+      "destination": "/categoria-producto/marcas/maximus/shampoos-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/suavecito/",
+      "destination": "/categoria-producto/marcas/suavecito/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/aceite/",
+      "destination": "/categoria-producto/barba-y-bigote/aceite/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/anticaida-y-recuperar-cabello/",
+      "destination": "/categoria-producto/cabello/anticaida-y-recuperar-cabello/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/balsamos/",
+      "destination": "/categoria-producto/barba-y-bigote/balsamos/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/barba-y-bigote/",
+      "destination": "/categoria-producto/barba-y-bigote/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/beard-pro/",
+      "destination": "/categoria-producto/marcas/beard-pro/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/cabello/",
+      "destination": "/categoria-producto/cabello/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/ceras-para-barba-y-bigote/",
+      "destination": "/categoria-producto/barba-y-bigote/ceras-para-barba-y-bigote/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/crecimiento-de-barba/",
+      "destination": "/categoria-producto/barba-y-bigote/crecimiento-de-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/jabones/",
+      "destination": "/categoria-producto/barba-y-bigote/jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/kirkland/",
+      "destination": "/categoria-producto/marcas/kirkland/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/kit-jabones/",
+      "destination": "/categoria-producto/kit-jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/kits-2/",
+      "destination": "/categoria-producto/kits-2/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/kits/",
+      "destination": "/categoria-producto/barba-y-bigote/kits/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/marcas/",
+      "destination": "/categoria-producto/marcas/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/maximus-beard/",
+      "destination": "/categoria-producto/marcas/maximus-beard/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/maximus/",
+      "destination": "/categoria-producto/marcas/maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/minoxidil-foam-espuma/",
+      "destination": "/categoria-producto/minoxidil/minoxidil-foam-espuma/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/minoxidil-kirkland/",
+      "destination": "/categoria-producto/minoxidil/minoxidil-kirkland/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/minoxidil/",
+      "destination": "/categoria-producto/minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/mujer/",
+      "destination": "/categoria-producto/mujer/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/peines/",
+      "destination": "/categoria-producto/barba-y-bigote/peines/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/pomade/",
+      "destination": "/categoria-producto/cabello/pomade/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/promociones/",
+      "destination": "/categoria-producto/promociones/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/quioco/",
+      "destination": "/categoria-producto/marcas/quioco/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/regrowe/",
+      "destination": "/categoria-producto/marcas/regrowe/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/rimel-crecimiento-de-pestanas-y-cejas/",
+      "destination": "/categoria-producto/marcas/maximus/rimel-crecimiento-de-pestanas-y-cejas/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/rimel-crecimiento-de-pestanas/",
+      "destination": "/categoria-producto/rimel-crecimiento-de-pestanas/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/shampoo-y-acondicionador/",
+      "destination": "/categoria-producto/barba-y-bigote/shampoo-y-acondicionador/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/shampoo/",
+      "destination": "/categoria-producto/cabello/shampoo/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/shampoos-maximus/",
+      "destination": "/categoria-producto/marcas/maximus/shampoos-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria/suavecito/",
+      "destination": "/categoria-producto/marcas/suavecito/",
+      "permanent": true
+    },
+    {
+      "source": "/category/alopecia/",
+      "destination": "/categoria-producto/cabello/anticaida-y-recuperar-cabello/",
+      "permanent": true
+    },
+    {
+      "source": "/category/barba/",
+      "destination": "/categoria-producto/barba-y-bigote/crecimiento-de-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/category/cabello/",
+      "destination": "/categoria-producto/cabello/anticaida-y-recuperar-cabello/",
+      "permanent": true
+    },
+    {
+      "source": "/category/minoxidil/",
+      "destination": "/categoria-producto/minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/category/productos/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/category/sin-categoria/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/category/slider/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/category/testimonios/",
+      "destination": "/testimonios/",
+      "permanent": true
+    },
+    {
+      "source": "/category/uncategorized/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/category/youtube/",
+      "destination": "/youtube-videos/",
+      "permanent": true
+    },
+    {
+      "source": "/checkout/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/ciclo-de-uso/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/cierra-los-huecos-al-instante-corrige-errores-en-tu-barba-y-cubre-canas-black-gel/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/como-aplicar-correctamente-el-minoxidil-en-la-barba-para-obtener-resultados-optimos-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/como-aplicar-correctamente-el-minoxidil-en-la-barba-para-obtener-resultados-optimos-3/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/como-aplicar-correctamente-el-minoxidil-en-la-barba-para-obtener-resultados-optimos/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/como-aplicar-minoxidil/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/como-comprar/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/como-usar-minoxidil-12-y-bergamota-obten-la-barba-de-tus-suenos/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/como/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/comparacion-de-marcas-de-minoxidil-para-la-barba-descubre-cual-es-la-mejor-opcion-para-el-crecimiento-facial/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/comparacion/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/comprar-minoxidil/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/consejos-avanzados-para-resultados-optimos-con-minoxidil/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/consejos-clave-para-aplicar-el-minoxidil-en-la-barba-y-lograr-una-barba-densa-y-llena/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/consejos-efectivos-para-aumentar-el-crecimiento-de-la-barba-con-minoxidil/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/consejos-para-lucir-una-barba-de-vikingo-con-minoxidil/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/consejos-para-una-aplicacion-suave-y-efectiva-de-minoxidil-en-la-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/consejos-para-usar-minoxidil-en-la-barba-sin-experimentar-efectos-secundarios/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/consejos/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/contacto-cdmx/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/contacto/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/crecimiento/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/crema/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/cuidado-facial/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/dale-6-meses-a-minoxidil-para-funcionar/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/dermatologo/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/desarrollo/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/descubre-como-el-minoxidil-puede-mejorar-la-densidad-de-tu-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/descubre-como-integrar-el-minoxidil-en-tu-rutina-diaria-de-cuidado-facial/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/descubre-el-poder-transformador-de-black-hell-rellena-huecos-corrige-errores-y-cubre-canas-al-instante/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/descubre-por-que-tu-piel-se-reseca-con-minoxidil-y-como-lograr-una-barba-espectacular/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/despierta-tu-barba-consejos-practicos-de-john-barbas-para-un-crecimiento-efectivo/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/donde-estamos/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/dosis/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/efectos-secundarios-del-minoxidil/",
+      "destination": "/guias/efectos-secundarios-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/efectos-secundarios/",
+      "destination": "/guias/efectos-secundarios-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/eficacia/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/el-antes-y-despues-de-usar-minoxidil-en-la-barba-soprendente/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/el-ciclo-de-crecimiento-de-la-barba-lo-que-debes-saber-para-maximizar-los-resultados-con-minoxidil/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/el-instructivo-para-obtener-los-mejores-resultados-en-barba-y-cabello/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/el-minoxidil-hace-que-ya-no-se-te-pare-2/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/el-minoxidil-hace-que-ya-no-se-te-pare/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/el-minoxidil-para-el-crecimiento-de-la-barba-descubre-la-verdad-estas-perdiendo-tu-tiempo-y-dinero/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/el-secreto-revelado-como-lograr-una-barba-increible-en-pocas-semanas/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/el-shampoo-especial-de-minoxidil-deten-la-caida-de-tu-cabello-de-una-vez/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/el-uso-de-minoxidil-7-para-tu-barba-los-mejores-resultado-en-muy-poco-tiem/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/empece-a-perder-cabello-a-los-14-anos-history-time-2/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/empece-a-perder-cabello-a-los-14-anos-history-time/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/engruesa-tu-barba-de-forma-definitiva-guia-para-engrosar-tu-barba-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/engruesa-tu-barba-de-forma-definitiva-guia-para-engrosar-tu-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/entendiendo-el-papel-de-la-genetica-en-el-crecimiento-de-la-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/entrenamiento-y-dieta-el-combo-perfecto-para-maximizar-los-efectos-del-minoxidil-en-el-crecimiento-de-la-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/entrevista-con-experto-descubre-los-secretos-para-maximizar-el-crecimiento-de-la-barba-con-minoxidil/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/envios/",
+      "destination": "/envios-a-todo-mexico/",
+      "permanent": true
+    },
+    {
+      "source": "/es-una-perdida-de-tiempo-si-usas-minoxidil-y-eres-lampino/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/estrategias/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/estudios-clinicos/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/experiencia/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/finalizar-compra/",
+      "destination": "/checkout/",
+      "permanent": true
+    },
+    {
+      "source": "/finasteride-la-gran-solucion-para-tu-perdida-de-cabello-2/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/finasteride-la-gran-solucion-para-tu-perdida-de-cabello-3/",
+      "destination": "/guias/minoxidil-liquido-vs-espuma/",
+      "permanent": true
+    },
+    {
+      "source": "/finasteride-la-gran-solucion-para-tu-perdida-de-cabello/",
+      "destination": "/guias/minoxidil-liquido-vs-espuma/",
+      "permanent": true
+    },
+    {
+      "source": "/guia-de-compra-los-mejores-consejos-para-elegir-el-minoxidil-perfecto-para-tu-tipo-de-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/guia-esencial-del-minoxidil-combate-la-perdida-de-cabello/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/guia/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/haz-crecer-de-forma-natural-tu-barba-te-presento-la-forma-mas-segura-y-eficaz/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/historia-de-minoxidil/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/hombres/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/home-2/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/increible-cambio-le-salio-barba-donde-nunca-le-habia-salido-antes-y-despues-video-y-fotos/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/increible-te-muestro-como-obtuvo-la-barba-de-sus-suenos-era-lampino-y-ahora-es-barbon/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/ingredientes/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/innovacion/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/innovaciones/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/integrando-minoxidil-en-tu-rutina-diaria/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/investigacion/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/jabon-cubrir-huecos-y-suavizante-menta-y-abeja/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/jabon-de-crecimiento-bergamota-maximus/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/jabon-engrosamiento-y-fortalecimiento-biotina-maximus/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/jabon-exfoliante-y-afeitar-avena-maximus/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/jabon-extra-crecimiento-de-barba-y-bigote-minoxidil-maximus-100-gr/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/kirkland-minoxidil-vs-sistema-gb-rogaine-vinas-etc/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/la-barba-de-tus-suenos-al-alcance-de-tu-mano-con-minoxidil-magico/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/la-barba-de-tus-suenos-con-el-mejor-balsamo-de-crecimiento-para-barba-minoxidil-12/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/la-ciencia-detras-del-minoxidil-como-y-por-que-funciona-en-el-crecimiento-del-cabello/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/la-verdad-sobre-el-minoxidil-importado-vs-nacional-lo-que-nunca-te-dijeron/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/los-beneficios-del-minoxidil-puede-realmente-ayudar-en-el-crecimiento-de-la-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/los-errores-mas-comunes-al-usar-minoxidil-en-la-barba-y-como-solucionarlos/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/los-ingredientes-clave-en-el-minoxidil-y-su-papel-en-el-crecimiento-de-la-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/los-primeros-meses-con-minoxidil/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/los-primeros-meses-y-las-partes-laterales-de-la-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/los-secretos-para-mantener-y-cuidar-tu-barba-despues-de-usar-minoxidil/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/los-shampoos-mas-poderosos-para-recuperar-tu-cabello-pruebas-antes-y-despues-de-usarlos-2/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/los-shampoos-mas-poderosos-para-recuperar-tu-cabello-pruebas-antes-y-despues-de-usarlos/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/mane-marvel-minoxidils-magical-mane-makeover/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/manual-de-como-aplicar-minoxidil-para-barba-y-tener-la-barba-que-deseas/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/marcas/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/masculinidad/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/mayoreo/",
+      "destination": "/distribuye-mayoreo/",
+      "permanent": true
+    },
+    {
+      "source": "/mi-cuenta/",
+      "destination": "/my-account/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-101-conceptos-basicos-para-empezar/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-5-vs-2/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-7-quieres-obtener-la-barba-de-tu-suenos-empieza-a-usar-este-tratamiento/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-cuando-y-como-suspender-su-uso/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-diy-preparacion-casera-para-los-entusiastas/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-en-cejas-logra-una-mirada-definida-y-natural/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-en-la-barba-consejos-para-un-crecimiento-impactante/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-en-la-barba-vs-otros-metodos-descubre-cual-es-la-mejor-opcion-para-ti/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-en-mujeres-guia-practica-para-resultados-notables/",
+      "destination": "/guias/minoxidil-mujeres/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-es-seguro/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-liquido-vs-espuma/",
+      "destination": "/guias/minoxidil-liquido-vs-espuma/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-mitos-y-verdades/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-nocturno-maximizando-efectividad-mientras-duermes/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-para-barba-y-bigote-manual-de-uso/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-para-la-caida-del-cabello-2/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-para-la-caida-del-cabello-top-soluciones/",
+      "destination": "/guias/minoxidil-liquido-vs-espuma/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-para-la-caida-del-cabello/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-para-mujeres/",
+      "destination": "/guias/minoxidil-mujeres/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-preguntas-frecuentes-y-respuestas-directas/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-primeros-meses-la-etapa-shedding/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-si-funciona/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-usos-inesperados-mas-alla-del-cuero-cabelludo/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-vs-propecia/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-acondicionador/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-alimentacion/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-alopecia-areata/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-alopecia-estrategias-para-enfrentar-la-perdida/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-aplicacion-localizada/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-autoestima-recupera-tu-confianza-capilar/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-biotina/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-bloqueadores-de-dht/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-cabello-graso-estrategias-para-un-cuero-cabelludo-equilibrado/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-caida-del-cabello-en-hombres-jovenes/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-caida-estacional-del-cabello/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-caspa/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-champu-sin-sulfatos/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-consejos-para-un-cuero-cabelludo-saludable/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-contraindicaciones/",
+      "destination": "/guias/efectos-secundarios-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-cuero-cabelludo-seco/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-dermatitis-seborreica/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-edad/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-efectividad/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-efectos-a-largo-plazo/",
+      "destination": "/guias/efectos-secundarios-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-efectos-en-cuero-cabelludo/",
+      "destination": "/guias/efectos-secundarios-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-ejercicio-fisico/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-estaciones-del-ano-ajustando-tu-rutina/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-estilo-manten-un-look-moderno-y-abundante/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-estilos-de-peinado-2/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-estilos-de-peinado/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-estres/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-finasteride/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-mujeres-embarazadas/",
+      "destination": "/guias/minoxidil-mujeres/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-nutricion-una-combinacion-poderosa/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-pelo-fino/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-perdida-de-cabello-frontal/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-perdida-de-cabello-postparto/",
+      "destination": "/guias/minoxidil-mujeres/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-prevenir-la-caida-del-cabello-2/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-prevenir-la-caida-del-cabello/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-regimenes-de-cuidado-capilar/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-resistencia-a-tratamientos/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-resultados-a-corto-plazo-2/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-resultados-a-corto-plazo/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-shampoo/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-tratamiento-a-largo-plazo/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-tratamiento-capilar-natural/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-tratamiento-nocturno/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-tratamiento-post-trasplante-capilar/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-uso-prolongado-en-mujeres/",
+      "destination": "/guias/minoxidil-mujeres/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-vitaminas-2/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil-y-vitaminas/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/minoxidil/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/mitos-comunes-sobre-el-minoxidil-en-la-barba-lo-que-realmente-necesitas-saber/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/mitos/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/mujeres/",
+      "destination": "/guias/minoxidil-mujeres/",
+      "permanent": true
+    },
+    {
+      "source": "/my-account/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/no-te-rasures-la-barba-si-estas-en-crecimiento-de-barba-con-minoxidil-pierdes-resultados-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/no-te-rasures-la-barba-si-estas-en-crecimiento-de-barba-con-minoxidil-pierdes-resultados/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/nueva-comunidad-en-facebook-de-crecimiento-de-barba-y-cabello-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/nueva-comunidad-en-facebook-de-crecimiento-de-barba-y-cabello/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/obten-la-barba-de-tus-suenos-con-minoxidil-kirkland-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/obten-la-barba-de-tus-suenos-con-minoxidil-kirkland/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/pelo-facial/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/plancha-y-peina-tu-barba-en-menos-de-8-minutos/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/politicas-de-privacidad-2/",
+      "destination": "/politicas-de-privacidad/",
+      "permanent": true
+    },
+    {
+      "source": "/por-que-el-minoxidil-te-esta-resecando-la-piel-tips-para-tener-una-mejor-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/precauciones/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/preguntas-frecuentes/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/preguntas/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/privacidad/",
+      "destination": "/politicas-de-privacidad/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy-2/",
+      "destination": "/politicas-de-privacidad/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/politicas-de-privacidad/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/aceite/",
+      "destination": "/categoria-producto/barba-y-bigote/aceite/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/anticaida-y-recuperar-cabello/",
+      "destination": "/categoria-producto/cabello/anticaida-y-recuperar-cabello/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/balsamos/",
+      "destination": "/categoria-producto/barba-y-bigote/balsamos/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/barba-y-bigote/",
+      "destination": "/categoria-producto/barba-y-bigote/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/beard-pro/",
+      "destination": "/categoria-producto/marcas/beard-pro/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/cabello/",
+      "destination": "/categoria-producto/cabello/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/ceras-para-barba-y-bigote/",
+      "destination": "/categoria-producto/barba-y-bigote/ceras-para-barba-y-bigote/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/crecimiento-de-barba/",
+      "destination": "/categoria-producto/barba-y-bigote/crecimiento-de-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/jabones/",
+      "destination": "/categoria-producto/barba-y-bigote/jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/kirkland/",
+      "destination": "/categoria-producto/marcas/kirkland/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/kit-jabones/",
+      "destination": "/categoria-producto/kit-jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/kits-2/",
+      "destination": "/categoria-producto/kits-2/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/kits/",
+      "destination": "/categoria-producto/barba-y-bigote/kits/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/marcas/",
+      "destination": "/categoria-producto/marcas/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/maximus-beard/",
+      "destination": "/categoria-producto/marcas/maximus-beard/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/maximus/",
+      "destination": "/categoria-producto/marcas/maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/minoxidil-foam-espuma/",
+      "destination": "/categoria-producto/minoxidil/minoxidil-foam-espuma/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/minoxidil-kirkland/",
+      "destination": "/categoria-producto/minoxidil/minoxidil-kirkland/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/minoxidil/",
+      "destination": "/categoria-producto/minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/mujer/",
+      "destination": "/categoria-producto/mujer/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/peines/",
+      "destination": "/categoria-producto/barba-y-bigote/peines/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/pomade/",
+      "destination": "/categoria-producto/cabello/pomade/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/promociones/",
+      "destination": "/categoria-producto/promociones/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/quioco/",
+      "destination": "/categoria-producto/marcas/quioco/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/regrowe/",
+      "destination": "/categoria-producto/marcas/regrowe/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/rimel-crecimiento-de-pestanas-y-cejas/",
+      "destination": "/categoria-producto/marcas/maximus/rimel-crecimiento-de-pestanas-y-cejas/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/rimel-crecimiento-de-pestanas/",
+      "destination": "/categoria-producto/rimel-crecimiento-de-pestanas/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/shampoo-y-acondicionador/",
+      "destination": "/categoria-producto/barba-y-bigote/shampoo-y-acondicionador/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/shampoo/",
+      "destination": "/categoria-producto/cabello/shampoo/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/shampoos-maximus/",
+      "destination": "/categoria-producto/marcas/maximus/shampoos-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat/suavecito/",
+      "destination": "/categoria-producto/marcas/suavecito/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/aceite/",
+      "destination": "/categoria-producto/barba-y-bigote/aceite/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/anticaida-y-recuperar-cabello/",
+      "destination": "/categoria-producto/cabello/anticaida-y-recuperar-cabello/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/balsamos/",
+      "destination": "/categoria-producto/barba-y-bigote/balsamos/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/barba-y-bigote/",
+      "destination": "/categoria-producto/barba-y-bigote/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/beard-pro/",
+      "destination": "/categoria-producto/marcas/beard-pro/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/cabello/",
+      "destination": "/categoria-producto/cabello/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/ceras-para-barba-y-bigote/",
+      "destination": "/categoria-producto/barba-y-bigote/ceras-para-barba-y-bigote/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/crecimiento-de-barba/",
+      "destination": "/categoria-producto/barba-y-bigote/crecimiento-de-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/jabones/",
+      "destination": "/categoria-producto/barba-y-bigote/jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/kirkland/",
+      "destination": "/categoria-producto/marcas/kirkland/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/kit-jabones/",
+      "destination": "/categoria-producto/kit-jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/kits-2/",
+      "destination": "/categoria-producto/kits-2/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/kits/",
+      "destination": "/categoria-producto/barba-y-bigote/kits/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/marcas/",
+      "destination": "/categoria-producto/marcas/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/maximus-beard/",
+      "destination": "/categoria-producto/marcas/maximus-beard/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/maximus/",
+      "destination": "/categoria-producto/marcas/maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/minoxidil-foam-espuma/",
+      "destination": "/categoria-producto/minoxidil/minoxidil-foam-espuma/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/minoxidil-kirkland/",
+      "destination": "/categoria-producto/minoxidil/minoxidil-kirkland/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/minoxidil/",
+      "destination": "/categoria-producto/minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/mujer/",
+      "destination": "/categoria-producto/mujer/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/peines/",
+      "destination": "/categoria-producto/barba-y-bigote/peines/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/pomade/",
+      "destination": "/categoria-producto/cabello/pomade/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/promociones/",
+      "destination": "/categoria-producto/promociones/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/quioco/",
+      "destination": "/categoria-producto/marcas/quioco/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/regrowe/",
+      "destination": "/categoria-producto/marcas/regrowe/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/rimel-crecimiento-de-pestanas-y-cejas/",
+      "destination": "/categoria-producto/marcas/maximus/rimel-crecimiento-de-pestanas-y-cejas/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/rimel-crecimiento-de-pestanas/",
+      "destination": "/categoria-producto/rimel-crecimiento-de-pestanas/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/shampoo-y-acondicionador/",
+      "destination": "/categoria-producto/barba-y-bigote/shampoo-y-acondicionador/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/shampoo/",
+      "destination": "/categoria-producto/cabello/shampoo/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/shampoos-maximus/",
+      "destination": "/categoria-producto/marcas/maximus/shampoos-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/suavecito/",
+      "destination": "/categoria-producto/marcas/suavecito/",
+      "permanent": true
+    },
+    {
+      "source": "/product/2-meses-tratamiento-minoxidil-kirkland-liquido-5-2/",
+      "destination": "/producto/2-meses-tratamiento-minoxidil-kirkland-liquido-5-2/",
+      "permanent": true
+    },
+    {
+      "source": "/product/2-rimel-crecimiento-de-pestanas-y-cejas-minoxidil-5-y-biotina/",
+      "destination": "/producto/2-rimel-crecimiento-de-pestanas-y-cejas-minoxidil-5-y-biotina/",
+      "permanent": true
+    },
+    {
+      "source": "/product/3-rimel-crecimiento-de-pestanas-y-cejas-minoxidil-5-y-biotina/",
+      "destination": "/producto/3-rimel-crecimiento-de-pestanas-y-cejas-minoxidil-5-y-biotina/",
+      "permanent": true
+    },
+    {
+      "source": "/product/aceite-para-la-barba-30-ml/",
+      "destination": "/producto/aceite-para-la-barba-30-ml/",
+      "permanent": true
+    },
+    {
+      "source": "/product/aceite-tonico-bergamota-para-barbba-y-bigote-citrix-30-ml-maximus/",
+      "destination": "/producto/aceite-tonico-bergamota-para-barbba-y-bigote-citrix-30-ml-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product/balsamo-bergamota-maximus-beard-45-gr/",
+      "destination": "/producto/balsamo-bergamota-maximus-beard-45-gr/",
+      "permanent": true
+    },
+    {
+      "source": "/product/balsamo-de-crecimiento-de-barba-regrowe/",
+      "destination": "/producto/balsamo-de-crecimiento-de-barba-regrowe/",
+      "permanent": true
+    },
+    {
+      "source": "/product/balsamo-estimulante-quioco-60-grs/",
+      "destination": "/producto/balsamo-estimulante-quioco-60-grs/",
+      "permanent": true
+    },
+    {
+      "source": "/product/balsamo-para-el-crecimiento-de-barba-al-12-4-oz-maximus/",
+      "destination": "/producto/balsamo-para-el-crecimiento-de-barba-al-12-4-oz-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product/balsamo-para-el-crecimiento-de-barba-al-5-3-oz-maximus/",
+      "destination": "/producto/balsamo-para-el-crecimiento-de-barba-al-5-3-oz-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product/beardpro-peine-y-delineador-de-barba/",
+      "destination": "/producto/beardpro-peine-y-delineador-de-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/product/biotina-natrol-de-10000-microgramos-con-100-tabletas/",
+      "destination": "/producto/biotina-natrol-de-10000-microgramos-con-100-tabletas/",
+      "permanent": true
+    },
+    {
+      "source": "/product/black-gel-quioco-120-gr/",
+      "destination": "/producto/black-gel-quioco-120-gr/",
+      "permanent": true
+    },
+    {
+      "source": "/product/cera-con-bergamota-marca-propia/",
+      "destination": "/producto/cera-con-bergamota-marca-propia/",
+      "permanent": true
+    },
+    {
+      "source": "/product/cera-para-barba-y-bigote-quioco/",
+      "destination": "/producto/cera-para-barba-y-bigote-quioco/",
+      "permanent": true
+    },
+    {
+      "source": "/product/crecimiento-de-pestanas-minoxidil-5-y-biotina/",
+      "destination": "/producto/crecimiento-de-pestanas-minoxidil-5-y-biotina/",
+      "permanent": true
+    },
+    {
+      "source": "/product/jabon-exfoliante-y-afeitar-avena-maximus-100-gr/",
+      "destination": "/producto/jabon-exfoliante-y-afeitar-avena-maximus-100-gr/",
+      "permanent": true
+    },
+    {
+      "source": "/product/jabon-maximus-bergamota-crecimiento-100-gr/",
+      "destination": "/producto/jabon-maximus-bergamota-crecimiento-100-gr/",
+      "permanent": true
+    },
+    {
+      "source": "/product/jabon-suavizante-y-engrosamiento-menta-y-abeja-maximus-100-gr/",
+      "destination": "/producto/jabon-suavizante-y-engrosamiento-menta-y-abeja-maximus-100-gr/",
+      "permanent": true
+    },
+    {
+      "source": "/product/kit-crecimiento-de-barba-3-meses-minoxidil-1-cera-begamota/",
+      "destination": "/producto/kit-crecimiento-de-barba-3-meses-minoxidil-1-cera-begamota/",
+      "permanent": true
+    },
+    {
+      "source": "/product/kit-de-2-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "destination": "/producto/kit-de-2-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/product/kit-de-3-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "destination": "/producto/kit-de-3-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/product/kit-de-4-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "destination": "/producto/kit-de-4-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/product/kit-de-5-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "destination": "/producto/kit-de-5-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/product/kit-del-barbon-con-biotina-natrol/",
+      "destination": "/producto/kit-del-barbon-con-biotina-natrol/",
+      "permanent": true
+    },
+    {
+      "source": "/product/kit-gran-barbon-minoxidil-con-balsamo/",
+      "destination": "/producto/kit-gran-barbon-minoxidil-con-balsamo/",
+      "permanent": true
+    },
+    {
+      "source": "/product/locion-para-el-crecimiento-de-barba-al-10-bergamota-maximus/",
+      "destination": "/producto/locion-para-el-crecimiento-de-barba-al-10-bergamota-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product/minoxidil-1-mes-kirkland-liquido-5-3/",
+      "destination": "/producto/minoxidil-1-mes-kirkland-liquido-5-3/",
+      "permanent": true
+    },
+    {
+      "source": "/product/minoxidil-12-meses-kirkland-liquido-5-2/",
+      "destination": "/producto/minoxidil-12-meses-kirkland-liquido-5-2/",
+      "permanent": true
+    },
+    {
+      "source": "/product/minoxidil-3-meses-kirkland-liquido-5-2/",
+      "destination": "/producto/minoxidil-3-meses-kirkland-liquido-5-2/",
+      "permanent": true
+    },
+    {
+      "source": "/product/minoxidil-6-meses-kirkland-liquido-5-2/",
+      "destination": "/producto/minoxidil-6-meses-kirkland-liquido-5-2/",
+      "permanent": true
+    },
+    {
+      "source": "/product/minoxidil-kirkland-5-foam-espuma-tratamiento-100-importado/",
+      "destination": "/producto/minoxidil-kirkland-5-foam-espuma-tratamiento-100-importado/",
+      "permanent": true
+    },
+    {
+      "source": "/product/pomada-matte-113g/",
+      "destination": "/producto/pomada-matte-113g/",
+      "permanent": true
+    },
+    {
+      "source": "/product/pomada-suavecita-113g/",
+      "destination": "/producto/pomada-suavecita-113g/",
+      "permanent": true
+    },
+    {
+      "source": "/product/shampo-para-barba-y-bigote-125-ml/",
+      "destination": "/producto/shampo-para-barba-y-bigote-125-ml/",
+      "permanent": true
+    },
+    {
+      "source": "/product/shampoo-artesanal-de-coco-anticaspa-maximus/",
+      "destination": "/producto/shampoo-artesanal-de-coco-anticaspa-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product/shampoo-bergamota-crecimiento-acelerado-maximus/",
+      "destination": "/producto/shampoo-bergamota-crecimiento-acelerado-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product/shampoo-biotina-engrosar-y-fortalecimiento-maximus/",
+      "destination": "/producto/shampoo-biotina-engrosar-y-fortalecimiento-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product/shampoo-minoxidil-control-caida-y-regeneracion-de-cabello-maximus/",
+      "destination": "/producto/shampoo-minoxidil-control-caida-y-regeneracion-de-cabello-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/product/skin-roller-0-5-mm-derma-roller/",
+      "destination": "/producto/skin-roller-0-5-mm-derma-roller/",
+      "permanent": true
+    },
+    {
+      "source": "/product/suavecito-pomade-firme-hold-4oz/",
+      "destination": "/producto/suavecito-pomade-firme-hold-4oz/",
+      "permanent": true
+    },
+    {
+      "source": "/product/suavecito-pomade-original-4oz/",
+      "destination": "/producto/suavecito-pomade-original-4oz/",
+      "permanent": true
+    },
+    {
+      "source": "/producto/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/productos/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/protocolo/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/puede-el-estres-afectar-el-crecimiento-de-tu-barba-descubre-como-el-minoxidil-puede-ayudar/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/que-es-minoxidil/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/que-marcas-de-minoxidil-no-recomiendo-y-por-que-2/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/que-marcas-de-minoxidil-no-recomiendo-y-por-que-3/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/que-marcas-de-minoxidil-no-recomiendo-y-por-que/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/que-pasa-si-dejo-prematuramente-el-tratamiento-para-crecimiento-de-barba-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/que-pasa-si-dejo-prematuramente-el-tratamiento-para-crecimiento-de-barba-3/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/que-pasa-si-dejo-prematuramente-el-tratamiento-para-crecimiento-de-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/que-pasa-si-solo-uso-un-mes-minoxidil-para-la-barba-obtendre-increibles-resultados-2/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/que-pasa-si-solo-uso-un-mes-minoxidil-para-la-barba-obtendre-increibles-resultados-3/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/que-pasa-si-solo-uso-un-mes-minoxidil-para-la-barba-obtendre-increibles-resultados/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/recetas-caseras/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/recomendaciones/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/resultado-con-minoxidil/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/resultados-del-uso-prolongado-de-minoxidil/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/resultados/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/revolucion/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/riesgos/",
+      "destination": "/guias/efectos-secundarios-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/rutina-de-cuidado-capilar-con-minoxidil-paso-a-paso/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/secreto/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/secretos-de-corte-para-potenciar-tu-barba-con-minoxidil-conoce-las-herramientas-y-trucos-esenciales/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/secretos-revelados-combate-la-resequedad-y-maximiza-tu-tratamiento-con-minoxidil-de-john-barbas/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/secretos-revelados-la-forma-correcta-de-aplicar-minoxidil-para-detener-la-caida-del-cabello/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/seguridad/",
+      "destination": "/guias/efectos-secundarios-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/2-meses-tratamiento-minoxidil-kirkland-liquido-5-2/",
+      "destination": "/producto/2-meses-tratamiento-minoxidil-kirkland-liquido-5-2/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/2-rimel-crecimiento-de-pestanas-y-cejas-minoxidil-5-y-biotina/",
+      "destination": "/producto/2-rimel-crecimiento-de-pestanas-y-cejas-minoxidil-5-y-biotina/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/3-rimel-crecimiento-de-pestanas-y-cejas-minoxidil-5-y-biotina/",
+      "destination": "/producto/3-rimel-crecimiento-de-pestanas-y-cejas-minoxidil-5-y-biotina/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/aceite-para-la-barba-30-ml/",
+      "destination": "/producto/aceite-para-la-barba-30-ml/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/aceite-tonico-bergamota-para-barbba-y-bigote-citrix-30-ml-maximus/",
+      "destination": "/producto/aceite-tonico-bergamota-para-barbba-y-bigote-citrix-30-ml-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/balsamo-bergamota-maximus-beard-45-gr/",
+      "destination": "/producto/balsamo-bergamota-maximus-beard-45-gr/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/balsamo-de-crecimiento-de-barba-regrowe/",
+      "destination": "/producto/balsamo-de-crecimiento-de-barba-regrowe/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/balsamo-estimulante-quioco-60-grs/",
+      "destination": "/producto/balsamo-estimulante-quioco-60-grs/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/balsamo-para-el-crecimiento-de-barba-al-12-4-oz-maximus/",
+      "destination": "/producto/balsamo-para-el-crecimiento-de-barba-al-12-4-oz-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/balsamo-para-el-crecimiento-de-barba-al-5-3-oz-maximus/",
+      "destination": "/producto/balsamo-para-el-crecimiento-de-barba-al-5-3-oz-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/beardpro-peine-y-delineador-de-barba/",
+      "destination": "/producto/beardpro-peine-y-delineador-de-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/biotina-natrol-de-10000-microgramos-con-100-tabletas/",
+      "destination": "/producto/biotina-natrol-de-10000-microgramos-con-100-tabletas/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/black-gel-quioco-120-gr/",
+      "destination": "/producto/black-gel-quioco-120-gr/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/cera-con-bergamota-marca-propia/",
+      "destination": "/producto/cera-con-bergamota-marca-propia/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/cera-para-barba-y-bigote-quioco/",
+      "destination": "/producto/cera-para-barba-y-bigote-quioco/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/crecimiento-de-pestanas-minoxidil-5-y-biotina/",
+      "destination": "/producto/crecimiento-de-pestanas-minoxidil-5-y-biotina/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/jabon-exfoliante-y-afeitar-avena-maximus-100-gr/",
+      "destination": "/producto/jabon-exfoliante-y-afeitar-avena-maximus-100-gr/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/jabon-maximus-bergamota-crecimiento-100-gr/",
+      "destination": "/producto/jabon-maximus-bergamota-crecimiento-100-gr/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/jabon-suavizante-y-engrosamiento-menta-y-abeja-maximus-100-gr/",
+      "destination": "/producto/jabon-suavizante-y-engrosamiento-menta-y-abeja-maximus-100-gr/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/kit-crecimiento-de-barba-3-meses-minoxidil-1-cera-begamota/",
+      "destination": "/producto/kit-crecimiento-de-barba-3-meses-minoxidil-1-cera-begamota/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/kit-de-2-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "destination": "/producto/kit-de-2-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/kit-de-3-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "destination": "/producto/kit-de-3-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/kit-de-4-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "destination": "/producto/kit-de-4-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/kit-de-5-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "destination": "/producto/kit-de-5-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/kit-del-barbon-con-biotina-natrol/",
+      "destination": "/producto/kit-del-barbon-con-biotina-natrol/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/kit-gran-barbon-minoxidil-con-balsamo/",
+      "destination": "/producto/kit-gran-barbon-minoxidil-con-balsamo/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/locion-para-el-crecimiento-de-barba-al-10-bergamota-maximus/",
+      "destination": "/producto/locion-para-el-crecimiento-de-barba-al-10-bergamota-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/minoxidil-1-mes-kirkland-liquido-5-3/",
+      "destination": "/producto/minoxidil-1-mes-kirkland-liquido-5-3/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/minoxidil-12-meses-kirkland-liquido-5-2/",
+      "destination": "/producto/minoxidil-12-meses-kirkland-liquido-5-2/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/minoxidil-3-meses-kirkland-liquido-5-2/",
+      "destination": "/producto/minoxidil-3-meses-kirkland-liquido-5-2/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/minoxidil-6-meses-kirkland-liquido-5-2/",
+      "destination": "/producto/minoxidil-6-meses-kirkland-liquido-5-2/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/minoxidil-kirkland-5-foam-espuma-tratamiento-100-importado/",
+      "destination": "/producto/minoxidil-kirkland-5-foam-espuma-tratamiento-100-importado/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/pomada-matte-113g/",
+      "destination": "/producto/pomada-matte-113g/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/pomada-suavecita-113g/",
+      "destination": "/producto/pomada-suavecita-113g/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/shampo-para-barba-y-bigote-125-ml/",
+      "destination": "/producto/shampo-para-barba-y-bigote-125-ml/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/shampoo-artesanal-de-coco-anticaspa-maximus/",
+      "destination": "/producto/shampoo-artesanal-de-coco-anticaspa-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/shampoo-bergamota-crecimiento-acelerado-maximus/",
+      "destination": "/producto/shampoo-bergamota-crecimiento-acelerado-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/shampoo-biotina-engrosar-y-fortalecimiento-maximus/",
+      "destination": "/producto/shampoo-biotina-engrosar-y-fortalecimiento-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/shampoo-minoxidil-control-caida-y-regeneracion-de-cabello-maximus/",
+      "destination": "/producto/shampoo-minoxidil-control-caida-y-regeneracion-de-cabello-maximus/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/skin-roller-0-5-mm-derma-roller/",
+      "destination": "/producto/skin-roller-0-5-mm-derma-roller/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/suavecito-pomade-firme-hold-4oz/",
+      "destination": "/producto/suavecito-pomade-firme-hold-4oz/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/suavecito-pomade-original-4oz/",
+      "destination": "/producto/suavecito-pomade-original-4oz/",
+      "permanent": true
+    },
+    {
+      "source": "/si-perdiste-el-cabello-este-es-el-tiempo-maximo-para-recuperarlo-no-pierdas-mas-el-tiempo/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/solo-aplicar-en-la-parte-de-la-barbilla-o-candado/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/solo-cubre-esos-huecos-en-la-barba-con-minoxidil-y-nuestros-tratamientos/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/solucion/",
+      "destination": "/guias/minoxidil-liquido-vs-espuma/",
+      "permanent": true
+    },
+    {
+      "source": "/sucursal-en-cdmx/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/sucursal-plaza-guelatao-1/",
+      "destination": "/tienda-plaza-guelatao/",
+      "permanent": true
+    },
+    {
+      "source": "/sucursal-plaza-guelatao-2/",
+      "destination": "/tienda-plaza-guelatao/",
+      "permanent": true
+    },
+    {
+      "source": "/sucursal-plaza-guelatao/",
+      "destination": "/tienda-plaza-guelatao/",
+      "permanent": true
+    },
+    {
+      "source": "/sucursal/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/sucursales/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/tendencias/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/terms/",
+      "destination": "/terminos-y-condiciones/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonios-reales-lo-que-las-personas-dicen-sobre-el-uso-de-minoxidil-en-la-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonios/",
+      "destination": "/guias/caida-cabello-cuando-dermatologo/",
+      "permanent": true
+    },
+    {
+      "source": "/the-magical-minoxidil-unlocking-the-secret-to-hair-growth/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/tienda-online/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/tienda-plaza-guelatao/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/tienda/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/todo-lo-que-necesitas-saber-sobre-el-uso-del-minoxidil-para-hacer-crecer-la-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/top-rated-products/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/tratamiento/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/tratamientos-capilares-con-minoxidil/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/tratamientos-naturales-para-la-caida-del-cabello/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/tratamientos-para-cabello-fino/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/tutorial-de-como-aplicar-minoxidil-y-cuantas-veces-aplicarlo/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/tutorial-de-como-arreglarte-la-barba-y-salir-de-un-apuro/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/ue-meses-sin-intereses-en-todos-nuestros-productos/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/unboxing-del-minoxidil-espuma-asi-te-mandamos-tu-paquete/",
+      "destination": "/guias/minoxidil-liquido-vs-espuma/",
+      "permanent": true
+    },
+    {
+      "source": "/unboxing-del-minoxidil-kirkland-asi-te-llega-tu-paquete/",
+      "destination": "/guias/comprar-minoxidil-cdmx/",
+      "permanent": true
+    },
+    {
+      "source": "/unlock-the-secrets-of-minoxidil-a-hair-raising-elixir/",
+      "destination": "/guias/minoxidil-topico/",
+      "permanent": true
+    },
+    {
+      "source": "/uso/",
+      "destination": "/guias/como-aplicar-minoxidil/",
+      "permanent": true
+    },
+    {
+      "source": "/video-aplicar-minoxidil-solo-en-las-zonas-donde-no-sale-la-barba/",
+      "destination": "/guias/minoxidil-para-barba/",
+      "permanent": true
+    },
+    {
+      "source": "/video-en-cuanto-tiempo-empiezo-a-ver-resultados-con-minoxidil/",
+      "destination": "/guias/resultados-minoxidil-shedding/",
+      "permanent": true
+    },
+    {
+      "source": "/videos/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/wishlist-2/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/wishlist/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/youtube-videos/",
+      "destination": "/blog/",
+      "permanent": true
     }
   ]
 }
