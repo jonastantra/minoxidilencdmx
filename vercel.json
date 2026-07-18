@@ -341,11 +341,6 @@
       "permanent": true
     },
     {
-      "source": "/blog/",
-      "destination": "/guias/comprar-minoxidil-cdmx/",
-      "permanent": true
-    },
-    {
       "source": "/blog/page/10/",
       "destination": "/blog/",
       "permanent": true

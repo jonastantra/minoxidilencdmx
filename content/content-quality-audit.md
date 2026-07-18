@@ -1,6 +1,6 @@
 # Auditoría de calidad editorial publicada
 
-Fecha: 2026-07-18T06:14:28.593Z
+Fecha: 2026-07-18T06:23:54.531Z
 
 ## Contenido indexable actual
 
@@ -10,7 +10,7 @@ Fecha: 2026-07-18T06:14:28.593Z
 - Fichas de producto renderizadas: 42
 - Fichas con menos de 250 palabras: 0
 - Fichas que todavía muestran prefacio de asistente IA: 0
-- Entradas heredadas cubiertas por redirección temática: 293 de 293
+- Entradas heredadas cubiertas por redirección temática o ruta canónica: 293 de 293
 
 ## Inventario heredado retirado del índice
 
