@@ -255,13 +255,14 @@ function pathFromUrl(url) {
 
 function guidePathForPost(post) {
   const text = normalizeText(`${post.title} ${post.slug}`);
+  if (/original|clon|pirata|falso|falsificad|autentic|copia/.test(text)) return "/guias/minoxidil-kirkland-original-vs-clon/";
   if (/como.*usar|aplicar|aplicacion|rutina|manual|tutorial|dosis/.test(text)) return "/guias/como-aplicar-minoxidil/";
   if (/efectos.*secundarios|reaccion|seguridad|peligro|riesgo|contraindicacion/.test(text)) return "/guias/efectos-secundarios-minoxidil/";
   if (/shedding|resultados|tiempo|cuanto.*tarda|meses|antes.*despues/.test(text)) return "/guias/resultados-minoxidil-shedding/";
   if (/barba|bigote|candado|mejillas|huecos|crecimiento.*barba/.test(text)) return "/guias/minoxidil-para-barba/";
   if (/mujer|mujeres|femenino|cejas|pestanas/.test(text)) return "/guias/minoxidil-mujeres/";
   if (/espuma|foam|liquido|shampoo|gotero|presentacion/.test(text)) return "/guias/minoxidil-liquido-vs-espuma/";
-  if (/comprar|cdmx|mexico|tienda|precio|sucursal|original|kirkland|donde.*comprar/.test(text)) return "/guias/comprar-minoxidil-cdmx/";
+  if (/comprar|cdmx|mexico|tienda|precio|sucursal|donde.*comprar/.test(text)) return "/guias/comprar-minoxidil-cdmx/";
   if (/alopecia|caida|perdida|dermatologo|diagnostico|entradas|coronilla/.test(text)) return "/guias/caida-cabello-cuando-dermatologo/";
   return "/guias/minoxidil-topico/";
 }
@@ -285,17 +286,21 @@ function legacyRedirects(data) {
 
   addRedirect("/producto/", "/shop/", "woocommerce base product archive");
   addRedirect("/producto", "/shop/", "woocommerce base product archive");
-  addRedirect("/%e2%9c%85como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil/", "/como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil/", "cleaned emoji post slug");
-  addRedirect("/%e2%9c%85como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil-2/", "/como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil/", "cleaned emoji post slug");
-  addRedirect("/como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil-2/", "/como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil/", "cleaned duplicate post slug");
+  addRedirect("/%e2%9c%85como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil/", "/guias/minoxidil-kirkland-original-vs-clon/", "cleaned emoji post slug");
+  addRedirect("/%e2%9c%85como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil-2/", "/guias/minoxidil-kirkland-original-vs-clon/", "cleaned emoji post slug");
+  addRedirect("/como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil-2/", "/guias/minoxidil-kirkland-original-vs-clon/", "cleaned duplicate post slug");
+  addRedirect("/como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil/", "/guias/minoxidil-kirkland-original-vs-clon/", "cleaned duplicate post slug");
 
-  // ONLY redirect numbered/orphan duplicate posts
+  // Prune & consolidate all 293 legacy thin posts to authoritative topical pillar guides
   for (const post of data.posts) {
-    if (post.isNumbered) {
-      const target = guidePathForPost(post);
-      addRedirect(post.path, target, "numbered post redirect");
-      if (post.oldUrl) addRedirect(pathFromUrl(post.oldUrl), target, "numbered post oldUrl");
-    }
+    const target = guidePathForPost(post);
+    addRedirect(post.path, target, "legacy post pillar redirect");
+    if (post.oldUrl) addRedirect(pathFromUrl(post.oldUrl), target, "legacy post oldUrl");
+  }
+
+  // Redirect legacy blog pagination to /blog/
+  for (let p = 2; p <= 50; p++) {
+    addRedirect(`/blog/page/${p}/`, "/blog/", "legacy blog pagination redirect");
   }
 
   for (const product of data.products) {
@@ -362,7 +367,7 @@ function redirectIndex(data, routes, redirects) {
   for (const product of data.products) routeItems.push({ path: product.path, title: product.name, type: "producto" });
   for (const category of data.categories) routeItems.push({ path: category.path, title: category.name, type: "categoria" });
   for (const page of data.pages) routeItems.push({ path: page.path, title: page.title, type: "pagina" });
-  for (const post of data.posts.filter((p) => !p.isNumbered)) routeItems.push({ path: post.path, title: post.title, type: "blog" });
+  for (const guide of editorialGuides) routeItems.push({ path: guide.path, title: guide.title, type: "guia" });
   const uniqueRoutes = [...new Map(routeItems.map((item) => [routeKey(item.path), item])).values()];
   return {
     generatedAt: new Date().toISOString(),
@@ -449,22 +454,18 @@ function layout(data, page) {
   <script type="application/ld+json">${JSON.stringify(structuredData(data, page))}</script>
 </head>
 <body class="${page.bodyClass || ""}">
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
   <div class="top-announcement">
     <div class="container top-announcement-inner">
-      <span>📍 <strong>Sucursal CDMX:</strong> Plaza Guelatao Local 76 (Metro Guelatao)</span>
+      <span>📍 <strong>Sucursal CDMX:</strong> Plaza Guelatao Local 76 (Metro Guelatao Línea A)</span>
       <span>💬 <strong>WhatsApp:</strong> 55 6938 0408</span>
       <span>🕒 <strong>Horario:</strong> Mar a Dom 12:00 PM – 5:00 PM</span>
     </div>
   </div>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="/" aria-label="Minoxidil en CDMX Inicio">
-        <div class="brand-badge">CDMX</div>
-        <div class="brand-text">
-          <span class="brand-title">Minoxidil</span>
-          <span class="brand-sub">Kirkland Original en CDMX</span>
-        </div>
+      <a class="brand" href="/" aria-label="Minoxidil México - Inicio">
+        <img src="/assets/images/minoxidil-mexico.jpg" alt="Minoxidil México" class="brand-logo-img" width="220" height="44">
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
         <span class="menu-icon"></span>
@@ -473,7 +474,8 @@ function layout(data, page) {
         <a href="/">Inicio</a>
         <a href="/shop/">Tienda</a>
         <a href="/sucursales-y-entregas/">Sucursales y Entregas</a>
-        <a href="/blog/">Blog</a>
+        <a href="/guias/minoxidil-kirkland-original-vs-clon/">Original vs Clon</a>
+        <a href="/blog/">Guías</a>
         <a href="/contact/">Contacto</a>
         <a class="nav-btn" href="${whatsappLink(data)}">💬 WhatsApp: 55 6938 0408</a>
       </nav>
@@ -483,9 +485,12 @@ function layout(data, page) {
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col brand-col">
-        <div class="brand-text footer-brand">
-          <span class="brand-title">Minoxidil en CDMX</span>
-          <p>Especialistas en tratamientos para crecimiento de barba y detención de caída del cabello. Distribución de Minoxidil Kirkland 100% original en Ciudad de México y envíos a toda la República.</p>
+        <a href="/" class="footer-brand-logo" aria-label="Minoxidil México - Inicio">
+          <img src="/assets/images/minoxidil-mexico.jpg" alt="Minoxidil México" class="footer-logo-img" width="200" height="40">
+        </a>
+        <p>Especialistas en tratamientos para crecimiento de barba y detención de caída del cabello. Distribución de Minoxidil Kirkland 100% original en Ciudad de México y envíos express a toda la República Mexicana.</p>
+        <div class="footer-guarantee">
+          <span>🛡️ Garantía de Originalidad · Lote y Caducidad Comprobables</span>
         </div>
       </div>
       <div class="footer-col">
@@ -501,11 +506,12 @@ function layout(data, page) {
         <p><strong>Envíos:</strong> Paquetería express 24-48 hrs a todo México.</p>
       </div>
       <div class="footer-col">
-        <h3>Información</h3>
+        <h3>Información y Guías</h3>
         <ul class="footer-links">
           <li><a href="/shop/">Catálogo de Productos</a></li>
           <li><a href="/sucursales-y-entregas/">Sucursales y Entregas Personales</a></li>
-          <li><a href="/blog/">Blog y Consejos de Uso</a></li>
+          <li><a href="/guias/minoxidil-kirkland-original-vs-clon/">Kirkland Original vs Clon</a></li>
+          <li><a href="/blog/">Guías y Consejos de Uso</a></li>
           <li><a href="/envios-a-todo-mexico/">Envíos a Todo México</a></li>
           <li><a href="/terminos-y-condiciones/">Términos y Condiciones</a></li>
           <li><a href="/politicas-de-privacidad/">Aviso de Privacidad</a></li>
@@ -688,7 +694,7 @@ function sitemapEntry(route, data, meta) {
   ].join("\n");
 }
 
-function sitemapMeta(data, blogTotalPages) {
+function sitemapMeta(data) {
   const meta = new Map();
   const today = new Date().toISOString().slice(0, 10);
   const set = (route, values) => meta.set(normalizeRoute(route), values);
@@ -696,6 +702,7 @@ function sitemapMeta(data, blogTotalPages) {
   set("/", { lastmod: today, changefreq: "weekly", priority: "1.0" });
   set("/shop/", { lastmod: today, changefreq: "weekly", priority: "0.9" });
   set("/sucursales-y-entregas/", { lastmod: today, changefreq: "weekly", priority: "0.9" });
+  set("/blog/", { lastmod: today, changefreq: "weekly", priority: "0.8" });
   set("/contact/", { lastmod: today, changefreq: "monthly", priority: "0.8" });
 
   for (const product of data.products) {
@@ -707,26 +714,7 @@ function sitemapMeta(data, blogTotalPages) {
   }
 
   for (const guide of editorialGuides) {
-    set(guide.path, { lastmod: today, changefreq: "monthly", priority: "0.8" });
-  }
-
-  // Include all 243 semantic blog posts in sitemap!
-  for (const post of data.posts) {
-    if (!post.isNumbered) {
-      set(post.path, {
-        lastmod: (post.modified || post.date || today).slice(0, 10),
-        changefreq: "monthly",
-        priority: "0.7"
-      });
-    }
-  }
-
-  for (let page = 1; page <= blogTotalPages; page += 1) {
-    set(page === 1 ? "/blog/" : `/blog/page/${page}/`, {
-      lastmod: today,
-      changefreq: "weekly",
-      priority: page === 1 ? "0.8" : "0.5"
-    });
+    set(guide.path, { lastmod: today, changefreq: "monthly", priority: "0.85" });
   }
 
   for (const route of ["/envios-a-todo-mexico/", "/devoluciones-y-reembolsos/", "/politicas-de-privacidad/", "/terminos-y-condiciones/", "/quienes-somos/"]) {
@@ -781,62 +769,89 @@ function categoryLinks(data, activeSlug = "") {
 }
 
 function homePage(data) {
-  const heroImg = pickImage(data, "diseno-sin-titulo-1", 0);
+  const heroImg = "/assets/images/diseno-sin-titulo-2.jpg";
   const featured = data.products.slice(0, 8);
-  const storeImage = "/assets/images/diseno-sin-titulo-2.jpg";
 
   const body = `
-    <section class="hero-section" style="--hero-bg: url('${heroImg}')">
-      <div class="container hero-content">
-        <span class="eyebrow-tag">📍 TIENDA FÍSICA EN CDMX · ENVÍOS A TODO MÉXICO</span>
-        <h1 class="hero-headline">
-          Minoxidil Kirkland Original en CDMX | Venta en Sucursal y Entregas Personales
-        </h1>
-        <p class="hero-subtitle">
-          El tratamiento comprobado para crecimiento de barba y detención de caída del cabello. Compra con total seguridad y confianza: producto 100% original con lote y caducidad verificables, atención directa en tienda física en Plaza Guelatao y entregas en CDMX o envíos express a todo el país.
-        </p>
-        <div class="hero-ctas">
-          <a class="btn btn-primary btn-large" href="${whatsappLink(data, "Quiero comprar Minoxidil Kirkland en CDMX")}">
-            💬 Pedir por WhatsApp (Atención Inmediata)
-          </a>
-          <a class="btn btn-secondary btn-large" href="/shop/">
-            🏷️ Ver Catálogo y Precios
-          </a>
+    <!-- Split Hero Section -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content-col">
+          <div class="hero-eyebrow">
+            <span>📍</span> TIENDA FÍSICA EN CDMX · PLAZA GUELATAO LOCAL 76 · ENVÍOS A TODO MÉXICO
+          </div>
+          <h1 class="hero-headline">
+            Minoxidil Kirkland Original en CDMX | Venta en Sucursal y Entregas Personales
+          </h1>
+          <p class="hero-subtitle">
+            El tratamiento comprobado para crecimiento de barba y detención de caída del cabello. Compra con total seguridad y confianza: producto 100% original con lote y caducidad verificables, atención directa en tienda física en Plaza Guelatao y entregas el mismo día en CDMX o envíos express a todo el país.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary btn-large" href="${whatsappLink(data, "Quiero comprar Minoxidil Kirkland en CDMX")}">
+              💬 Pedir por WhatsApp (Atención Inmediata)
+            </a>
+            <a class="btn btn-dark btn-large" href="/shop/">
+              🏷️ Ver Catálogo y Precios
+            </a>
+          </div>
+          <ul class="hero-trust-list">
+            <li><span class="hero-trust-check">✓</span> Kirkland 100% Original con lote láser visible</li>
+            <li><span class="hero-trust-check">✓</span> Sucursal física en Plaza Guelatao Local 76</li>
+            <li><span class="hero-trust-check">✓</span> Entregas personales en estaciones del Metro CDMX</li>
+            <li><span class="hero-trust-check">✓</span> Asesoría honesta sin promesas milagro ni letras chiquitas</li>
+          </ul>
         </div>
-        <div class="trust-pill-grid">
-          <div class="trust-pill">
-            <span class="trust-icon">🛡️</span>
-            <div>
-              <strong>100% Kirkland Original</strong>
-              <span>Lote y caducidad comprobable</span>
-            </div>
-          </div>
-          <div class="trust-pill">
-            <span class="trust-icon">📍</span>
-            <div>
-              <strong>Sucursal Plaza Guelatao</strong>
-              <span>Local 76, Metro Guelatao Línea A</span>
-            </div>
-          </div>
-          <div class="trust-pill">
-            <span class="trust-icon">🤝</span>
-            <div>
-              <strong>Entregas en CDMX</strong>
-              <span>Puntos acordados y envíos rápidos</span>
-            </div>
-          </div>
-          <div class="trust-pill">
-            <span class="trust-icon">⭐</span>
-            <div>
-              <strong>+10 Años de Experiencia</strong>
-              <span>Asesoría honesta y personalizada</span>
+
+        <div class="hero-visual-col">
+          <div class="hero-card-frame">
+            <img src="${heroImg}" alt="Mostrador con Minoxidil Kirkland original en sucursal física CDMX" class="hero-card-img" width="800" height="600">
+            <div class="hero-card-content">
+              <span class="hero-card-badge">✓ FOTO REAL EN SUCURSAL CDMX</span>
+              <h2 class="hero-card-title">Plaza Guelatao Local 76 (Metro Guelatao)</h2>
+              <p class="hero-card-desc">Revisa los empaques, sellos de fábrica y fechas de caducidad físicamente en mano antes de pagar en tienda.</p>
+              <a class="hero-card-link" href="#sucursales">Ver horarios y cómo llegar a la tienda →</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Guía de Originalidad -->
+    <!-- 4 Intent Funnel Tiles -->
+    <section class="section section-intents">
+      <div class="container">
+        <div class="intent-grid">
+          <a class="intent-card" href="/guias/minoxidil-para-barba/">
+            <div class="intent-icon">🧔</div>
+            <h3>Crecimiento de Barba</h3>
+            <p>Pasa de vello delgado a barba tupida y cerrada. Conoce la rutina de aplicación y tiempos de maduración.</p>
+            <span class="intent-action">Ver guía de barba →</span>
+          </a>
+
+          <a class="intent-card" href="/guias/minoxidil-topico/">
+            <div class="intent-icon">💇‍♂️</div>
+            <h3>Frenar Caída Capilar</h3>
+            <p>Minoxidil tópico al 5% para frenar alopecia en entradas y coronilla en hombres y mujeres.</p>
+            <span class="intent-action">Ver guía de cabello →</span>
+          </a>
+
+          <a class="intent-card" href="/sucursales-y-entregas/">
+            <div class="intent-icon">🏬</div>
+            <h3>Sucursal Plaza Guelatao</h3>
+            <p>Visítanos en Iztapalapa a unos pasos de Metro Guelatao (Línea A). Paga en efectivo o transferencia.</p>
+            <span class="intent-action">Ver cómo llegar →</span>
+          </a>
+
+          <a class="intent-card" href="/guias/minoxidil-kirkland-original-vs-clon/">
+            <div class="intent-icon">🔍</div>
+            <h3>Original vs Pirata</h3>
+            <p>Aprende los 4 puntos clave para reconocer producto auténtico y evitar imitaciones en CDMX.</p>
+            <span class="intent-action">Revisar checklist →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guía de Originalidad con Foto de Tienda -->
     <section class="section section-originality">
       <div class="container">
         <div class="section-header text-center">
@@ -844,26 +859,101 @@ function homePage(data) {
           <h2>Cómo Identificar Minoxidil Kirkland Original vs Pirata</h2>
           <p>En Ciudad de México circulan muchas copias y clones diluidos. Revisa estos 4 puntos antes de comprar para garantizar tu salud y resultados:</p>
         </div>
-        <div class="originality-grid">
-          <div class="orig-card">
-            <div class="orig-num">1</div>
-            <h3>Código de Lote y Caducidad</h3>
-            <p>La caja sellada y cada uno de los 6 frascos tienen impreso en tinta láser indeleble el mismo número de lote y fecha de vencimiento. Desconfía si están borrados o desfasados.</p>
+
+        <div class="authenticity-layout">
+          <div class="auth-image-col">
+            <div class="auth-image-box">
+              <img src="/assets/images/diseno-sin-titulo-1.jpg" alt="Cajas de Minoxidil Kirkland y terminal Clip en mostrador de tienda física" loading="lazy" width="790" height="1000">
+              <div class="auth-caption">
+                <strong>Mostrador en Plaza Guelatao Local 76:</strong> Inventario sellado de fábrica con lote visible a la vista de todo cliente.
+              </div>
+            </div>
           </div>
-          <div class="orig-card">
-            <div class="orig-num">2</div>
-            <h3>Gotero Original Graduado</h3>
-            <p>El aplicador de Kirkland Signature incluye rosca de seguridad para niños y una marca exacta de 1.0 ml. Las copias suelen incluir goteros genéricos sin graduación precisa.</p>
+
+          <div class="auth-points-col">
+            <div class="auth-points-list">
+              <div class="auth-point">
+                <div class="auth-point-num">1</div>
+                <div>
+                  <h3>Código de Lote y Caducidad en Láser</h3>
+                  <p>La base de la caja sellada y cada uno de los 6 frascos tienen impreso en tinta láser indeleble el mismo número de lote y fecha de vencimiento. Desconfía si están borrados, despintados o desfasados.</p>
+                </div>
+              </div>
+
+              <div class="auth-point">
+                <div class="auth-point-num">2</div>
+                <div>
+                  <h3>Gotero Original Graduado</h3>
+                  <p>El aplicador de Kirkland Signature incluye rosca de seguridad para niños (push down & turn) y una marca exacta de 1.0 ml. Las copias suelen incluir goteros genéricos sin graduación precisa.</p>
+                </div>
+              </div>
+
+              <div class="auth-point">
+                <div class="auth-point-num">3</div>
+                <div>
+                  <h3>Color Ámbar y Aroma Característico</h3>
+                  <p>La fórmula líquida original al 5% tiene una tonalidad ligeramente ámbar con olor característico alcohólico y propilenglicol, cristalizando al secar en la piel. Nunca debe oler a perfume ni tener consistencia jabonosa.</p>
+                </div>
+              </div>
+
+              <div class="auth-point">
+                <div class="auth-point-num">4</div>
+                <div>
+                  <h3>Revisión Física en Tienda</h3>
+                  <p>En nuestra sucursal de Plaza Guelatao (Iztapalapa, CDMX) puedes revisar los empaques, sellos y números de serie en persona antes de pagar. Te damos total transparencia.</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.75rem;">
+              <a class="btn btn-gold" href="/guias/minoxidil-kirkland-original-vs-clon/">
+                Leer Guía Completa de Original vs Clon →
+              </a>
+            </div>
           </div>
-          <div class="orig-card">
-            <div class="orig-num">3</div>
-            <h3>Color y Aroma Real</h3>
-            <p>La fórmula líquida original al 5% tiene una tonalidad ligeramente ámbar/amarillenta con olor característico alcohólico y propilenglicol. Nunca debe oler a perfume ni tener consistencia jabonosa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fases y Tiempos de Crecimiento con Foto Real -->
+    <section class="section section-timeline">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">RESULTADOS COMPROBADOS</span>
+          <h2>Fases de Crecimiento: De Vello Incipiente a Barba Cerrada</h2>
+          <p>El crecimiento no ocurre de la noche a la mañana. La constancia diaria es la única clave para pasar de vello incipiente a barba cerrada o detener la pérdida capilar con Minoxidil al 5%:</p>
+        </div>
+
+        <div class="timeline-photo-box">
+          <img src="/assets/images/antes.jpg" alt="Evolución y fases de crecimiento de barba con Minoxidil en cliente real" loading="lazy" width="1290" height="599">
+          <div class="timeline-caption">
+            Seguimiento de evolución real: fase inicial sin vello, activación folicular con vellus fino, aumento de densidad y consolidación a vello terminal grueso y maduro.
           </div>
-          <div class="orig-card">
-            <div class="orig-num">4</div>
-            <h3>Revisión Física en Tienda</h3>
-            <p>En nuestra sucursal de Plaza Guelatao (Iztapalapa) puedes revisar los empaques, sellos y números de serie antes de pagar. Te damos total transparencia.</p>
+        </div>
+
+        <div class="timeline-stages-grid">
+          <div class="timeline-stage-card">
+            <span class="stage-time-tag">Fase 1 · Mes 1</span>
+            <h3>Adaptación Cutánea</h3>
+            <p>El folículo capilar se estimula y absorbe el principio activo. En cabello puede presentarse shedding leve (caída natural del pelo débil para iniciar nuevo ciclo).</p>
+          </div>
+
+          <div class="timeline-stage-card">
+            <span class="stage-time-tag">Fase 2 · Meses 2 a 3</span>
+            <h3>Brote de Vellus Fino</h3>
+            <p>Aparecen los primeros pelitos delgados y claros en mejillas o zonas despobladas. Es la señal inequívoca de que los folículos dormidos han despertado.</p>
+          </div>
+
+          <div class="timeline-stage-card">
+            <span class="stage-time-tag">Fase 3 · Meses 4 a 6</span>
+            <h3>Engrosamiento y Pigmento</h3>
+            <p>El vello comienza a oscurecerse, engrosar y ganar textura. La barba toma forma definida y los huecos se van conectando de manera continua.</p>
+          </div>
+
+          <div class="timeline-stage-card">
+            <span class="stage-time-tag">Fase 4 · Meses 6 a 12</span>
+            <h3>Vello Terminal Permanente</h3>
+            <p>El folículo madura completamente a vello terminal grueso con raíz profunda. En barba, este vello se vuelve permanente incluso tras suspender el tratamiento.</p>
           </div>
         </div>
       </div>
@@ -885,11 +975,11 @@ function homePage(data) {
             <p class="pricing-desc">1 Frasco Kirkland 5% Líquido (60 ml)</p>
             <ul class="pricing-features">
               <li>✓ Ideal para probar tolerancia en la piel</li>
-              <li>✓ Duración para 30 días de aplicación</li>
+              <li>✓ Duración para 30 días de aplicación diaria</li>
               <li>✓ Asesoría personalizada por WhatsApp</li>
               <li>✓ Entrega en CDMX o sucursal</li>
             </ul>
-            <a class="btn btn-primary" href="${whatsappLink(data, "Quiero pedir el paquete de 1 Mes Minoxidil Kirkland ($300)")}">Pedir 1 Mes</a>
+            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 1 Mes Minoxidil Kirkland ($300)")}">Pedir 1 Mes</a>
           </div>
 
           <div class="pricing-card">
@@ -903,26 +993,27 @@ function homePage(data) {
               <li>✓ Incluye aplicador graduado</li>
               <li>✓ Entrega personal en CDMX</li>
             </ul>
-            <a class="btn btn-primary" href="${whatsappLink(data, "Quiero pedir el paquete de 3 Meses Minoxidil Kirkland ($600)")}">Pedir 3 Meses</a>
+            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 3 Meses Minoxidil Kirkland ($600)")}">Pedir 3 Meses</a>
           </div>
 
           <div class="pricing-card featured-pricing">
-            <div class="pricing-badge badge-popular">MÁS POPULAR · MEJOR PRECIO</div>
-            <h3>6 Meses Caja Sellada</h3>
+            <span class="badge-popular">⭐ MÁS VENDIDO · MEJOR PRECIO</span>
+            <div class="pricing-badge">Caja Sellada Fábrica</div>
+            <h3>6 Meses Caja Completa</h3>
             <div class="pricing-price">$1,100 <small>MXN</small></div>
-            <p class="pricing-desc">Caja Completa Kirkland con 6 Frascos + Gotero Original</p>
+            <p class="pricing-desc">Caja Sellada Kirkland con 6 Frascos + Gotero Original</p>
             <ul class="pricing-features">
-              <li>✓ Caja sellada de fábrica con lote visible</li>
-              <li>✓ Incluye gotero aplicador original Kirkland</li>
+              <li>✓ Caja sellada de fábrica con lote láser visible</li>
+              <li>✓ Incluye gotero aplicador original Kirkland con seguro</li>
               <li>✓ Tiempo óptimo para maduración de barba</li>
-              <li>✓ El costo mensual más económico</li>
+              <li>✓ El costo mensual más económico ($183/mes)</li>
               <li>✓ Entrega inmediata en CDMX</li>
             </ul>
             <a class="btn btn-gold btn-large" href="${whatsappLink(data, "Quiero pedir la Caja de 6 Meses Minoxidil Kirkland ($1,100)")}">Pedir Caja 6 Meses</a>
           </div>
 
           <div class="pricing-card">
-            <div class="pricing-badge">Tratamiento Completo</div>
+            <div class="pricing-badge">Tratamiento Definitivo</div>
             <h3>1 Año de Tratamiento</h3>
             <div class="pricing-price">$2,100 <small>MXN</small></div>
             <p class="pricing-desc">2 Cajas Selladas (12 Frascos) + 2 Goteros Originales</p>
@@ -932,7 +1023,7 @@ function homePage(data) {
               <li>✓ Producto sellado con caducidad amplia</li>
               <li>✓ Envío gratis o entrega especial en CDMX</li>
             </ul>
-            <a class="btn btn-primary" href="${whatsappLink(data, "Quiero pedir el paquete de 1 Año Minoxidil Kirkland ($2,100)")}">Pedir Tratamiento 1 Año</a>
+            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 1 Año Minoxidil Kirkland ($2,100)")}">Pedir Tratamiento 1 Año</a>
           </div>
         </div>
       </div>
@@ -943,8 +1034,8 @@ function homePage(data) {
       <div class="container">
         <div class="section-header-row">
           <div>
-            <span class="section-tag">CATÁLOGO COMPLETO</span>
-            <h2>Productos Disponibles para Entrega</h2>
+            <span class="section-tag">CATÁLOGO EN EXISTENCIA</span>
+            <h2>Productos Disponibles para Entrega Inmediata</h2>
           </div>
           <a class="btn btn-outline" href="/shop/">Ver toda la tienda →</a>
         </div>
@@ -990,7 +1081,7 @@ function homePage(data) {
 
             <div class="loc-actions">
               <a class="btn btn-primary" href="${whatsappLink(data, "Quiero visitar la sucursal de Plaza Guelatao o acordar una entrega personal en CDMX")}">
-                Coordinar Visita por WhatsApp
+                💬 Coordinar Visita por WhatsApp
               </a>
               <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Calzada+Ignacio+Zaragoza+406+Juan+Escutia+Iztapalapa" target="_blank" rel="noreferrer">
                 Ver en Google Maps
@@ -1010,7 +1101,7 @@ function homePage(data) {
       </div>
     </section>
 
-    <!-- Guías y Blog -->
+    <!-- Guías y Asesoría -->
     <section class="section section-guides">
       <div class="container">
         <div class="section-header-row">
@@ -1287,106 +1378,68 @@ function productPage(product, data) {
   });
 }
 
-function blogPage(data, pageNumber = 1, perPage = 18, semanticPosts = []) {
-  const totalPages = Math.max(1, Math.ceil(semanticPosts.length / perPage));
-  const current = Math.min(Math.max(1, pageNumber), totalPages);
-  const posts = semanticPosts.slice((current - 1) * perPage, current * perPage);
-
-  const prevPath = current > 2 ? `/blog/page/${current - 1}/` : current === 2 ? "/blog/" : "";
-  const nextPath = current < totalPages ? `/blog/page/${current + 1}/` : "";
-
-  const pagination = `
-    <nav class="blog-pagination" aria-label="Paginación del blog">
-      ${prevPath ? `<a class="btn btn-secondary" href="${prevPath}">← Entradas Anteriores</a>` : `<span></span>`}
-      <div class="page-numbers">
-        ${Array.from({ length: totalPages }, (_, index) => {
-          const number = index + 1;
-          if (number === 1 || number === totalPages || Math.abs(number - current) <= 2) {
-            const pathName = number === 1 ? "/blog/" : `/blog/page/${number}/`;
-            return number === current ? `<strong class="page-curr">${number}</strong>` : `<a class="page-link" href="${pathName}">${number}</a>`;
-          }
-          if (Math.abs(number - current) === 3) return `<span class="page-ellipsis">…</span>`;
-          return "";
-        }).join("")}
-      </div>
-      ${nextPath ? `<a class="btn btn-secondary" href="${nextPath}">Siguientes Entradas →</a>` : `<span></span>`}
-    </nav>`;
-
+function blogPage(data) {
   const body = `
     <section class="page-title-banner">
       <div class="container">
-        <span class="eyebrow-tag">BLOG Y ARTÍCULOS</span>
-        <h1>Consejos, Guías y Artículos de Minoxidil</h1>
-        <p>Información práctica sobre aplicación en barba y cabello, cómo evitar efectos secundarios y compras seguras en CDMX.</p>
+        <span class="eyebrow-tag">CENTRO EDITORIAL Y ASESORÍA</span>
+        <h1>Guías de Minoxidil, Barba y Cuidado Capilar</h1>
+        <p>Aprende a usar Minoxidil con bases reales, expectativas honestas y protocolos seguros para barba y cabello en Ciudad de México.</p>
       </div>
     </section>
 
-    <!-- Guías Pilares Destacadas -->
-    ${current === 1 ? `
-      <section class="section section-pillar-guides">
-        <div class="container">
-          <div class="section-header">
-            <span class="section-tag">LECTURAS ESENCIALES</span>
-            <h2>Guías Médicas y Fundamentales</h2>
-          </div>
-          <div class="guides-preview-grid">
-            ${editorialGuides.slice(0, 3).map((guide) => `
-              <article class="guide-preview-card">
-                <a href="${guide.path}">
-                  <img src="${guide.image}" alt="${escapeHtml(guide.title)}" loading="lazy">
-                </a>
-                <div class="guide-preview-content">
-                  <span class="guide-badge">${escapeHtml(guide.topic)}</span>
-                  <h3><a href="${guide.path}">${escapeHtml(guide.title)}</a></h3>
-                  <p>${escapeHtml(guide.description)}</p>
-                  <a class="read-more" href="${guide.path}">Leer guía completa →</a>
-                </div>
-              </article>
-            `).join("")}
-          </div>
-        </div>
-      </section>
-    ` : ""}
-
-    <!-- Artículos del Blog -->
-    <section class="section blog-feed-section">
+    <section class="section">
       <div class="container">
-        <div class="section-header">
-          <h2>Artículos Publicados</h2>
-          <p>Explora nuestras ${semanticPosts.length} entradas históricas sobre minoxidil, cuidado capilar y crecimiento de barba:</p>
+        <div class="section-header text-center">
+          <span class="section-tag">INFORMACIÓN RESPONSABLE</span>
+          <h2>Guías Fundamentales y Consejos Prácticos</h2>
+          <p>Hemos consolidado más de una década de experiencia atendiendo a clientes en CDMX en 10 guías esenciales para resolver tus dudas antes, durante y después de tu tratamiento:</p>
         </div>
-        <div class="blog-articles-grid">
-          ${posts.map((post) => `
-            <article class="blog-post-card">
-              <a class="blog-card-img" href="${post.path}">
-                <img src="${post.image}" alt="${escapeHtml(post.title)}" loading="lazy">
+
+        <div class="guides-main-grid">
+          ${editorialGuides.map((guide) => `
+            <article class="guide-card-full">
+              <a class="guide-card-img" href="${guide.path}">
+                <img src="${guide.image}" alt="${escapeHtml(guide.title)}" loading="lazy">
+                <span class="guide-card-topic">${escapeHtml(guide.topic)}</span>
               </a>
-              <div class="blog-card-body">
-                <time class="blog-date" datetime="${post.date}">${formatDate(post.date)}</time>
-                <h3 class="blog-card-title">
-                  <a href="${post.path}">${escapeHtml(post.title)}</a>
+              <div class="guide-card-body">
+                <span class="guide-read-time">⏱️ 5 min de lectura · Guía Verificada</span>
+                <h3 class="guide-card-title">
+                  <a href="${guide.path}">${escapeHtml(guide.title)}</a>
                 </h3>
-                <p class="blog-card-excerpt">${escapeHtml(metaText(post.excerpt, 120))}</p>
-                <a class="blog-card-btn" href="${post.path}">Leer artículo →</a>
+                <p class="guide-card-desc">${escapeHtml(guide.description)}</p>
+                <div class="guide-card-footer">
+                  <a class="btn btn-outline btn-sm" href="${guide.path}">Leer Guía Completa →</a>
+                  <a class="guide-wa-link" href="${whatsappLink(data, guide.title)}">💬 Preguntar por WhatsApp</a>
+                </div>
               </div>
             </article>
           `).join("")}
         </div>
-        ${pagination}
+      </div>
+    </section>
+
+    <section class="section section-help-banner">
+      <div class="container">
+        <div class="final-cta-box">
+          <h2>¿Tienes una duda específica sobre tu caso?</h2>
+          <p>Escríbenos por WhatsApp con una foto o descripción de tu zona a tratar (barba o entradas). Te orientamos sobre qué producto te conviene y cómo aplicarlo sin compromiso.</p>
+          <a class="btn btn-gold btn-large" href="${whatsappLink(data, "Hola, tengo dudas sobre mi caso para usar Minoxidil")}">
+            💬 Consultar por WhatsApp
+          </a>
+        </div>
       </div>
     </section>
   `;
 
-  const pathName = current === 1 ? "/blog/" : `/blog/page/${current}/`;
-  const title = current === 1 ? "Blog de Minoxidil, Barba y Cabello" : `Blog - Página ${current} | Minoxidil en CDMX`;
-
   return layout(data, {
-    title,
-    path: pathName,
-    description: "Artículos, consejos y guías completas sobre minoxidil en barba y cabello, tiempos de respuesta, aplicación y compra en CDMX.",
+    title: "Guías y Consejos de Minoxidil en CDMX | Barba y Cabello",
+    path: "/blog/",
+    description: "Guías autorizadas y consejos prácticos sobre Minoxidil en CDMX: aplicación en barba y cabello, cómo identificar producto original, shedding y tiempos reales.",
     robots: "index, follow, max-image-preview:large",
     schema: [
-      itemListSchema("Blog de Minoxidil en CDMX", pathName, posts),
+      itemListSchema("Guías de Minoxidil en CDMX", "/blog/", editorialGuides),
       breadcrumbSchema([{ name: "Inicio", path: "/" }, { name: "Blog", path: "/blog/" }])
     ],
     body
@@ -1831,26 +1884,31 @@ function notFoundPage(data, index) {
 
 const css = `
 :root {
-  --brand: #059669;
-  --brand-hover: #047857;
-  --accent-gold: #d97706;
-  --accent-gold-hover: #b45309;
-  --navy-dark: #0b1528;
-  --navy-surface: #111e38;
-  --navy-light: #1e293b;
-  --bg-page: #f8fafc;
-  --bg-card: #ffffff;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --border: #e2e8f0;
-  --border-focus: #10b981;
-  --wa-green: #25d366;
+  --brand: #B45309;
+  --brand-hover: #92400E;
+  --brand-light: #FEF3C7;
+  --brand-light-border: #FDE68A;
+  --dark-slate: #1C1917;
+  --dark-surface: #292524;
+  --dark-card: #0F172A;
+  --bg-page: #FAF9F6;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F5F3EF;
+  --text-main: #1C1917;
+  --text-secondary: #44403C;
+  --text-muted: #78716C;
+  --border: #E7E5E4;
+  --border-subtle: #F0EEEB;
+  --wa-green: #25D366;
+  --wa-green-hover: #1EBE5D;
+  --wa-green-dark: #128C7E;
   --radius-sm: 6px;
-  --radius-md: 10px;
+  --radius-md: 12px;
   --radius-lg: 16px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 16px rgba(11,21,40,0.08);
-  --shadow-lg: 0 12px 32px rgba(11,21,40,0.12);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 3px rgba(28,25,23,0.04);
+  --shadow-md: 0 4px 16px rgba(28,25,23,0.06);
+  --shadow-lg: 0 12px 32px rgba(28,25,23,0.1);
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -1874,10 +1932,29 @@ a { color: inherit; text-decoration: none; }
   margin-right: auto;
 }
 
-/* Top Announcement */
+/* Accessibility: Hidden Skip Link */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  background: var(--brand);
+  color: #FFFFFF;
+  padding: 0.65rem 1.25rem;
+  z-index: 10000;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 0 0 6px 6px;
+  box-shadow: var(--shadow-md);
+}
+.skip-link:focus {
+  top: 0;
+  left: 1rem;
+}
+
+/* Top Announcement Bar */
 .top-announcement {
-  background: var(--navy-dark);
-  color: #f1f5f9;
+  background: var(--dark-slate);
+  color: #F5F5F4;
   font-size: 0.85rem;
   padding: 0.5rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -1898,9 +1975,9 @@ a { color: inherit; text-decoration: none; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #ffffff;
+  background: #FFFFFF;
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 10px rgba(28,25,23,0.03);
 }
 .nav-wrap {
   display: flex;
@@ -1912,52 +1989,40 @@ a { color: inherit; text-decoration: none; }
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
 }
-.brand-badge {
-  background: var(--brand);
-  color: #fff;
-  font-weight: 900;
-  font-size: 0.8rem;
-  padding: 0.35rem 0.6rem;
-  border-radius: var(--radius-sm);
-  letter-spacing: 0.05em;
-}
-.brand-text { display: flex; flex-direction: column; }
-.brand-title {
-  font-size: 1.35rem;
-  font-weight: 900;
-  color: var(--navy-dark);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-.brand-sub {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+.brand-logo-img {
+  height: 44px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.4rem;
   font-weight: 700;
   font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+.nav-menu a {
+  transition: color 0.15s ease;
 }
 .nav-menu a:hover {
   color: var(--brand);
 }
 .nav-btn {
-  background: var(--brand);
-  color: #ffffff !important;
-  padding: 0.6rem 1rem;
+  background: var(--wa-green) !important;
+  color: #FFFFFF !important;
+  padding: 0.6rem 1.1rem;
   border-radius: var(--radius-sm);
-  transition: background 0.15s ease;
+  transition: background 0.15s ease !important;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(37,211,102,0.3);
 }
 .nav-btn:hover {
-  background: var(--brand-hover);
+  background: var(--wa-green-hover) !important;
 }
 
 .menu-toggle {
@@ -1972,7 +2037,7 @@ a { color: inherit; text-decoration: none; }
   display: block;
   width: 22px;
   height: 2px;
-  background: var(--navy-dark);
+  background: var(--dark-slate);
   position: relative;
 }
 .menu-icon::before, .menu-icon::after {
@@ -1980,7 +2045,7 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   width: 22px;
   height: 2px;
-  background: var(--navy-dark);
+  background: var(--dark-slate);
   left: 0;
 }
 .menu-icon::before { top: -6px; }
@@ -1994,7 +2059,7 @@ a { color: inherit; text-decoration: none; }
     top: 72px;
     left: 0;
     right: 0;
-    background: #ffffff;
+    background: #FFFFFF;
     flex-direction: column;
     align-items: flex-start;
     padding: 1.5rem;
@@ -2019,35 +2084,46 @@ a { color: inherit; text-decoration: none; }
   transition: all 0.15s ease;
   border: 1px solid transparent;
   text-align: center;
+  line-height: 1.3;
 }
 .btn-primary {
-  background: var(--brand);
-  color: #ffffff;
+  background: var(--wa-green);
+  color: #FFFFFF;
 }
 .btn-primary:hover {
-  background: var(--brand-hover);
-  color: #ffffff;
+  background: var(--wa-green-hover);
+  color: #FFFFFF;
 }
 .btn-secondary {
-  background: #ffffff;
-  color: var(--navy-dark);
+  background: #FFFFFF;
+  color: var(--dark-slate);
   border-color: var(--border);
 }
 .btn-secondary:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
+  background: #F5F5F4;
+  border-color: #D6D3D1;
+  color: var(--dark-slate);
+}
+.btn-dark {
+  background: var(--dark-slate);
+  color: #FFFFFF;
+}
+.btn-dark:hover {
+  background: var(--dark-surface);
+  color: #FFFFFF;
 }
 .btn-gold {
-  background: var(--accent-gold);
-  color: #ffffff;
+  background: var(--brand);
+  color: #FFFFFF;
 }
 .btn-gold:hover {
-  background: var(--accent-gold-hover);
+  background: var(--brand-hover);
+  color: #FFFFFF;
 }
 .btn-outline {
   border-color: var(--border);
   background: transparent;
-  color: var(--navy-dark);
+  color: var(--dark-slate);
 }
 .btn-outline:hover {
   border-color: var(--brand);
@@ -2058,76 +2134,184 @@ a { color: inherit; text-decoration: none; }
   font-size: 1.05rem;
 }
 .btn-full { width: 100%; }
+.btn-sm {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+}
 
-/* Hero Section */
+/* Split Hero Section */
 .hero-section {
-  position: relative;
-  background: linear-gradient(135deg, rgba(11,21,40,0.94) 0%, rgba(17,30,56,0.88) 100%), var(--hero-bg);
-  background-size: cover;
-  background-position: center;
-  color: #ffffff;
-  padding: 4.5rem 0 5rem;
+  background: linear-gradient(180deg, #FAF9F6 0%, #F5F3EF 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 3.5rem 0 4.5rem;
 }
-.hero-content {
-  max-width: 840px;
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
 }
-.eyebrow-tag {
-  display: inline-block;
-  background: rgba(217,119,6,0.2);
-  color: #fbbf24;
-  border: 1px solid rgba(251,191,36,0.3);
-  font-size: 0.8rem;
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--brand-light);
+  color: var(--brand-hover);
+  border: 1px solid var(--brand-light-border);
+  font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
-  padding: 0.35rem 0.75rem;
+  letter-spacing: 0.06em;
+  padding: 0.4rem 0.85rem;
   border-radius: var(--radius-full);
   margin-bottom: 1.25rem;
 }
 .hero-headline {
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
-  line-height: 1.12;
+  font-size: clamp(2.1rem, 4.5vw, 3.1rem);
+  line-height: 1.15;
   font-weight: 900;
-  letter-spacing: -0.02em;
+  color: var(--dark-slate);
+  letter-spacing: -0.025em;
   margin: 0 0 1.25rem;
   text-wrap: balance;
 }
 .hero-subtitle {
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: #cbd5e1;
+  font-size: 1.12rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
   margin: 0 0 2rem;
 }
 .hero-ctas {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
-
-/* Trust Pill Grid */
-.trust-pill-grid {
+.hero-trust-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  font-weight: 600;
 }
-.trust-pill {
+.hero-trust-list li {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(8px);
-  padding: 1rem;
-  border-radius: var(--radius-md);
+  gap: 0.5rem;
 }
-.trust-icon { font-size: 1.6rem; flex-shrink: 0; }
-.trust-pill strong { display: block; font-size: 0.92rem; color: #ffffff; }
-.trust-pill span { display: block; font-size: 0.78rem; color: #94a3b8; }
+.hero-trust-check {
+  color: #059669;
+  font-weight: 900;
+}
+
+.hero-card-frame {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+.hero-card-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.hero-card-content {
+  padding: 1.5rem;
+}
+.hero-card-badge {
+  display: inline-block;
+  background: #DCFCE7;
+  color: #166534;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+.hero-card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--dark-slate);
+  margin: 0 0 0.4rem;
+}
+.hero-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+.hero-card-link {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+
 @media (max-width: 900px) {
-  .trust-pill-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-trust-list { grid-template-columns: 1fr; }
 }
-@media (max-width: 500px) {
-  .trust-pill-grid { grid-template-columns: 1fr; }
+
+/* 4 Intent Funnel Tiles */
+.section-intents {
+  padding: 0 0 2rem;
+}
+.intent-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: -2.5rem;
+  position: relative;
+  z-index: 10;
+}
+.intent-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.intent-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--brand);
+}
+.intent-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+.intent-card h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  color: var(--dark-slate);
+}
+.intent-card p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+  line-height: 1.5;
+  flex: 1;
+}
+.intent-action {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--brand);
+}
+@media (max-width: 1024px) {
+  .intent-grid { grid-template-columns: repeat(2, 1fr); margin-top: 2rem; }
+}
+@media (max-width: 550px) {
+  .intent-grid { grid-template-columns: 1fr; }
 }
 
 /* Sections */
@@ -2147,7 +2331,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 900;
   letter-spacing: -0.02em;
   margin: 0 0 0.75rem;
-  color: var(--navy-dark);
+  color: var(--dark-slate);
 }
 .section-header p {
   color: var(--text-muted);
@@ -2163,57 +2347,144 @@ a { color: inherit; text-decoration: none; }
   gap: 1rem;
 }
 
-/* Originality Grid */
-.originality-grid {
+/* Authenticity Showcase */
+.authenticity-layout {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 3.5rem;
+  align-items: center;
 }
-.orig-card {
-  background: var(--bg-card);
+.auth-image-box {
+  background: #FFFFFF;
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.75rem;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.orig-card:hover {
-  transform: translateY(-4px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
   box-shadow: var(--shadow-md);
 }
-.orig-num {
-  width: 42px;
-  height: 42px;
-  border-radius: var(--radius-full);
-  background: #ecfdf5;
-  color: var(--brand);
+.auth-image-box img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+.auth-caption {
+  padding: 1rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  background: var(--bg-page);
+  border-top: 1px solid var(--border);
+}
+.auth-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.auth-point {
+  display: flex;
+  gap: 1.25rem;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  transition: transform 0.15s ease;
+}
+.auth-point:hover {
+  transform: translateX(4px);
+  border-color: var(--brand);
+}
+.auth-point-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand-light);
+  color: var(--brand-hover);
   font-weight: 900;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   display: grid;
   place-items: center;
-  margin-bottom: 1.25rem;
+  flex-shrink: 0;
 }
-.orig-card h3 {
-  font-size: 1.15rem;
+.auth-point h3 {
+  font-size: 1.05rem;
   font-weight: 800;
-  margin: 0 0 0.6rem;
-  color: var(--navy-dark);
+  margin: 0 0 0.35rem;
+  color: var(--dark-slate);
 }
-.orig-card p {
-  font-size: 0.92rem;
-  color: var(--text-muted);
+.auth-point p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
   margin: 0;
   line-height: 1.5;
 }
 @media (max-width: 900px) {
-  .originality-grid { grid-template-columns: repeat(2, 1fr); }
+  .authenticity-layout { grid-template-columns: 1fr; gap: 2rem; }
 }
-@media (max-width: 500px) {
-  .originality-grid { grid-template-columns: 1fr; }
+
+/* Timeline Customer Results */
+.timeline-photo-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+.timeline-photo-box img {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+}
+.timeline-caption {
+  padding: 1rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border);
+}
+.timeline-stages-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.timeline-stage-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  border-top: 4px solid var(--brand);
+  box-shadow: var(--shadow-sm);
+}
+.stage-time-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+.timeline-stage-card h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  color: var(--dark-slate);
+}
+.timeline-stage-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+@media (max-width: 990px) {
+  .timeline-stages-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 550px) {
+  .timeline-stages-grid { grid-template-columns: 1fr; }
 }
 
 /* Pricing Grid */
-.section-pricing { background: #ffffff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.section-pricing { background: #FFFFFF; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -2228,6 +2499,33 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
   position: relative;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.pricing-card.featured-pricing {
+  background: #FFFFFF;
+  border: 2px solid var(--brand);
+  box-shadow: 0 8px 30px rgba(180,83,9,0.15);
+  transform: scale(1.02);
+  z-index: 2;
+}
+.pricing-card.featured-pricing:hover {
+  transform: scale(1.02) translateY(-4px);
+}
+.badge-popular {
+  background: var(--brand);
+  color: #FFFFFF;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  display: inline-block;
+  margin-bottom: 0.75rem;
 }
 .pricing-badge {
   font-size: 0.75rem;
@@ -2238,51 +2536,45 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 0.5rem;
 }
 .pricing-card h3 {
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   margin: 0 0 0.5rem;
-  color: var(--navy-dark);
+  color: var(--dark-slate);
 }
 .pricing-price {
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   font-weight: 900;
-  color: var(--brand);
+  color: var(--dark-slate);
   line-height: 1;
   margin-bottom: 0.5rem;
 }
-.pricing-price small { font-size: 0.9rem; font-weight: 700; color: var(--text-muted); }
-.pricing-desc { font-size: 0.9rem; color: var(--text-muted); margin: 0 0 1.5rem; min-height: 2.8em; }
+.pricing-price small {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.pricing-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 1.5rem;
+  min-height: 2.8em;
+}
 .pricing-features {
   list-style: none;
   padding: 0;
   margin: 0 0 2rem;
   font-size: 0.88rem;
-  color: #334155;
+  color: var(--text-secondary);
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 .pricing-card .btn { margin-top: auto; }
-
-.pricing-card.featured-pricing {
-  background: #ffffff;
-  border: 2px solid var(--accent-gold);
-  box-shadow: 0 8px 30px rgba(217,119,6,0.15);
-  transform: scale(1.03);
-  z-index: 2;
-}
-.pricing-card.featured-pricing .badge-popular {
-  background: var(--accent-gold);
-  color: #ffffff;
-  padding: 0.25rem 0.6rem;
-  border-radius: var(--radius-sm);
-  display: inline-block;
-  font-size: 0.72rem;
-}
 @media (max-width: 990px) {
   .pricing-grid { grid-template-columns: repeat(2, 1fr); }
   .pricing-card.featured-pricing { transform: none; }
+  .pricing-card.featured-pricing:hover { transform: translateY(-4px); }
 }
-@media (max-width: 600px) {
+@media (max-width: 550px) {
   .pricing-grid { grid-template-columns: 1fr; }
 }
 
@@ -2293,13 +2585,14 @@ a { color: inherit; text-decoration: none; }
   gap: 1.5rem;
 }
 .product-card {
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
+  box-shadow: var(--shadow-sm);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .product-card:hover {
@@ -2319,12 +2612,12 @@ a { color: inherit; text-decoration: none; }
   padding: 0.25rem 0.6rem;
   border-radius: var(--radius-full);
 }
-.badge-kirkland { background: #dbeafe; color: #1e40af; }
-.badge-neutral { background: #f1f5f9; color: #475569; }
+.badge-kirkland { background: #DCFCE7; color: #166534; }
+.badge-neutral { background: #F5F5F4; color: #57534E; }
 
 .product-img-link {
   aspect-ratio: 1;
-  background: #f8fafc;
+  background: #FAFAF9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2370,18 +2663,18 @@ a { color: inherit; text-decoration: none; }
 .price-val {
   font-size: 1.3rem;
   font-weight: 900;
-  color: var(--brand);
+  color: var(--dark-slate);
 }
 .btn-wa-sm {
-  background: var(--brand);
-  color: #ffffff;
+  background: var(--wa-green);
+  color: #FFFFFF;
   font-size: 0.85rem;
-  font-weight: 700;
-  padding: 0.45rem 0.9rem;
+  font-weight: 800;
+  padding: 0.45rem 0.95rem;
   border-radius: var(--radius-sm);
   transition: background 0.15s ease;
 }
-.btn-wa-sm:hover { background: var(--brand-hover); }
+.btn-wa-sm:hover { background: var(--wa-green-hover); color: #FFFFFF; }
 
 @media (max-width: 1024px) {
   .product-grid { grid-template-columns: repeat(3, 1fr); }
@@ -2398,7 +2691,7 @@ a { color: inherit; text-decoration: none; }
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 2.5rem;
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -2413,8 +2706,8 @@ a { color: inherit; text-decoration: none; }
   margin: 1.5rem 0;
 }
 .loc-icon { font-size: 1.5rem; flex-shrink: 0; line-height: 1.2; }
-.loc-item strong { display: block; font-size: 1.05rem; color: var(--navy-dark); margin-bottom: 0.25rem; }
-.loc-item p { margin: 0; font-size: 0.95rem; color: #475569; }
+.loc-item strong { display: block; font-size: 1.05rem; color: var(--dark-slate); margin-bottom: 0.25rem; }
+.loc-item p { margin: 0; font-size: 0.95rem; color: var(--text-secondary); }
 .loc-actions {
   display: flex;
   gap: 1rem;
@@ -2433,14 +2726,14 @@ a { color: inherit; text-decoration: none; }
   .location-map iframe { min-height: 320px; }
 }
 
-/* Guides Preview */
+/* Guides Grid (Preview & Full) */
 .guides-preview-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 .guide-preview-card {
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -2471,7 +2764,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 1.15rem;
   line-height: 1.3;
   margin: 0 0 0.75rem;
-  color: var(--navy-dark);
+  color: var(--dark-slate);
 }
 .guide-preview-content p {
   font-size: 0.92rem;
@@ -2488,11 +2781,106 @@ a { color: inherit; text-decoration: none; }
   .guides-preview-grid { grid-template-columns: 1fr; }
 }
 
+/* Full Guides Hub (/blog/) */
+.guides-main-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.guide-card-full {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.guide-card-full:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--brand);
+}
+.guide-card-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-subtle);
+}
+.guide-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.guide-card-full:hover .guide-card-img img {
+  transform: scale(1.04);
+}
+.guide-card-topic {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(28,25,23,0.85);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.65rem;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+.guide-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.guide-read-time {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+.guide-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.3;
+  margin: 0 0 0.75rem;
+  color: var(--dark-slate);
+}
+.guide-card-title a:hover { color: var(--brand); }
+.guide-card-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0 0 1.5rem;
+  flex: 1;
+}
+.guide-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.guide-wa-link {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #059669;
+}
+@media (max-width: 768px) {
+  .guides-main-grid { grid-template-columns: 1fr; }
+}
+
 /* FAQ */
 .faq-container { max-width: 800px; }
 .faq-list { display: flex; flex-direction: column; gap: 0.75rem; }
 .faq-item {
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 1.2rem 1.5rem;
@@ -2500,12 +2888,12 @@ a { color: inherit; text-decoration: none; }
 .faq-item summary {
   font-weight: 800;
   font-size: 1.05rem;
-  color: var(--navy-dark);
+  color: var(--dark-slate);
   cursor: pointer;
 }
 .faq-item p {
   margin: 0.85rem 0 0;
-  color: #475569;
+  color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -2513,8 +2901,8 @@ a { color: inherit; text-decoration: none; }
 /* Final CTA */
 .final-cta-section { padding-bottom: 5rem; }
 .final-cta-box {
-  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-surface) 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--dark-slate) 0%, var(--dark-surface) 100%);
+  color: #FFFFFF;
   padding: 3.5rem 2rem;
   border-radius: var(--radius-lg);
   text-align: center;
@@ -2527,15 +2915,15 @@ a { color: inherit; text-decoration: none; }
 }
 .final-cta-box p {
   font-size: 1.1rem;
-  color: #cbd5e1;
+  color: #D6D3D1;
   max-width: 650px;
   margin: 0 auto 2rem;
 }
 
 /* Shop Layout */
 .page-title-banner {
-  background: var(--navy-dark);
-  color: #ffffff;
+  background: var(--dark-slate);
+  color: #FFFFFF;
   padding: 3.5rem 0;
   text-align: center;
 }
@@ -2545,7 +2933,7 @@ a { color: inherit; text-decoration: none; }
   margin: 0.5rem 0;
 }
 .page-title-banner p {
-  color: #cbd5e1;
+  color: #D6D3D1;
   max-width: 650px;
   margin: 0 auto;
   font-size: 1.05rem;
@@ -2557,7 +2945,7 @@ a { color: inherit; text-decoration: none; }
 }
 .shop-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
 .sidebar-box {
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 1.5rem;
@@ -2565,7 +2953,7 @@ a { color: inherit; text-decoration: none; }
 .sidebar-box h3 {
   font-size: 1.15rem;
   margin: 0 0 1rem;
-  color: var(--navy-dark);
+  color: var(--dark-slate);
 }
 .cat-pill-list { display: flex; flex-direction: column; gap: 0.4rem; }
 .cat-pill {
@@ -2573,25 +2961,25 @@ a { color: inherit; text-decoration: none; }
   border-radius: var(--radius-sm);
   font-size: 0.92rem;
   font-weight: 600;
-  color: #334155;
+  color: var(--text-secondary);
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all 0.15s ease;
 }
-.cat-pill:hover { background: #f1f5f9; color: var(--brand); }
-.cat-pill.active { background: var(--brand); color: #ffffff; }
-.cat-pill.active .cat-count { color: #ffffff; opacity: 0.8; }
+.cat-pill:hover { background: #F5F5F4; color: var(--brand); }
+.cat-pill.active { background: var(--dark-slate); color: #FFFFFF; }
+.cat-pill.active .cat-count { color: #FFFFFF; opacity: 0.8; }
 .cat-count { font-size: 0.8rem; color: var(--text-muted); }
 
 .sidebar-help {
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
+  background: #DCFCE7;
+  border: 1px solid #BBF7D0;
   border-radius: var(--radius-md);
   padding: 1.5rem;
 }
-.sidebar-help h4 { margin: 0 0 0.5rem; color: #065f46; font-size: 1.05rem; }
-.sidebar-help p { font-size: 0.88rem; color: #047857; margin: 0 0 1rem; }
+.sidebar-help h4 { margin: 0 0 0.5rem; color: #166534; font-size: 1.05rem; }
+.sidebar-help p { font-size: 0.88rem; color: #15803D; margin: 0 0 1rem; }
 
 .shop-toolbar {
   display: flex;
@@ -2601,17 +2989,17 @@ a { color: inherit; text-decoration: none; }
   gap: 1rem;
   flex-wrap: wrap;
 }
-.count-badge { font-weight: 700; color: var(--navy-dark); }
+.count-badge { font-weight: 700; color: var(--dark-slate); }
 .search-input {
   width: min(360px, 100%);
   padding: 0.75rem 1rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   font-size: 0.95rem;
-  background: #ffffff;
+  background: #FFFFFF;
   outline: none;
 }
-.search-input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(5,150,105,0.15); }
+.search-input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(180,83,9,0.15); }
 @media (max-width: 900px) {
   .shop-layout { grid-template-columns: 1fr; }
 }
@@ -2624,7 +3012,7 @@ a { color: inherit; text-decoration: none; }
   align-items: start;
 }
 .main-image-wrap {
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 2.5rem;
@@ -2644,10 +3032,10 @@ a { color: inherit; text-decoration: none; }
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   line-height: 1.2;
   margin: 0.75rem 0 1.25rem;
-  color: var(--navy-dark);
+  color: var(--dark-slate);
 }
 .detail-price-box {
-  background: #f8fafc;
+  background: var(--bg-page);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 1.25rem;
@@ -2657,7 +3045,7 @@ a { color: inherit; text-decoration: none; }
   display: block;
   font-size: 2rem;
   font-weight: 900;
-  color: var(--brand);
+  color: var(--dark-slate);
 }
 .stock-status {
   display: inline-block;
@@ -2666,33 +3054,33 @@ a { color: inherit; text-decoration: none; }
   color: #059669;
   margin-top: 0.35rem;
 }
-.detail-highlights { margin-bottom: 2rem; font-size: 1.05rem; color: #475569; }
+.detail-highlights { margin-bottom: 2rem; font-size: 1.05rem; color: var(--text-secondary); }
 .secure-buy-info {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
   margin-top: 1.25rem;
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--text-muted);
 }
-.product-desc-section { background: #ffffff; border-top: 1px solid var(--border); }
+.product-desc-section { background: #FFFFFF; border-top: 1px solid var(--border); }
 @media (max-width: 768px) {
   .product-detail-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
 
-/* Article & Blog */
-.article-page-wrap { background: #ffffff; }
+/* Article & Guide */
+.article-page-wrap { background: #FFFFFF; }
 .article-header {
-  background: var(--navy-dark);
-  color: #ffffff;
+  background: var(--dark-slate);
+  color: #FFFFFF;
   padding: 3.5rem 0;
 }
 .article-header-inner { max-width: 860px; }
 .article-cat-badge {
   display: inline-block;
-  background: rgba(5,150,105,0.25);
-  color: #34d399;
-  border: 1px solid rgba(52,211,153,0.3);
+  background: rgba(180,83,9,0.3);
+  color: #FBBF24;
+  border: 1px solid rgba(251,191,36,0.3);
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -2711,12 +3099,12 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   gap: 1.5rem;
   font-size: 0.88rem;
-  color: #cbd5e1;
+  color: #D6D3D1;
   flex-wrap: wrap;
 }
 .guide-summary-lead {
   font-size: 1.15rem;
-  color: #cbd5e1;
+  color: #E7E5E4;
   line-height: 1.6;
   margin: 0.5rem 0 0;
 }
@@ -2746,20 +3134,20 @@ a { color: inherit; text-decoration: none; }
 .article-prose {
   font-size: 1.08rem;
   line-height: 1.75;
-  color: #334155;
+  color: var(--text-secondary);
 }
 .article-prose p { margin: 0 0 1.4rem; }
 .article-prose h2 {
   font-size: 1.65rem;
   font-weight: 900;
-  color: var(--navy-dark);
+  color: var(--dark-slate);
   margin: 2.5rem 0 1rem;
   line-height: 1.25;
 }
 .article-prose h3 {
   font-size: 1.3rem;
   font-weight: 800;
-  color: var(--navy-dark);
+  color: var(--dark-slate);
   margin: 2rem 0 0.85rem;
 }
 .article-prose ul, .article-prose ol {
@@ -2767,7 +3155,7 @@ a { color: inherit; text-decoration: none; }
   padding-left: 1.4rem;
 }
 .article-prose li { margin-bottom: 0.6rem; }
-.article-prose strong { color: var(--navy-dark); font-weight: 800; }
+.article-prose strong { color: var(--dark-slate); font-weight: 800; }
 
 .treatment-stages-grid {
   display: grid;
@@ -2781,20 +3169,20 @@ a { color: inherit; text-decoration: none; }
   border-radius: var(--radius-sm);
   padding: 1.25rem;
 }
-.stage-item strong { display: block; font-size: 1.05rem; margin-bottom: 0.4rem; }
+.stage-item strong { display: block; font-size: 1.05rem; margin-bottom: 0.4rem; color: var(--dark-slate); }
 .stage-item p { margin: 0; font-size: 0.95rem; }
 
 .local-cdmx-callout {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
   border-radius: var(--radius-md);
   padding: 2rem;
   margin: 2.5rem 0;
 }
 .cdmx-badge {
   display: inline-block;
-  background: var(--brand);
-  color: #ffffff;
+  background: #059669;
+  color: #FFFFFF;
   font-weight: 800;
   font-size: 0.78rem;
   padding: 0.25rem 0.6rem;
@@ -2802,7 +3190,7 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 0.75rem;
 }
 .local-cdmx-callout h3 {
-  color: #065f46;
+  color: #065F46;
   font-size: 1.4rem;
   margin: 0 0 0.75rem;
 }
@@ -2815,25 +3203,25 @@ a { color: inherit; text-decoration: none; }
 }
 
 .safety-disclaimer {
-  background: #fffbeb;
-  border-left: 4px solid var(--accent-gold);
+  background: #FFFBEB;
+  border-left: 4px solid var(--brand);
   padding: 1.25rem;
   border-radius: var(--radius-sm);
   margin: 2rem 0;
 }
-.safety-disclaimer strong { display: block; color: #92400e; margin-bottom: 0.25rem; }
-.safety-disclaimer p { margin: 0; font-size: 0.9rem; color: #78350f; }
+.safety-disclaimer strong { display: block; color: #92400E; margin-bottom: 0.25rem; }
+.safety-disclaimer p { margin: 0; font-size: 0.9rem; color: #78350F; }
 
 .article-share-wa {
-  background: var(--navy-dark);
-  color: #ffffff;
+  background: var(--dark-slate);
+  color: #FFFFFF;
   padding: 2.5rem;
   border-radius: var(--radius-md);
   text-align: center;
   margin-top: 3rem;
 }
 .article-share-wa strong { font-size: 1.3rem; display: block; margin-bottom: 0.5rem; }
-.article-share-wa p { color: #cbd5e1; max-width: 500px; margin: 0 auto 1.5rem; font-size: 0.95rem; }
+.article-share-wa p { color: #D6D3D1; max-width: 500px; margin: 0 auto 1.5rem; font-size: 0.95rem; }
 
 .sticky-sidebar {
   position: sticky;
@@ -2854,118 +3242,20 @@ a { color: inherit; text-decoration: none; }
   border-radius: var(--radius-sm);
   transition: all 0.15s ease;
 }
-.sidebar-prod-item:hover { border-color: var(--brand); background: #f8fafc; }
+.sidebar-prod-item:hover { border-color: var(--brand); background: var(--bg-page); }
 .sidebar-prod-item img {
   width: 54px;
   height: 54px;
   object-fit: contain;
-  background: #ffffff;
+  background: #FFFFFF;
 }
-.sidebar-prod-item strong { display: block; font-size: 0.88rem; line-height: 1.2; color: var(--navy-dark); }
+.sidebar-prod-item strong { display: block; font-size: 0.88rem; line-height: 1.2; color: var(--dark-slate); }
 .sidebar-prod-price { font-size: 0.85rem; color: var(--brand); font-weight: 800; }
 .sidebar-loc-reminder { margin-top: 1rem; text-align: center; color: var(--text-muted); }
 
 @media (max-width: 900px) {
   .article-layout { grid-template-columns: 1fr; }
   .sticky-sidebar { position: static; }
-}
-
-/* Blog Articles Feed */
-.blog-articles-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
-}
-.blog-post-card {
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.blog-post-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-.blog-card-img {
-  aspect-ratio: 16/9;
-  background: #f1f5f9;
-  overflow: hidden;
-}
-.blog-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.2s ease;
-}
-.blog-post-card:hover .blog-card-img img { transform: scale(1.05); }
-
-.blog-card-body {
-  padding: 1.4rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-.blog-date {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
-}
-.blog-card-title {
-  font-size: 1.12rem;
-  font-weight: 800;
-  line-height: 1.35;
-  margin: 0 0 0.75rem;
-  color: var(--navy-dark);
-}
-.blog-card-title a:hover { color: var(--brand); }
-.blog-card-excerpt {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin: 0 0 1.25rem;
-  flex: 1;
-}
-.blog-card-btn {
-  font-weight: 700;
-  font-size: 0.88rem;
-  color: var(--brand);
-}
-
-.blog-pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 3.5rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.page-numbers { display: flex; align-items: center; gap: 0.4rem; }
-.page-link, .page-curr, .page-ellipsis {
-  min-width: 38px;
-  height: 38px;
-  border-radius: var(--radius-sm);
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-.page-link { border: 1px solid var(--border); background: #ffffff; }
-.page-link:hover { border-color: var(--brand); color: var(--brand); }
-.page-curr { background: var(--brand); color: #ffffff; }
-
-@media (max-width: 990px) {
-  .blog-articles-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 600px) {
-  .blog-articles-grid { grid-template-columns: 1fr; }
-  .blog-pagination { flex-direction: column; align-items: stretch; }
-  .page-numbers { justify-content: center; }
 }
 
 /* Contact Grid */
@@ -2975,7 +3265,7 @@ a { color: inherit; text-decoration: none; }
   gap: 1.5rem;
 }
 .contact-card {
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 2.2rem;
@@ -2983,7 +3273,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--shadow-sm);
 }
 .contact-icon { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
-.contact-card h3 { font-size: 1.3rem; margin: 0 0 0.6rem; color: var(--navy-dark); }
+.contact-card h3 { font-size: 1.3rem; margin: 0 0 0.6rem; color: var(--dark-slate); }
 .contact-card p { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 1rem; }
 .contact-link { font-size: 1.15rem; font-weight: 800; color: var(--brand); display: block; }
 .contact-time { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; }
@@ -2997,8 +3287,8 @@ a { color: inherit; text-decoration: none; }
 
 /* Footer */
 .site-footer {
-  background: var(--navy-dark);
-  color: #cbd5e1;
+  background: var(--dark-slate);
+  color: #D6D3D1;
   padding-top: 4.5rem;
   border-top: 1px solid rgba(255,255,255,0.08);
 }
@@ -3008,18 +3298,32 @@ a { color: inherit; text-decoration: none; }
   gap: 2.5rem;
   margin-bottom: 3.5rem;
 }
-.footer-brand .brand-title { color: #ffffff; margin-bottom: 0.75rem; }
-.footer-brand p { font-size: 0.92rem; line-height: 1.6; color: #94a3b8; }
-.footer-col h3 { font-size: 1.05rem; color: #ffffff; margin: 0 0 1.25rem; font-weight: 800; }
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 1rem;
+  filter: brightness(0) invert(1);
+}
+.footer-brand p { font-size: 0.92rem; line-height: 1.6; color: #A8A29E; }
+.footer-guarantee {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #FBBF24;
+}
+.footer-col h3 { font-size: 1.05rem; color: #FFFFFF; margin: 0 0 1.25rem; font-weight: 800; }
 .footer-col p { font-size: 0.9rem; line-height: 1.55; margin: 0 0 0.85rem; }
-.footer-col a { color: #f1f5f9; }
-.footer-col a:hover { color: #34d399; }
+.footer-col a { color: #F5F5F4; }
+.footer-col a:hover { color: #34D399; }
 .footer-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.9rem; }
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.08);
   padding: 1.5rem 0;
   font-size: 0.85rem;
-  color: #64748b;
+  color: #78716C;
 }
 .footer-bottom-inner {
   display: flex;
@@ -3041,7 +3345,7 @@ a { color: inherit; text-decoration: none; }
   right: 24px;
   z-index: 999;
   background: var(--wa-green);
-  color: #ffffff;
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   gap: 0.65rem;
@@ -3055,7 +3359,7 @@ a { color: inherit; text-decoration: none; }
 .wa-float:hover {
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 12px 30px rgba(37,211,102,0.5);
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .wa-float svg { width: 26px; height: 26px; flex-shrink: 0; }
 .wa-pulse {
@@ -3123,16 +3427,18 @@ async function main() {
   await writeRoute("/shop/", shopPage(data));
   await writeRoute("/contact/", contactPage(data, "/contact/"));
   await writeRoute("/sucursales-y-entregas/", locationsPage(data));
+  await writeRoute("/blog/", blogPage(data));
 
   // Generate Trust Pages
   for (const route of Object.keys(trustPages)) {
     await writeRoute(route, trustPage(route, data));
   }
 
-  // Generate 9 Foundational Guides
+  // Generate 10 Foundational Guides
   for (const guide of editorialGuides) {
     await writeRoute(guide.path, guidePage(guide, data));
   }
+  console.log(`${editorialGuides.length} guías pilares compiladas con éxito.`);
 
   // Generate Products
   for (const product of data.products) {
@@ -3144,26 +3450,7 @@ async function main() {
     await writeRoute(category.path, categoryPage(category, data));
   }
 
-  // Filter semantic vs numbered posts (exclude collisions with reserved routes)
-  const reservedSlugs = new Set(["", "shop", "blog", "guias", "producto", "categoria-producto", "assets", "contact", "contacto", "sucursales-y-entregas"]);
-  const semanticPosts = data.posts.filter((post) => !post.isNumbered && !reservedSlugs.has(post.slug));
-  const blogPerPage = 18;
-  const blogTotalPages = Math.max(1, Math.ceil(semanticPosts.length / blogPerPage));
-
-  // GENERATE INDIVIDUAL ARTICLE PAGES FOR ALL SEMANTIC POSTS
-  let postCount = 0;
-  for (const post of semanticPosts) {
-    await writeRoute(post.path, articlePage(post, data));
-    postCount++;
-  }
-  console.log(`${postCount} páginas individuales de blog compiladas con éxito.`);
-
-  console.log(`Generando blog con ${semanticPosts.length} posts legítimos en ${blogTotalPages} páginas...`);
-  for (let page = 1; page <= blogTotalPages; page += 1) {
-    await writeRoute(page === 1 ? "/blog/" : `/blog/page/${page}/`, blogPage(data, page, blogPerPage, semanticPosts));
-  }
-
-  // Routes for Sitemap
+  // Routes for Sitemap (high-authority canonical URLs only)
   const routes = [
     "/",
     "/shop/",
@@ -3172,15 +3459,13 @@ async function main() {
     ...Object.keys(trustPages),
     ...data.products.map((item) => item.path),
     ...data.categories.map((item) => item.path),
-    ...semanticPosts.map((item) => item.path),
-    ...Array.from({ length: blogTotalPages }, (_, index) => index === 0 ? "/blog/" : `/blog/page/${index + 1}/`),
     "/contact/",
     "/sucursales-y-entregas/"
   ];
 
   const uniqueRoutes = [...new Set(routes)].filter(Boolean);
   const sitemapRoutes = [...writtenRoutes].filter((route) => !noindexRoutes.has(route)).sort();
-  const meta = sitemapMeta(data, blogTotalPages);
+  const meta = sitemapMeta(data);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapRoutes.map((route) => sitemapEntry(route, data, meta)).join("\n")}\n</urlset>\n`;
   await writeFile(path.join(DIST, "sitemap.xml"), sitemap, "utf8");
@@ -3234,7 +3519,7 @@ async function main() {
   console.log(`- Productos: ${data.products.length}`);
   console.log(`- Categorías: ${data.categories.length}`);
   console.log(`- Guías pilares: ${editorialGuides.length}`);
-  console.log(`- Posts de blog legítimos: ${semanticPosts.length}`);
+  console.log(`- Entradas heredadas 301 consolidadas: ${data.posts.length}`);
   console.log(`- URLs totales en sitemap.xml: ${sitemapRoutes.length}`);
   console.log(`- Redirecciones 301 generadas: ${redirects.length}`);
   console.log(`=============================================\n`);

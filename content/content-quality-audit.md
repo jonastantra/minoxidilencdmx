@@ -1,12 +1,12 @@
 # Auditoría de calidad editorial publicada
 
-Fecha: 2026-09-18T02:07:35.845Z
+Fecha: 2026-09-18T02:26:58.628Z
 
 ## Contenido indexable actual
 
-- Guías canónicas: 9
+- Guías canónicas: 10
 - Guías con menos de 250 palabras útiles: 0
-- Guías con secciones, preguntas y fuentes: 9 de 9
+- Guías con secciones, preguntas y fuentes: 10 de 10
 - Fichas de producto renderizadas: 42
 - Fichas con menos de 250 palabras: 0
 - Fichas que todavía muestran prefacio de asistente IA: 0

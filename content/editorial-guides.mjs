@@ -180,6 +180,26 @@ export const editorialGuides = [
       ["¿La entrada pronunciada confirma alopecia androgenética?", "Puede ser compatible, pero una fotografía no sustituye la evaluación."],
       ["¿Puedo pedir orientación por WhatsApp?", "Sí para producto y compra; para diagnóstico o prescripción te remitiremos a un profesional."]
     ]
+  },
+  {
+    path: "/guias/minoxidil-kirkland-original-vs-clon/",
+    topic: "autenticidad",
+    title: "Minoxidil Kirkland original vs clon: cómo identificar producto auténtico",
+    description: "Guía práctica para distinguir Minoxidil Kirkland original de imitaciones o clones diluidos en México: sellos, lote láser, color, aroma y gotero.",
+    image: "/assets/images/diseno-sin-titulo-1.jpg",
+    summary: "El mercado informal en México presenta copias y frascos adulterados. Aprender a verificar el código de lote impreso en láser, el aplicador graduado de seguridad y el olor y cristalización característicos protege tu salud y tu inversión.",
+    sections: [
+      ["Por qué abundan las imitaciones en México", "Debido a la alta demanda para el crecimiento de barba y la detención de la alopecia, en tianguis y plataformas digitales circulan productos clonados o rebajados con agua y alcohol corriente. Un producto falso no solo desperdicia meses de constancia, sino que puede provocar dermatitis severa por solventes industriales o bacterias. La regla básica es comprar únicamente donde puedas verificar trazabilidad y empaque físico."],
+      ["1. Código de lote y caducidad impresos en láser", "Kirkland Signature estampa en la parte inferior de la caja de 6 meses y en cada uno de los 6 frascos un código de lote alfanumérico y una fecha de caducidad con tecnología láser indeleble en tono amarillo o blanco según la partida. En los frascos originales, esta tinta no se borra al raspar con la uña o frotar ligeramente con alcohol. En las copias piratas, los números suelen estar ausentes, borrosos, estampados con tinta negra de sello que se despinta con el dedo, o las fechas de la caja no coinciden con las de los frascos."],
+      ["2. Gotero original graduado con seguro infantil", "La caja sellada original de fábrica incluye un aplicador gotero específico de Kirkland con mecanismo de seguridad push down & turn (presionar hacia abajo y girar). Además, cuenta con una marca de medición clara y nítida en el nivel de 1.0 ml. Los vendedores de lotes adulterados suelen sustituir este gotero por piezas genéricas de farmacia, de vidrio simple sin graduación milimétrica ni seguro de tapa."],
+      ["3. Tonalidad, aroma y cristalización en la piel", "La solución líquida original al 5% contiene propilenglicol, alcohol y agua purificada. Tiene un aroma medicinal característico alcohólico sin fragancias añadidas y una tonalidad que varía entre transparente y ámbar ligeramente amarillento. Al secarse sobre una superficie lisa o en la piel, el minoxidil original tiende a formar pequeños cristales blancos característicos del principio activo. Los productos clonados suelen ser totalmente transparentes como agua o incluir perfume artificial para tapar malos olores."],
+      ["4. Inspección presencial y transparencia antes de pagar", "La mayor garantía contra un fraude es tener la libertad de revisar el producto antes de entregar tu dinero. En nuestra sucursal de Plaza Guelatao Local 76 (Iztapalapa, CDMX) o en nuestras entregas personales en estaciones del Metro, puedes tomar la caja en tus manos, verificar que los sellos estén intactos, comprobar que los 6 frascos correspondan al mismo lote y revisar la caducidad antes de concretar tu compra."]
+    ],
+    faqs: [
+      ["¿La prueba del cloro o blanqueador es una prueba definitiva?", "No es una prueba de laboratorio. Aunque el minoxidil produce una reacción cromática anaranjada o rojiza ante agentes oxidantes como el hipoclorito de sodio, esta prueba no mide la pureza ni determina si la concentración es del 5% real o si contiene contaminantes. Lo más seguro es la trazabilidad del empaque y la inspección del lote."],
+      ["¿Por qué algunos lotes originales son más amarillos que otros?", "El propilenglicol y la exposición normal a la luz y al aire pueden oxidar levemente el líquido adquiriendo un color amarillo ámbar más marcado sin perder eficacia. Esto ocurre también en lotes auténticos sellados."],
+      ["¿Puedo solicitar fotos del lote antes de recoger o pedir envío?", "Por supuesto. Antes de cualquier entrega personal en CDMX o envío por paquetería, podemos enviarte por WhatsApp fotografías en alta definición de la caja, el número de lote y la fecha de caducidad de tu producto para tu total tranquilidad."]
+    ]
   }
 ];
 
