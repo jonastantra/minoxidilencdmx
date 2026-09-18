@@ -1,6 +1,6 @@
 # Auditoría de calidad editorial publicada
 
-Fecha: 2026-09-18T02:00:42.796Z
+Fecha: 2026-09-18T02:07:35.845Z
 
 ## Contenido indexable actual
 
@@ -86,7 +86,7 @@ Fecha: 2026-09-18T02:00:42.796Z
 
 ## Páginas heredadas problemáticas
 
-- /home-2/ — 726 palabras; relleno/formulario roto; marcado WordPress
+- / — 726 palabras; relleno/formulario roto; marcado WordPress
 - /about/ — 352 palabras; relleno/formulario roto; marcado WordPress
 - /contact/ — 149 palabras; relleno/formulario roto; marcado WordPress
 - /blog-2/ — 0 palabras

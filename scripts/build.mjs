@@ -275,7 +275,7 @@ function legacyRedirects(data) {
   const addRedirect = (from, to, reason) => {
     const f = normalizeRoute(from);
     const t = normalizeRoute(to);
-    if (!f || !t || f === t) return;
+    if (!f || !t || f === t || f === "/") return;
     rules.set(routeKey(f), { from: f, to: t, status: 301, reason });
   };
 
