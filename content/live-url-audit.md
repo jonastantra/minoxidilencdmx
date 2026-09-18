@@ -1,11 +1,11 @@
 # Auditoria de URLs vivas de WordPress
 
-Generado: 2026-09-18T02:26:59.430Z
+Generado: 2026-09-18T06:08:22.097Z
 Sitemaps revisados desde: https://www.minoxidilencdmx.com/sitemap.xml
 
-- URLs vivas detectadas: 344
-- Cubiertas por pagina estatica: 91
-- Cubiertas por redireccion 301: 253
+- URLs vivas detectadas: 87
+- Cubiertas por pagina estatica: 87
+- Cubiertas por redireccion 301: 0
 - Pendientes sin ruta exacta ni redireccion: 0
 
 ## Pendientes
@@ -14,124 +14,4 @@ No quedaron URLs vivas pendientes.
 
 ## Redirecciones usadas
 
-- /acondicionador/ -> /guias/minoxidil-para-barba/
-- /advertencias/ -> /guias/efectos-secundarios-minoxidil/
-- /ahorra-tiempo-y-dinero-la-mejor-forma-de-hacer-crecer-tu-barba-john-barbas/ -> /guias/resultados-minoxidil-shedding/
-- /alternativas/ -> /guias/minoxidil-topico/
-- /aplica-de-esta-forma-el-minoxidil-y-olvidate-de-la-caida-de-cabello/ -> /guias/caida-cabello-cuando-dermatologo/
-- /aplicacion-adecuada-de-minoxidil/ -> /guias/como-aplicar-minoxidil/
-- /aplicacion/ -> /guias/como-aplicar-minoxidil/
-- /aumento/ -> /guias/minoxidil-topico/
-- /barba-y-bigote-con-minoxidil/ -> /guias/minoxidil-para-barba/
-- /barba/ -> /guias/minoxidil-para-barba/
-- /beneficios/ -> /guias/minoxidil-topico/
-- /blog/ -> /guias/minoxidil-para-barba/
-- /blog/page/10/ -> /blog/
-- /blog/page/11/ -> /blog/
-- /blog/page/12/ -> /blog/
-- /blog/page/13/ -> /blog/
-- /blog/page/14/ -> /blog/
-- /blog/page/2/ -> /blog/
-- /blog/page/3/ -> /blog/
-- /blog/page/4/ -> /blog/
-- /blog/page/5/ -> /blog/
-- /blog/page/6/ -> /blog/
-- /blog/page/7/ -> /blog/
-- /blog/page/8/ -> /blog/
-- /blog/page/9/ -> /blog/
-- /ciclo-de-uso/ -> /guias/resultados-minoxidil-shedding/
-- /cierra-los-huecos-al-instante-corrige-errores-en-tu-barba-y-cubre-canas-black-gel/ -> /guias/minoxidil-para-barba/
-- /como-aplicar-correctamente-el-minoxidil-en-la-barba-para-obtener-resultados-optimos-2/ -> /guias/como-aplicar-minoxidil/
-- /como-aplicar-correctamente-el-minoxidil-en-la-barba-para-obtener-resultados-optimos-3/ -> /guias/como-aplicar-minoxidil/
-- /como-aplicar-correctamente-el-minoxidil-en-la-barba-para-obtener-resultados-optimos/ -> /guias/como-aplicar-minoxidil/
-- /como-aplicar-minoxidil/ -> /guias/como-aplicar-minoxidil/
-- /como-comprar/ -> /guias/comprar-minoxidil-cdmx/
-- /como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil/ -> /guias/minoxidil-kirkland-original-vs-clon/
-- /como-usar-minoxidil-12-y-bergamota-obten-la-barba-de-tus-suenos/ -> /guias/como-aplicar-minoxidil/
-- /como/ -> /guias/minoxidil-topico/
-- /comparacion-de-marcas-de-minoxidil-para-la-barba-descubre-cual-es-la-mejor-opcion-para-el-crecimiento-facial/ -> /guias/minoxidil-para-barba/
-- /comparacion/ -> /guias/comprar-minoxidil-cdmx/
-- /consejos-avanzados-para-resultados-optimos-con-minoxidil/ -> /guias/resultados-minoxidil-shedding/
-- /consejos-clave-para-aplicar-el-minoxidil-en-la-barba-y-lograr-una-barba-densa-y-llena/ -> /guias/como-aplicar-minoxidil/
-- /consejos-efectivos-para-aumentar-el-crecimiento-de-la-barba-con-minoxidil/ -> /guias/minoxidil-para-barba/
-- /consejos-para-lucir-una-barba-de-vikingo-con-minoxidil/ -> /guias/minoxidil-para-barba/
-- /consejos-para-una-aplicacion-suave-y-efectiva-de-minoxidil-en-la-barba/ -> /guias/como-aplicar-minoxidil/
-- /consejos-para-usar-minoxidil-en-la-barba-sin-experimentar-efectos-secundarios/ -> /guias/efectos-secundarios-minoxidil/
-- /consejos/ -> /guias/minoxidil-topico/
-- /crecimiento/ -> /guias/minoxidil-topico/
-- /crema/ -> /guias/minoxidil-topico/
-- /cuidado-facial/ -> /guias/como-aplicar-minoxidil/
-- /dale-6-meses-a-minoxidil-para-funcionar/ -> /guias/resultados-minoxidil-shedding/
-- /dermatologo/ -> /guias/caida-cabello-cuando-dermatologo/
-- /desarrollo/ -> /guias/minoxidil-para-barba/
-- /descubre-como-el-minoxidil-puede-mejorar-la-densidad-de-tu-barba/ -> /guias/minoxidil-para-barba/
-- /descubre-como-integrar-el-minoxidil-en-tu-rutina-diaria-de-cuidado-facial/ -> /guias/como-aplicar-minoxidil/
-- /descubre-el-poder-transformador-de-black-hell-rellena-huecos-corrige-errores-y-cubre-canas-al-instante/ -> /guias/minoxidil-para-barba/
-- /descubre-por-que-tu-piel-se-reseca-con-minoxidil-y-como-lograr-una-barba-espectacular/ -> /guias/minoxidil-para-barba/
-- /despierta-tu-barba-consejos-practicos-de-john-barbas-para-un-crecimiento-efectivo/ -> /guias/minoxidil-para-barba/
-- /dosis/ -> /guias/como-aplicar-minoxidil/
-- /efectos-secundarios-del-minoxidil/ -> /guias/efectos-secundarios-minoxidil/
-- /efectos-secundarios/ -> /guias/efectos-secundarios-minoxidil/
-- /eficacia/ -> /guias/minoxidil-topico/
-- /el-antes-y-despues-de-usar-minoxidil-en-la-barba-soprendente/ -> /guias/resultados-minoxidil-shedding/
-- /el-ciclo-de-crecimiento-de-la-barba-lo-que-debes-saber-para-maximizar-los-resultados-con-minoxidil/ -> /guias/resultados-minoxidil-shedding/
-- /el-instructivo-para-obtener-los-mejores-resultados-en-barba-y-cabello/ -> /guias/resultados-minoxidil-shedding/
-- /el-minoxidil-hace-que-ya-no-se-te-pare-2/ -> /guias/minoxidil-topico/
-- /el-minoxidil-hace-que-ya-no-se-te-pare/ -> /guias/minoxidil-topico/
-- /el-minoxidil-para-el-crecimiento-de-la-barba-descubre-la-verdad-estas-perdiendo-tu-tiempo-y-dinero/ -> /guias/resultados-minoxidil-shedding/
-- /el-secreto-revelado-como-lograr-una-barba-increible-en-pocas-semanas/ -> /guias/minoxidil-para-barba/
-- /el-shampoo-especial-de-minoxidil-deten-la-caida-de-tu-cabello-de-una-vez/ -> /guias/minoxidil-liquido-vs-espuma/
-- /el-uso-de-minoxidil-7-para-tu-barba-los-mejores-resultado-en-muy-poco-tiem/ -> /guias/minoxidil-para-barba/
-- /empece-a-perder-cabello-a-los-14-anos-history-time-2/ -> /guias/minoxidil-topico/
-- /empece-a-perder-cabello-a-los-14-anos-history-time/ -> /guias/minoxidil-topico/
-- /engruesa-tu-barba-de-forma-definitiva-guia-para-engrosar-tu-barba-2/ -> /guias/minoxidil-para-barba/
-- /engruesa-tu-barba-de-forma-definitiva-guia-para-engrosar-tu-barba/ -> /guias/minoxidil-para-barba/
-- /entendiendo-el-papel-de-la-genetica-en-el-crecimiento-de-la-barba/ -> /guias/minoxidil-para-barba/
-- /entrenamiento-y-dieta-el-combo-perfecto-para-maximizar-los-efectos-del-minoxidil-en-el-crecimiento-de-la-barba/ -> /guias/minoxidil-para-barba/
-- /entrevista-con-experto-descubre-los-secretos-para-maximizar-el-crecimiento-de-la-barba-con-minoxidil/ -> /guias/minoxidil-para-barba/
-- /es-una-perdida-de-tiempo-si-usas-minoxidil-y-eres-lampino/ -> /guias/resultados-minoxidil-shedding/
-- /estrategias/ -> /guias/minoxidil-para-barba/
-- /estudios-clinicos/ -> /guias/minoxidil-topico/
-- /experiencia/ -> /guias/minoxidil-para-barba/
-- /finasteride-la-gran-solucion-para-tu-perdida-de-cabello-2/ -> /guias/caida-cabello-cuando-dermatologo/
-- /finasteride-la-gran-solucion-para-tu-perdida-de-cabello-3/ -> /guias/caida-cabello-cuando-dermatologo/
-- /finasteride-la-gran-solucion-para-tu-perdida-de-cabello/ -> /guias/caida-cabello-cuando-dermatologo/
-- /guia-de-compra-los-mejores-consejos-para-elegir-el-minoxidil-perfecto-para-tu-tipo-de-barba/ -> /guias/minoxidil-para-barba/
-- /guia-esencial-del-minoxidil-combate-la-perdida-de-cabello/ -> /guias/caida-cabello-cuando-dermatologo/
-- /guia/ -> /guias/minoxidil-topico/
-- /haz-crecer-de-forma-natural-tu-barba-te-presento-la-forma-mas-segura-y-eficaz/ -> /guias/minoxidil-para-barba/
-- /historia-de-minoxidil/ -> /guias/minoxidil-topico/
-- /hombres/ -> /guias/minoxidil-topico/
-- /increible-cambio-le-salio-barba-donde-nunca-le-habia-salido-antes-y-despues-video-y-fotos/ -> /guias/resultados-minoxidil-shedding/
-- /increible-te-muestro-como-obtuvo-la-barba-de-sus-suenos-era-lampino-y-ahora-es-barbon/ -> /guias/minoxidil-para-barba/
-- /ingredientes/ -> /guias/minoxidil-topico/
-- /innovacion/ -> /guias/minoxidil-liquido-vs-espuma/
-- /innovaciones/ -> /guias/minoxidil-liquido-vs-espuma/
-- /integrando-minoxidil-en-tu-rutina-diaria/ -> /guias/como-aplicar-minoxidil/
-- /investigacion/ -> /guias/minoxidil-topico/
-- /jabon-cubrir-huecos-y-suavizante-menta-y-abeja/ -> /guias/minoxidil-para-barba/
-- /jabon-de-crecimiento-bergamota-maximus/ -> /guias/minoxidil-topico/
-- /jabon-engrosamiento-y-fortalecimiento-biotina-maximus/ -> /guias/minoxidil-topico/
-- /jabon-exfoliante-y-afeitar-avena-maximus/ -> /guias/minoxidil-topico/
-- /jabon-extra-crecimiento-de-barba-y-bigote-minoxidil-maximus-100-gr/ -> /guias/minoxidil-para-barba/
-- /kirkland-minoxidil-vs-sistema-gb-rogaine-vinas-etc/ -> /guias/minoxidil-topico/
-- /la-barba-de-tus-suenos-al-alcance-de-tu-mano-con-minoxidil-magico/ -> /guias/minoxidil-para-barba/
-- /la-barba-de-tus-suenos-con-el-mejor-balsamo-de-crecimiento-para-barba-minoxidil-12/ -> /guias/minoxidil-para-barba/
-- /la-ciencia-detras-del-minoxidil-como-y-por-que-funciona-en-el-crecimiento-del-cabello/ -> /guias/minoxidil-topico/
-- /la-verdad-sobre-el-minoxidil-importado-vs-nacional-lo-que-nunca-te-dijeron/ -> /guias/minoxidil-topico/
-- /los-beneficios-del-minoxidil-puede-realmente-ayudar-en-el-crecimiento-de-la-barba/ -> /guias/minoxidil-para-barba/
-- /los-errores-mas-comunes-al-usar-minoxidil-en-la-barba-y-como-solucionarlos/ -> /guias/como-aplicar-minoxidil/
-- /los-ingredientes-clave-en-el-minoxidil-y-su-papel-en-el-crecimiento-de-la-barba/ -> /guias/minoxidil-para-barba/
-- /los-primeros-meses-con-minoxidil/ -> /guias/resultados-minoxidil-shedding/
-- /los-primeros-meses-y-las-partes-laterales-de-la-barba/ -> /guias/resultados-minoxidil-shedding/
-- /los-secretos-para-mantener-y-cuidar-tu-barba-despues-de-usar-minoxidil/ -> /guias/minoxidil-para-barba/
-- /los-shampoos-mas-poderosos-para-recuperar-tu-cabello-pruebas-antes-y-despues-de-usarlos-2/ -> /guias/resultados-minoxidil-shedding/
-- /los-shampoos-mas-poderosos-para-recuperar-tu-cabello-pruebas-antes-y-despues-de-usarlos/ -> /guias/resultados-minoxidil-shedding/
-- /mane-marvel-minoxidils-magical-mane-makeover/ -> /guias/minoxidil-topico/
-- /manual-de-como-aplicar-minoxidil-para-barba-y-tener-la-barba-que-deseas/ -> /guias/como-aplicar-minoxidil/
-- /marcas/ -> /guias/comprar-minoxidil-cdmx/
-- /masculinidad/ -> /guias/minoxidil-para-barba/
-- /minoxidil-101-conceptos-basicos-para-empezar/ -> /guias/minoxidil-topico/
-- /minoxidil-5-vs-2/ -> /guias/minoxidil-topico/
-- /minoxidil-7-quieres-obtener-la-barba-de-tu-suenos-empieza-a-usar-este-tratamiento/ -> /guias/minoxidil-para-barba/
-... 133 redirecciones mas cubren URLs vivas.
+Ninguna.
