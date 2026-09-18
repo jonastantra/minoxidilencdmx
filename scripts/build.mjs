@@ -1,7 +1,6 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { readdirSync, existsSync } from "node:fs";
 import path from "node:path";
-import sharp from "sharp";
 import { editorialGuides, editorialSources } from "../content/editorial-guides.mjs";
 
 const ROOT = process.cwd();
@@ -167,6 +166,14 @@ function localizeWordPressMedia(html = "") {
 
 async function optimizeImageAssets() {
   imageMetaMap = new Map();
+  let sharp = null;
+  try {
+    const sharpModule = await import("sharp");
+    sharp = sharpModule.default || sharpModule;
+  } catch {
+    console.log("Aviso: módulo sharp no instalado, omitiendo compresión dinámica WebP.");
+    return;
+  }
   const imagesDir = path.join(DIST, "assets", "images");
   let files = [];
   try {

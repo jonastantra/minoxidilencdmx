@@ -14,7 +14,7 @@
     "audit:seo": "node scripts/audit-seo-output.mjs",
     "dev": "node scripts/serve.mjs"
   },
-  "devDependencies": {
+  "dependencies": {
     "sharp": "^0.34.5"
   }
 }
