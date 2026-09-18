@@ -1,6 +1,6 @@
 # Auditoría de calidad editorial publicada
 
-Fecha: 2026-07-18T06:23:54.531Z
+Fecha: 2026-09-18T02:00:42.796Z
 
 ## Contenido indexable actual
 
@@ -15,12 +15,12 @@ Fecha: 2026-07-18T06:23:54.531Z
 ## Inventario heredado retirado del índice
 
 - Entradas: 293
-- Entradas con menos de 350 palabras: 293 (100%)
-- Entradas con dos o más frases editoriales repetidas: 293 (100%)
+- Entradas con menos de 350 palabras: 50 (17%)
+- Entradas con dos o más frases editoriales repetidas: 50 (17%)
 - Entradas con señales de mojibake en la fuente: 0
 - Productos: 42
-- Productos sin descripción detallada: 11
-- Productos con prefacio típico de asistente IA: 2
+- Productos sin descripción detallada: 0
+- Productos con prefacio típico de asistente IA: 0
 - Productos que publican calificación agregada: 6
 - Páginas heredadas: 28
 - Páginas con texto de relleno o formularios WordPress inservibles: 5
@@ -79,50 +79,10 @@ Fecha: 2026-07-18T06:23:54.531Z
 - /3-2/ — 297 palabras; 4 patrones repetidos
 - /5-2/ — 288 palabras; 4 patrones repetidos
 - /4-2/ — 296 palabras; 4 patrones repetidos
-- /tendencias/ — 284 palabras; 4 patrones repetidos
-- /ciclo-de-uso/ — 286 palabras; 3 patrones repetidos
-- /innovaciones/ — 285 palabras; 4 patrones repetidos
-- /desarrollo/ — 284 palabras; 4 patrones repetidos
-- /precauciones/ — 294 palabras; 4 patrones repetidos
-- /revolucion/ — 284 palabras; 4 patrones repetidos
-- /estudios-clinicos/ — 286 palabras; 4 patrones repetidos
-- /recetas-caseras/ — 291 palabras; 4 patrones repetidos
-- /estrategias/ — 284 palabras; 4 patrones repetidos
-- /cuidado-facial/ — 294 palabras; 4 patrones repetidos
-- /masculinidad/ — 284 palabras; 4 patrones repetidos
-- /marcas/ — 285 palabras; 4 patrones repetidos
-- /protocolo/ — 285 palabras; 4 patrones repetidos
-- /investigacion/ — 284 palabras; 4 patrones repetidos
-- /preguntas/ — 294 palabras; 4 patrones repetidos
-- /secreto/ — 284 palabras; 4 patrones repetidos
-- /advertencias/ — 285 palabras; 4 patrones repetidos
-- /alternativas/ — 285 palabras; 4 patrones repetidos
-- /acondicionador/ — 284 palabras; 4 patrones repetidos
-- /eficacia/ — 294 palabras; 4 patrones repetidos
-- /aplicacion/ — 281 palabras; 3 patrones repetidos
-- /innovacion/ — 285 palabras; 4 patrones repetidos
-- /experiencia/ — 285 palabras; 4 patrones repetidos
-- /preguntas-frecuentes/ — 290 palabras; 3 patrones repetidos
-- /riesgos/ — 294 palabras; 4 patrones repetidos
-- /recomendaciones/ — 284 palabras; 4 patrones repetidos
-- /uso/ — 283 palabras; 4 patrones repetidos
-- /comparacion/ — 285 palabras; 4 patrones repetidos
-- /dosis/ — 284 palabras; 4 patrones repetidos
-- /mujeres/ — 311 palabras; 2 patrones repetidos
 
 ## Productos que requieren ficha real
 
-- /producto/minoxidil-6-meses-kirkland-liquido-5-2/ — extracto 34 palabras; descripción 0 palabras; prefacio IA
-- /producto/minoxidil-3-meses-kirkland-liquido-5-2/ — extracto 34 palabras; descripción 0 palabras
-- /producto/biotina-natrol-de-10000-microgramos-con-100-tabletas/ — extracto 36 palabras; descripción 0 palabras
-- /producto/minoxidil-1-mes-kirkland-liquido-5-3/ — extracto 34 palabras; descripción 0 palabras; prefacio IA
-- /producto/skin-roller-0-5-mm-derma-roller/ — extracto 37 palabras; descripción 0 palabras
-- /producto/2-meses-tratamiento-minoxidil-kirkland-liquido-5-2/ — extracto 35 palabras; descripción 0 palabras
-- /producto/minoxidil-12-meses-kirkland-liquido-5-2/ — extracto 36 palabras; descripción 0 palabras
-- /producto/kit-del-barbon-con-biotina-natrol/ — extracto 41 palabras; descripción 0 palabras
-- /producto/kit-gran-barbon-minoxidil-con-balsamo/ — extracto 34 palabras; descripción 0 palabras
-- /producto/3-rimel-crecimiento-de-pestanas-y-cejas-minoxidil-5-y-biotina/ — extracto 36 palabras; descripción 0 palabras
-- /producto/2-rimel-crecimiento-de-pestanas-y-cejas-minoxidil-5-y-biotina/ — extracto 37 palabras; descripción 0 palabras
+- Ninguno
 
 ## Páginas heredadas problemáticas
 

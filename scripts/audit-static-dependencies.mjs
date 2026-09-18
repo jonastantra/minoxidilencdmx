@@ -79,8 +79,11 @@ for (const file of checkedFiles) {
       const url = new URL(ref);
       if (SITE_HOSTS.has(url.host)) {
         let pathname = url.pathname;
-        try { pathname = decodeURIComponent(pathname); } catch {}
-        if (!routeExists(pathname, allDistFiles)) localAssetMissing.push({ file: distPath(file), ref });
+        let decoded = "";
+        try { decoded = decodeURIComponent(pathname); } catch {}
+        if (!routeExists(pathname, allDistFiles) && (!decoded || !routeExists(decoded, allDistFiles))) {
+          localAssetMissing.push({ file: distPath(file), ref });
+        }
       } else {
         addSample(externalHosts, url.host, file, ref);
         if (!allowedExternalHosts.has(url.host)) addSample(unexpectedExternalHosts, url.host, file, ref);

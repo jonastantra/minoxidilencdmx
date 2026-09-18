@@ -1,9 +1,9 @@
 # Auditoría SEO del HTML final
 
-Fecha: 2026-07-18T06:23:53.982Z
+Fecha: 2026-09-18T02:00:39.486Z
 
-- URLs indexables revisadas: 81
-- Bloques JSON-LD válidos: 81
+- URLs indexables revisadas: 344
+- Bloques JSON-LD válidos: 344
 - Canónicas con host incorrecto: 0
 - Páginas sin un único H1: 0
 - URLs noindex dentro del sitemap: 0
