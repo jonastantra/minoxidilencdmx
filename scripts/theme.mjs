@@ -287,6 +287,11 @@ h1, h2, h3, .detail-title, .article-title { font-family: var(--font); font-stret
 .section-tag, .eyebrow-tag, .hero-eyebrow { letter-spacing: .02em; }
 .price-val, .detail-price { font-stretch: 75%; font-weight: 900; }
 .site-footer { background: var(--ink); }
+:root { --dark-slate: var(--ink); }
+.page-title-banner, .article-header { background: var(--ink); }
+.page-title-banner h1, .article-header h1, .article-title { color: #fff; }
+.article-header a { color: #D9D4EC; text-decoration: underline; text-underline-offset: 3px; }
+.shop-layout > *, .shop-sidebar, .sidebar-box { min-width: 0; }
 .footer-logo-img { filter: none !important; background: #fff; padding: 6px 10px; border-radius: 6px; height: auto; }
 
 /* Barra fija en celular */
