@@ -1,6 +1,6 @@
 # Auditoria de dependencias estaticas
 
-Fecha: 2026-09-18T02:26:58.244Z
+Fecha: 2026-09-18T05:35:33.858Z
 
 ## Resultado
 
@@ -8,8 +8,8 @@ Estado: listo para publicar como sitio estatico.
 
 ## Conteo
 
-- Archivos en dist: 1358
-- HTML revisados: 94
+- Archivos en dist: 1357
+- HTML revisados: 93
 - Referencias WordPress: 0
 - Assets locales faltantes: 0
 - Rutas internas faltantes: 0
@@ -19,7 +19,7 @@ Estado: listo para publicar como sitio estatico.
 
 Estos no son dependencias de WordPress. Son salidas funcionales o embeds que se mantienen a proposito:
 
-- api.whatsapp.com: 862
+- api.whatsapp.com: 928
 - www.google.com: 3
 
 ## Muestras si hay problemas

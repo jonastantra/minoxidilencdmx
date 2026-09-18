@@ -346,11 +346,6 @@
       "permanent": true
     },
     {
-      "source": "/blog/",
-      "destination": "/guias/minoxidil-para-barba/",
-      "permanent": true
-    },
-    {
       "source": "/blog/page/10/",
       "destination": "/blog/",
       "permanent": true
@@ -643,6 +638,11 @@
     {
       "source": "/categoria-producto/kirkland/",
       "destination": "/categoria-producto/marcas/kirkland/",
+      "permanent": true
+    },
+    {
+      "source": "/categoria-producto/kits-2/",
+      "destination": "/categoria-producto/barba-y-bigote/kits/",
       "permanent": true
     },
     {

@@ -7,6 +7,10 @@ const ROOT = process.cwd();
 const DATA_FILE = path.join(ROOT, "content", "site-data.json");
 const DIST = path.join(ROOT, "dist");
 const SITE_URL = "https://www.minoxidilencdmx.com";
+const SITE_RELEASE_DATE = "2026-09-18";
+const CATEGORY_REDIRECTS = new Map([
+  ["/categoria-producto/kits-2/", "/categoria-producto/barba-y-bigote/kits/"]
+]);
 
 const writtenRoutes = new Set();
 const noindexRoutes = new Set();
@@ -276,7 +280,8 @@ function legacyRedirects(data) {
   const addRedirect = (from, to, reason) => {
     const f = normalizeRoute(from);
     const t = normalizeRoute(to);
-    if (!f || !t || f === t || f === "/") return;
+    // A published canonical route must never be overwritten by a legacy rule.
+    if (!f || !t || f === t || f === "/" || writtenRoutes.has(f)) return;
     rules.set(routeKey(f), { from: f, to: t, status: 301, reason });
   };
 
@@ -290,6 +295,10 @@ function legacyRedirects(data) {
   addRedirect("/%e2%9c%85como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil-2/", "/guias/minoxidil-kirkland-original-vs-clon/", "cleaned emoji post slug");
   addRedirect("/como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil-2/", "/guias/minoxidil-kirkland-original-vs-clon/", "cleaned duplicate post slug");
   addRedirect("/como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil/", "/guias/minoxidil-kirkland-original-vs-clon/", "cleaned duplicate post slug");
+
+  for (const [from, to] of CATEGORY_REDIRECTS) {
+    addRedirect(from, to, "consolidated duplicate category");
+  }
 
   // Prune & consolidate all 293 legacy thin posts to authoritative topical pillar guides
   for (const post of data.posts) {
@@ -394,14 +403,16 @@ function formatDate(date) {
 }
 
 function isoDate(date) {
-  if (!date) return new Date().toISOString();
+  if (!date) return `${SITE_RELEASE_DATE}T00:00:00.000Z`;
   return new Date(date).toISOString();
 }
 
 function metaText(value = "", limit = 160) {
   const plain = stripTags(value);
   if (plain.length <= limit) return plain;
-  return `${plain.slice(0, limit - 1).trim()}…`;
+  const candidate = plain.slice(0, limit + 1);
+  const lastSpace = candidate.lastIndexOf(" ");
+  return candidate.slice(0, lastSpace > limit * 0.7 ? lastSpace : limit).trim();
 }
 
 function imageExists(src = "") {
@@ -417,9 +428,10 @@ function productImage(product, data) {
 
 function layout(data, page) {
   const pageTitle = page.seoTitle || page.title || data.siteTitle;
+  const alreadyBranded = normalizeText(pageTitle).includes("minoxidil en cdmx");
   const titleCandidate = page.path === "/"
     ? "Minoxidil en CDMX | Kirkland Original, Sucursal Plaza Guelatao y Entregas"
-    : pageTitle.length > 45 ? pageTitle : `${pageTitle} | Minoxidil en CDMX`;
+    : pageTitle.length > 45 || alreadyBranded ? pageTitle : `${pageTitle} | Minoxidil en CDMX`;
   const title = metaText(titleCandidate, 70);
   const description = metaText(page.description || data.description);
   const image = page.image || data.products[0]?.image || "";
@@ -649,12 +661,12 @@ function articleSchema(post, data) {
   return {
     "@type": "Article",
     headline: post.title,
-    description: post.excerpt,
+    description: post.excerpt || post.description || post.summary,
     datePublished: isoDate(post.date),
     dateModified: isoDate(post.modified || post.date),
     author: {
-      "@type": "Person",
-      name: "Asesor Especialista Minoxidil CDMX",
+      "@type": "Organization",
+      name: "Equipo Minoxidil en CDMX",
       url: `${SITE_URL}/quienes-somos/`
     },
     publisher: { "@id": `${SITE_URL}/#localbusiness` },
@@ -681,44 +693,39 @@ function itemListSchema(name, pathName, items) {
 function sitemapEntry(route, data, meta) {
   const normalized = normalizeRoute(route);
   const item = meta.get(normalized) || {};
-  const lastmod = item.lastmod || new Date().toISOString().slice(0, 10);
-  const changefreq = item.changefreq || (normalized.startsWith("/producto/") ? "weekly" : normalized.startsWith("/blog/") ? "weekly" : "monthly");
-  const priority = item.priority || (normalized === "/" ? "1.0" : normalized.startsWith("/shop/") ? "0.9" : normalized.startsWith("/producto/") ? "0.8" : "0.7");
+  const lastmod = item.lastmod || SITE_RELEASE_DATE;
   return [
     "  <url>",
     `    <loc>${SITE_URL}${normalized}</loc>`,
     `    <lastmod>${lastmod}</lastmod>`,
-    `    <changefreq>${changefreq}</changefreq>`,
-    `    <priority>${priority}</priority>`,
     "  </url>"
   ].join("\n");
 }
 
 function sitemapMeta(data) {
   const meta = new Map();
-  const today = new Date().toISOString().slice(0, 10);
   const set = (route, values) => meta.set(normalizeRoute(route), values);
 
-  set("/", { lastmod: today, changefreq: "weekly", priority: "1.0" });
-  set("/shop/", { lastmod: today, changefreq: "weekly", priority: "0.9" });
-  set("/sucursales-y-entregas/", { lastmod: today, changefreq: "weekly", priority: "0.9" });
-  set("/blog/", { lastmod: today, changefreq: "weekly", priority: "0.8" });
-  set("/contact/", { lastmod: today, changefreq: "monthly", priority: "0.8" });
+  set("/", { lastmod: SITE_RELEASE_DATE });
+  set("/shop/", { lastmod: SITE_RELEASE_DATE });
+  set("/sucursales-y-entregas/", { lastmod: SITE_RELEASE_DATE });
+  set("/blog/", { lastmod: SITE_RELEASE_DATE });
+  set("/contact/", { lastmod: SITE_RELEASE_DATE });
 
   for (const product of data.products) {
-    set(product.path, { lastmod: today, changefreq: "weekly", priority: "0.8" });
+    set(product.path, { lastmod: (product.modified || product.date || SITE_RELEASE_DATE).slice(0, 10) });
   }
 
   for (const category of data.categories) {
-    set(category.path, { lastmod: today, changefreq: "weekly", priority: "0.75" });
+    set(category.path, { lastmod: SITE_RELEASE_DATE });
   }
 
   for (const guide of editorialGuides) {
-    set(guide.path, { lastmod: today, changefreq: "monthly", priority: "0.85" });
+    set(guide.path, { lastmod: (guide.dateModified || guide.datePublished || SITE_RELEASE_DATE).slice(0, 10) });
   }
 
   for (const route of ["/envios-a-todo-mexico/", "/devoluciones-y-reembolsos/", "/politicas-de-privacidad/", "/terminos-y-condiciones/", "/quienes-somos/"]) {
-    set(route, { lastmod: today, changefreq: "yearly", priority: "0.5" });
+    set(route, { lastmod: SITE_RELEASE_DATE });
   }
 
   return meta;
@@ -759,13 +766,25 @@ function productCard(product, data) {
 
 function categoryLinks(data, activeSlug = "") {
   return data.categories
-    .filter((cat) => cat.count > 0)
-    .sort((a, b) => b.count - a.count)
+    .filter((cat) => !CATEGORY_REDIRECTS.has(normalizeRoute(cat.path)))
+    .map((cat) => ({ ...cat, effectiveCount: productsForCategory(cat, data).length }))
+    .filter((cat) => cat.effectiveCount > 0)
+    .sort((a, b) => b.effectiveCount - a.effectiveCount)
     .map((cat) => {
       const activeClass = cat.slug === activeSlug ? " active" : "";
-      return `<a class="cat-pill${activeClass}" href="${cat.path}">${escapeHtml(cat.name)} <span class="cat-count">(${cat.count})</span></a>`;
+      return `<a class="cat-pill${activeClass}" href="${cat.path}">${escapeHtml(cat.name)} <span class="cat-count">(${cat.effectiveCount})</span></a>`;
     })
     .join("");
+}
+
+function productsForCategory(category, data) {
+  const categoryPath = normalizeRoute(category.path);
+  const acceptedSlugs = new Set([category.slug]);
+  if (category.slug === "kits") acceptedSlugs.add("kits-2");
+  return data.products.filter((product) => product.categories.some((item) => {
+    const itemPath = normalizeRoute(item.path || "");
+    return acceptedSlugs.has(item.slug) || itemPath.startsWith(categoryPath);
+  }));
 }
 
 function homePage(data) {
@@ -1235,7 +1254,7 @@ function shopPage(data) {
 }
 
 function categoryPage(category, data) {
-  const products = data.products.filter((product) => product.categories.some((item) => item.slug === category.slug));
+  const products = productsForCategory(category, data);
 
   const body = `
     <section class="page-title-banner">
@@ -1268,6 +1287,7 @@ function categoryPage(category, data) {
     title: `${category.name} | Minoxidil en CDMX`,
     path: category.path,
     description: `Productos de ${category.name} disponibles en CDMX con entrega en sucursal Plaza Guelatao o envío a todo México.`,
+    robots: products.length < 2 ? "noindex, follow" : "index, follow, max-image-preview:large",
     schema: [
       itemListSchema(`Productos de ${category.name}`, category.path, products),
       breadcrumbSchema([
@@ -3447,6 +3467,7 @@ async function main() {
 
   // Generate Categories
   for (const category of data.categories) {
+    if (CATEGORY_REDIRECTS.has(normalizeRoute(category.path))) continue;
     await writeRoute(category.path, categoryPage(category, data));
   }
 
@@ -3458,7 +3479,7 @@ async function main() {
     ...editorialGuides.map((item) => item.path),
     ...Object.keys(trustPages),
     ...data.products.map((item) => item.path),
-    ...data.categories.map((item) => item.path),
+    ...data.categories.filter((item) => !CATEGORY_REDIRECTS.has(normalizeRoute(item.path))).map((item) => item.path),
     "/contact/",
     "/sucursales-y-entregas/"
   ];

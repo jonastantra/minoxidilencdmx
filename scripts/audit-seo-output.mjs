@@ -4,9 +4,11 @@ import path from "node:path";
 const root = process.cwd();
 const dist = path.join(root, "dist");
 const sitemap = await readFile(path.join(dist, "sitemap.xml"), "utf8");
+const vercel = JSON.parse(await readFile(path.join(dist, "vercel.json"), "utf8"));
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
 const issues = [];
-const counts = { urls: urls.length, jsonLd: 0, noindexInSitemap: 0, wrongCanonicalHost: 0, h1: 0, metadata: 0 };
+const counts = { urls: urls.length, jsonLd: 0, noindexInSitemap: 0, redirectedInSitemap: 0, wrongCanonicalHost: 0, h1: 0, metadata: 0 };
+const redirectSources = new Set((vercel.redirects || []).map((rule) => rule.source));
 
 const text = (html, regex) => html.match(regex)?.[1]?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() || "";
 
@@ -19,6 +21,10 @@ for (const url of urls) {
   const description = text(html, /<meta name="description" content="([^"]*)"/i);
   const canonical = text(html, /<link rel="canonical" href="([^"]*)"/i);
   const h1Count = (html.match(/<h1\b/gi) || []).length;
+  if (redirectSources.has(route)) {
+    counts.redirectedInSitemap += 1;
+    issues.push({ route, issue: "URL del sitemap también configurada como redirección" });
+  }
   if (!title || title.length < 18 || title.length > 70 || !description || description.length < 70 || description.length > 165) {
     counts.metadata += 1;
     issues.push({ route, issue: `metadata: title ${title.length}, description ${description.length}` });
@@ -49,6 +55,7 @@ Fecha: ${new Date().toISOString()}
 - Canónicas con host incorrecto: ${counts.wrongCanonicalHost}
 - Páginas sin un único H1: ${counts.h1}
 - URLs noindex dentro del sitemap: ${counts.noindexInSitemap}
+- URLs del sitemap configuradas como redirección: ${counts.redirectedInSitemap}
 - Metadatos fuera de rango recomendado: ${counts.metadata}
 
 ## Detalle
