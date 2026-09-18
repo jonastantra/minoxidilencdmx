@@ -288,7 +288,7 @@ h1, h2, h3, .detail-title, .article-title { font-family: var(--font); font-stret
 .section-tag, .eyebrow-tag, .hero-eyebrow { letter-spacing: .02em; }
 .price-val, .detail-price { font-stretch: 75%; font-weight: 900; }
 .site-footer { background: var(--ink); }
-.footer-logo-img { background: #fff; padding: 6px 10px; border-radius: 6px; }
+.footer-logo-img { filter: none !important; background: #fff; padding: 6px 10px; border-radius: 6px; height: auto; }
 
 /* Barra fija en celular */
 .m-bar { display: none; }
@@ -300,6 +300,8 @@ h1, h2, h3, .detail-title, .article-title { font-family: var(--font); font-stret
   .t-hero h1 { font-size: clamp(2.5rem, 12vw, 3.6rem); }
   .t-lead { font-size: 1.08rem; }
   .t-actions .t-btn { flex: 1 1 100%; }
+  .t-hero .t-btn-wa { display: none; }
+  .t-hero h1 { max-width: none; }
   .t-prices { padding: 3rem 0; }
   .pb-name { font-size: 1.3rem; }
   .pb-price { font-size: 1.7rem; }

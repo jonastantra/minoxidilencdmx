@@ -485,7 +485,7 @@ function layout(data, page) {
         </a>
         <p>Especialistas en tratamientos para crecimiento de barba y detención de caída del cabello. Distribución de Minoxidil Kirkland 100% original en Ciudad de México y envíos express a toda la República Mexicana.</p>
         <div class="footer-guarantee">
-          <span>🛡️ Producto original · Lote y caducidad visibles antes de pagar</span>
+          <span>Producto original. Lote y caducidad visibles antes de pagar.</span>
         </div>
       </div>
       <div class="footer-col">
