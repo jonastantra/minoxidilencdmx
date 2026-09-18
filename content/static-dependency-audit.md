@@ -1,6 +1,6 @@
 # Auditoria de dependencias estaticas
 
-Fecha: 2026-09-18T05:35:33.858Z
+Fecha: 2026-09-18T06:08:48.852Z
 
 ## Resultado
 
@@ -8,7 +8,7 @@ Estado: listo para publicar como sitio estatico.
 
 ## Conteo
 
-- Archivos en dist: 1357
+- Archivos en dist: 730
 - HTML revisados: 93
 - Referencias WordPress: 0
 - Assets locales faltantes: 0

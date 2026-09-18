@@ -1398,6 +1398,54 @@ function productPage(product, data) {
   });
 }
 
+const guideJourneys = [
+  {
+    title: "Quiero empezar bien",
+    description: "Entiende qué hace el minoxidil, cómo se aplica y qué señales no debes ignorar.",
+    topics: ["fundamentos", "aplicacion", "seguridad"]
+  },
+  {
+    title: "Quiero elegir una opción",
+    description: "Compara presentaciones y revisa consideraciones específicas para barba o mujeres.",
+    topics: ["barba", "mujeres", "comparativa"]
+  },
+  {
+    title: "Quiero evaluar mi caso",
+    description: "Aprende a medir cambios y reconoce cuándo conviene consultar dermatología.",
+    topics: ["resultados", "diagnostico"]
+  },
+  {
+    title: "Quiero comprar en CDMX",
+    description: "Revisa autenticidad, precio, entrega y los datos de nuestra tienda física.",
+    topics: ["compra", "autenticidad"]
+  }
+];
+const guidedReadingOrder = guideJourneys
+  .flatMap((journey) => journey.topics)
+  .map((topic) => editorialGuides.find((guide) => guide.topic === topic))
+  .filter(Boolean);
+
+function guideCard(guide, data) {
+  return `
+    <article class="guide-card-full">
+      <a class="guide-card-img" href="${guide.path}">
+        <img src="${guide.image}" alt="${escapeHtml(guide.title)}" loading="lazy">
+        <span class="guide-card-topic">${escapeHtml(guide.topic)}</span>
+      </a>
+      <div class="guide-card-body">
+        <span class="guide-read-time">5 min de lectura · Guía revisada</span>
+        <h3 class="guide-card-title">
+          <a href="${guide.path}">${escapeHtml(guide.title)}</a>
+        </h3>
+        <p class="guide-card-desc">${escapeHtml(guide.description)}</p>
+        <div class="guide-card-footer">
+          <a class="btn btn-outline btn-sm" href="${guide.path}">Leer guía completa →</a>
+          <a class="guide-wa-link" href="${whatsappLink(data, guide.title)}">Preguntar por WhatsApp</a>
+        </div>
+      </div>
+    </article>`;
+}
+
 function blogPage(data) {
   const body = `
     <section class="page-title-banner">
@@ -1410,32 +1458,34 @@ function blogPage(data) {
 
     <section class="section">
       <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag">INFORMACIÓN RESPONSABLE</span>
-          <h2>Guías Fundamentales y Consejos Prácticos</h2>
-          <p>Hemos consolidado más de una década de experiencia atendiendo a clientes en CDMX en 10 guías esenciales para resolver tus dudas antes, durante y después de tu tratamiento:</p>
+        <div class="section-header text-center guides-hub-intro">
+          <h2>Elige el recorrido que responde tu duda</h2>
+          <p>No necesitas leer todo en orden. Empieza por el tema que se parece a tu situación y continúa con las guías relacionadas.</p>
         </div>
 
-        <div class="guides-main-grid">
-          ${editorialGuides.map((guide) => `
-            <article class="guide-card-full">
-              <a class="guide-card-img" href="${guide.path}">
-                <img src="${guide.image}" alt="${escapeHtml(guide.title)}" loading="lazy">
-                <span class="guide-card-topic">${escapeHtml(guide.topic)}</span>
-              </a>
-              <div class="guide-card-body">
-                <span class="guide-read-time">⏱️ 5 min de lectura · Guía Verificada</span>
-                <h3 class="guide-card-title">
-                  <a href="${guide.path}">${escapeHtml(guide.title)}</a>
-                </h3>
-                <p class="guide-card-desc">${escapeHtml(guide.description)}</p>
-                <div class="guide-card-footer">
-                  <a class="btn btn-outline btn-sm" href="${guide.path}">Leer Guía Completa →</a>
-                  <a class="guide-wa-link" href="${whatsappLink(data, guide.title)}">💬 Preguntar por WhatsApp</a>
-                </div>
-              </div>
-            </article>
+        <nav class="guide-journey-nav" aria-label="Recorridos de lectura">
+          ${guideJourneys.map((journey, index) => `
+            <a href="#recorrido-${index + 1}">
+              <strong>${escapeHtml(journey.title)}</strong>
+              <span>${escapeHtml(journey.description)}</span>
+            </a>
           `).join("")}
+        </nav>
+
+        <div class="guide-groups">
+          ${guideJourneys.map((journey, index) => {
+            const guides = editorialGuides.filter((guide) => journey.topics.includes(guide.topic));
+            return `
+              <section class="guide-group" id="recorrido-${index + 1}">
+                <div class="guide-group-heading">
+                  <h2>${escapeHtml(journey.title)}</h2>
+                  <p>${escapeHtml(journey.description)}</p>
+                </div>
+                <div class="guides-main-grid">
+                  ${guides.map((guide) => guideCard(guide, data)).join("")}
+                </div>
+              </section>`;
+          }).join("")}
         </div>
       </div>
     </section>
@@ -1459,7 +1509,7 @@ function blogPage(data) {
     description: "Guías autorizadas y consejos prácticos sobre Minoxidil en CDMX: aplicación en barba y cabello, cómo identificar producto original, shedding y tiempos reales.",
     robots: "index, follow, max-image-preview:large",
     schema: [
-      itemListSchema("Guías de Minoxidil en CDMX", "/blog/", editorialGuides),
+      itemListSchema("Guías de Minoxidil en CDMX", "/blog/", guidedReadingOrder),
       breadcrumbSchema([{ name: "Inicio", path: "/" }, { name: "Blog", path: "/blog/" }])
     ],
     body
@@ -1558,15 +1608,18 @@ function articlePage(post, data) {
 
 function guidePage(guide, data) {
   const sources = editorialSources[guide.topic] || [];
+  const currentIndex = guidedReadingOrder.findIndex((item) => item.path === guide.path);
+  const previousGuide = currentIndex > 0 ? guidedReadingOrder[currentIndex - 1] : null;
+  const nextGuide = currentIndex < guidedReadingOrder.length - 1 ? guidedReadingOrder[currentIndex + 1] : null;
 
   const body = `
     <article class="article-page-wrap guide-page-wrap">
       <header class="article-header">
         <div class="container article-header-inner">
           <div class="breadcrumb-trail">
-            <a href="/">Inicio</a> / <a href="/blog/">Blog</a> / <span>Guía</span>
+            <a href="/">Inicio</a> / <a href="/blog/">Guías</a> / <span>${escapeHtml(guide.title)}</span>
           </div>
-          <span class="article-cat-badge">Guía Médica y Responsable</span>
+          <span class="article-cat-badge">Guía ${currentIndex + 1} de ${guidedReadingOrder.length}</span>
           <h1 class="article-title">${escapeHtml(guide.title)}</h1>
           <p class="guide-summary-lead">${escapeHtml(guide.summary)}</p>
         </div>
@@ -1620,17 +1673,56 @@ function guidePage(guide, data) {
               </div>
             ` : ""}
           </div>
+
+          <nav class="guide-sequence-nav" aria-label="Continuar leyendo guías">
+            ${previousGuide ? `
+              <a class="guide-sequence-link guide-sequence-previous" href="${previousGuide.path}">
+                <span>← Guía anterior</span>
+                <strong>${escapeHtml(previousGuide.title)}</strong>
+              </a>
+            ` : `<span class="guide-sequence-spacer" aria-hidden="true"></span>`}
+            <a class="guide-sequence-index" href="/blog/">Ver las 10 guías</a>
+            ${nextGuide ? `
+              <a class="guide-sequence-link guide-sequence-next" href="${nextGuide.path}">
+                <span>Siguiente guía →</span>
+                <strong>${escapeHtml(nextGuide.title)}</strong>
+              </a>
+            ` : `
+              <a class="guide-sequence-link guide-sequence-next" href="/blog/">
+                <span>Terminaste el recorrido</span>
+                <strong>Volver al índice de guías</strong>
+              </a>
+            `}
+          </nav>
         </div>
 
         <aside class="article-sidebar">
-          <div class="sidebar-box sticky-sidebar">
-            <h3>Comprar en CDMX</h3>
-            <p>Minoxidil Kirkland original garantizado con entrega en sucursal o envío nacional.</p>
-            <a class="btn btn-primary btn-full" href="${whatsappLink(data, `Hola, leí la guía de ${guide.title} y quiero comprar`)}">
-              Comprar por WhatsApp
-            </a>
-            <div class="sidebar-loc-reminder">
-              <small>📍 Plaza Guelatao Local 76, CDMX.</small>
+          <div class="guide-sidebar-stack sticky-sidebar">
+            <nav class="sidebar-box guide-index" aria-label="Índice de guías">
+              <div class="guide-index-heading">
+                <h3>Índice de guías</h3>
+                <a href="/blog/">Ver índice</a>
+              </div>
+              <ol>
+                ${guidedReadingOrder.map((item, index) => `
+                  <li>
+                    <a href="${item.path}"${item.path === guide.path ? ` aria-current="page"` : ""}>
+                      <span>${index + 1}</span>
+                      ${escapeHtml(item.title)}
+                    </a>
+                  </li>
+                `).join("")}
+              </ol>
+            </nav>
+            <div class="sidebar-box guide-buy-box">
+              <h3>Comprar en CDMX</h3>
+              <p>Consulta presentación, lote, precio y disponibilidad antes de visitar la sucursal.</p>
+              <a class="btn btn-primary btn-full" href="${whatsappLink(data, `Hola, leí la guía de ${guide.title} y quiero comprar`)}">
+                Consultar por WhatsApp
+              </a>
+              <div class="sidebar-loc-reminder">
+                <small>Plaza Guelatao Local 76, CDMX.</small>
+              </div>
             </div>
           </div>
         </aside>
@@ -2802,6 +2894,61 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Full Guides Hub (/blog/) */
+.guides-hub-intro { margin-bottom: 2rem; }
+.guide-journey-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+.guide-journey-nav a {
+  min-height: 132px;
+  padding: 1.25rem;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--dark-slate);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.guide-journey-nav a:hover,
+.guide-journey-nav a:focus-visible {
+  border-color: var(--brand);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.guide-journey-nav strong {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.3;
+  margin-bottom: 0.55rem;
+}
+.guide-journey-nav span {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+.guide-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+.guide-group { scroll-margin-top: 100px; }
+.guide-group-heading {
+  max-width: 720px;
+  margin-bottom: 1.5rem;
+}
+.guide-group-heading h2 {
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  margin: 0 0 0.5rem;
+  color: var(--dark-slate);
+}
+.guide-group-heading p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
 .guides-main-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -2893,7 +3040,17 @@ a { color: inherit; text-decoration: none; }
   color: #059669;
 }
 @media (max-width: 768px) {
+  .guide-journey-nav {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+  }
+  .guide-journey-nav a { min-height: auto; }
+  .guide-groups { gap: 3.5rem; }
   .guides-main-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 769px) and (max-width: 1050px) {
+  .guide-journey-nav { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* FAQ */
@@ -3247,6 +3404,100 @@ a { color: inherit; text-decoration: none; }
   position: sticky;
   top: 90px;
 }
+.guide-sidebar-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.guide-index { padding: 1.2rem; }
+.guide-index-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.guide-index-heading h3 { margin: 0; }
+.guide-index-heading a {
+  color: var(--brand);
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.guide-index ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.guide-index li a {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: 0.55rem;
+  align-items: start;
+  padding: 0.55rem 0.45rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+.guide-index li a:hover { background: var(--bg-page); color: var(--brand); }
+.guide-index li a[aria-current="page"] {
+  background: var(--dark-slate);
+  color: #FFFFFF;
+  font-weight: 700;
+}
+.guide-index li span {
+  color: var(--brand);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  text-align: center;
+}
+.guide-index li a[aria-current="page"] span { color: #FBBF24; }
+.guide-buy-box p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.guide-sequence-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.guide-sequence-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 112px;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--dark-slate);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.guide-sequence-link:hover { border-color: var(--brand); background: var(--bg-page); }
+.guide-sequence-link span {
+  color: var(--brand);
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+.guide-sequence-link strong { font-size: 0.9rem; line-height: 1.35; }
+.guide-sequence-next { text-align: right; }
+.guide-sequence-index {
+  align-self: center;
+  color: var(--brand);
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+}
 .sidebar-products-list {
   display: flex;
   flex-direction: column;
@@ -3276,6 +3527,15 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 900px) {
   .article-layout { grid-template-columns: 1fr; }
   .sticky-sidebar { position: static; }
+  .guide-index { display: none; }
+  .guide-buy-box { max-width: 680px; }
+}
+@media (max-width: 640px) {
+  .guide-sequence-nav { grid-template-columns: 1fr; }
+  .guide-sequence-spacer { display: none; }
+  .guide-sequence-index { order: 3; }
+  .guide-sequence-next { text-align: left; }
+  .guide-sequence-link { min-height: auto; }
 }
 
 /* Contact Grid */
