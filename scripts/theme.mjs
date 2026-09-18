@@ -196,7 +196,7 @@ export const themeCss = `
   --font-sans: var(--font);
 }
 body { font-family: var(--font); font-size: 17px; color: var(--ink); background: var(--paper); }
-h1, h2, h3, .detail-title, .article-title { font-family: var(--font); font-stretch: 72%; font-weight: 800; letter-spacing: -0.01em; line-height: 1.02; color: var(--ink); }
+h1, h2, h3, .detail-title, .article-title { font-family: var(--font); font-stretch: 72%; font-weight: 800; letter-spacing: -0.01em; line-height: 1.02; }
 .wrap { width: min(1160px, calc(100% - 2.5rem)); margin: 0 auto; }
 :focus-visible { outline: 3px solid var(--price); outline-offset: 2px; }
 
@@ -284,7 +284,6 @@ h1, h2, h3, .detail-title, .article-title { font-family: var(--font); font-stret
 .btn { border-radius: 6px; font-stretch: 90%; }
 .btn-primary, .btn-wa-sm { background: var(--wa); }
 .btn-dark { background: var(--ink); }
-.page-title-banner { background: var(--mist); }
 .section-tag, .eyebrow-tag, .hero-eyebrow { letter-spacing: .02em; }
 .price-val, .detail-price { font-stretch: 75%; font-weight: 900; }
 .site-footer { background: var(--ink); }
@@ -313,6 +312,12 @@ h1, h2, h3, .detail-title, .article-title { font-family: var(--font); font-stret
   .m-bar-wa { background: var(--wa); color: #fff; }
   .m-bar-map { border: 2px solid var(--ink); color: var(--ink); }
   body { padding-bottom: 76px; }
+}
+@media (max-width: 900px) {
+  .shop-sidebar .sidebar-box { padding: 1rem; }
+  .cat-pill-list { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; gap: .5rem; padding-bottom: .4rem; }
+  .cat-pill { white-space: nowrap; flex: 0 0 auto; }
+  .sidebar-help { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 `;
