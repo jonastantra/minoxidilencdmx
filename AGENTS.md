@@ -16,6 +16,15 @@ El sitio es un catalogo comercial. La conversion principal es WhatsApp, no check
 
 No editar `dist/` a mano.
 
+## Estado del contenido (leer antes de tocar nada)
+
+- Las 293 entradas antiguas del blog fueron retiradas por ser contenido de baja calidad generado con IA. Solo sobreviven como redirecciones 301. NO restaurarlas, NO regenerarlas, NO meterlas al sitemap.
+- El contenido editorial vigente son las 10 guias de `content/editorial-guides.mjs`.
+- Solo 7 categorias son indexables (`INDEXABLE_CATEGORY_SLUGS` en `scripts/build.mjs`).
+- Marca unica del negocio: "Minoxidil en CDMX".
+- Los precios viven en `content/site-data.json`. No escribir precios a mano en templates.
+- Despliegue solo en Vercel. No reactivar GitHub Pages.
+
 ## Reglas Criticas
 
 1. Mantener URLs existentes.
@@ -36,6 +45,7 @@ El contenido debe sonar como asesor practico de tienda:
 - Sin promesas milagro.
 - Sin exageraciones medicas.
 - Con recomendaciones responsables de uso.
+- Sin afirmar resultados "comprobados", "permanentes" o "garantizados".
 
 Evita texto generico tipo landing page de IA.
 

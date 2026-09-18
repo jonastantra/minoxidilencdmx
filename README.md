@@ -13,11 +13,12 @@ El objetivo del sitio es funcionar como catalogo SEO para vender por WhatsApp, p
 ## Estado Actual
 
 - 42 productos.
-- 293 entradas de blog conservadas.
-- 31 categorias de producto.
-- 28 paginas internas.
-- 252 redirecciones legacy generadas desde URLs de WordPress/WooCommerce.
-- Auditoria viva contra sitemap de WordPress: 0 URLs faltantes.
+- 10 guías pilares en `/guias/` (contenido editorial vigente).
+- Las 293 entradas antiguas del blog (contenido generado con IA en WordPress) **ya no se publican**. Solo existen como redirecciones 301 hacia las guías pilares. No restaurarlas.
+- 31 categorías; solo 7 se indexan (ver `INDEXABLE_CATEGORY_SLUGS` en `scripts/build.mjs`). El resto lleva `noindex, follow` y no entra al sitemap.
+- Sitemap: solo URLs canónicas e indexables.
+- `minoxidilencdmx.vercel.app` redirige 301 a `https://www.minoxidilencdmx.com`.
+- Los precios de la tabla de paquetes de la home salen de `content/site-data.json` (misma fuente que las fichas de producto).
 
 La compra no usa WooCommerce. Los botones llevan a WhatsApp con el producto o consulta precargada.
 
@@ -66,15 +67,8 @@ Usalos solo si necesitas refrescar contenido desde el WordPress original o volve
 
 ## Despliegue
 
-El repo incluye GitHub Actions en `.github/workflows/pages.yml`.
-
-Al hacer push a `main`, GitHub Pages ejecuta:
-
-```bash
-npm run build
-```
-
-y publica la carpeta `dist/`.
+Solo Vercel (proyecto `minoxidilencdmx`). Cada push a `main` despliega producción.
+GitHub Pages está desactivado a propósito: publicar el sitio en otro host crea contenido duplicado.
 
 ## Como Editar
 
@@ -111,14 +105,17 @@ Missing: 0
 Si eres una IA editando este repo:
 
 - Enfocate solo en `minoxidilencdmx.com`; ignora `1.Otros Sitios Web/`.
-- No borres productos, posts, paginas, categorias ni imagenes sin justificarlo.
+- No borres productos, paginas, categorias ni imagenes sin justificarlo.
+- NO restaures las entradas antiguas del blog ni las agregues al sitemap. Fueron retiradas por ser contenido de baja calidad.
+- Un redirect nunca debe apuntar desde una URL que sí existe como pagina (el build los filtra).
 - No cambies slugs ni rutas existentes si no agregas redirect 301 equivalente.
 - No edites `dist/` como fuente. Edita `scripts/build.mjs` o `content/site-data.json`.
 - Mantener un solo sistema visual: mismo header, menu, fuente, colores y tarjetas en todo el sitio.
 - Evitar texto generico de IA. El tono debe sonar practico, directo y local, como asesor de mostrador.
 - Mantener WhatsApp como conversion principal.
 - Despues de cambios, correr `npm run build` y `npm run audit:urls`.
-- Si agregas contenido medico o de uso de minoxidil, evita promesas absolutas; usa expectativas responsables.
+- Si agregas contenido medico o de uso de minoxidil, evita promesas absolutas; usa expectativas responsables. Nada de "comprobado", "permanente" o "garantizado" referido a resultados.
+- Marca unica: "Minoxidil en CDMX". No usar "Minoxidil Todo Mexico" ni "Minoxidil Mexico" como nombre del negocio.
 
 ## Conversion Principal
 
