@@ -16,6 +16,17 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "minoxidilencdmx.vercel.app"
+        }
+      ],
+      "destination": "https://www.minoxidilencdmx.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/✅como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil-2/",
       "destination": "/guias/minoxidil-kirkland-original-vs-clon/",
       "permanent": true
@@ -343,11 +354,6 @@
     {
       "source": "/blog-2/",
       "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/",
-      "destination": "/guias/minoxidil-para-barba/",
       "permanent": true
     },
     {
@@ -1086,6 +1092,11 @@
       "permanent": true
     },
     {
+      "source": "/distribuye-mayoreo/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
       "source": "/dosis/",
       "destination": "/guias/como-aplicar-minoxidil/",
       "permanent": true
@@ -1412,7 +1423,7 @@
     },
     {
       "source": "/mayoreo/",
-      "destination": "/distribuye-mayoreo/",
+      "destination": "/contact/",
       "permanent": true
     },
     {

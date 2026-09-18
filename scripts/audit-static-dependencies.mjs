@@ -6,7 +6,7 @@ const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
 const SITE_HOSTS = new Set(["minoxidilencdmx.com", "www.minoxidilencdmx.com"]);
 const REPORT = path.join(ROOT, "content", "static-dependency-audit.md");
-const allowedExternalHosts = new Set(["api.whatsapp.com", "www.google.com", "rumble.com", "medlineplus.gov", "www.accessdata.fda.gov"]);
+const allowedExternalHosts = new Set(["api.whatsapp.com", "www.google.com", "rumble.com", "medlineplus.gov", "www.accessdata.fda.gov", "fonts.googleapis.com", "fonts.gstatic.com"]);
 
 const files = [];
 

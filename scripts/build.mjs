@@ -2,6 +2,7 @@ import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { readdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { editorialGuides, editorialSources } from "../content/editorial-guides.mjs";
+import { themeCss, themedHome, fontLinks, mobileBar } from "./theme.mjs";
 
 const ROOT = process.cwd();
 const DATA_FILE = path.join(ROOT, "content", "site-data.json");
@@ -352,7 +353,8 @@ function legacyRedirects(data) {
     "/mi-cuenta/": "/contact/",
     "/sucursal/": "/sucursales-y-entregas/",
     "/aviso-de-privacidad/": "/politicas-de-privacidad/",
-    "/mayoreo/": "/distribuye-mayoreo/"
+    "/mayoreo/": "/contact/",
+    "/distribuye-mayoreo/": "/contact/"
   };
   for (const [from, to] of Object.entries(aliases)) {
     addRedirect(from, to, "alias");
@@ -450,34 +452,27 @@ function layout(data, page) {
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${SITE_URL}${escapeHtml(socialImage)}">
   <link rel="preconnect" href="https://api.whatsapp.com">
+  ${fontLinks}
   <link rel="stylesheet" href="/assets/site.css">
   <script type="application/ld+json">${JSON.stringify(structuredData(data, page))}</script>
 </head>
 <body class="${page.bodyClass || ""}">
   <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
-  <div class="top-announcement">
-    <div class="container top-announcement-inner">
-      <span>📍 <strong>Sucursal CDMX:</strong> Plaza Guelatao Local 76 (Metro Guelatao Línea A)</span>
-      <span>💬 <strong>WhatsApp:</strong> 55 6938 0408</span>
-      <span>🕒 <strong>Horario:</strong> Mar a Dom 12:00 PM – 5:00 PM</span>
-    </div>
-  </div>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="/" aria-label="Minoxidil México - Inicio">
-        <img src="/assets/images/minoxidil-mexico.jpg" alt="Minoxidil México" class="brand-logo-img" width="220" height="44">
+      <a class="brand" href="/" aria-label="Minoxidil en CDMX - Inicio">
+        <img src="/assets/images/minoxidil-mexico.jpg" alt="Minoxidil en CDMX" class="brand-logo-img" width="220" height="44">
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
         <span class="menu-icon"></span>
       </button>
       <nav class="nav-menu" id="menu" aria-label="Principal">
-        <a href="/">Inicio</a>
         <a href="/shop/">Tienda</a>
-        <a href="/sucursales-y-entregas/">Sucursales y Entregas</a>
-        <a href="/guias/minoxidil-kirkland-original-vs-clon/">Original vs Clon</a>
+        <a href="/#precios">Precios</a>
+        <a href="/guias/minoxidil-kirkland-original-vs-clon/">Original vs clon</a>
         <a href="/blog/">Guías</a>
-        <a href="/contact/">Contacto</a>
-        <a class="nav-btn" href="${whatsappLink(data)}">💬 WhatsApp: 55 6938 0408</a>
+        <a href="/sucursales-y-entregas/">Cómo llegar</a>
+        <a class="nav-btn" href="${whatsappLink(data)}">WhatsApp 55 6938 0408</a>
       </nav>
     </div>
   </header>
@@ -485,12 +480,12 @@ function layout(data, page) {
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col brand-col">
-        <a href="/" class="footer-brand-logo" aria-label="Minoxidil México - Inicio">
-          <img src="/assets/images/minoxidil-mexico.jpg" alt="Minoxidil México" class="footer-logo-img" width="200" height="40">
+        <a href="/" class="footer-brand-logo" aria-label="Minoxidil en CDMX - Inicio">
+          <img src="/assets/images/minoxidil-mexico.jpg" alt="Minoxidil en CDMX" class="footer-logo-img" width="200" height="40">
         </a>
         <p>Especialistas en tratamientos para crecimiento de barba y detención de caída del cabello. Distribución de Minoxidil Kirkland 100% original en Ciudad de México y envíos express a toda la República Mexicana.</p>
         <div class="footer-guarantee">
-          <span>🛡️ Garantía de Originalidad · Lote y Caducidad Comprobables</span>
+          <span>Producto original. Lote y caducidad visibles antes de pagar.</span>
         </div>
       </div>
       <div class="footer-col">
@@ -525,11 +520,7 @@ function layout(data, page) {
       </div>
     </div>
   </footer>
-  <a class="wa-float" href="${whatsappLink(data)}" aria-label="Contactar por WhatsApp">
-    <span class="wa-pulse"></span>
-    <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.04 3C8.86 3 3 8.77 3 15.86c0 2.27.62 4.49 1.78 6.43L3.1 29l6.88-1.77a13.1 13.1 0 0 0 6.06 1.48C23.23 28.71 29 22.95 29 15.86S23.23 3 16.04 3Zm0 23.47c-1.91 0-3.77-.51-5.4-1.48l-.39-.23-4.08 1.05 1.08-3.96-.26-.41a10.54 10.54 0 0 1-1.62-5.58c0-5.86 4.79-10.62 10.67-10.62 5.87 0 10.64 4.76 10.64 10.62 0 5.85-4.77 10.61-10.64 10.61Zm5.84-7.94c-.32-.16-1.88-.92-2.17-1.03-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.23-.69.08-.32-.16-1.35-.49-2.57-1.58-.95-.84-1.59-1.88-1.78-2.2-.18-.31-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.31.32-.52.11-.21.05-.39-.03-.55-.08-.16-.71-1.7-.97-2.32-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.11 1.08-1.11 2.64s1.14 3.07 1.3 3.28c.16.21 2.25 3.41 5.45 4.78.76.33 1.35.52 1.81.67.76.24 1.46.21 2.01.13.61-.09 1.88-.76 2.14-1.5.26-.73.26-1.36.18-1.5-.08-.13-.29-.21-.61-.37Z"/></svg>
-    <span class="wa-float-text">¿Dudas? Escríbenos</span>
-  </a>
+  ${mobileBar(whatsappLink(data))}
   <script src="/assets/site.js" defer></script>
 </body>
 </html>`;
@@ -768,7 +759,21 @@ function categoryLinks(data, activeSlug = "") {
     .join("");
 }
 
+function productPrice(data, slug, fallback) {
+  const product = data.products.find((item) => item.slug === slug);
+  const value = parseFloat(String(product?.price || "").replace(/[^0-9.]/g, ""));
+  return Number.isFinite(value) && value > 0 ? value : fallback;
+}
+
+function mxn(value) {
+  return `$${Math.round(value).toLocaleString("en-US")}`;
+}
+
 function homePage(data) {
+  const price1 = productPrice(data, "minoxidil-1-mes-kirkland-liquido-5-3", 250);
+  const price3 = productPrice(data, "minoxidil-3-meses-kirkland-liquido-5-2", 600);
+  const price6 = productPrice(data, "minoxidil-6-meses-kirkland-liquido-5-2", 1100);
+  const price12 = productPrice(data, "minoxidil-12-meses-kirkland-liquido-5-2", 2000);
   const heroImg = "/assets/images/diseno-sin-titulo-2.jpg";
   const featured = data.products.slice(0, 8);
 
@@ -784,7 +789,7 @@ function homePage(data) {
             Minoxidil Kirkland Original en CDMX | Venta en Sucursal y Entregas Personales
           </h1>
           <p class="hero-subtitle">
-            El tratamiento comprobado para crecimiento de barba y detención de caída del cabello. Compra con total seguridad y confianza: producto 100% original con lote y caducidad verificables, atención directa en tienda física en Plaza Guelatao y entregas el mismo día en CDMX o envíos express a todo el país.
+            Minoxidil tópico al 5% para caída de cabello y uso en barba. Producto 100% original con lote y caducidad verificables, atención directa en tienda física en Plaza Guelatao y entregas el mismo día en CDMX o envíos express a todo el país.
           </p>
           <div class="hero-ctas">
             <a class="btn btn-primary btn-large" href="${whatsappLink(data, "Quiero comprar Minoxidil Kirkland en CDMX")}">
@@ -919,7 +924,7 @@ function homePage(data) {
     <section class="section section-timeline">
       <div class="container">
         <div class="section-header text-center">
-          <span class="section-tag">RESULTADOS COMPROBADOS</span>
+          <span class="section-tag">QUÉ ESPERAR</span>
           <h2>Fases de Crecimiento: De Vello Incipiente a Barba Cerrada</h2>
           <p>El crecimiento no ocurre de la noche a la mañana. La constancia diaria es la única clave para pasar de vello incipiente a barba cerrada o detener la pérdida capilar con Minoxidil al 5%:</p>
         </div>
@@ -941,7 +946,7 @@ function homePage(data) {
           <div class="timeline-stage-card">
             <span class="stage-time-tag">Fase 2 · Meses 2 a 3</span>
             <h3>Brote de Vellus Fino</h3>
-            <p>Aparecen los primeros pelitos delgados y claros en mejillas o zonas despobladas. Es la señal inequívoca de que los folículos dormidos han despertado.</p>
+            <p>Aparecen los primeros pelitos delgados y claros en mejillas o zonas despobladas. Es una señal temprana de respuesta al tratamiento.</p>
           </div>
 
           <div class="timeline-stage-card">
@@ -952,8 +957,8 @@ function homePage(data) {
 
           <div class="timeline-stage-card">
             <span class="stage-time-tag">Fase 4 · Meses 6 a 12</span>
-            <h3>Vello Terminal Permanente</h3>
-            <p>El folículo madura completamente a vello terminal grueso con raíz profunda. En barba, este vello se vuelve permanente incluso tras suspender el tratamiento.</p>
+            <h3>Consolidación del Vello</h3>
+            <p>En quienes responden, parte del vello puede engrosar y oscurecerse. Los resultados varían por genética y edad, y al suspender el tratamiento parte de lo ganado puede perderse.</p>
           </div>
         </div>
       </div>
@@ -971,7 +976,7 @@ function homePage(data) {
           <div class="pricing-card">
             <div class="pricing-badge">Prueba Inicial</div>
             <h3>1 Mes de Minoxidil</h3>
-            <div class="pricing-price">$300 <small>MXN</small></div>
+            <div class="pricing-price">${mxn(price1)} <small>MXN</small></div>
             <p class="pricing-desc">1 Frasco Kirkland 5% Líquido (60 ml)</p>
             <ul class="pricing-features">
               <li>✓ Ideal para probar tolerancia en la piel</li>
@@ -979,13 +984,13 @@ function homePage(data) {
               <li>✓ Asesoría personalizada por WhatsApp</li>
               <li>✓ Entrega en CDMX o sucursal</li>
             </ul>
-            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 1 Mes Minoxidil Kirkland ($300)")}">Pedir 1 Mes</a>
+            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 1 Mes Minoxidil Kirkland (${mxn(price1)})")}">Pedir 1 Mes</a>
           </div>
 
           <div class="pricing-card">
             <div class="pricing-badge">Avance Notable</div>
             <h3>3 Meses de Minoxidil</h3>
-            <div class="pricing-price">$600 <small>MXN</small></div>
+            <div class="pricing-price">${mxn(price3)} <small>MXN</small></div>
             <p class="pricing-desc">3 Frascos Kirkland 5% Líquido (180 ml)</p>
             <ul class="pricing-features">
               <li>✓ Fase clave para brote de vello nuevo</li>
@@ -993,37 +998,37 @@ function homePage(data) {
               <li>✓ Incluye aplicador graduado</li>
               <li>✓ Entrega personal en CDMX</li>
             </ul>
-            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 3 Meses Minoxidil Kirkland ($600)")}">Pedir 3 Meses</a>
+            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 3 Meses Minoxidil Kirkland (${mxn(price3)})")}">Pedir 3 Meses</a>
           </div>
 
           <div class="pricing-card featured-pricing">
             <span class="badge-popular">⭐ MÁS VENDIDO · MEJOR PRECIO</span>
             <div class="pricing-badge">Caja Sellada Fábrica</div>
             <h3>6 Meses Caja Completa</h3>
-            <div class="pricing-price">$1,100 <small>MXN</small></div>
+            <div class="pricing-price">${mxn(price6)} <small>MXN</small></div>
             <p class="pricing-desc">Caja Sellada Kirkland con 6 Frascos + Gotero Original</p>
             <ul class="pricing-features">
               <li>✓ Caja sellada de fábrica con lote láser visible</li>
               <li>✓ Incluye gotero aplicador original Kirkland con seguro</li>
               <li>✓ Tiempo óptimo para maduración de barba</li>
-              <li>✓ El costo mensual más económico ($183/mes)</li>
+              <li>✓ Costo mensual aprox. ${mxn(price6 / 6)}</li>
               <li>✓ Entrega inmediata en CDMX</li>
             </ul>
-            <a class="btn btn-gold btn-large" href="${whatsappLink(data, "Quiero pedir la Caja de 6 Meses Minoxidil Kirkland ($1,100)")}">Pedir Caja 6 Meses</a>
+            <a class="btn btn-gold btn-large" href="${whatsappLink(data, "Quiero pedir la Caja de 6 Meses Minoxidil Kirkland (${mxn(price6)})")}">Pedir Caja 6 Meses</a>
           </div>
 
           <div class="pricing-card">
-            <div class="pricing-badge">Tratamiento Definitivo</div>
+            <div class="pricing-badge">Tratamiento Anual</div>
             <h3>1 Año de Tratamiento</h3>
-            <div class="pricing-price">$2,100 <small>MXN</small></div>
+            <div class="pricing-price">${mxn(price12)} <small>MXN</small></div>
             <p class="pricing-desc">2 Cajas Selladas (12 Frascos) + 2 Goteros Originales</p>
             <ul class="pricing-features">
-              <li>✓ Ciclo definitivo para vello terminal permanente</li>
-              <li>✓ Máximo ahorro garantizado</li>
+              <li>✓ Cubre un ciclo completo de seguimiento</li>
+              <li>✓ Mejor precio por mes</li>
               <li>✓ Producto sellado con caducidad amplia</li>
               <li>✓ Envío gratis o entrega especial en CDMX</li>
             </ul>
-            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 1 Año Minoxidil Kirkland ($2,100)")}">Pedir Tratamiento 1 Año</a>
+            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 1 Año Minoxidil Kirkland (${mxn(price12)})")}">Pedir Tratamiento 1 Año</a>
           </div>
         </div>
       </div>
@@ -1155,7 +1160,7 @@ function homePage(data) {
           </details>
           <details class="faq-item">
             <summary>¿En cuánto tiempo se ven los primeros resultados en barba o cabello?</summary>
-            <p>Por lo general, los primeros vellos delgados (vellus) comienzan a observarse entre el segundo y tercer mes de uso diario constante (1 ml dos veces al día). La maduración a vello terminal permanente se alcanza entre los 6 y 12 meses de tratamiento continuo.</p>
+            <p>Por lo general, los primeros vellos delgados (vellus) comienzan a observarse entre el segundo y tercer mes de uso diario constante (1 ml dos veces al día). Los cambios más claros suelen evaluarse entre los 6 y 12 meses de uso constante; los resultados varían por persona y no están garantizados.</p>
           </details>
         </div>
       </div>
@@ -1179,7 +1184,7 @@ function homePage(data) {
     description: "Venta de Minoxidil Kirkland 100% Original en Ciudad de México. Tienda física en Plaza Guelatao Local 76, entregas personales en Metro CDMX y envíos express a todo México. Asesoría por WhatsApp.",
     image: heroImg,
     bodyClass: "home-page",
-    body
+    body: themedHome(data, { whatsappLink, escapeHtml, productImage, productPrice, mxn })
   });
 }
 
@@ -1234,7 +1239,18 @@ function shopPage(data) {
   });
 }
 
+const INDEXABLE_CATEGORY_SLUGS = new Set([
+  "minoxidil",
+  "minoxidil-kirkland",
+  "crecimiento-de-barba",
+  "barba-y-bigote",
+  "cabello",
+  "anticaida-y-recuperar-cabello",
+  "maximus"
+]);
+
 function categoryPage(category, data) {
+  const indexable = INDEXABLE_CATEGORY_SLUGS.has(category.slug);
   const products = data.products.filter((product) => product.categories.some((item) => item.slug === category.slug));
 
   const body = `
@@ -1267,6 +1283,7 @@ function categoryPage(category, data) {
   return layout(data, {
     title: `${category.name} | Minoxidil en CDMX`,
     path: category.path,
+    robots: indexable ? "index, follow, max-image-preview:large" : "noindex, follow",
     description: `Productos de ${category.name} disponibles en CDMX con entrega en sucursal Plaza Guelatao o envío a todo México.`,
     schema: [
       itemListSchema(`Productos de ${category.name}`, category.path, products),
@@ -1605,7 +1622,7 @@ function guidePage(guide, data) {
         <aside class="article-sidebar">
           <div class="sidebar-box sticky-sidebar">
             <h3>Comprar en CDMX</h3>
-            <p>Minoxidil Kirkland original garantizado con entrega en sucursal o envío nacional.</p>
+            <p>Minoxidil Kirkland original con entrega en sucursal o envío nacional.</p>
             <a class="btn btn-primary btn-full" href="${whatsappLink(data, `Hola, leí la guía de ${guide.title} y quiero comprar`)}">
               Comprar por WhatsApp
             </a>
@@ -1758,7 +1775,7 @@ function contactPage(data, route = "/contact/") {
   `;
 
   return layout(data, {
-    title: "Contacto y Sucursal en CDMX | Minoxidil Todo México",
+    title: "Contacto y Sucursal en CDMX | Minoxidil en CDMX",
     path: route,
     description: "Contacto por WhatsApp al 55 6938 0408 y sucursal en Plaza Guelatao Local 76, Iztapalapa, CDMX.",
     robots: "index, follow",
@@ -3418,7 +3435,7 @@ async function main() {
   console.log("Optimizando imágenes...");
   await optimizeImageAssets();
 
-  await writeFile(path.join(DIST, "assets", "site.css"), css.trim(), "utf8");
+  await writeFile(path.join(DIST, "assets", "site.css"), (css + themeCss).trim(), "utf8");
   await writeFile(path.join(DIST, "assets", "site.js"), js.trim(), "utf8");
   await writeFile(path.join(DIST, ".nojekyll"), "", "utf8");
 
@@ -3472,7 +3489,20 @@ async function main() {
   await writeFile(path.join(DIST, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`, "utf8");
 
   // Redirects for Vercel, Netlify and Apache
-  const redirects = legacyRedirects(data);
+  // No permitir que un redirect tape una página que sí existe (ej. /blog/ se iba a la guía de barba)
+  // y resolver cadenas A -> B -> C a un solo salto A -> C.
+  const liveRoutes = new Set([...writtenRoutes].map((route) => routeKey(route)));
+  const rawRedirects = legacyRedirects(data).filter((rule) => !liveRoutes.has(routeKey(rule.from)));
+  const redirectMap = new Map(rawRedirects.map((rule) => [routeKey(rule.from), rule]));
+  const redirects = rawRedirects.map((rule) => {
+    let to = rule.to;
+    const seen = new Set([routeKey(rule.from)]);
+    while (redirectMap.has(routeKey(to)) && !seen.has(routeKey(to))) {
+      seen.add(routeKey(to));
+      to = redirectMap.get(routeKey(to)).to;
+    }
+    return { ...rule, to };
+  }).filter((rule) => routeKey(rule.from) !== routeKey(rule.to));
   const index = redirectIndex(data, uniqueRoutes, redirects);
 
   await writeFile(path.join(DIST, "redirects.json"), `${JSON.stringify(index, null, 2)}\n`, "utf8");
@@ -3505,11 +3535,20 @@ async function main() {
       source: "/assets/(.*)",
       headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
     }],
-    redirects: redirects.slice(0, 1024).map((rule) => ({
-      source: rule.from,
-      destination: rule.to,
-      permanent: true
-    }))
+    redirects: [
+      // El subdominio de Vercel duplicaba el sitio completo: todo va al dominio canónico.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "minoxidilencdmx.vercel.app" }],
+        destination: `${SITE_URL}/:path*`,
+        permanent: true
+      },
+      ...redirects.slice(0, 1000).map((rule) => ({
+        source: rule.from,
+        destination: rule.to,
+        permanent: true
+      }))
+    ]
   };
   await writeFile(path.join(DIST, "vercel.json"), `${JSON.stringify(vercel, null, 2)}\n`, "utf8");
   await writeFile(path.join(ROOT, "vercel.json"), `${JSON.stringify(vercel, null, 2)}\n`, "utf8");
