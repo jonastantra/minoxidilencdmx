@@ -9,7 +9,7 @@ const DATA_FILE = path.join(ROOT, "content", "site-data.json");
 const DIST = path.join(ROOT, "dist");
 const SITE_URL = "https://www.minoxidilencdmx.com";
 const SITE_RELEASE_DATE = "2026-10-27";
-const SITE_RELEASE = "cdmx-20261027-01";
+const SITE_RELEASE = "cdmx-20261027-02";
 const CATEGORY_REDIRECTS = new Map([
   ["/categoria-producto/kits-2/", "/categoria-producto/barba-y-bigote/kits/"]
 ]);

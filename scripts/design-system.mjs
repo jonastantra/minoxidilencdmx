@@ -1,5 +1,6 @@
 /** Visual layer appended after the existing structural stylesheet. No remote assets. */
 export const designCss = `
+.guide-wa-link,.guide-wa-link:visited{color:#196342}.guide-wa-link:hover{color:#104d32}
 .mc-visit .sidebar-box{color:#1d2421}.mc-visit .sidebar-box p{color:#48514a}.mc-proof{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
 :root {
   --brand:#765b22; --brand-hover:#59431a; --brand-light:#f1e9d5; --brand-light-border:#d7c79f;

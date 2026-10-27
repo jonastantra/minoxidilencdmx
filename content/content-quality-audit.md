@@ -1,6 +1,6 @@
 # Auditoría de calidad editorial publicada
 
-Fecha: 2026-10-27T18:05:10.274Z
+Fecha: 2026-10-27T18:08:47.226Z
 
 ## Contenido indexable actual
 
