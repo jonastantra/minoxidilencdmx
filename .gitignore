@@ -11,3 +11,5 @@ screenshots/
 1.Otros Sitios Web/
 
 artifacts/
+
+__pycache__/
