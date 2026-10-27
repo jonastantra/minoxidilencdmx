@@ -10,7 +10,7 @@ export const editorialGuides = [
       ["La respuesta corta", "La indicación y la concentración dependen del producto y de la persona. La etiqueta estadounidense del minoxidil tópico al 5% para hombres lo dirige a la pérdida gradual en la parte superior del cuero cabelludo; no a cualquier tipo de caída ni a una caída repentina. Si el patrón no es claro, vale más obtener un diagnóstico que comprar por ensayo y error."],
       ["Qué resultados son razonables", "No se evalúa en días. La información para pacientes de MedlinePlus explica que pueden pasar varios meses antes de notar efecto y que usar más cantidad no acelera el proceso. Las fotos mensuales, con la misma luz, distancia y peinado, sirven más que mirarse todos los días."],
       ["Qué no resuelve", "No es una cura definitiva para la calvicie y no sustituye una valoración cuando hay zonas inflamadas, placas sin cabello, cicatrices, comezón intensa o pérdida súbita. Tampoco conviene extrapolar automáticamente las instrucciones del cuero cabelludo a barba, cejas o pestañas: esos usos no son la indicación estándar de la etiqueta."],
-      ["Antes de comprar", "Revisa concentración, forma de uso, lote, caducidad, sello y estado del empaque. Compara el nombre exacto del producto con su etiqueta, no con una promesa del anuncio. En tienda podemos mostrar el empaque disponible y confirmar precio; las decisiones médicas corresponden a un profesional de salud."],
+      ["Antes de comprar", "Revisa concentración, forma de uso, lote, caducidad, sello y estado del empaque. Las etiquetas Kirkland para hombres citadas advierten no usar en menores de 18 años, en otras partes del cuerpo ni cuando se desconoce la causa de la caída. Compara el nombre exacto del producto con su etiqueta, no con una promesa del anuncio. En tienda podemos mostrar el empaque disponible y confirmar precio; las decisiones médicas corresponden a un profesional de salud."],
       ["Cuándo pedir ayuda", "Suspende y busca atención si aparecen dolor de pecho, palpitaciones, mareo importante, desmayo, dificultad para respirar o hinchazón. Para irritación persistente, caída que empeora o dudas por otros medicamentos, consulta antes de continuar."]
     ],
     faqs: [
@@ -28,7 +28,7 @@ export const editorialGuides = [
     summary: "La mejor rutina es la que respeta la etiqueta del producto, cabe en tu horario y no se convierte en una competencia por aplicar más.",
     sections: [
       ["1. Confirma qué producto tienes", "Líquido y espuma no siempre se miden igual. Lee la etiqueta de tu presentación antes de copiar la rutina de otra persona. Verifica concentración, zona indicada, cantidad por aplicación y frecuencia. Si el sello o el instructivo no están claros, no lo uses hasta confirmar."],
-      ["2. Prepara el cuero cabelludo", "La zona debe estar seca y sin heridas. Separa el cabello para que el producto llegue a la piel, no sólo al pelo. Aplica únicamente la cantidad indicada y distribúyela en la zona señalada por el fabricante."],
+      ["2. Prepara el cuero cabelludo", "La zona debe estar seca y sin heridas. Separa el cabello para que el producto llegue a la piel, no sólo al pelo. Aplica únicamente la cantidad indicada y distribúyela en la zona señalada por el fabricante. Estas instrucciones son para el cuero cabelludo: no son una pauta para barba, cejas ni pestañas."],
       ["3. Lávate las manos y deja secar", "Evita ojos, boca y otras áreas sensibles. Lava las manos al terminar y deja que el producto se seque antes de usar gorra, acostarte o apoyar la cabeza en superficies que puedan tocar otras personas. Mantén el envase lejos de niñas, niños y mascotas."],
       ["4. No compenses una dosis olvidada", "No dupliques la siguiente aplicación. Retoma el horario habitual indicado en la etiqueta. Aplicar de más no recupera el tiempo y puede aumentar irritación o absorción no deseada."],
       ["5. Registra cambios, no sensaciones", "Toma una foto inicial y una cada cuatro semanas en condiciones similares. Anota irritación, cambios de rutina y productos nuevos. Así puedes distinguir progreso, variación de luz y una reacción que merece consulta."]
@@ -70,7 +70,7 @@ export const editorialGuides = [
       ["Por qué las primeras semanas confunden", "El ciclo del cabello no cambia de un día a otro. La ansiedad hace que pequeñas diferencias de peinado o luz parezcan avance o retroceso. Define desde el inicio cuándo vas a revisar, por ejemplo cada cuatro semanas."],
       ["Qué significa shedding", "El término se usa para una caída temporal que algunas personas notan al comenzar. No debe emplearse como explicación automática para cualquier pérdida. Si la caída es súbita, intensa, en placas o viene con dolor e inflamación, consulta."],
       ["El protocolo de fotos", "Usa el mismo cuarto, luz, cámara, distancia y ángulo. Fotografía entradas, coronilla y parte superior por separado. Mantén el cabello con longitud parecida y evita fibras o productos de peinado. Guarda la fecha y cualquier interrupción de la rutina."],
-      ["Cuándo evaluar", "Las fuentes oficiales hablan de varios meses, no de resultados en una o dos semanas. Si no hay cambio después del periodo indicado por la etiqueta, o si no estás seguro del diagnóstico, busca valoración antes de sumar más productos."],
+      ["Cuándo evaluar", "Las fuentes oficiales hablan de varios meses, no de resultados en una o dos semanas. La Academia Estadounidense de Dermatología describe habitualmente seis a doce meses para observar recrecimiento en algunas personas, pero eso no es una garantía individual ni reemplaza el periodo de evaluación del envase. Si no hay cambio después del periodo indicado por la etiqueta, o si no estás seguro del diagnóstico, busca valoración antes de sumar más productos."],
       ["Qué pasa al suspender", "En la alopecia hereditaria, el beneficio suele depender del uso continuo. La etiqueta de Rogaine informa que el cabello recuperado puede perderse después de dejar el tratamiento. Planea la rutina como algo sostenible, no como un reto de 30 días."]
     ],
     faqs: [
@@ -87,8 +87,8 @@ export const editorialGuides = [
     image: "/assets/images/aplicacion-en-barba-1024x585.jpg",
     summary: "Las presentaciones comerciales para crecimiento capilar se etiquetan para el cuero cabelludo. Usarlas en la barba es una decisión distinta y debe explicarse como uso fuera de indicación.",
     sections: [
-      ["Lo que cambia al hablar de barba", "No basta con trasladar la dosis y rutina del cuero cabelludo a la cara. La piel facial, el contacto con labios, el afeitado y otros productos cambian el contexto. La tienda no debe presentar ese uso como una indicación aprobada del envase."],
-      ["Expectativas reales", "La densidad y el patrón de barba dependen mucho de genética, edad y folículos presentes. Ningún vendedor puede prometer que se llenará una zona concreta ni fijar una fecha exacta. Las fotos comerciales no predicen el resultado individual."],
+      ["Lo que cambia al hablar de barba", "No basta con trasladar la dosis y rutina del cuero cabelludo a la cara. Las etiquetas de minoxidil tópico citadas se refieren al cuero cabelludo, no a barba, cejas o pestañas. La piel facial, el contacto con labios, el afeitado y otros productos cambian el contexto. Por eso esta guía no prescribe una cantidad ni una frecuencia para barba: esa decisión requiere una valoración profesional."],
+      ["Expectativas reales", "La densidad y el patrón de barba dependen mucho de genética, edad y folículos presentes. Ningún vendedor puede prometer que se llenará una zona concreta ni fijar una fecha exacta. Las fotos comerciales no predicen el resultado individual. Tampoco es responsable garantizar una barba permanente después de seis o doce meses o asegurar que suspenderlo conservará el resultado."],
       ["Riesgos prácticos", "La piel puede resecarse o irritarse. Debe evitarse el contacto con ojos y boca, piel lesionada y transferencia a otras personas. Si aparecen palpitaciones, mareo, hinchazón o dificultad para respirar, suspende y busca atención."],
       ["Antes de decidir", "Revisa la etiqueta, antecedentes de piel y corazón, medicamentos actuales y si realmente tienes una duda cosmética o un cambio repentino que requiere diagnóstico. Un dermatólogo puede explicar riesgos y alternativas para tu caso."],
       ["Cómo hablamos del producto en tienda", "Podemos confirmar concentración, presentación, lote, precio y disponibilidad. No sustituimos consulta médica, no garantizamos crecimiento y no recomendamos duplicar dosis. Esa diferencia es una señal de una tienda seria."]
@@ -109,7 +109,7 @@ export const editorialGuides = [
     sections: [
       ["Primero identifica el tipo de caída", "La caída difusa, las placas, el adelgazamiento gradual y la pérdida posterior al parto no se evalúan igual. Hierro, tiroides, cambios hormonales, medicamentos y enfermedades del cuero cabelludo pueden influir. Una compra no sustituye esa evaluación."],
       ["Lee una etiqueta dirigida a mujeres", "Existen presentaciones con instrucciones específicas para mujeres. No copies automáticamente la dosis o advertencias de una caja dirigida a hombres. Verifica concentración, forma y frecuencia del producto exacto."],
-      ["Embarazo y lactancia", "No inicies por recomendación de redes o tienda. Consulta con tu profesional de salud y lleva el envase o una foto legible de ingredientes. También evita que bebés entren en contacto con zonas recién tratadas."],
+      ["Embarazo y lactancia", "No inicies durante embarazo o lactancia por recomendación de redes o tienda. Consulta con tu profesional de salud y lleva el envase o una foto legible de ingredientes. También evita que bebés entren en contacto con zonas recién tratadas. Si hay posibilidad de embarazo, acláralo antes de usarlo."],
       ["Seguimiento", "Haz fotos mensuales con la misma raya, luz y distancia. Registra cambios menstruales, embarazo reciente, dieta, estrés importante y medicamentos. Estos datos ayudan al profesional a interpretar la caída."],
       ["Cuándo detenerte", "Suspende y busca atención ante dolor de pecho, palpitaciones, mareo marcado, desmayo, hinchazón o dificultad para respirar. Para irritación persistente o caída que empeora, pide valoración."]
     ],
@@ -148,15 +148,15 @@ export const editorialGuides = [
     image: "/assets/images/diseno-sin-titulo-2.jpg",
     summary: "Una compra confiable se puede comprobar: producto exacto, fotos actuales, lote, caducidad, precio total, dirección y condiciones de entrega.",
     sections: [
-      ["Antes de salir de casa", "Confirma existencia y precio por mensaje. Pide el nombre exacto, concentración, líquido o espuma y número de piezas. Si vas a Plaza Guelatao, confirma horario porque puede cambiar en días festivos."],
+      ["Antes de salir de casa", "Confirma existencia y precio por WhatsApp al 55 6938 0408. Pide el nombre exacto, concentración, líquido o espuma y número de piezas. La tienda está en Plaza Guelatao, Local 76, Pasillo 5, CDMX. La atención es de martes a sábado y las entregas son bajo cita; acuerda tu visita antes de trasladarte."],
       ["Al revisar el producto", "Observa que el empaque esté cerrado y sin alteraciones. Revisa lote y caducidad, impresión legible y coincidencia entre caja y frascos. Desconfía de quien evita mostrar el producto real o sólo usa imágenes de catálogo."],
-      ["Precio total", "Pregunta si el precio incluye envío, cuántas piezas contiene y qué pasa si el paquete llega dañado. Conserva la conversación y el comprobante. Una oferta demasiado distinta del mercado merece una revisión adicional."],
+      ["Precio total", "Solicita una cotización del producto exacto y del total con envío, si corresponde. Pregunta cuántas piezas contiene, cuál es la condición del empaque y qué procedimiento aplica si el paquete llega dañado. Conserva la conversación y el comprobante. No des por hecho envío gratis, pago contra entrega ni una promoción que no haya sido confirmada."],
       ["Sucursal y entrega", "Publicamos dirección y horario verificables. Para entrega acordada, confirma punto, nombre de contacto y forma de pago antes de trasladarte. No envíes datos sensibles que no sean necesarios para la entrega."],
       ["Lo que una tienda responsable no promete", "No garantizamos resultados, no diagnosticamos la causa de caída y no inventamos porcentajes de satisfacción. Sí podemos mostrar el inventario disponible, explicar la presentación y orientarte para leer la etiqueta."]
     ],
     faqs: [
-      ["¿Puedo recoger en CDMX?", "Sí, sujeto a disponibilidad y horario confirmado por WhatsApp en Plaza Guelatao."],
-      ["¿Hacen envíos?", "Sí. Confirma costo, paquetería y plazo para tu código postal antes de pagar."],
+      ["¿Puedo recoger en CDMX?", "Sí, sujeto a disponibilidad y cita confirmada por WhatsApp en Plaza Guelatao, Local 76, Pasillo 5. La atención es de martes a sábado."],
+      ["¿Hacen envíos?", "Consulta disponibilidad, costo, paquetería y plazo para tu código postal antes de pagar. No se promete una fecha o una tarifa sin cotización."],
       ["¿Cómo sé si es original?", "No existe una sola prueba casera concluyente. Revisa trazabilidad, empaque, lote, vendedor y procedencia en conjunto."]
     ]
   },
@@ -171,7 +171,7 @@ export const editorialGuides = [
       ["Cambios que merecen diagnóstico", "Busca valoración si la caída empezó de forma súbita, aparece en placas, hay cicatriz, dolor, pus, enrojecimiento intenso o pérdida de cejas. También si comenzó tras un medicamento o se acompaña de otros síntomas."],
       ["Qué llevar a la consulta", "Fotos de meses anteriores, lista de medicamentos y suplementos, antecedentes familiares, cambios recientes de dieta, enfermedad, parto o estrés importante. Anota cuándo empezó y en qué zonas."],
       ["Qué puede confirmar una tienda", "Presentación, concentración, precio, lote, caducidad y disponibilidad. No podemos diferenciar alopecia androgenética de otras causas ni indicar tratamiento oral."],
-      ["Evita el diagnóstico por fotografía comercial", "Una imagen de antes y después no muestra historia clínica, iluminación ni otros tratamientos. Úsala como testimonio comercial, no como predicción."],
+      ["Evita el diagnóstico por fotografía comercial", "Una imagen de antes y después no muestra historia clínica, iluminación ni otros tratamientos. No la uses como diagnóstico, evidencia concluyente ni predicción del resultado. Si no están documentadas su procedencia y las condiciones de la comparación, no debería presentarse como un caso real de la tienda."],
       ["Si ya estás en tratamiento", "No cambies dosis, mezcles activos ni suspendas medicamentos recetados por consejo de redes. Lleva el envase y tus notas a la persona que te atiende."],
       ["La ventaja de ordenar la información", "Un diagnóstico temprano no garantiza un resultado, pero evita tratar como cosmético un problema inflamatorio, autoinmune o relacionado con otra condición. También ayuda a escoger fotografías y medidas de seguimiento realmente útiles."]
     ],
@@ -184,27 +184,43 @@ export const editorialGuides = [
   {
     path: "/guias/minoxidil-kirkland-original-vs-clon/",
     topic: "autenticidad",
-    title: "Minoxidil Kirkland original vs clon: cómo identificar producto auténtico",
-    description: "Guía práctica para distinguir Minoxidil Kirkland original de imitaciones o clones diluidos en México: sellos, lote láser, color, aroma y gotero.",
+    title: "Minoxidil Kirkland original: qué revisar y qué no demuestra autenticidad",
+    description: "Revisa procedencia, empaque, lote y caducidad del minoxidil. El color, el olor, el gotero o una prueba con cloro no certifican su autenticidad.",
     image: "/assets/images/diseno-sin-titulo-1.jpg",
-    summary: "El mercado informal en México presenta copias y frascos adulterados. Aprender a verificar el código de lote impreso en láser, el aplicador graduado de seguridad y el olor y cristalización característicos protege tu salud y tu inversión.",
+    summary: "No existe una inspección casera que certifique la concentración o descarte contaminantes. Antes de comprar, revisa la procedencia y la información del producto; si sospechas una alteración, no lo uses.",
     sections: [
-      ["Por qué abundan las imitaciones en México", "Debido a la alta demanda para el crecimiento de barba y la detención de la alopecia, en tianguis y plataformas digitales circulan productos clonados o rebajados con agua y alcohol corriente. Un producto falso no solo desperdicia meses de constancia, sino que puede provocar dermatitis severa por solventes industriales o bacterias. La regla básica es comprar únicamente donde puedas verificar trazabilidad y empaque físico."],
-      ["1. Código de lote y caducidad impresos en láser", "Kirkland Signature estampa en la parte inferior de la caja de 6 meses y en cada uno de los 6 frascos un código de lote alfanumérico y una fecha de caducidad con tecnología láser indeleble en tono amarillo o blanco según la partida. En los frascos originales, esta tinta no se borra al raspar con la uña o frotar ligeramente con alcohol. En las copias piratas, los números suelen estar ausentes, borrosos, estampados con tinta negra de sello que se despinta con el dedo, o las fechas de la caja no coinciden con las de los frascos."],
-      ["2. Gotero original graduado con seguro infantil", "La caja sellada original de fábrica incluye un aplicador gotero específico de Kirkland con mecanismo de seguridad push down & turn (presionar hacia abajo y girar). Además, cuenta con una marca de medición clara y nítida en el nivel de 1.0 ml. Los vendedores de lotes adulterados suelen sustituir este gotero por piezas genéricas de farmacia, de vidrio simple sin graduación milimétrica ni seguro de tapa."],
-      ["3. Tonalidad, aroma y cristalización en la piel", "La solución líquida original al 5% contiene propilenglicol, alcohol y agua purificada. Tiene un aroma medicinal característico alcohólico sin fragancias añadidas y una tonalidad que varía entre transparente y ámbar ligeramente amarillento. Al secarse sobre una superficie lisa o en la piel, el minoxidil original tiende a formar pequeños cristales blancos característicos del principio activo. Los productos clonados suelen ser totalmente transparentes como agua o incluir perfume artificial para tapar malos olores."],
-      ["4. Inspección presencial y transparencia antes de pagar", "La mayor garantía contra un fraude es tener la libertad de revisar el producto antes de entregar tu dinero. En nuestra sucursal de Plaza Guelatao Local 76 (Iztapalapa, CDMX) o en nuestras entregas personales en estaciones del Metro, puedes tomar la caja en tus manos, verificar que los sellos estén intactos, comprobar que los 6 frascos correspondan al mismo lote y revisar la caducidad antes de concretar tu compra."]
+      ["Empieza por la procedencia, no por el color", "La FDA advierte que los medicamentos falsificados pueden tener ingredientes equivocados, demasiado, muy poco o nada de principio activo. Por eso conviene comprar en un establecimiento identificable, conservar el comprobante y preguntar por la procedencia. El aspecto del frasco por sí solo no resuelve esa comprobación. La información de la FDA es una referencia de seguridad, no una certificación de esta tienda ni un registro sanitario mexicano."],
+      ["Qué revisar en caja y frasco", "Antes de pagar, comprueba el nombre exacto, concentración, presentación, contenido, instrucciones, lote y caducidad legibles. Observa si el cierre o el empaque tienen daños o señales de manipulación. Si compras piezas separadas, pregunta cómo se entregan y qué información de la caja conservan. Una diferencia merece aclaración, pero una impresión bonita o un número de lote visible tampoco garantizan autenticidad."],
+      ["Color, olor, gotero y cristalización no son certificados", "No uses una tonalidad, un aroma, una rosca, un grabado o la formación de cristales como prueba definitiva. Tampoco raspes, calientes ni añadas sustancias al producto para validarlo. Aquí no afirmamos que todos los lotes auténticos tengan un diseño único ni que un cambio de color sea inocuo: esas dudas deben revisarse con el fabricante o un profesional y el producto exacto."],
+      ["No hagas pruebas con cloro", "Mezclar una solución con cloro u otros limpiadores no es un método de control de calidad y puede exponerte a sustancias irritantes. Aunque aparezca un cambio de color, eso no mide concentración, pureza o contaminación. No apliques en la piel una mezcla de prueba ni regreses líquido manipulado al frasco."],
+      ["Qué hacer si algo no coincide", "No uses el producto sospechoso. Guarda el envase, lote, comprobante y fotos; pide una aclaración al vendedor y, cuando sea posible, al fabricante. Puedes consultar los canales oficiales de COFEPRIS para una denuncia sanitaria. Si ya lo usaste y tuviste una reacción, busca atención médica e informa qué producto fue y cuándo apareció."],
+      ["Antes de recoger en CDMX", "Para comprar en Plaza Guelatao, Local 76, Pasillo 5, confirma por WhatsApp al 55 6938 0408 la presentación disponible, su precio y las condiciones de entrega. La atención es de martes a sábado y las entregas son bajo cita. No se debe confundir una revisión comercial del empaque con una prueba de laboratorio o una consulta médica."]
     ],
     faqs: [
-      ["¿La prueba del cloro o blanqueador es una prueba definitiva?", "No es una prueba de laboratorio. Aunque el minoxidil produce una reacción cromática anaranjada o rojiza ante agentes oxidantes como el hipoclorito de sodio, esta prueba no mide la pureza ni determina si la concentración es del 5% real o si contiene contaminantes. Lo más seguro es la trazabilidad del empaque y la inspección del lote."],
-      ["¿Por qué algunos lotes originales son más amarillos que otros?", "El propilenglicol y la exposición normal a la luz y al aire pueden oxidar levemente el líquido adquiriendo un color amarillo ámbar más marcado sin perder eficacia. Esto ocurre también en lotes auténticos sellados."],
-      ["¿Puedo solicitar fotos del lote antes de recoger o pedir envío?", "Por supuesto. Antes de cualquier entrega personal en CDMX o envío por paquetería, podemos enviarte por WhatsApp fotografías en alta definición de la caja, el número de lote y la fecha de caducidad de tu producto para tu total tranquilidad."]
+      ["¿Un lote visible prueba que es original?", "No. Ayuda a identificar y consultar el producto, pero puede copiarse y no certifica su contenido."],
+      ["¿El color amarillo significa que funciona y el transparente que es falso?", "No se puede concluir eso por el color. No uses una regla visual de redes para decidir si una fórmula es segura o auténtica."],
+      ["¿La prueba del cloro confirma que contiene 5%?", "No. Una reacción casera no cuantifica el principio activo ni descarta contaminantes. No hagas esa mezcla."],
+      ["¿La FDA o COFEPRIS avalan esta tienda?", "Citar sus materiales de seguridad no significa que avalen al vendedor o sus productos. Cualquier registro o autorización debe comprobarse en la fuente oficial para el producto exacto."]
     ]
   }
 ];
 
-export const editorialSources = [
-  { name: "MedlinePlus: Minoxidil tópico", url: "https://medlineplus.gov/spanish/druginfo/meds/a689003-es.html" },
-  { name: "FDA: etiqueta de minoxidil tópico 5%", url: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2015/020834Orig1s014lbl.pdf" },
-  { name: "FDA: etiqueta de espuma de minoxidil 5%", url: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/021812Orig1s016lbl.pdf" }
-];
+// Tuplas por tema: este es el formato que consume guidePage en build.mjs.
+const medline = ["MedlinePlus: minoxidil tópico (información para pacientes)", "https://medlineplus.gov/spanish/druginfo/meds/a689003-es.html"];
+const aad = ["Academia Estadounidense de Dermatología: diagnóstico y tratamiento de la caída", "https://www.aad.org/public/diseases/hair-loss/treatment/diagnosis-treat"];
+const fdaSolution = ["DailyMed: etiqueta Kirkland minoxidil solución al 5% para hombres (Estados Unidos)", "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ec4b79fd-f68b-4f8d-a173-983835bc82eb"];
+const fdaFoam = ["DailyMed: etiqueta Kirkland minoxidil espuma al 5% para hombres (Estados Unidos)", "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=90137bb7-f0e3-4c3c-9cfb-d4d5eed13a9c"];
+const counterfeit = ["FDA: medicamentos falsificados y señales de alerta", "https://www.fda.gov/drugs/buying-using-medicine-safely/counterfeit-medicine"];
+const cofepris = ["COFEPRIS: portal oficial y canales de denuncia", "https://www.gob.mx/cofepris"];
+export const editorialSources = {
+  fundamentos: [medline, aad, fdaSolution],
+  aplicacion: [medline, fdaSolution, fdaFoam],
+  seguridad: [medline, fdaSolution],
+  resultados: [medline, aad],
+  barba: [medline, fdaSolution, fdaFoam],
+  mujeres: [medline, aad],
+  comparativa: [medline, fdaSolution, fdaFoam],
+  compra: [counterfeit, cofepris],
+  diagnostico: [aad, medline],
+  autenticidad: [counterfeit, cofepris]
+};

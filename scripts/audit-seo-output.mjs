@@ -8,7 +8,7 @@ const vercel = JSON.parse(await readFile(path.join(dist, "vercel.json"), "utf8")
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
 const issues = [];
 const counts = { urls: urls.length, jsonLd: 0, noindexInSitemap: 0, redirectedInSitemap: 0, wrongCanonicalHost: 0, h1: 0, metadata: 0 };
-const redirectSources = new Set((vercel.redirects || []).map((rule) => rule.source));
+const redirectSources = new Set((vercel.redirects || []).filter(rule => !rule.has?.some(condition => condition.type === "host")).map((rule) => rule.source));
 
 const text = (html, regex) => html.match(regex)?.[1]?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() || "";
 

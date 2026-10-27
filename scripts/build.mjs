@@ -1,13 +1,15 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { readdirSync, existsSync } from "node:fs";
 import path from "node:path";
+import { designCss } from "./design-system.mjs";
 import { editorialGuides, editorialSources } from "../content/editorial-guides.mjs";
 
 const ROOT = process.cwd();
 const DATA_FILE = path.join(ROOT, "content", "site-data.json");
 const DIST = path.join(ROOT, "dist");
 const SITE_URL = "https://www.minoxidilencdmx.com";
-const SITE_RELEASE_DATE = "2026-09-18";
+const SITE_RELEASE_DATE = "2026-10-27";
+const SITE_RELEASE = "cdmx-20261027-01";
 const CATEGORY_REDIRECTS = new Map([
   ["/categoria-producto/kits-2/", "/categoria-producto/barba-y-bigote/kits/"]
 ]);
@@ -289,6 +291,7 @@ function legacyRedirects(data) {
     if (item.oldUrl) addRedirect(pathFromUrl(item.oldUrl), item.path, "imported oldUrl");
   }
 
+  addRedirect("/no-sabes-como-aplicarte-el-minoxidil-checa-aqui-las-instrucciones-en-video/", "/guias/como-aplicar-minoxidil/", "historical route confirmed in Search Console");
   addRedirect("/producto/", "/shop/", "woocommerce base product archive");
   addRedirect("/producto", "/shop/", "woocommerce base product archive");
   addRedirect("/%e2%9c%85como-identificar-minoxidil-kirkland-original-vs-pirata-una-guia-facil/", "/guias/minoxidil-kirkland-original-vs-clon/", "cleaned emoji post slug");
@@ -361,7 +364,8 @@ function legacyRedirects(data) {
     "/mi-cuenta/": "/contact/",
     "/sucursal/": "/sucursales-y-entregas/",
     "/aviso-de-privacidad/": "/politicas-de-privacidad/",
-    "/mayoreo/": "/distribuye-mayoreo/"
+    "/mayoreo/": "/contact/",
+    "/distribuye-mayoreo/": "/contact/"
   };
   for (const [from, to] of Object.entries(aliases)) {
     addRedirect(from, to, "alias");
@@ -430,7 +434,7 @@ function layout(data, page) {
   const pageTitle = page.seoTitle || page.title || data.siteTitle;
   const alreadyBranded = normalizeText(pageTitle).includes("minoxidil en cdmx");
   const titleCandidate = page.path === "/"
-    ? "Minoxidil en CDMX | Kirkland Original, Sucursal Plaza Guelatao y Entregas"
+    ? "Minoxidil en CDMX | Catálogo y tienda en Plaza Guelatao"
     : pageTitle.length > 45 || alreadyBranded ? pageTitle : `${pageTitle} | Minoxidil en CDMX`;
   const title = metaText(titleCandidate, 70);
   const description = metaText(page.description || data.description);
@@ -443,6 +447,7 @@ function layout(data, page) {
 <html lang="es-MX">
 <head>
   <meta charset="utf-8">
+  <meta name="site-release" content="${SITE_RELEASE}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}">
@@ -461,8 +466,8 @@ function layout(data, page) {
   <meta name="twitter:title" content="${escapeHtml(title)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${SITE_URL}${escapeHtml(socialImage)}">
-  <link rel="preconnect" href="https://api.whatsapp.com">
-  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="stylesheet" href="/assets/site.css?v=${SITE_RELEASE}">
   <script type="application/ld+json">${JSON.stringify(structuredData(data, page))}</script>
 </head>
 <body class="${page.bodyClass || ""}">
@@ -471,13 +476,13 @@ function layout(data, page) {
     <div class="container top-announcement-inner">
       <span>📍 <strong>Sucursal CDMX:</strong> Plaza Guelatao Local 76 (Metro Guelatao Línea A)</span>
       <span>💬 <strong>WhatsApp:</strong> 55 6938 0408</span>
-      <span>🕒 <strong>Horario:</strong> Mar a Dom 12:00 PM – 5:00 PM</span>
+      <span>🕒 <strong>Horario:</strong> Martes a sábado · confirma tu visita</span>
     </div>
   </div>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="/" aria-label="Minoxidil México - Inicio">
-        <img src="/assets/images/minoxidil-mexico.jpg" alt="Minoxidil México" class="brand-logo-img" width="220" height="44">
+      <a class="brand" href="/" aria-label="Minoxidil en CDMX - Inicio">
+        <span class="mc-wordmark">MINOXIDIL<span>EN CDMX</span></span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
         <span class="menu-icon"></span>
@@ -486,7 +491,7 @@ function layout(data, page) {
         <a href="/">Inicio</a>
         <a href="/shop/">Tienda</a>
         <a href="/sucursales-y-entregas/">Sucursales y Entregas</a>
-        <a href="/guias/minoxidil-kirkland-original-vs-clon/">Original vs Clon</a>
+        <a href="/guias/minoxidil-kirkland-original-vs-clon/">Compra informada</a>
         <a href="/blog/">Guías</a>
         <a href="/contact/">Contacto</a>
         <a class="nav-btn" href="${whatsappLink(data)}">💬 WhatsApp: 55 6938 0408</a>
@@ -497,32 +502,32 @@ function layout(data, page) {
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col brand-col">
-        <a href="/" class="footer-brand-logo" aria-label="Minoxidil México - Inicio">
-          <img src="/assets/images/minoxidil-mexico.jpg" alt="Minoxidil México" class="footer-logo-img" width="200" height="40">
+        <a href="/" class="footer-brand-logo" aria-label="Minoxidil en CDMX - Inicio">
+          <span class="mc-wordmark">MINOXIDIL<span>EN CDMX</span></span>
         </a>
-        <p>Especialistas en tratamientos para crecimiento de barba y detención de caída del cabello. Distribución de Minoxidil Kirkland 100% original en Ciudad de México y envíos express a toda la República Mexicana.</p>
+        <p>Catálogo de minoxidil y cuidado de barba y cabello. Atención en Plaza Guelatao, CDMX; consulta disponibilidad, etiqueta y condiciones de compra antes de pedir.</p>
         <div class="footer-guarantee">
-          <span>🛡️ Garantía de Originalidad · Lote y Caducidad Comprobables</span>
+          <span>Información del producto · Atención directa en tienda</span>
         </div>
       </div>
       <div class="footer-col">
         <h3>Sucursal en CDMX</h3>
-        <p><strong>Plaza Guelatao:</strong> Local 76, Pasillo 5.<br>Calz. Ignacio Zaragoza 406, Juan Escutia, Iztapalapa, CDMX (Metro Guelatao Línea A).</p>
-        <p><strong>Horario:</strong> Martes a Domingo de 12:00 PM a 5:00 PM.</p>
-        <p><strong>Entregas:</strong> Puntos acordados en CDMX y Nezahualcóyotl.</p>
+        <p><strong>Plaza Guelatao:</strong> Local 76, Pasillo 5.<br>Av. Ignacio Zaragoza, Juan Escutia, Iztapalapa, CDMX (Metro Guelatao Línea A).</p>
+        <p><strong>Horario:</strong> Martes a sábado. Confirma el horario de tu visita por WhatsApp.</p>
+        <p><strong>Entregas:</strong> Bajo cita, en puntos acordados de CDMX y Nezahualcóyotl.</p>
       </div>
       <div class="footer-col">
         <h3>Contacto Directo</h3>
         <p><strong>WhatsApp:</strong> <a href="${whatsappLink(data)}">55 6938 0408</a></p>
         <p><strong>Email:</strong> <a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></p>
-        <p><strong>Envíos:</strong> Paquetería express 24-48 hrs a todo México.</p>
+        <p><strong>Envíos:</strong> Consulta cobertura, costo y plazo para tu código postal.</p>
       </div>
       <div class="footer-col">
         <h3>Información y Guías</h3>
         <ul class="footer-links">
           <li><a href="/shop/">Catálogo de Productos</a></li>
           <li><a href="/sucursales-y-entregas/">Sucursales y Entregas Personales</a></li>
-          <li><a href="/guias/minoxidil-kirkland-original-vs-clon/">Kirkland Original vs Clon</a></li>
+          <li><a href="/guias/minoxidil-kirkland-original-vs-clon/">Kirkland Compra informada</a></li>
           <li><a href="/blog/">Guías y Consejos de Uso</a></li>
           <li><a href="/envios-a-todo-mexico/">Envíos a Todo México</a></li>
           <li><a href="/terminos-y-condiciones/">Términos y Condiciones</a></li>
@@ -542,7 +547,7 @@ function layout(data, page) {
     <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.04 3C8.86 3 3 8.77 3 15.86c0 2.27.62 4.49 1.78 6.43L3.1 29l6.88-1.77a13.1 13.1 0 0 0 6.06 1.48C23.23 28.71 29 22.95 29 15.86S23.23 3 16.04 3Zm0 23.47c-1.91 0-3.77-.51-5.4-1.48l-.39-.23-4.08 1.05 1.08-3.96-.26-.41a10.54 10.54 0 0 1-1.62-5.58c0-5.86 4.79-10.62 10.67-10.62 5.87 0 10.64 4.76 10.64 10.62 0 5.85-4.77 10.61-10.64 10.61Zm5.84-7.94c-.32-.16-1.88-.92-2.17-1.03-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.23-.69.08-.32-.16-1.35-.49-2.57-1.58-.95-.84-1.59-1.88-1.78-2.2-.18-.31-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.31.32-.52.11-.21.05-.39-.03-.55-.08-.16-.71-1.7-.97-2.32-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.11 1.08-1.11 2.64s1.14 3.07 1.3 3.28c.16.21 2.25 3.41 5.45 4.78.76.33 1.35.52 1.81.67.76.24 1.46.21 2.01.13.61-.09 1.88-.76 2.14-1.5.26-.73.26-1.36.18-1.5-.08-.13-.29-.21-.61-.37Z"/></svg>
     <span class="wa-float-text">¿Dudas? Escríbenos</span>
   </a>
-  <script src="/assets/site.js" defer></script>
+  <script src="/assets/site.js?v=${SITE_RELEASE}" defer></script>
 </body>
 </html>`;
 }
@@ -576,29 +581,16 @@ function organizationSchema(data) {
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Plaza Guelatao Local 76 Pasillo 5, Calz. Ignacio Zaragoza 406",
+      streetAddress: "Plaza Guelatao Local 76, Pasillo 5, Av. Ignacio Zaragoza",
       addressLocality: "Iztapalapa",
       addressRegion: "Ciudad de México",
       postalCode: "09100",
       addressCountry: "MX"
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 19.3891,
-      longitude: -99.0435
-    },
     areaServed: [
       { "@type": "City", name: "Ciudad de México" },
       { "@type": "State", name: "Estado de México" },
       { "@type": "Country", name: "México" }
-    ],
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        opens: "12:00",
-        closes: "17:00"
-      }
     ],
     sameAs: [
       data.social.facebook,
@@ -633,7 +625,7 @@ function breadcrumbSchema(items) {
 }
 
 function productSchema(product, data) {
-  const numericPrice = parseFloat(String(product.price || "").replace(/[^0-9.]/g, "")) || 300;
+  const numericPrice = parseFloat(String(product.price || "").replace(/[^0-9.]/g, ""));
   return {
     "@type": "Product",
     "@id": `${SITE_URL}${product.path}#product`,
@@ -650,8 +642,6 @@ function productSchema(product, data) {
       url: `${SITE_URL}${product.path}`,
       priceCurrency: "MXN",
       price: numericPrice,
-      priceValidUntil: "2027-12-31",
-      availability: "https://schema.org/InStock",
       seller: { "@id": `${SITE_URL}/#localbusiness` }
     }
   };
@@ -662,8 +652,8 @@ function articleSchema(post, data) {
     "@type": "Article",
     headline: post.title,
     description: post.excerpt || post.description || post.summary,
-    datePublished: isoDate(post.date),
-    dateModified: isoDate(post.modified || post.date),
+    ...(post.datePublished || post.date ? {datePublished: isoDate(post.datePublished || post.date)} : {}),
+    ...(post.dateModified || post.modified || post.date ? {dateModified: isoDate(post.dateModified || post.modified || post.date)} : {}),
     author: {
       "@type": "Organization",
       name: "Equipo Minoxidil en CDMX",
@@ -737,9 +727,9 @@ function sitemapMeta(data) {
 
 function productCard(product, data) {
   const image = productImage(product, data);
-  const categoryNames = product.categories.map((c) => c.name).slice(0, 2).join(", ");
+  const categoryNames = /kirkland/i.test(product.name) ? (/foam|espuma/i.test(product.name) ? "Minoxidil en espuma" : "Minoxidil líquido") : "Cuidado y accesorios";
   const isKirkland = /kirkland/i.test(product.name);
-  const badgeText = isKirkland ? "Kirkland Original" : "Disponible";
+  const badgeText = isKirkland ? "Kirkland Signature" : "Consulta disponibilidad";
 
   return `
     <article class="product-card" data-category="${product.categories.map((c) => c.slug).join(" ")}">
@@ -788,418 +778,39 @@ function productsForCategory(category, data) {
 }
 
 function homePage(data) {
-  const heroImg = "/assets/images/diseno-sin-titulo-2.jpg";
-  const featured = data.products.slice(0, 8);
-
+  const featured = [5483,5571,5572,8876].map(id=>data.products.find(p=>p.id===id)).filter(Boolean);
+  const faqs = [
+    ["¿Dónde está la tienda?", "En Plaza Guelatao, Local 76, Pasillo 5, en Ciudad de México, cerca de Metro Guelatao. Atendemos de martes a sábado; confirma el horario de tu visita por WhatsApp."],
+    ["¿Puedo recoger mi pedido?", "Sí. Consulta primero existencia y precio vigente, y acuerda tu visita o entrega bajo cita. No salgas hacia un punto de entrega sin confirmación."],
+    ["¿Cómo se confirma una compra?", "Este sitio es un catálogo, no cobra ni solicita datos bancarios. Por WhatsApp te confirmamos presentación, importe total, forma de pago y entrega antes de realizar tu pedido. No hay pago contra entrega."],
+    ["¿Qué debo revisar antes de usar minoxidil?", "La etiqueta de la presentación y la indicación de tu profesional de salud. El uso en barba está fuera de la indicación habitual para el cuero cabelludo; no podemos garantizar resultados ni recomendar una dosis personal por este sitio."]
+  ];
   const body = `
-    <!-- Split Hero Section -->
-    <section class="hero-section">
-      <div class="container hero-grid">
-        <div class="hero-content-col">
-          <div class="hero-eyebrow">
-            <span>📍</span> TIENDA FÍSICA EN CDMX · PLAZA GUELATAO LOCAL 76 · ENVÍOS A TODO MÉXICO
-          </div>
-          <h1 class="hero-headline">
-            Minoxidil Kirkland Original en CDMX | Venta en Sucursal y Entregas Personales
-          </h1>
-          <p class="hero-subtitle">
-            El tratamiento comprobado para crecimiento de barba y detención de caída del cabello. Compra con total seguridad y confianza: producto 100% original con lote y caducidad verificables, atención directa en tienda física en Plaza Guelatao y entregas el mismo día en CDMX o envíos express a todo el país.
-          </p>
-          <div class="hero-ctas">
-            <a class="btn btn-primary btn-large" href="${whatsappLink(data, "Quiero comprar Minoxidil Kirkland en CDMX")}">
-              💬 Pedir por WhatsApp (Atención Inmediata)
-            </a>
-            <a class="btn btn-dark btn-large" href="/shop/">
-              🏷️ Ver Catálogo y Precios
-            </a>
-          </div>
-          <ul class="hero-trust-list">
-            <li><span class="hero-trust-check">✓</span> Kirkland 100% Original con lote láser visible</li>
-            <li><span class="hero-trust-check">✓</span> Sucursal física en Plaza Guelatao Local 76</li>
-            <li><span class="hero-trust-check">✓</span> Entregas personales en estaciones del Metro CDMX</li>
-            <li><span class="hero-trust-check">✓</span> Asesoría honesta sin promesas milagro ni letras chiquitas</li>
-          </ul>
-        </div>
-
-        <div class="hero-visual-col">
-          <div class="hero-card-frame">
-            <img src="${heroImg}" alt="Mostrador con Minoxidil Kirkland original en sucursal física CDMX" class="hero-card-img" width="800" height="600">
-            <div class="hero-card-content">
-              <span class="hero-card-badge">✓ FOTO REAL EN SUCURSAL CDMX</span>
-              <h2 class="hero-card-title">Plaza Guelatao Local 76 (Metro Guelatao)</h2>
-              <p class="hero-card-desc">Revisa los empaques, sellos de fábrica y fechas de caducidad físicamente en mano antes de pagar en tienda.</p>
-              <a class="hero-card-link" href="#sucursales">Ver horarios y cómo llegar a la tienda →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4 Intent Funnel Tiles -->
-    <section class="section section-intents">
-      <div class="container">
-        <div class="intent-grid">
-          <a class="intent-card" href="/guias/minoxidil-para-barba/">
-            <div class="intent-icon">🧔</div>
-            <h3>Crecimiento de Barba</h3>
-            <p>Pasa de vello delgado a barba tupida y cerrada. Conoce la rutina de aplicación y tiempos de maduración.</p>
-            <span class="intent-action">Ver guía de barba →</span>
-          </a>
-
-          <a class="intent-card" href="/guias/minoxidil-topico/">
-            <div class="intent-icon">💇‍♂️</div>
-            <h3>Frenar Caída Capilar</h3>
-            <p>Minoxidil tópico al 5% para frenar alopecia en entradas y coronilla en hombres y mujeres.</p>
-            <span class="intent-action">Ver guía de cabello →</span>
-          </a>
-
-          <a class="intent-card" href="/sucursales-y-entregas/">
-            <div class="intent-icon">🏬</div>
-            <h3>Sucursal Plaza Guelatao</h3>
-            <p>Visítanos en Iztapalapa a unos pasos de Metro Guelatao (Línea A). Paga en efectivo o transferencia.</p>
-            <span class="intent-action">Ver cómo llegar →</span>
-          </a>
-
-          <a class="intent-card" href="/guias/minoxidil-kirkland-original-vs-clon/">
-            <div class="intent-icon">🔍</div>
-            <h3>Original vs Pirata</h3>
-            <p>Aprende los 4 puntos clave para reconocer producto auténtico y evitar imitaciones en CDMX.</p>
-            <span class="intent-action">Revisar checklist →</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Guía de Originalidad con Foto de Tienda -->
-    <section class="section section-originality">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag">SEGURIDAD Y CONFIANZA</span>
-          <h2>Cómo Identificar Minoxidil Kirkland Original vs Pirata</h2>
-          <p>En Ciudad de México circulan muchas copias y clones diluidos. Revisa estos 4 puntos antes de comprar para garantizar tu salud y resultados:</p>
-        </div>
-
-        <div class="authenticity-layout">
-          <div class="auth-image-col">
-            <div class="auth-image-box">
-              <img src="/assets/images/diseno-sin-titulo-1.jpg" alt="Cajas de Minoxidil Kirkland y terminal Clip en mostrador de tienda física" loading="lazy" width="790" height="1000">
-              <div class="auth-caption">
-                <strong>Mostrador en Plaza Guelatao Local 76:</strong> Inventario sellado de fábrica con lote visible a la vista de todo cliente.
-              </div>
-            </div>
-          </div>
-
-          <div class="auth-points-col">
-            <div class="auth-points-list">
-              <div class="auth-point">
-                <div class="auth-point-num">1</div>
-                <div>
-                  <h3>Código de Lote y Caducidad en Láser</h3>
-                  <p>La base de la caja sellada y cada uno de los 6 frascos tienen impreso en tinta láser indeleble el mismo número de lote y fecha de vencimiento. Desconfía si están borrados, despintados o desfasados.</p>
-                </div>
-              </div>
-
-              <div class="auth-point">
-                <div class="auth-point-num">2</div>
-                <div>
-                  <h3>Gotero Original Graduado</h3>
-                  <p>El aplicador de Kirkland Signature incluye rosca de seguridad para niños (push down & turn) y una marca exacta de 1.0 ml. Las copias suelen incluir goteros genéricos sin graduación precisa.</p>
-                </div>
-              </div>
-
-              <div class="auth-point">
-                <div class="auth-point-num">3</div>
-                <div>
-                  <h3>Color Ámbar y Aroma Característico</h3>
-                  <p>La fórmula líquida original al 5% tiene una tonalidad ligeramente ámbar con olor característico alcohólico y propilenglicol, cristalizando al secar en la piel. Nunca debe oler a perfume ni tener consistencia jabonosa.</p>
-                </div>
-              </div>
-
-              <div class="auth-point">
-                <div class="auth-point-num">4</div>
-                <div>
-                  <h3>Revisión Física en Tienda</h3>
-                  <p>En nuestra sucursal de Plaza Guelatao (Iztapalapa, CDMX) puedes revisar los empaques, sellos y números de serie en persona antes de pagar. Te damos total transparencia.</p>
-                </div>
-              </div>
-            </div>
-
-            <div style="margin-top: 1.75rem;">
-              <a class="btn btn-gold" href="/guias/minoxidil-kirkland-original-vs-clon/">
-                Leer Guía Completa de Original vs Clon →
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Fases y Tiempos de Crecimiento con Foto Real -->
-    <section class="section section-timeline">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag">RESULTADOS COMPROBADOS</span>
-          <h2>Fases de Crecimiento: De Vello Incipiente a Barba Cerrada</h2>
-          <p>El crecimiento no ocurre de la noche a la mañana. La constancia diaria es la única clave para pasar de vello incipiente a barba cerrada o detener la pérdida capilar con Minoxidil al 5%:</p>
-        </div>
-
-        <div class="timeline-photo-box">
-          <img src="/assets/images/antes.jpg" alt="Evolución y fases de crecimiento de barba con Minoxidil en cliente real" loading="lazy" width="1290" height="599">
-          <div class="timeline-caption">
-            Seguimiento de evolución real: fase inicial sin vello, activación folicular con vellus fino, aumento de densidad y consolidación a vello terminal grueso y maduro.
-          </div>
-        </div>
-
-        <div class="timeline-stages-grid">
-          <div class="timeline-stage-card">
-            <span class="stage-time-tag">Fase 1 · Mes 1</span>
-            <h3>Adaptación Cutánea</h3>
-            <p>El folículo capilar se estimula y absorbe el principio activo. En cabello puede presentarse shedding leve (caída natural del pelo débil para iniciar nuevo ciclo).</p>
-          </div>
-
-          <div class="timeline-stage-card">
-            <span class="stage-time-tag">Fase 2 · Meses 2 a 3</span>
-            <h3>Brote de Vellus Fino</h3>
-            <p>Aparecen los primeros pelitos delgados y claros en mejillas o zonas despobladas. Es la señal inequívoca de que los folículos dormidos han despertado.</p>
-          </div>
-
-          <div class="timeline-stage-card">
-            <span class="stage-time-tag">Fase 3 · Meses 4 a 6</span>
-            <h3>Engrosamiento y Pigmento</h3>
-            <p>El vello comienza a oscurecerse, engrosar y ganar textura. La barba toma forma definida y los huecos se van conectando de manera continua.</p>
-          </div>
-
-          <div class="timeline-stage-card">
-            <span class="stage-time-tag">Fase 4 · Meses 6 a 12</span>
-            <h3>Vello Terminal Permanente</h3>
-            <p>El folículo madura completamente a vello terminal grueso con raíz profunda. En barba, este vello se vuelve permanente incluso tras suspender el tratamiento.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Paquetes y Precios Destacados -->
-    <section class="section section-pricing">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag">PRECIOS TRANSPARENTES</span>
-          <h2>Paquetes y Tratamientos Más Vendidos</h2>
-          <p>Elige el tiempo de tratamiento adecuado según tu meta (barba o cabello). Precios en pesos mexicanos con entrega en CDMX o envío nacional:</p>
-        </div>
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <div class="pricing-badge">Prueba Inicial</div>
-            <h3>1 Mes de Minoxidil</h3>
-            <div class="pricing-price">$300 <small>MXN</small></div>
-            <p class="pricing-desc">1 Frasco Kirkland 5% Líquido (60 ml)</p>
-            <ul class="pricing-features">
-              <li>✓ Ideal para probar tolerancia en la piel</li>
-              <li>✓ Duración para 30 días de aplicación diaria</li>
-              <li>✓ Asesoría personalizada por WhatsApp</li>
-              <li>✓ Entrega en CDMX o sucursal</li>
-            </ul>
-            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 1 Mes Minoxidil Kirkland ($300)")}">Pedir 1 Mes</a>
-          </div>
-
-          <div class="pricing-card">
-            <div class="pricing-badge">Avance Notable</div>
-            <h3>3 Meses de Minoxidil</h3>
-            <div class="pricing-price">$600 <small>MXN</small></div>
-            <p class="pricing-desc">3 Frascos Kirkland 5% Líquido (180 ml)</p>
-            <ul class="pricing-features">
-              <li>✓ Fase clave para brote de vello nuevo</li>
-              <li>✓ Ahorro frente a compra individual</li>
-              <li>✓ Incluye aplicador graduado</li>
-              <li>✓ Entrega personal en CDMX</li>
-            </ul>
-            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 3 Meses Minoxidil Kirkland ($600)")}">Pedir 3 Meses</a>
-          </div>
-
-          <div class="pricing-card featured-pricing">
-            <span class="badge-popular">⭐ MÁS VENDIDO · MEJOR PRECIO</span>
-            <div class="pricing-badge">Caja Sellada Fábrica</div>
-            <h3>6 Meses Caja Completa</h3>
-            <div class="pricing-price">$1,100 <small>MXN</small></div>
-            <p class="pricing-desc">Caja Sellada Kirkland con 6 Frascos + Gotero Original</p>
-            <ul class="pricing-features">
-              <li>✓ Caja sellada de fábrica con lote láser visible</li>
-              <li>✓ Incluye gotero aplicador original Kirkland con seguro</li>
-              <li>✓ Tiempo óptimo para maduración de barba</li>
-              <li>✓ El costo mensual más económico ($183/mes)</li>
-              <li>✓ Entrega inmediata en CDMX</li>
-            </ul>
-            <a class="btn btn-gold btn-large" href="${whatsappLink(data, "Quiero pedir la Caja de 6 Meses Minoxidil Kirkland ($1,100)")}">Pedir Caja 6 Meses</a>
-          </div>
-
-          <div class="pricing-card">
-            <div class="pricing-badge">Tratamiento Definitivo</div>
-            <h3>1 Año de Tratamiento</h3>
-            <div class="pricing-price">$2,100 <small>MXN</small></div>
-            <p class="pricing-desc">2 Cajas Selladas (12 Frascos) + 2 Goteros Originales</p>
-            <ul class="pricing-features">
-              <li>✓ Ciclo definitivo para vello terminal permanente</li>
-              <li>✓ Máximo ahorro garantizado</li>
-              <li>✓ Producto sellado con caducidad amplia</li>
-              <li>✓ Envío gratis o entrega especial en CDMX</li>
-            </ul>
-            <a class="btn btn-dark" href="${whatsappLink(data, "Quiero pedir el paquete de 1 Año Minoxidil Kirkland ($2,100)")}">Pedir Tratamiento 1 Año</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Catálogo Rápido -->
-    <section class="section section-products">
-      <div class="container">
-        <div class="section-header-row">
-          <div>
-            <span class="section-tag">CATÁLOGO EN EXISTENCIA</span>
-            <h2>Productos Disponibles para Entrega Inmediata</h2>
-          </div>
-          <a class="btn btn-outline" href="/shop/">Ver toda la tienda →</a>
-        </div>
-        <div class="product-grid">
-          ${featured.map((p) => productCard(p, data)).join("")}
-        </div>
-      </div>
-    </section>
-
-    <!-- Ubicación y Entregas en CDMX -->
-    <section class="section section-location" id="sucursales">
-      <div class="container">
-        <div class="location-box">
-          <div class="location-details">
-            <span class="section-tag">VISÍTANOS EN TIENDA</span>
-            <h2>Sucursal Plaza Guelatao en CDMX</h2>
-            <p>Ven a conocer nuestra tienda física, revisa los productos en persona y llévate tu Minoxidil al instante con pago en efectivo o transferencia:</p>
-            
-            <div class="loc-item">
-              <span class="loc-icon">🏬</span>
-              <div>
-                <strong>Dirección de la Tienda:</strong>
-                <p>Plaza Guelatao, Local 76 (Pasillo 5).<br>Calz. Ignacio Zaragoza 406, Juan Escutia, Iztapalapa, 09100 Ciudad de México, CDMX.</p>
-                <p><small>Ubicada a unos pasos de la estación del <strong>Metro Guelatao (Línea A)</strong>.</small></p>
-              </div>
-            </div>
-
-            <div class="loc-item">
-              <span class="loc-icon">🕒</span>
-              <div>
-                <strong>Horario de Atención:</strong>
-                <p>Martes a Domingo: 12:00 PM a 5:00 PM.</p>
-              </div>
-            </div>
-
-            <div class="loc-item">
-              <span class="loc-icon">📦</span>
-              <div>
-                <strong>Entregas Personales y Envíos:</strong>
-                <p>¿No puedes pasar a la plaza? Coordinamos entregas personales en estaciones del Metro acordadas en CDMX y Nezahualcóyotl, o envío express a cualquier código postal de México.</p>
-              </div>
-            </div>
-
-            <div class="loc-actions">
-              <a class="btn btn-primary" href="${whatsappLink(data, "Quiero visitar la sucursal de Plaza Guelatao o acordar una entrega personal en CDMX")}">
-                💬 Coordinar Visita por WhatsApp
-              </a>
-              <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Calzada+Ignacio+Zaragoza+406+Juan+Escutia+Iztapalapa" target="_blank" rel="noreferrer">
-                Ver en Google Maps
-              </a>
-            </div>
-          </div>
-
-          <div class="location-map">
-            <iframe 
-              title="Ubicación Tienda Minoxidil en CDMX Plaza Guelatao"
-              src="https://www.google.com/maps?q=Calzada%20Ignacio%20Zaragoza%20406%20Juan%20Escutia%20Iztapalapa%2009100%20Ciudad%20de%20Mexico&output=embed" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Guías y Asesoría -->
-    <section class="section section-guides">
-      <div class="container">
-        <div class="section-header-row">
-          <div>
-            <span class="section-tag">GUÍAS Y CONSEJOS DE USO</span>
-            <h2>Aprende a Usar Minoxidil Correctamente</h2>
-          </div>
-          <a class="btn btn-outline" href="/blog/">Ver todas las guías →</a>
-        </div>
-        <div class="guides-preview-grid">
-          ${editorialGuides.slice(0, 3).map((guide) => `
-            <article class="guide-preview-card">
-              <a href="${guide.path}">
-                <img src="${guide.image}" alt="${escapeHtml(guide.title)}" loading="lazy">
-              </a>
-              <div class="guide-preview-content">
-                <span class="guide-badge">${escapeHtml(guide.topic)}</span>
-                <h3><a href="${guide.path}">${escapeHtml(guide.title)}</a></h3>
-                <p>${escapeHtml(guide.description)}</p>
-                <a class="read-more" href="${guide.path}">Leer guía completa →</a>
-              </div>
-            </article>
-          `).join("")}
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section section-faq">
-      <div class="container faq-container">
-        <div class="section-header text-center">
-          <span class="section-tag">DUDAS HABITUALES</span>
-          <h2>Preguntas Frecuentes sobre Minoxidil en CDMX</h2>
-        </div>
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary>¿Puedo pasar a recoger hoy mismo a la sucursal de Plaza Guelatao?</summary>
-            <p>Sí, abrimos de martes a domingo de 12:00 PM a 5:00 PM. Te sugerimos mandar un mensaje breve por WhatsApp antes de salir para apartar tu producto y confirmar existencia inmediata.</p>
-          </details>
-          <details class="faq-item">
-            <summary>¿Cómo sé que el Minoxidil Kirkland que venden es 100% original?</summary>
-            <p>Todos nuestros lotes son importados directamente y cuentan con fecha de caducidad amplia estampada con láser tanto en la caja como en cada frasco. Puedes revisar físicamente los sellos y el gotero graduado original antes de realizar tu pago.</p>
-          </details>
-          <details class="faq-item">
-            <summary>¿Hacen entregas en estaciones del Metro en CDMX?</summary>
-            <p>Sí, coordinamos entregas personales en puntos acordados de la red del Metro de la Ciudad de México y zonas intermedias de Nezahualcóyotl. Escríbenos para agendar hora y estación.</p>
-          </details>
-          <details class="faq-item">
-            <summary>¿Cuáles son las formas de pago disponibles?</summary>
-            <p>En sucursal física aceptamos efectivo y transferencia bancaria inmediata. Para entregas personales y envíos nacionales puedes pagar por transferencia bancaria (BBVA, Banamex, etc.) o depósito en OXXO.</p>
-          </details>
-          <details class="faq-item">
-            <summary>¿En cuánto tiempo se ven los primeros resultados en barba o cabello?</summary>
-            <p>Por lo general, los primeros vellos delgados (vellus) comienzan a observarse entre el segundo y tercer mes de uso diario constante (1 ml dos veces al día). La maduración a vello terminal permanente se alcanza entre los 6 y 12 meses de tratamiento continuo.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Banner Final CTA -->
-    <section class="final-cta-section">
-      <div class="container final-cta-box">
-        <h2>¿Listo para comenzar tu tratamiento con Minoxidil Original?</h2>
-        <p>Escríbenos por WhatsApp. Te asesoramos sin compromiso sobre qué producto te conviene, disponibilidad en tienda y formas de entrega.</p>
-        <a class="btn btn-gold btn-large" href="${whatsappLink(data, "Hola, quiero comenzar mi tratamiento y comprar Minoxidil Kirkland en CDMX")}">
-          💬 Iniciar Conversación por WhatsApp
-        </a>
-      </div>
-    </section>
-  `;
-
-  return layout(data, {
-    title: "Minoxidil en CDMX | Kirkland Original, Sucursal Plaza Guelatao y Entregas",
-    path: "/",
-    description: "Venta de Minoxidil Kirkland 100% Original en Ciudad de México. Tienda física en Plaza Guelatao Local 76, entregas personales en Metro CDMX y envíos express a todo México. Asesoría por WhatsApp.",
-    image: heroImg,
-    bodyClass: "home-page",
-    body
-  });
+  <section class="mc-hero"><div class="container mc-hero-grid">
+    <div class="mc-hero-copy"><span class="mc-eyebrow">PLAZA GUELATAO · CIUDAD DE MÉXICO</span>
+      <h1>Minoxidil en CDMX.<br><em>Compra con información.</em></h1>
+      <p>Explora minoxidil Kirkland y productos para el cuidado de barba y cabello. Consulta la presentación que buscas y acuerda tu visita a nuestra tienda.</p>
+      <div class="hero-ctas"><a class="btn btn-primary" href="/shop/">Explorar catálogo <span aria-hidden="true">↗</span></a><a class="btn btn-dark" href="${whatsappLink(data,'Quiero consultar una presentación y agendar mi visita a Plaza Guelatao')}">Consultar por WhatsApp</a></div>
+      <div class="mc-proof"><span>Tienda física · Local 76, Pasillo 5</span><span>Martes a sábado · Entregas bajo cita</span></div>
+    </div>
+    <div class="mc-hero-media"><span class="mc-eyebrow">CONOCE LAS PRESENTACIONES</span><a href="/producto/minoxidil-6-meses-kirkland-liquido-5-2/"><img class="mc-hero-product" src="/assets/images/6-meses.jpg" width="600" height="600" alt="Presentación de minoxidil Kirkland líquido del catálogo" loading="eager" fetchpriority="high"></a><p>Presentación, etiqueta y disponibilidad.<br><strong>Antes de comprar, confirma los detalles.</strong></p></div>
+  </div></section>
+  <section class="section"><div class="container">
+    <div class="mc-section-head"><div><span class="mc-eyebrow">ENCUENTRA LO QUE BUSCAS</span><h2>Un catálogo, varias opciones.</h2></div><p>Compara formatos y conoce qué estás comprando, sin promesas de resultados.</p></div>
+    <div class="mc-category-grid">
+      <a class="mc-category" href="/categoria-producto/marcas/kirkland/"><span>01 / MINOXIDIL</span><h3>Kirkland</h3><p>Líquido, espuma y presentaciones del catálogo.</p><span>Ver productos ↗</span></a>
+      <a class="mc-category" href="/categoria-producto/barba-y-bigote/"><span>02 / CUIDADO DIARIO</span><h3>Barba y bigote</h3><p>Aceites, bálsamos, ceras y accesorios.</p><span>Explorar cuidado ↗</span></a>
+      <a class="mc-category" href="/blog/"><span>03 / ANTES DE EMPEZAR</span><h3>Guías para decidir</h3><p>Uso responsable, precauciones y preguntas frecuentes.</p><span>Leer las guías ↗</span></a>
+    </div>
+  </div></section>
+  <section class="section section-products"><div class="container"><div class="mc-section-head"><div><span class="mc-eyebrow">CATÁLOGO DE LA TIENDA</span><h2>Presentaciones de minoxidil.</h2></div><a class="btn btn-outline" href="/shop/">Ver todo el catálogo ↗</a></div>
+    <div class="product-grid">${featured.map(p=>productCard(p,data)).join('')}</div>
+    <p class="mc-mini-note">Los precios del catálogo deben confirmarse antes del pago. La disponibilidad y el costo de envío se acuerdan por WhatsApp; no hay pago contra entrega.</p>
+  </div></section>
+  <section class="section mc-visit" id="sucursales"><div class="container mc-visit-grid"><div><span class="mc-eyebrow">CERCA DE METRO GUELATAO</span><h2>Nos vemos en<br>Plaza Guelatao.</h2><p>Local 76 · Pasillo 5<br>Colonia Juan Escutia, Ciudad de México.</p><p>Atención de martes a sábado. Confirma tu visita para revisar existencia y recibir indicaciones de llegada.</p><a class="btn btn-primary" href="/sucursales-y-entregas/">Cómo llegar a la tienda ↗</a></div><div class="sidebar-box"><h3>Tu compra, paso a paso.</h3><ol><li>Elige una presentación del catálogo.</li><li>Confirma precio vigente y disponibilidad por WhatsApp.</li><li>Acuerda recogida, entrega bajo cita o envío.</li></ol><a class="btn btn-dark" href="${whatsappLink(data,'Quiero confirmar una visita al Local 76, Pasillo 5 de Plaza Guelatao')}">Agendar una visita</a><p class="mc-mini-note">Para envíos, comparte tu código postal y consulta costo y plazo antes de pagar.</p></div></div></section>
+  <section class="section"><div class="container"><div class="mc-section-head"><div><span class="mc-eyebrow">INFORMACIÓN SIN MITOS</span><h2>Lee primero. Decide mejor.</h2></div><a class="btn btn-outline" href="/blog/">Todas las guías ↗</a></div><div class="blog-grid">${editorialGuides.filter(g=>['autenticidad','aplicacion','seguridad'].includes(g.topic)).map(g=>guideCard(g,data)).join('')}</div></div></section>
+  <section class="section section-faq"><div class="container faq-container"><span class="mc-eyebrow">ANTES DE TU VISITA</span><h2>Lo que conviene saber.</h2><div class="faq-list">${faqs.map(([q,a])=>`<details class="faq-item"><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></div></section>`;
+  return layout(data,{title:'Minoxidil en CDMX | Catálogo y tienda en Plaza Guelatao',path:'/',description:'Consulta minoxidil Kirkland y cuidado de barba y cabello en CDMX. Tienda en Plaza Guelatao, Local 76, Pasillo 5. Atención por WhatsApp y entregas bajo cita.',bodyClass:'home-page',body});
 }
 
 function shopPage(data) {
@@ -1261,7 +872,7 @@ function categoryPage(category, data) {
       <div class="container">
         <span class="eyebrow-tag">CATEGORÍA</span>
         <h1>${escapeHtml(category.name)}</h1>
-        <p>Explora nuestras opciones disponibles de ${escapeHtml(category.name.toLowerCase())} con entrega inmediata en CDMX y envíos a todo México.</p>
+        <p>Explora nuestras opciones disponibles de ${escapeHtml(category.name.toLowerCase())} para recoger bajo cita en CDMX o consultar envío a tu código postal.</p>
       </div>
     </section>
     <section class="section shop-section">
@@ -1321,11 +932,11 @@ function productPage(product, data) {
           <div class="breadcrumb-trail">
             <a href="/">Inicio</a> / <a href="/shop/">Tienda</a> / <span>${escapeHtml(product.categories[0]?.name || "Producto")}</span>
           </div>
-          <span class="badge ${isKirkland ? "badge-kirkland" : "badge-neutral"}">${isKirkland ? "Kirkland Signature 100% Original" : "Producto Disponible"}</span>
+          <span class="badge ${isKirkland ? "badge-kirkland" : "badge-neutral"}">${isKirkland ? "Kirkland Signature" : "Catálogo"}</span>
           <h1 class="detail-title">${escapeHtml(product.name)}</h1>
           <div class="detail-price-box">
             <span class="detail-price">${escapeHtml(product.price || product.priceHtml || "Consultar precio")}</span>
-            <span class="stock-status">✓ En existencia para entrega hoy en CDMX</span>
+            <span class="stock-status">Confirma precio vigente y disponibilidad antes de pagar</span>
           </div>
           <div class="detail-highlights">
             <p>${escapeHtml(product.excerpt || "")}</p>
@@ -1335,9 +946,9 @@ function productPage(product, data) {
               💬 Pedir por WhatsApp: 55 6938 0408
             </a>
             <div class="secure-buy-info">
-              <span>🛡️ Producto garantizado con lote visible</span>
+              <span>Consulta etiqueta, lote y caducidad</span>
               <span>📍 Recoge en Plaza Guelatao Local 76</span>
-              <span>🚚 Envíos rápidos a todo México</span>
+              <span>Envíos: consulta cobertura y costo</span>
             </div>
           </div>
         </div>
@@ -1355,7 +966,7 @@ function productPage(product, data) {
           <div class="cdmx-badge">📍 Tienda Física en CDMX</div>
           <h3>¿Cómo comprar este producto en Ciudad de México?</h3>
           <p>
-            Puedes pasar directamente a nuestra sucursal ubicada en <strong>Plaza Guelatao Local 76 (Pasillo 5, Iztapalapa, Metro Guelatao Línea A)</strong> en un horario de martes a domingo de 12:00 PM a 5:00 PM, o acordar entrega personal en puntos de CDMX.
+            Puedes pasar directamente a nuestra sucursal ubicada en <strong>Plaza Guelatao Local 76 (Pasillo 5, Iztapalapa, Metro Guelatao Línea A)</strong> en un horario de martes a sábado, confirmando tu visita por WhatsApp, o acordar entrega personal en puntos de CDMX.
           </p>
           <a class="btn btn-primary" href="${whatsappLink(data, product.name)}">
             Confirmar existencia y entrega por WhatsApp
@@ -1560,7 +1171,7 @@ function articlePage(post, data) {
           <div class="sidebar-box sticky-sidebar">
             <h3>Comprar Minoxidil en CDMX</h3>
             <p>Producto 100% Kirkland Original con entrega en sucursal o envío a domicilio.</p>
-            
+
             <div class="sidebar-products-list">
               ${relatedProducts.map((prod) => `
                 <a class="sidebar-prod-item" href="${prod.path}">
@@ -1633,9 +1244,11 @@ function guidePage(guide, data) {
             </figure>
           ` : ""}
 
+          <p class="editorial-meta">Información general de la tienda · Actualizada el ${formatDate(guide.dateModified)}. No es una consulta médica.</p>
+          <nav class="guide-toc" aria-label="En esta guía"><strong>En esta guía</strong>${guide.sections.map(([title],i)=>`<a href="#seccion-${i+1}">${escapeHtml(title)}</a>`).join("")}</nav>
           <div class="article-prose">
-            ${guide.sections.map(([title, text]) => `
-              <section>
+            ${guide.sections.map(([title, text],index) => `
+              <section id="seccion-${index+1}">
                 <h2>${escapeHtml(title)}</h2>
                 <p>${escapeHtml(text)}</p>
               </section>
@@ -1766,12 +1379,12 @@ function locationsPage(data) {
             <span class="section-tag">TIENDA PRINCIPAL</span>
             <h2>Plaza Guelatao Local 76</h2>
             <p>Nuestra sucursal física está establecida para que puedas revisar tus productos con total tranquilidad antes de pagar:</p>
-            
+
             <div class="loc-item">
               <span class="loc-icon">📍</span>
               <div>
                 <strong>Dirección Completa:</strong>
-                <p>Plaza Guelatao, Local 76 (Pasillo 5).<br>Calzada Ignacio Zaragoza 406, Colonia Juan Escutia, Alcaldía Iztapalapa, C.P. 09100, Ciudad de México.</p>
+                <p>Plaza Guelatao, Local 76 (Pasillo 5).<br>Av. Ignacio Zaragoza, Colonia Juan Escutia, Alcaldía Iztapalapa, C.P. 09100, Ciudad de México.</p>
               </div>
             </div>
 
@@ -1787,7 +1400,7 @@ function locationsPage(data) {
               <span class="loc-icon">🕒</span>
               <div>
                 <strong>Horario de Atención:</strong>
-                <p>Martes a Domingo: 12:00 PM a 5:00 PM.</p>
+                <p>Martes a sábado. Confirma el horario por WhatsApp.</p>
               </div>
             </div>
 
@@ -1807,10 +1420,10 @@ function locationsPage(data) {
           </div>
 
           <div class="location-map">
-            <iframe 
+            <iframe
               title="Ubicación Plaza Guelatao Local 76 Minoxidil en CDMX"
-              src="https://www.google.com/maps?q=Calzada%20Ignacio%20Zaragoza%20406%20Juan%20Escutia%20Iztapalapa%2009100%20Ciudad%20de%20Mexico&output=embed" 
-              loading="lazy" 
+              src="https://www.google.com/maps?q=Plaza%20Guelatao%20Local%2076%20Ciudad%20de%20Mexico&output=embed"
+              loading="lazy"
               referrerpolicy="no-referrer-when-downgrade">
             </iframe>
           </div>
@@ -1847,15 +1460,15 @@ function contactPage(data, route = "/contact/") {
         <div class="contact-card">
           <span class="contact-icon">💬</span>
           <h3>WhatsApp Directo</h3>
-          <p>La forma más rápida de consultar precios, existencias y coordinar entregas inmediatas:</p>
+          <p>La forma más rápida de consultar precios, existencias y coordinar una visita o entrega bajo cita:</p>
           <a class="contact-link" href="${whatsappLink(data)}">55 6938 0408</a>
-          <p class="contact-time">Respondemos en minutos (Mar a Dom 12pm – 5pm)</p>
+          <p class="contact-time">Atención de martes a sábado. Las entregas se acuerdan bajo cita.</p>
         </div>
 
         <div class="contact-card">
           <span class="contact-icon">🏬</span>
           <h3>Tienda Física en CDMX</h3>
-          <p>Plaza Guelatao Local 76, Pasillo 5.<br>Calz. Ignacio Zaragoza 406, Iztapalapa, CDMX.<br>A pasos de Metro Guelatao.</p>
+          <p>Plaza Guelatao Local 76, Pasillo 5.<br>Av. Ignacio Zaragoza, Juan Escutia, CDMX.<br>A pasos de Metro Guelatao.</p>
           <a class="contact-link" href="/sucursales-y-entregas/">Ver cómo llegar →</a>
         </div>
 
@@ -1870,7 +1483,7 @@ function contactPage(data, route = "/contact/") {
   `;
 
   return layout(data, {
-    title: "Contacto y Sucursal en CDMX | Minoxidil Todo México",
+    title: "Contacto y tienda en Plaza Guelatao | Minoxidil CDMX",
     path: route,
     description: "Contacto por WhatsApp al 55 6938 0408 y sucursal en Plaza Guelatao Local 76, Iztapalapa, CDMX.",
     robots: "index, follow",
@@ -1879,57 +1492,11 @@ function contactPage(data, route = "/contact/") {
 }
 
 const trustPages = {
-  "/quienes-somos/": {
-    title: "Quiénes Somos | Minoxidil en CDMX",
-    description: "Conoce nuestra historia con más de 10 años asesorando en cuidado capilar y barba en Ciudad de México.",
-    eyebrow: "MÁS DE 10 AÑOS DE TRAYECTORIA",
-    lead: "Somos una tienda especializada en tratamientos para el crecimiento de barba y la detención de la caída capilar, con tienda física en Plaza Guelatao (Iztapalapa, CDMX).",
-    sections: [
-      ["Nuestra Misión", "Brindar a nuestros clientes acceso a productos 100% originales de marcas líderes como Kirkland Signature, con asesoría honesta, transparente y sin promesas milagro."],
-      ["Por Qué Elegirnos", "En el mercado de minoxidil existen demasiadas falsificaciones. En nuestra tienda te mostramos los números de lote y la fecha de caducidad antes de que pagues. Nuestra reputación de más de una década respalda cada frasco que vendemos."],
-      ["Dónde Estamos", "Nos encontramos dentro de Plaza Guelatao (Local 76, Pasillo 5) sobre Calzada Ignacio Zaragoza, a unos pasos de la estación del Metro Guelatao."]
-    ]
-  },
-  "/envios-a-todo-mexico/": {
-    title: "Envíos a Todo México | Minoxidil en CDMX",
-    description: "Información sobre nuestros envíos express en 24 a 48 horas a cualquier parte de la República Mexicana.",
-    eyebrow: "COBERTURA NACIONAL",
-    lead: "Si estás fuera de la Ciudad de México, enviamos tu tratamiento de forma segura a cualquier código postal del país.",
-    sections: [
-      ["Paqueterías Utilizadas", "Trabajamos con las paqueterías más confiables: DHL, FedEx y Estafeta. Al documentar tu paquete te enviamos de inmediato tu número de guía rastreable."],
-      ["Tiempos de Entrega", "Los envíos express toman habitualmente de 24 a 48 horas hábiles en llegar a ciudades principales. Para zonas extendidas puede tomar de 3 a 5 días."],
-      ["Empaque Protegido", "Tu producto va debidamente protegido y embalado de forma discreta para asegurar que llegue en perfectas condiciones."]
-    ]
-  },
-  "/devoluciones-y-reembolsos/": {
-    title: "Devoluciones y Reembolsos | Minoxidil en CDMX",
-    description: "Conoce nuestras políticas transparentes de garantía, reemplazo y devoluciones en Minoxidil en CDMX. Producto original y respaldo garantizado.",
-    eyebrow: "GARANTÍA DE COMPRA",
-    lead: "Tu tranquilidad es lo más importante para nosotros.",
-    sections: [
-      ["Garantía de Originalidad", "Garantizamos al 100% que todo el Minoxidil Kirkland que vendemos es original de importación de Costco USA, sellado y con lote verificable."],
-      ["Condiciones para Reportes", "Si tu paquete llega con algún daño atribuible a la paquetería o recibiste una presentación distinta a la solicitada, contáctanos dentro de las 48 horas posteriores a la entrega con fotos de la guía y el producto para coordinar su reposición inmediata."]
-    ]
-  },
-  "/politicas-de-privacidad/": {
-    title: "Aviso de Privacidad | Minoxidil en CDMX",
-    description: "Aviso de privacidad de Minoxidil en CDMX: conoce cómo protegemos tus datos personales y cuidamos la confidencialidad de tus pedidos y envíos.",
-    eyebrow: "PROTECCIÓN DE DATOS",
-    lead: "Cuidamos la confidencialidad de tu información personal.",
-    sections: [
-      ["Uso de la Información", "Los datos que nos proporcionas por WhatsApp o correo (nombre, dirección de entrega y teléfono) se utilizan exclusivamente para procesar y entregar tu pedido. No vendemos ni compartimos tus datos con terceros ajenos a la entrega."]
-    ]
-  },
-  "/terminos-y-condiciones/": {
-    title: "Términos y Condiciones | Minoxidil en CDMX",
-    description: "Términos y condiciones comerciales de Minoxidil en CDMX: lineamientos de compra, entrega local en sucursal, envíos nacionales y uso responsable.",
-    eyebrow: "CONDICIONES DE VENTA",
-    lead: "Lineamientos de compra y asesoría en Minoxidil en CDMX.",
-    sections: [
-      ["Naturaleza del Servicio", "El sitio funciona como catálogo informativo y comercial. Las compras y pagos se confirman de común acuerdo por WhatsApp o en mostrador."],
-      ["Descargo de Responsabilidad Médica", "El contenido publicado tiene fines informativos y cosméticos. El minoxidil es un producto tópico; no sustituye la consulta con un médico dermatólogo."]
-    ]
-  }
+ "/quienes-somos/": {title:"Quiénes somos | Minoxidil en CDMX",description:"Conoce la tienda Minoxidil en CDMX, en Plaza Guelatao Local 76, Pasillo 5, y cómo confirmar presentaciones, visitas y pedidos por WhatsApp.",eyebrow:"ATENCIÓN LOCAL",lead:"Una tienda física y un catálogo para consultar antes de comprar.",sections:[["Nuestra tienda","Atendemos en Plaza Guelatao, Local 76, Pasillo 5, Ciudad de México. Consulta presentaciones y existencia antes de tu visita. No somos un consultorio médico."],["Información para decidir","El catálogo describe productos y las guías enlazan fuentes de salud. La respuesta a un tratamiento depende del diagnóstico; no prometemos resultados ni sustituimos una consulta dermatológica."],["Visitas y contacto","Atención de martes a sábado. Las entregas personales se acuerdan bajo cita por WhatsApp al 55 6938 0408."]]},
+ "/envios-a-todo-mexico/": {title:"Envíos y recogida | Minoxidil en CDMX",description:"Consulta costo de envío, cobertura y plazo para tu código postal, o coordina una recogida en Plaza Guelatao antes de confirmar tu pedido.",eyebrow:"ELIGE TU ENTREGA",lead:"Confirma las condiciones antes de pagar.",sections:[["Recogida en CDMX","Puedes acordar una visita a Plaza Guelatao, Local 76, Pasillo 5. Confirma existencia y horario por WhatsApp. Las entregas personales son bajo cita."],["Cotización de envío","Comparte tu código postal para confirmar cobertura, paquetería, costo y plazo estimado. No publicamos una promesa universal de entrega ni de envío gratis."],["Confirmación del pedido","Antes del pago confirma presentación, cantidad e importe total. No hay pago contra entrega."]]},
+ "/devoluciones-y-reembolsos/": {title:"Ayuda con tu pedido | Minoxidil en CDMX",description:"Cómo solicitar atención si recibiste un pedido diferente, incompleto o dañado: datos que ayudan a revisar tu caso sin exponer información bancaria.",eyebrow:"ATENCIÓN POSVENTA",lead:"Si algo no coincide con lo acordado, contacta a la tienda.",sections:[["Qué información compartir","Escribe al WhatsApp de la tienda con tu referencia de compra, fecha y una descripción del problema. Si hay daños o diferencias, conserva empaque y fotografías del producto."],["Revisión de tu caso","La tienda revisará la compra y te informará las opciones aplicables conforme a lo acordado y a tus derechos como consumidor. No envíes datos de tarjeta, contraseñas ni documentos sensibles por este sitio."]]},
+ "/politicas-de-privacidad/": {title:"Privacidad y contacto | Minoxidil en CDMX",description:"Información sobre el catálogo de Minoxidil en CDMX, las consultas por WhatsApp y el uso de datos necesarios para coordinar pedidos y entregas.",eyebrow:"TUS DATOS",lead:"Este catálogo no solicita pagos ni datos de tarjeta.",sections:[["Consultas y pedidos","Al contactarnos por WhatsApp o correo puedes compartir los datos necesarios para atender tu consulta y coordinar una entrega. No envíes contraseñas ni datos bancarios sensibles."],["Servicios externos","Los enlaces de WhatsApp y los mapas de Google llevan a servicios con sus propias políticas. Puedes consultar el catálogo sin enviar datos personales a la tienda."],["Aclaraciones","Para consultar sobre el manejo de tus datos o solicitar una aclaración, utiliza el correo o WhatsApp publicados en la sección Contacto."]]},
+ "/terminos-y-condiciones/": {title:"Condiciones de consulta y compra | Minoxidil CDMX",description:"Consulta las condiciones del catálogo de Minoxidil en CDMX: confirmación de precio y existencia, entregas bajo cita y límites de la información de salud.",eyebrow:"ANTES DE COMPRAR",lead:"El pedido se confirma directamente con la tienda.",sections:[["Catálogo informativo","Confirma precio vigente, existencia, importe total y condiciones de entrega antes de pagar. El sitio no tiene checkout ni cobra en línea; no hay pago contra entrega."],["Uso responsable","Las guías son información general, no una receta ni un diagnóstico. Lee la etiqueta y consulta a un profesional de salud. No se garantizan resultados; una presentación distinta puede requerir indicaciones distintas."]]},
 };
 
 function trustPage(route, data) {
@@ -3668,9 +3235,12 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.addEventListener('click', () => {
       const open = menu.classList.toggle('open');
       toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     });
   }
 
+  document.addEventListener('keydown', e=>{if(e.key==='Escape' && menu?.classList.contains('open')){menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Abrir menú');toggle.focus();}});
+  menu?.addEventListener('click',e=>{if(e.target.closest('a')){menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Abrir menú');}});
   const search = document.querySelector('#search');
   if (search) {
     const cards = [...document.querySelectorAll('.searchable .product-card')];
@@ -3698,7 +3268,7 @@ async function main() {
   console.log("Optimizando imágenes...");
   await optimizeImageAssets();
 
-  await writeFile(path.join(DIST, "assets", "site.css"), css.trim(), "utf8");
+  await writeFile(path.join(DIST, "assets", "site.css"), (css+"\n"+designCss+"\n.mc-wordmark{display:flex;flex-direction:column;font-size:21px;line-height:1.1;letter-spacing:.08em;font-weight:850;color:inherit}.mc-wordmark span{font-size:11px;letter-spacing:.25em;margin-top:5px}.mc-hero-copy em{font-style:normal;color:#685326}.guide-toc{padding:1.3rem;border:1px solid #ddd3c0;border-radius:12px;margin-bottom:2rem;background:#faf8f2}.guide-toc a{display:block;padding:.35rem 0}.article-prose section{scroll-margin-top:110px}.editorial-meta{font-size:.9rem;color:#555;padding:1rem 0}.product-price-note{font-size:.85rem;color:#555}").trim(), "utf8");
   await writeFile(path.join(DIST, "assets", "site.js"), js.trim(), "utf8");
   await writeFile(path.join(DIST, ".nojekyll"), "", "utf8");
 
@@ -3784,13 +3354,16 @@ async function main() {
     trailingSlash: true,
     headers: [{
       source: "/assets/(.*)",
-      headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
+      headers: [{ key: "Cache-Control", value: "public, max-age=86400, must-revalidate" }]
     }],
-    redirects: redirects.slice(0, 1024).map((rule) => ({
+    redirects: [
+      {source:"/",has:[{type:"host",value:"minoxidilencdmx.com"}],destination:`${SITE_URL}/`,statusCode:301},
+      {source:"/:path*",has:[{type:"host",value:"minoxidilencdmx.com"}],destination:`${SITE_URL}/:path*`,statusCode:301},
+      ...redirects.slice(0, 1020).map((rule) => ({
       source: rule.from,
       destination: rule.to,
-      permanent: true
-    }))
+      statusCode: 301
+    }))]
   };
   await writeFile(path.join(DIST, "vercel.json"), `${JSON.stringify(vercel, null, 2)}\n`, "utf8");
   await writeFile(path.join(ROOT, "vercel.json"), `${JSON.stringify(vercel, null, 2)}\n`, "utf8");

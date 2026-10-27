@@ -1,146 +1,39 @@
-# Minoxidil en CDMX
+# Minoxidil en CDMX · sitio y catálogo local
 
-Sitio estatico para `https://minoxidilencdmx.com/`, migrado desde WordPress/WooCommerce para conservar productos, entradas, paginas, imagenes y URLs importantes sin depender de PHP, base de datos ni carrito pesado.
+Dominio principal: https://www.minoxidilencdmx.com/ · Repositorio `jonastantra/minoxidilencdmx`.
+Producción: proyecto Vercel `minoxidilencdmx`, rama `main`. HTML estático generado; no es Shopify ni tiene checkout.
 
-El objetivo del sitio es funcionar como catalogo SEO para vender por WhatsApp, posicionando principalmente:
+## Actualización 27-oct-2026
 
-- Minoxidil en CDMX.
-- Minoxidil Kirkland en Mexico.
-- Productos para crecimiento de barba.
-- Tratamientos para cabello, barba, biotina, dermaroller y cuidado capilar.
-- Sucursal Plaza Guelatao, CDMX, con envios a todo Mexico.
+- Diseño móvil editorial en crema, tinta y dorado; fotos de producto existentes, sin fuentes ni bibliotecas de interfaz remotas.
+- Catálogo de 42 productos. Se conservaron precios y URLs; confirmar vigencia y existencia antes de pagar.
+- Diez guías con referencias médicas visibles y navegación por secciones; sin pruebas caseras de autenticidad, promesas de eficacia o autores médicos inventados.
+- 293 rutas de posts heredados conservan la consolidación temática existente. No se cambian dominios o canónicas entre negocios sin evidencia de equivalencia.
+- Datos de contacto consistentes: Plaza Guelatao, Local 76, Pasillo 5, CDMX; martes a sábado, entregas bajo cita. No se inventan horas exactas, coordenadas, stock, caducidad de precios ni envío gratis.
 
-## Estado Actual
-
-- 42 productos.
-- 293 entradas de blog conservadas.
-- 31 categorias de producto.
-- 28 paginas internas.
-- 252 redirecciones legacy generadas desde URLs de WordPress/WooCommerce.
-- Auditoria viva contra sitemap de WordPress: 0 URLs faltantes.
-
-La compra no usa WooCommerce. Los botones llevan a WhatsApp con el producto o consulta precargada.
-
-## Estructura
-
-```text
-content/
-  site-data.json                 Datos principales del sitio.
-  live-url-audit.md              Auditoria de URLs vivas contra WordPress.
-  redirect-audit.md              Resumen de redirecciones legacy.
-  seo-preservation-report.md     Reporte de preservacion SEO.
-
-public/
-  assets/images/                 Imagenes usadas por productos, blog y paginas.
-
-scripts/
-  build.mjs                      Genera todo el sitio estatico en dist/.
-  serve.mjs                      Servidor local con soporte de redirects/404.
-  audit-live-urls.mjs            Compara sitemap vivo contra dist/.
-  scrape-wordpress.mjs           Scraper para reconstruir datos desde WordPress.
-  editorialize-blog.mjs          Herramienta editorial para posts repetidos.
-
-dist/                            Salida generada para publicar. No editar a mano.
-```
-
-## Comandos
+## Desarrollo
 
 ```bash
+npm ci
 npm run build
-npm run dev
 npm run audit:urls
+npm run audit:static
+npm run audit:seo
+npm run audit:content
+npm run dev
 ```
 
-- `npm run build`: genera `dist/`.
-- `npm run dev`: sirve el sitio en `http://localhost:4173/`.
-- `npm run audit:urls`: valida que las URLs vivas de WordPress sigan cubiertas por pagina estatica o redirect.
+Servidor local por defecto http://127.0.0.1:4173/; `PORT` permite elegir otro puerto.
+`node scripts/check-browser.cjs` ejecuta pruebas de móvil y escritorio con Playwright disponible en el entorno. `BASE_URL` permite verificar producción; `PLAYWRIGHT_MODULE` y `CHROMIUM_PATH` permiten indicar la instalación local. Evidencias en `artifacts/`, excluido de Git.
 
-Tambien existen:
+## Fuentes
 
-```bash
-npm run scrape
-npm run editorialize
-```
+- `content/site-data.json`: productos, contacto e importación histórica. Los posts heredados no se publican como artículos nuevos.
+- `content/editorial-guides.mjs`: las diez guías activas y sus fuentes por tema.
+- `scripts/build.mjs`: plantillas, datos estructurados, robots, mapas y redirecciones; no editar `dist/`.
+- `scripts/design-system.mjs`: capa visual compartida.
+- `public/assets/images/`: imágenes; Sharp genera derivados WebP al compilar.
 
-Usalos solo si necesitas refrescar contenido desde el WordPress original o volver a procesar entradas.
+Antes de publicar: auditorías sin URLs o imágenes faltantes, comparar precios con la versión anterior y revisar móvil. Tras push, confirmar Vercel READY para el commit exacto y la versión pública `cdmx-20261027-01`. Search Console se verifica por separado: enviar un sitemap no equivale a indexación ni mejora de posición.
 
-## Despliegue
-
-El repo incluye GitHub Actions en `.github/workflows/pages.yml`.
-
-Al hacer push a `main`, GitHub Pages ejecuta:
-
-```bash
-npm run build
-```
-
-y publica la carpeta `dist/`.
-
-## Como Editar
-
-Para cambios normales:
-
-1. Edita `content/site-data.json` si cambia contenido, productos, precios, categorias o posts.
-2. Edita `scripts/build.mjs` si cambia estructura, templates, estilos, SEO o redirects.
-3. Ejecuta `npm run build`.
-4. Ejecuta `npm run audit:urls`.
-5. Revisa visualmente en `http://localhost:4173/`.
-
-No edites `dist/` directamente. Todo lo que esta en `dist/` se regenera.
-
-## SEO y URLs
-
-Este proyecto prioriza no perder posicionamiento al salir de WordPress.
-
-Puntos importantes:
-
-- Se conserva la estructura principal de URLs de productos, categorias, paginas y entradas.
-- Las URLs viejas de WooCommerce, categorias antiguas y aliases comerciales se redirigen.
-- `404.html` incluye busqueda inteligente para mandar al usuario a la pagina mas parecida.
-- `sitemap.xml`, `robots.txt`, `_redirects`, `.htaccess` y `vercel.json` se generan automaticamente.
-- El HTML incluye schema JSON-LD para `LocalBusiness`, `Store`, `WebSite`, `Product`, `Article`, `ItemList` y breadcrumbs.
-
-Antes de publicar cambios grandes, `npm run audit:urls` debe terminar con:
-
-```text
-Missing: 0
-```
-
-## Guia Para Agentes IA
-
-Si eres una IA editando este repo:
-
-- Enfocate solo en `minoxidilencdmx.com`; ignora `1.Otros Sitios Web/`.
-- No borres productos, posts, paginas, categorias ni imagenes sin justificarlo.
-- No cambies slugs ni rutas existentes si no agregas redirect 301 equivalente.
-- No edites `dist/` como fuente. Edita `scripts/build.mjs` o `content/site-data.json`.
-- Mantener un solo sistema visual: mismo header, menu, fuente, colores y tarjetas en todo el sitio.
-- Evitar texto generico de IA. El tono debe sonar practico, directo y local, como asesor de mostrador.
-- Mantener WhatsApp como conversion principal.
-- Despues de cambios, correr `npm run build` y `npm run audit:urls`.
-- Si agregas contenido medico o de uso de minoxidil, evita promesas absolutas; usa expectativas responsables.
-
-## Conversion Principal
-
-WhatsApp:
-
-```text
-55 6938 0408
-```
-
-Email:
-
-```text
-ventasminoxidilmexico@gmail.com
-```
-
-Sucursal principal:
-
-```text
-Plaza Guelatao Local 76, Pasillo 5
-Calz. Ignacio Zaragoza 406, Juan Escutia, Iztapalapa, CDMX
-```
-
-## Notas
-
-Los archivos `.sql`, `.csv`, XML de WordPress, capturas y pruebas locales pueden existir en el workspace, pero estan ignorados por Git cuando son pesados o solo sirven como respaldo. El repositorio publicado debe mantenerse ligero y reproducible desde `content/`, `public/` y `scripts/`.
+Los informes privados de Search Console no se suben al repositorio. El sitio alternativo Minoxidil Todo México no se ha migrado ni eliminado en esta revisión.

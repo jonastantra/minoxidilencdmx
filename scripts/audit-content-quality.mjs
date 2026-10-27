@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { editorialGuides } from "../content/editorial-guides.mjs";
+import { editorialGuides, editorialSources } from "../content/editorial-guides.mjs";
 
 const root = process.cwd();
 const data = JSON.parse(await readFile(path.join(root, "content", "site-data.json"), "utf8"));
@@ -71,7 +71,7 @@ const guideAudit = editorialGuides.map((guide) => ({
   path: guide.path,
   title: guide.title,
   words: wordCount([guide.summary, ...guide.sections.flat(), ...guide.faqs.flat()].join(" ")),
-  sources: 3,
+  sources: (editorialSources[guide.topic] || []).length,
   sections: guide.sections.length,
   faqs: guide.faqs.length
 }));
@@ -115,7 +115,7 @@ Fecha: ${new Date().toISOString()}
 
 - Guías canónicas: ${guideAudit.length}
 - Guías con menos de 250 palabras útiles: ${guideAudit.filter((item) => item.words < 250).length}
-- Guías con secciones, preguntas y fuentes: ${guideAudit.filter((item) => item.sections >= 5 && item.faqs >= 3 && item.sources >= 3).length} de ${guideAudit.length}
+- Guías con secciones, preguntas y fuentes: ${guideAudit.filter((item) => item.sections >= 5 && item.faqs >= 3 && item.sources >= 1).length} de ${guideAudit.length}
 - Fichas de producto renderizadas: ${renderedProducts.length}
 - Fichas con menos de 250 palabras: ${renderedProducts.filter((item) => item.words < 250).length}
 - Fichas que todavía muestran prefacio de asistente IA: ${renderedProducts.filter((item) => item.aiPreface).length}
@@ -130,7 +130,7 @@ Fecha: ${new Date().toISOString()}
 - Productos: ${products.length}
 - Productos sin descripción detallada: ${products.filter((item) => item.descriptionWords < 40).length}
 - Productos con prefacio típico de asistente IA: ${products.filter((item) => item.aiPreface).length}
-- Productos que publican calificación agregada: ${products.filter((item) => item.hasRating).length}
+- Productos con valoraciones en la fuente histórica (no se renderizan): ${products.filter((item) => item.hasRating).length}
 - Páginas heredadas: ${pages.length}
 - Páginas con texto de relleno o formularios WordPress inservibles: ${pages.filter((item) => item.placeholder).length}
 - Páginas con marcado de bloques WordPress: ${pages.filter((item) => item.wordpressMarkup).length}

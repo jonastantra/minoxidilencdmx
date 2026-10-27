@@ -9,3 +9,5 @@ server.err.log
 *.xml
 screenshots/
 1.Otros Sitios Web/
+
+artifacts/

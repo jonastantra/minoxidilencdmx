@@ -1,6 +1,6 @@
 # Auditoría de calidad editorial publicada
 
-Fecha: 2026-09-18T06:08:49.210Z
+Fecha: 2026-10-27T18:05:10.274Z
 
 ## Contenido indexable actual
 
@@ -21,7 +21,7 @@ Fecha: 2026-09-18T06:08:49.210Z
 - Productos: 42
 - Productos sin descripción detallada: 0
 - Productos con prefacio típico de asistente IA: 0
-- Productos que publican calificación agregada: 6
+- Productos con valoraciones en la fuente histórica (no se renderizan): 6
 - Páginas heredadas: 28
 - Páginas con texto de relleno o formularios WordPress inservibles: 5
 - Páginas con marcado de bloques WordPress: 3

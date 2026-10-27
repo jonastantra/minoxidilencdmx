@@ -1,6 +1,6 @@
 # Auditoria de URLs vivas de WordPress
 
-Generado: 2026-09-18T06:08:22.097Z
+Generado: 2026-10-27T18:04:25.564Z
 Sitemaps revisados desde: https://www.minoxidilencdmx.com/sitemap.xml
 
 - URLs vivas detectadas: 87

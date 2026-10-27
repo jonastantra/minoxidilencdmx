@@ -16,7 +16,8 @@ const types = {
   ".jpeg": "image/jpeg",
   ".png": "image/png",
   ".webp": "image/webp",
-  ".gif": "image/gif"
+  ".gif": "image/gif",
+  ".svg": "image/svg+xml"
 };
 
 function loadRedirects() {
@@ -68,6 +69,6 @@ createServer((req, res) => {
   }
   res.writeHead(200, { "content-type": types[path.extname(file).toLowerCase()] || "application/octet-stream" });
   createReadStream(file).pipe(res);
-}).listen(port, () => {
+}).listen(port, "127.0.0.1", () => {
   console.log(`Servidor listo: http://localhost:${port}`);
 });
