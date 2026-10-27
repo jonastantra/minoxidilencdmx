@@ -9,7 +9,7 @@ const DATA_FILE = path.join(ROOT, "content", "site-data.json");
 const DIST = path.join(ROOT, "dist");
 const SITE_URL = "https://www.minoxidilencdmx.com";
 const SITE_RELEASE_DATE = "2026-10-27";
-const SITE_RELEASE = "cdmx-20261027-02";
+const SITE_RELEASE = "cdmx-20261027-03";
 const CATEGORY_REDIRECTS = new Map([
   ["/categoria-producto/kits-2/", "/categoria-producto/barba-y-bigote/kits/"]
 ]);
@@ -481,8 +481,8 @@ function layout(data, page) {
   </div>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="/" aria-label="Minoxidil en CDMX - Inicio">
-        <span class="mc-wordmark">MINOXIDIL<span>EN CDMX</span></span>
+      <a class="brand" href="/">
+        <span class="mc-wordmark">MINOXIDIL <span>EN CDMX</span></span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
         <span class="menu-icon"></span>
@@ -502,8 +502,8 @@ function layout(data, page) {
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col brand-col">
-        <a href="/" class="footer-brand-logo" aria-label="Minoxidil en CDMX - Inicio">
-          <span class="mc-wordmark">MINOXIDIL<span>EN CDMX</span></span>
+        <a href="/" class="footer-brand-logo">
+          <span class="mc-wordmark">MINOXIDIL <span>EN CDMX</span></span>
         </a>
         <p>Catálogo de minoxidil y cuidado de barba y cabello. Atención en Plaza Guelatao, CDMX; consulta disponibilidad, etiqueta y condiciones de compra antes de pedir.</p>
         <div class="footer-guarantee">
@@ -542,7 +542,7 @@ function layout(data, page) {
       </div>
     </div>
   </footer>
-  <a class="wa-float" href="${whatsappLink(data)}" aria-label="Contactar por WhatsApp">
+  <a class="wa-float" href="${whatsappLink(data)}" aria-label="¿Dudas? Escríbenos por WhatsApp">
     <span class="wa-pulse"></span>
     <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.04 3C8.86 3 3 8.77 3 15.86c0 2.27.62 4.49 1.78 6.43L3.1 29l6.88-1.77a13.1 13.1 0 0 0 6.06 1.48C23.23 28.71 29 22.95 29 15.86S23.23 3 16.04 3Zm0 23.47c-1.91 0-3.77-.51-5.4-1.48l-.39-.23-4.08 1.05 1.08-3.96-.26-.41a10.54 10.54 0 0 1-1.62-5.58c0-5.86 4.79-10.62 10.67-10.62 5.87 0 10.64 4.76 10.64 10.62 0 5.85-4.77 10.61-10.64 10.61Zm5.84-7.94c-.32-.16-1.88-.92-2.17-1.03-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.23-.69.08-.32-.16-1.35-.49-2.57-1.58-.95-.84-1.59-1.88-1.78-2.2-.18-.31-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.31.32-.52.11-.21.05-.39-.03-.55-.08-.16-.71-1.7-.97-2.32-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.11 1.08-1.11 2.64s1.14 3.07 1.3 3.28c.16.21 2.25 3.41 5.45 4.78.76.33 1.35.52 1.81.67.76.24 1.46.21 2.01.13.61-.09 1.88-.76 2.14-1.5.26-.73.26-1.36.18-1.5-.08-.13-.29-.21-.61-.37Z"/></svg>
     <span class="wa-float-text">¿Dudas? Escríbenos</span>
@@ -746,7 +746,7 @@ function productCard(product, data) {
         </h3>
         <div class="product-price-row">
           <span class="price-val">${escapeHtml(product.price || product.priceHtml || "Consultar")}</span>
-          <a class="btn-wa-sm" href="${whatsappLink(data, product.name)}" aria-label="Comprar por WhatsApp">
+          <a class="btn-wa-sm" href="${whatsappLink(data, product.name)}" aria-label="Pedir por WhatsApp">
             Pedir
           </a>
         </div>

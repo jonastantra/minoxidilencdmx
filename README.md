@@ -34,6 +34,10 @@ Servidor local por defecto http://127.0.0.1:4173/; `PORT` permite elegir otro pu
 - `scripts/design-system.mjs`: capa visual compartida.
 - `public/assets/images/`: imágenes; Sharp genera derivados WebP al compilar.
 
-Antes de publicar: auditorías sin URLs o imágenes faltantes, comparar precios con la versión anterior y revisar móvil. Tras push, confirmar Vercel READY para el commit exacto y la versión pública `cdmx-20261027-02`. Search Console se verifica por separado: enviar un sitemap no equivale a indexación ni mejora de posición.
+Antes de publicar: auditorías sin URLs o imágenes faltantes, comparar precios con la versión anterior y revisar móvil. Tras push, confirmar Vercel READY para el commit exacto y la versión pública `cdmx-20261027-03`. Search Console se verifica por separado: enviar un sitemap no equivale a indexación ni mejora de posición.
 
 Los informes privados de Search Console no se suben al repositorio. El sitio alternativo Minoxidil Todo México no se ha migrado ni eliminado en esta revisión.
+
+## Automatización de publicación
+
+Vercel publica `main`. El workflow de GitHub valida la compilación y auditorías; ya no intenta publicar una segunda copia en GitHub Pages, que no está habilitado y devolvía 404. No necesita secretos de despliegue.

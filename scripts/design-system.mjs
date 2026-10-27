@@ -1,5 +1,6 @@
 /** Visual layer appended after the existing structural stylesheet. No remote assets. */
 export const designCss = `
+.site-footer .footer-bottom p{color:#c5d0c7}
 .guide-wa-link,.guide-wa-link:visited{color:#196342}.guide-wa-link:hover{color:#104d32}
 .mc-visit .sidebar-box{color:#1d2421}.mc-visit .sidebar-box p{color:#48514a}.mc-proof{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
 :root {
