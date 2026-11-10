@@ -857,7 +857,7 @@ function shopPage(data) {
       <div class="container">
         <span class="eyebrow-tag">CATÁLOGO DE PRODUCTOS</span>
         <h1>Tienda de Minoxidil, Barba y Cuidado Capilar</h1>
-        <p>Productos 100% originales disponibles para entrega inmediata en CDMX y envíos express a todo México.</p>
+        <p>El catálogo completo de la tienda: revisa cada presentación, confirma existencia por WhatsApp y acuerda recogida en Plaza Guelatao o envío a tu código postal.</p>
       </div>
     </section>
     <section class="section shop-section">
@@ -872,7 +872,7 @@ function shopPage(data) {
           </div>
           <div class="sidebar-help">
             <h4>¿No sabes qué elegir?</h4>
-            <p>Te asesoramos directamente por WhatsApp sobre el kit ideal para tu caso.</p>
+            <p>Te orientamos por WhatsApp para comparar presentaciones y leer la etiqueta de cada opción antes de elegir.</p>
             <a class="btn btn-primary btn-full" href="${whatsappLink(data, "Hola, necesito asesoría para elegir un producto de minoxidil")}">
               Pedir Asesoría
             </a>
@@ -975,6 +975,111 @@ const categoryContent = {
     title: "Promociones en CDMX | Presentaciones con Mejor Precio",
     description: "Promociones del catálogo en CDMX: presentaciones con mejor precio por pieza. Confirma vigencia y existencia por WhatsApp antes de pagar.",
     intro: "Presentaciones con precio especial o mejor costo por pieza. La vigencia se confirma por WhatsApp antes de pagar: no publicamos promociones sin existencia."
+  },
+  "aceite": {
+    title: "Aceite para Barba en CDMX | Bergamota y Cuidado Diario",
+    description: "Aceite para barba en CDMX: suaviza el vello, reduce la resequedad y da brillo natural. Aceite de bergamota Maximus y aceite básico de 30 ml.",
+    intro: "Los aceites para barba del catálogo: gotas que suavizan el vello y cuidan la piel debajo. Son cosméticos de cuidado diario, sin minoxidil.",
+    extra: `<h2>Para qué sirve un aceite de barba (y para qué no)</h2>
+<p>Sirve para la barba que ya tienes: la deja más suave, más fácil de peinar y con mejor aspecto, y ayuda a que la piel debajo no se reseque. No hace crecer vello nuevo y no sustituye ningún tratamiento. En el catálogo hay dos perfiles: el <a href="/producto/aceite-tonico-bergamota-para-barbba-y-bigote-citrix-30-ml-maximus/">aceite de bergamota Maximus</a>, con el aroma cítrico de la casa, y el <a href="/producto/aceite-para-la-barba-30-ml/">aceite básico de 30 ml</a>. La dosis correcta son gotas, no chorros: con demasiado aceite cualquier barba se ve grasosa.</p>`
+  },
+  "ceras-para-barba-y-bigote": {
+    title: "Cera para Barba y Bigote en CDMX | Peinado y Forma",
+    description: "Cera para barba y bigote en CDMX: peina, define y mantiene la forma todo el día. Cera Maximus de bergamota y cera Quioco en Plaza Guelatao.",
+    intro: "Las ceras de peinado del catálogo: el paso final de la rutina, para dar forma a la barba y definir el bigote sin geles de cabello.",
+    extra: `<h2>Cera, bálsamo o gel: no son lo mismo</h2>
+<p>La cera da forma y fijación; el bálsamo acondiciona; el gel de cabello reseca y deja residuos, por eso no lo recomendamos para la barba. Aquí hay dos ceras: la <a href="/producto/cera-con-bergamota-marca-propia/">Maximus con bergamota, jojoba y karité</a> y la <a href="/producto/cera-para-barba-y-bigote-quioco/">cera Quioco</a>. En tienda puedes ver la consistencia y el aroma de ambas antes de elegir: con las ceras, esa prueba vale más que cualquier descripción.</p>`
+  },
+  "jabones": {
+    title: "Jabón para Barba en CDMX | Bergamota, Menta y Avena",
+    description: "Jabón para barba en CDMX: barras de 100 g de bergamota, menta y abeja y avena para lavar barba y bigote. Sueltos o en kits de 2 a 5 piezas.",
+    intro: "Los jabones en barra de 100 g para lavar la barba: bergamota para el diario, menta y abeja para frescura y suavidad, avena para exfoliar suave.",
+    extra: `<h2>La limpieza es el paso que sostiene la rutina</h2>
+<p>Sobre una barba sucia se acumulan grasa, sudor y residuos de cera y aceite; cualquier producto que apliques encima trabaja sobre eso. Por eso el jabón, aunque sea el producto más simple del catálogo, es el que más se repone. Cada barra cuesta $100 suelta y baja a $90 u $80 por pieza en los <a href="/categoria-producto/kit-jabones/">kits de jabones</a>. Ningún jabón hace crecer vello: su trabajo es dejar la barba limpia y manejable, y en eso sí se nota la diferencia entre un jabón pensado para barba y el de manos.</p>`
+  },
+  "peines": {
+    title: "Peines y Delineador de Barba en CDMX | Accesorios",
+    description: "Peines y delineador de barba en CDMX: la plantilla Beardbro para marcar el contorno al afeitar y accesorios de arreglo en Plaza Guelatao.",
+    intro: "Accesorios de arreglo: peines y la plantilla delineadora para marcar el contorno de la barba con precisión al afeitar.",
+    extra: `<h2>El contorno marca la diferencia</h2>
+<p>Entre una barba cuidada y una descuidada, la diferencia visible suele ser el borde: mejillas y cuello delineados parejo. La plantilla <a href="/producto/beardpro-peine-y-delineador-de-barba/">Beardbro</a> sirve de guía para afeitar ese contorno simétrico sin medir a ojo. Es un accesorio reutilizable, sin consumibles: se compra una vez y acompaña cualquier rutina.</p>`
+  },
+  "anticaida-y-recuperar-cabello": {
+    title: "Productos para Caída de Cabello en CDMX | Rutina y Apoyo",
+    description: "Productos relacionados con la caída de cabello en CDMX: minoxidil Kirkland al 5%, shampoos y biotina. Primero el diagnóstico; luego la compra.",
+    intro: "Lo del catálogo relacionado con la caída del cabello: el minoxidil tópico —la presentación con indicación en su etiqueta—, shampoos de apoyo y biotina.",
+    extra: `<h2>El orden correcto: diagnóstico antes que anaquel</h2>
+<p>«Anticaída» agrupa productos muy distintos: el minoxidil al 5% está etiquetado para ciertos casos de pérdida hereditaria en el cuero cabelludo; un shampoo es higiene; la biotina solo tiene sentido si hay deficiencia. Comprar los tres sin saber la causa es gastar a ciegas. La guía <a href="/guias/caida-cabello-cuando-dermatologo/">cuándo ir primero con dermatología</a> explica qué señales cambian el orden. Para el minoxidil en sí, la categoría principal es <a href="/categoria-producto/cabello/">minoxidil para cabello</a>.</p>`
+  },
+  "pomade": {
+    title: "Pomada para Cabello en CDMX | Suavecito Original y Firme",
+    description: "Pomada para cabello en CDMX: Suavecito Original de fijación media, Firme Hold para peinados estructurados y acabado Matte sin brillo. Tarros de 4 oz.",
+    intro: "Pomadas de peinado para cabello: fijación media, fijación fuerte y acabado mate, en tarros de 113 g de base agua que se retiran con el lavado.",
+    extra: `<h2>Cuál pomada según el peinado</h2>
+<p>La <a href="/producto/suavecito-pomade-original-4oz/">Suavecito Original</a> es la de diario: fijación media con brillo. La <a href="/producto/suavecito-pomade-firme-hold-4oz/">Firme Hold</a> es para cabello grueso o peinados que no deben moverse. La <a href="/producto/pomada-matte-113g/">Matte</a> fija sin brillo, para un acabado natural. Las tres son para cabello, no para barba: la barba se peina con <a href="/categoria-producto/barba-y-bigote/ceras-para-barba-y-bigote/">cera</a>, que tiene otra consistencia y otro fin.</p>`
+  },
+  "shampoo": {
+    title: "Shampoo en CDMX | Cabello, Barba y Fórmulas Maximus",
+    description: "Shampoo en CDMX: de bergamota, biotina, coco anticaspa y con minoxidil de Maximus, más shampoo para barba y bigote de 125 ml. Compara fórmulas.",
+    intro: "Todos los shampoos del catálogo: los Maximus de 500 ml para cabello y el shampoo específico para barba y bigote en presentación de 125 ml.",
+    extra: `<h2>Elige por tu caso, no por el ingrediente de moda</h2>
+<p>Cada shampoo de esta lista responde a algo distinto: el de coco es para la rutina de caspa, el de biotina para cabello que se siente fino, el de bergamota es el de limpieza frecuente con el aroma de la casa y el de minoxidil lleva ese activo en su fórmula —sin sustituir al minoxidil tópico que se deja aplicado. La línea completa está en <a href="/categoria-producto/marcas/maximus/shampoos-maximus/">shampoos Maximus</a>; en tienda puedes comparar etiquetas lado a lado.</p>`
+  },
+  "kit-jabones": {
+    title: "Kit de Jabones para Barba en CDMX | 2, 3, 4 y 5 Piezas",
+    description: "Kit de jabones para barba en CDMX: paquetes de 2 a 5 barras Maximus de 100 g a tu elección, con mejor precio por pieza que el jabón suelto.",
+    intro: "Los paquetes de jabones Maximus: tú eliges la combinación de bergamota, menta y abeja y avena, y el precio por jabón baja con la cantidad.",
+    extra: `<h2>Cómo se arma un kit</h2>
+<p>Cada jabón suelto cuesta $100. En kit de 2, 3 o 4 quedan en $90 por pieza; en el de 5, en unos $80. La combinación típica para conocer la línea es uno de cada tipo en el <a href="/producto/kit-de-3-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/">kit de 3</a>; quien ya tiene su favorito suele repetirlo en el <a href="/producto/kit-de-5-jabones-crecimiento-para-barba-arma-tu-kit-de-jabones/">kit de 5</a>. Los kits se arman en tienda al momento de tu pedido: confirma la combinación por WhatsApp y verificamos existencia de cada aroma.</p>`
+  },
+  "marcas": {
+    title: "Marcas en CDMX | Kirkland, Maximus, Quioco y Suavecito",
+    description: "Las marcas del catálogo en CDMX: Kirkland Signature, Maximus y Maximus Beard, Quioco y Suavecito. Qué hace cada una y dónde verla en tienda.",
+    intro: "El catálogo trabaja cuatro marcas, cada una con su papel: Kirkland en minoxidil, Maximus en la línea de la casa, Quioco en cuidado de barba mexicano y Suavecito en pomadas.",
+    extra: `<h2>Qué marca para qué cosa</h2>
+<p><a href="/categoria-producto/marcas/kirkland/">Kirkland Signature</a> es la marca de Costco y aquí significa minoxidil líquido y en espuma importado. <a href="/categoria-producto/marcas/maximus/">Maximus</a> y <a href="/categoria-producto/marcas/maximus-beard/">Maximus Beard</a> son la línea propia: bálsamos, jabones, ceras, aceites y shampoos, casi todo con bergamota. <a href="/categoria-producto/marcas/quioco/">Quioco</a> es cuidado de barba mexicano y <a href="/categoria-producto/marcas/suavecito/">Suavecito</a> es la referencia en pomadas para cabello. Comprar por marca ayuda cuando ya conoces una fórmula; si empiezas, conviene más partir por la categoría del producto que buscas.</p>`
+  },
+  "maximus": {
+    title: "Productos Maximus en CDMX | La Línea de la Casa",
+    description: "Productos Maximus en CDMX: bálsamos de minoxidil, shampoos, loción al 10% y cuidado de barba de la marca propia, en Plaza Guelatao.",
+    intro: "Maximus es la marca propia de esta tienda: bálsamos en crema con minoxidil, la loción al 10% y la línea de cuidado con bergamota.",
+    extra: `<h2>La línea propia, explicada sin rodeos</h2>
+<p>De Maximus, lo distintivo frente a Kirkland es el formato: donde Kirkland es líquido con gotero o espuma al 5%, Maximus trabaja bálsamos en crema al <a href="/producto/balsamo-para-el-crecimiento-de-barba-al-5-3-oz-maximus/">5%</a> y al <a href="/producto/balsamo-para-el-crecimiento-de-barba-al-12-4-oz-maximus/">12%</a>, una loción al 10% con bergamota y los jabones, ceras y shampoos de cuidado. Las concentraciones altas no son «mejores» por defecto: también irritan más, y la etiqueta de cada tarro es lo que manda. En tienda puedes revisar cada presentación en persona antes de decidir entre marca importada y marca propia.</p>`
+  },
+  "maximus-beard": {
+    title: "Maximus Beard en CDMX | Bergamota para Barba y Bigote",
+    description: "Línea Maximus Beard en CDMX: bálsamo, aceite, cera y shampoo de bergamota para barba y bigote. El aroma cítrico de la casa en toda la rutina.",
+    intro: "Maximus Beard es la línea de cuidado de barba de la casa, construida alrededor de la bergamota: bálsamo, aceite tónico, cera y shampoo con el mismo perfil cítrico.",
+    extra: `<h2>Una rutina con un solo aroma</h2>
+<p>La idea de la línea es que lavado, cuidado y peinado compartan el mismo aroma: el <a href="/producto/jabon-maximus-bergamota-crecimiento-100-gr/">jabón de bergamota</a> para lavar, el <a href="/producto/aceite-tonico-bergamota-para-barbba-y-bigote-citrix-30-ml-maximus/">aceite tónico Citrix</a> para suavizar, el <a href="/producto/balsamo-bergamota-maximus-beard-45-gr/">bálsamo de bergamota</a> para dar forma ligera y la cera cuando se necesita más fijación. Todo es cuidado cosmético de la barba que ya tienes; los productos Maximus con minoxidil están en la categoría de <a href="/categoria-producto/barba-y-bigote/balsamos/">bálsamos</a>.</p>`
+  },
+  "quioco": {
+    title: "Quioco en CDMX | Cera, Bálsamo y Black Gel para Barba",
+    description: "Quioco en CDMX: marca mexicana de cuidado de barba con cera, bálsamo estimulante y Black Gel de 120 g. En Plaza Guelatao, Local 76.",
+    intro: "Quioco es una marca mexicana de productos para barba. En el catálogo están su cera, su bálsamo estimulante y el Black Gel.",
+    extra: `<h2>La opción mexicana de cuidado de barba</h2>
+<p>De Quioco vendemos tres productos con funciones claras: la <a href="/producto/cera-para-barba-y-bigote-quioco/">cera</a> para peinar y mantener la forma, el <a href="/producto/balsamo-estimulante-quioco-60-grs/">bálsamo estimulante</a> en crema para acondicionar y el <a href="/producto/black-gel-quioco-120-gr/">Black Gel</a>, el gel oscuro que oscurece visualmente el vello mientras está puesto y se va con el lavado. Son productos de arreglo y cuidado, sin minoxidil: en tienda puedes revisar la etiqueta y la consistencia de cada uno.</p>`
+  },
+  "suavecito": {
+    title: "Suavecito en CDMX | Pomade Original, Firme y Suavecita",
+    description: "Suavecito en CDMX: pomadas Original y Firme Hold, acabado Matte y la línea femenina Suavecita. Tarros de 4 oz, base agua, en Plaza Guelatao.",
+    intro: "Suavecito es la marca californiana de pomadas base agua. Aquí están sus tarros de 4 oz: Original, Firme Hold, Matte y Suavecita, su línea para mujer.",
+    extra: `<h2>Fijación media, fuerte o mate: la diferencia real</h2>
+<p>La <a href="/producto/suavecito-pomade-original-4oz/">Original</a> (fijación media, con brillo) es la de uso diario; la <a href="/producto/suavecito-pomade-firme-hold-4oz/">Firme Hold</a> sostiene peinados estructurados y cabello grueso; la <a href="/producto/pomada-matte-113g/">Matte</a> fija sin brillo; y <a href="/producto/pomada-suavecita-113g/">Suavecita</a> es la versión de la línea femenina. Todas se retiran con el lavado normal, a diferencia de las pomadas de cera de antes. Son productos para cabello: la barba se arregla con cera, no con pomada.</p>`
+  },
+  "rimel-crecimiento-de-pestanas-y-cejas": {
+    title: "Rímel para Pestañas y Cejas en CDMX | Minoxidil 5%",
+    description: "Rímel con minoxidil 5% y biotina para pestañas y cejas en CDMX: pieza individual y paquetes de 2 y 3. Lee la etiqueta: se aplica junto a los ojos.",
+    intro: "Los rímeles con minoxidil al 5% y biotina, con aplicador tipo cepillo para pestañas y cejas: pieza individual y paquetes de dos y tres.",
+    extra: `<h2>Un producto que exige leer la etiqueta completa</h2>
+<p>Este formato se aplica junto a los ojos, y eso cambia el nivel de cuidado: el minoxidil se etiqueta para el cuero cabelludo, así que su uso en pestañas y cejas es otra decisión, que debe tomarse leyendo la etiqueta del producto y, si hay ojos sensibles o tratamientos oculares, con un profesional de salud. No compartas el aplicador y suspende ante irritación. Las tres presentaciones son el mismo producto en distinta cantidad: la <a href="/producto/crecimiento-de-pestanas-minoxidil-5-y-biotina/">pieza individual</a> para probar el formato y los paquetes de 2 y 3 con mejor precio por unidad. El contexto de uso está en la guía de <a href="/guias/minoxidil-mujeres/">minoxidil en mujeres</a>.</p>`
+  },
+  "shampoos-maximus": {
+    title: "Shampoos Maximus en CDMX | Bergamota, Biotina, Coco y Minoxidil",
+    description: "Shampoos Maximus de 500 ml en CDMX: bergamota, biotina, coco anticaspa y shampoo con minoxidil. Cuál conviene según tu tipo de cabello.",
+    intro: "Los cuatro shampoos Maximus de 500 ml: bergamota, biotina, coco anticaspa y el shampoo con minoxidil. Misma botella, fórmulas y usos distintos.",
+    extra: `<h2>Cuatro shampoos, cuatro trabajos distintos</h2>
+<p>El de <a href="/producto/shampoo-bergamota-crecimiento-acelerado-maximus/">bergamota</a> es el de limpieza frecuente con el aroma de la casa. El de <a href="/producto/shampoo-biotina-engrosar-y-fortalecimiento-maximus/">biotina</a> está dirigido al cabello que se siente fino o quebradizo. El de <a href="/producto/shampoo-artesanal-de-coco-anticaspa-maximus/">coco</a> es para la rutina de control de caspa. Y el <a href="/producto/shampoo-minoxidil-control-caida-y-regeneracion-de-cabello-maximus/">shampoo con minoxidil</a> lleva ese activo en su fórmula, sin sustituir al minoxidil tópico de aplicación directa. En tienda comparamos etiquetas contigo para que elijas por tu caso, no por el nombre más llamativo.</p>`
   }
 };
 
@@ -1227,7 +1332,7 @@ function blogPage(data) {
       <div class="container">
         <div class="final-cta-box">
           <h2>¿Tienes una duda específica sobre tu caso?</h2>
-          <p>Escríbenos por WhatsApp con una foto o descripción de tu zona a tratar (barba o entradas). Te orientamos sobre qué producto te conviene y cómo aplicarlo sin compromiso.</p>
+          <p>Escríbenos por WhatsApp con tu duda sobre presentaciones, etiquetas o compra en CDMX. Te orientamos sobre el catálogo sin compromiso; las decisiones de uso y dosis corresponden a tu profesional de salud.</p>
           <a class="btn btn-gold btn-large" href="${whatsappLink(data, "Hola, tengo dudas sobre mi caso para usar Minoxidil")}">
             💬 Consultar por WhatsApp
           </a>
@@ -1239,7 +1344,7 @@ function blogPage(data) {
   return layout(data, {
     title: "Guías y Consejos de Minoxidil en CDMX | Barba y Cabello",
     path: "/blog/",
-    description: "Guías autorizadas y consejos prácticos sobre Minoxidil en CDMX: aplicación en barba y cabello, cómo identificar producto original, shedding y tiempos reales.",
+    description: "Guías y consejos prácticos sobre minoxidil en CDMX: aplicación en barba y cabello, cómo revisar un producto antes de comprar, shedding y tiempos reales.",
     robots: "index, follow, max-image-preview:large",
     schema: [
       itemListSchema("Guías de Minoxidil en CDMX", "/blog/", guidedReadingOrder),
@@ -1390,8 +1495,8 @@ function guidePage(guide, data) {
 
             <div class="local-cdmx-callout">
               <div class="cdmx-badge">📍 Tienda Física en CDMX</div>
-              <h3>Adquiere Minoxidil Kirkland Original en Ciudad de México</h3>
-              <p>Visita nuestra tienda en Plaza Guelatao Local 76 (Metro Guelatao) o pide entrega personal en CDMX. Confirmamos lotes y caducidad por WhatsApp.</p>
+              <h3>Compra minoxidil Kirkland en Ciudad de México, revisando el empaque</h3>
+              <p>Visita nuestra tienda en Plaza Guelatao Local 76 (Metro Guelatao) o pide tu envío: en tienda puedes revisar empaque, lote y caducidad antes de pagar, y por WhatsApp te mandamos fotos del producto real.</p>
               <a class="btn btn-primary" href="${whatsappLink(data, `Hola, leí la guía sobre "${guide.title}" y quiero informes en CDMX`)}">
                 Consultar por WhatsApp
               </a>
@@ -1490,7 +1595,7 @@ function locationsPage(data) {
       <div class="container">
         <span class="eyebrow-tag">UBICACIONES Y PUNTOS DE ENTREGA</span>
         <h1>Sucursales y Entregas Personales en CDMX</h1>
-        <p>Compra Minoxidil Kirkland original directamente en tienda física o agenda una entrega personal acordada en Ciudad de México.</p>
+        <p>Compra minoxidil Kirkland en tienda física, revisa el empaque antes de pagar, o agenda una entrega personal acordada en Ciudad de México.</p>
       </div>
     </section>
 
@@ -1557,7 +1662,7 @@ function locationsPage(data) {
   return layout(data, {
     title: "Sucursales y Entregas Personales en CDMX | Minoxidil",
     path: "/sucursales-y-entregas/",
-    description: "Sucursal en Plaza Guelatao Local 76 (Iztapalapa, Metro Guelatao) y puntos de entrega acordados en CDMX. Venta de Minoxidil Kirkland original.",
+    description: "Sucursal en Plaza Guelatao Local 76 (Iztapalapa, Metro Guelatao) y puntos de entrega acordados en CDMX. Revisa empaque, lote y caducidad antes de pagar.",
     robots: "index, follow, max-image-preview:large",
     schema: breadcrumbSchema([
       { name: "Inicio", path: "/" },
