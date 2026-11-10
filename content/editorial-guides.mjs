@@ -12,12 +12,16 @@ export const editorialGuides = [
       ["Qué resultados son razonables", "No se evalúa en días. La información para pacientes de MedlinePlus explica que pueden pasar varios meses antes de notar efecto y que usar más cantidad no acelera el proceso. Las fotos mensuales, con la misma luz, distancia y peinado, sirven más que mirarse todos los días."],
       ["Qué no resuelve", "No es una cura definitiva para la calvicie y no sustituye una valoración cuando hay zonas inflamadas, placas sin cabello, cicatrices, comezón intensa o pérdida súbita. Tampoco conviene extrapolar automáticamente las instrucciones del cuero cabelludo a barba, cejas o pestañas: esos usos no son la indicación estándar de la etiqueta."],
       ["Antes de comprar", "Revisa concentración, forma de uso, lote, caducidad, sello y estado del empaque. Las etiquetas Kirkland para hombres citadas advierten no usar en menores de 18 años, en otras partes del cuerpo ni cuando se desconoce la causa de la caída. Compara el nombre exacto del producto con su etiqueta, no con una promesa del anuncio. En tienda podemos mostrar el empaque disponible y confirmar precio; las decisiones médicas corresponden a un profesional de salud."],
+      ["Kirkland frente a genéricos y otras marcas", "Es la comparación que más nos piden: ¿el Kirkland conviene más que un genérico de farmacia o que otra marca como Folcress? El activo y la concentración pueden ser los mismos (minoxidil al 5%); lo que cambia es el vehículo (el líquido lleva propilenglicol y alcohol; la espuma no), el tamaño y tipo de presentación, la información del empaque y el precio por mililitro de cada vendedor. Kirkland es la marca de Costco en Estados Unidos y su presentación más común aquí es la caja de seis frascos, que baja el costo por mes frente al frasco suelto. Un genérico nacional puede ser igual de válido si su etiqueta declara lo mismo; compara concentración, vehículo, cantidad total y caducidad, no el anuncio. No afirmamos que una marca «funcione mejor» que otra: eso no se puede saber de antemano ni lo decide el precio."],
+      ["Minoxidil oral: por qué aquí solo hablamos del tópico", "También nos preguntan por el minoxidil oral (pastillas o cápsulas). Es otra cosa: el oral es un medicamento sistémico, pensado originalmente para la presión arterial, que actúa en todo el cuerpo y requiere prescripción y supervisión médica; no es una versión «más fuerte» del tópico ni un atajo. En esta tienda no vendemos minoxidil oral ni lo recomendamos por este medio. Todo lo de este sitio —líquido, espuma y bálsamo— es tópico, de aplicación local sobre la piel. Si te interesa la vía oral, el lugar para valorarla es una consulta médica, no una tienda."],
       ["Cuándo pedir ayuda", "Suspende y busca atención si aparecen dolor de pecho, palpitaciones, mareo importante, desmayo, dificultad para respirar o hinchazón. Para irritación persistente, caída que empeora o dudas por otros medicamentos, consulta antes de continuar."]
     ],
     faqs: [
       ["¿Más producto funciona más rápido?", "No. La etiqueta indica que usar más cantidad o con mayor frecuencia no mejora los resultados y puede aumentar problemas."],
       ["¿Se conserva el resultado al dejarlo?", "En la pérdida hereditaria, el cabello recuperado suele perderse de nuevo después de suspenderlo. El plazo exacto varía."],
-      ["¿Minoxidil oral y tópico son lo mismo?", "No. El oral es un medicamento sistémico con riesgos distintos y requiere indicación médica; esta guía trata únicamente del tópico."]
+      ["¿Minoxidil oral y tópico son lo mismo?", "No. El oral es un medicamento sistémico con riesgos distintos y requiere indicación médica; esta guía trata únicamente del tópico."],
+      ["¿Venden minoxidil en pastillas o cápsulas?", "No. El minoxidil oral es un medicamento sistémico de prescripción médica; en esta tienda solo vendemos presentaciones tópicas: líquido, espuma y bálsamo."],
+      ["¿Kirkland es mejor que un genérico de farmacia?", "El activo y la concentración pueden ser los mismos (minoxidil al 5%). Lo que cambia es el vehículo, la presentación, el empaque y el precio por mililitro de cada vendedor; compara la etiqueta, no el anuncio."]
     ]
   },
   {
@@ -91,7 +95,7 @@ export const editorialGuides = [
     topic: "barba",
     dateModified: "2026-11-10",
     title: "Minoxidil para barba: qué significa que sea un uso fuera de indicación",
-    description: "Información responsable sobre el uso de minoxidil en barba, sus límites, riesgos y preguntas que conviene resolver antes.",
+    description: "Minoxidil para barba explicado sin promesas: qué presentaciones se usan, por qué es un uso fuera de indicación, riesgos y qué confirmar antes de comprar.",
     image: "/assets/images/aplicacion-en-barba-1024x585.jpg",
     summary: "Las presentaciones comerciales para crecimiento capilar se etiquetan para el cuero cabelludo. Usarlas en la barba es una decisión distinta y debe explicarse como uso fuera de indicación.",
     sections: [
