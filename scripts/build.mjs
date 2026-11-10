@@ -496,7 +496,7 @@ function layout(data, page) {
     <div class="container top-announcement-inner">
       <span>📍 <strong>Sucursal CDMX:</strong> Plaza Guelatao Local 76 (Metro Guelatao Línea A)</span>
       <span>💬 <strong>WhatsApp:</strong> 55 6938 0408</span>
-      <span>🕒 <strong>Horario:</strong> Martes a sábado · confirma tu visita</span>
+      <span>🕒 <strong>Horario:</strong> Martes a sábado · 12:30 a 4:30 pm</span>
     </div>
   </div>
   <div class="bf-promo" id="bf-promo-strip">
@@ -541,7 +541,7 @@ function layout(data, page) {
       <div class="footer-col">
         <h3>Sucursal en CDMX</h3>
         <p><strong>Plaza Guelatao:</strong> Local 76, Pasillo 5.<br>Av. Ignacio Zaragoza, Juan Escutia, Iztapalapa, CDMX (Metro Guelatao Línea A).</p>
-        <p><strong>Horario:</strong> Martes a sábado. Confirma el horario de tu visita por WhatsApp.</p>
+        <p><strong>Horario:</strong> Martes a sábado, 12:30 a 4:30 pm. Confirma tu visita por WhatsApp.</p>
         <p><strong>Entregas:</strong> Bajo cita, en puntos acordados de CDMX y Nezahualcóyotl.</p>
       </div>
       <div class="footer-col">
@@ -621,6 +621,12 @@ function organizationSchema(data) {
       longitude: -99.0363
     },
     hasMap: "https://www.google.com/maps/search/?api=1&query=Plaza+Guelatao+Local+76+Pasillo+5+Iztapalapa+Ciudad+de+Mexico",
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "12:30",
+      closes: "16:30"
+    },
     areaServed: [
       { "@type": "City", name: "Ciudad de México" },
       { "@type": "City", name: "Nezahualcóyotl" },
@@ -818,7 +824,7 @@ function productsForCategory(category, data) {
 function homePage(data) {
   const featured = [5483,5571,5572,8876].map(id=>data.products.find(p=>p.id===id)).filter(Boolean);
   const faqs = [
-    ["¿Dónde está la tienda?", "En Plaza Guelatao, Local 76, Pasillo 5, en Ciudad de México, cerca de Metro Guelatao. Atendemos de martes a sábado; confirma el horario de tu visita por WhatsApp."],
+    ["¿Dónde está la tienda?", "En Plaza Guelatao, Local 76, Pasillo 5, en Ciudad de México, cerca de Metro Guelatao. Atendemos de martes a sábado, de 12:30 a 4:30 pm; confirma tu visita por WhatsApp."],
     ["¿Puedo recoger mi pedido?", "Sí. Consulta primero existencia y precio vigente, y acuerda tu visita o entrega bajo cita. No salgas hacia un punto de entrega sin confirmación."],
     ["¿Cómo se confirma una compra?", "Este sitio es un catálogo, no cobra ni solicita datos bancarios. Por WhatsApp te confirmamos presentación, importe total, forma de pago y entrega antes de realizar tu pedido. No hay pago contra entrega."],
     ["¿Qué debo revisar antes de usar minoxidil?", "La etiqueta de la presentación y la indicación de tu profesional de salud. El uso en barba está fuera de la indicación habitual para el cuero cabelludo; no podemos garantizar resultados ni recomendar una dosis personal por este sitio."]
@@ -845,7 +851,7 @@ function homePage(data) {
     <div class="product-grid">${featured.map(p=>productCard(p,data)).join('')}</div>
     <p class="mc-mini-note">Los precios del catálogo deben confirmarse antes del pago. La disponibilidad y el costo de envío se acuerdan por WhatsApp; no hay pago contra entrega.</p>
   </div></section>
-  <section class="section mc-visit" id="sucursales"><div class="container mc-visit-grid"><div><span class="mc-eyebrow">CERCA DE METRO GUELATAO</span><h2>Nos vemos en<br>Plaza Guelatao.</h2><p>Local 76 · Pasillo 5<br>Colonia Juan Escutia, Ciudad de México.</p><p>Sobre Calzada Ignacio Zaragoza, en el límite de Iztapalapa con Nezahualcóyotl y a unos pasos del Metro Guelatao. Atención de martes a sábado. Confirma tu visita para revisar existencia y recibir indicaciones de llegada.</p><a class="btn btn-primary" href="/sucursales-y-entregas/">Cómo llegar a la tienda ↗</a></div><div class="sidebar-box"><h3>Tu compra, paso a paso.</h3><ol><li>Elige una presentación del catálogo.</li><li>Confirma precio vigente y disponibilidad por WhatsApp.</li><li>Acuerda recogida, entrega bajo cita o envío.</li></ol><a class="btn btn-dark" href="${whatsappLink(data,'Quiero confirmar una visita al Local 76, Pasillo 5 de Plaza Guelatao')}">Agendar una visita</a><p class="mc-mini-note">Para envíos, comparte tu código postal y consulta costo y plazo antes de pagar.</p></div></div></section>
+  <section class="section mc-visit" id="sucursales"><div class="container mc-visit-grid"><div><span class="mc-eyebrow">CERCA DE METRO GUELATAO</span><h2>Nos vemos en<br>Plaza Guelatao.</h2><p>Local 76 · Pasillo 5<br>Colonia Juan Escutia, Ciudad de México.</p><p>Sobre Calzada Ignacio Zaragoza, en el límite de Iztapalapa con Nezahualcóyotl y a unos pasos del Metro Guelatao. Atención de martes a sábado, de 12:30 a 4:30 pm. Confirma tu visita para revisar existencia y recibir indicaciones de llegada.</p><a class="btn btn-primary" href="/sucursales-y-entregas/">Cómo llegar a la tienda ↗</a></div><div class="sidebar-box"><h3>Tu compra, paso a paso.</h3><ol><li>Elige una presentación del catálogo.</li><li>Confirma precio vigente y disponibilidad por WhatsApp.</li><li>Acuerda recogida, entrega bajo cita o envío.</li></ol><a class="btn btn-dark" href="${whatsappLink(data,'Quiero confirmar una visita al Local 76, Pasillo 5 de Plaza Guelatao')}">Agendar una visita</a><p class="mc-mini-note">Para envíos, comparte tu código postal y consulta costo y plazo antes de pagar.</p></div></div></section>
   <section class="section"><div class="container"><div class="mc-section-head"><div><span class="mc-eyebrow">INFORMACIÓN SIN MITOS</span><h2>Lee primero. Decide mejor.</h2></div><a class="btn btn-outline" href="/blog/">Todas las guías ↗</a></div><div class="blog-grid">${editorialGuides.filter(g=>['autenticidad','aplicacion','seguridad'].includes(g.topic)).map(g=>guideCard(g,data)).join('')}</div></div></section>
   <section class="section section-faq"><div class="container faq-container"><span class="mc-eyebrow">ANTES DE TU VISITA</span><h2>Lo que conviene saber.</h2><div class="faq-list">${faqs.map(([q,a])=>`<details class="faq-item"><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></div></section>`;
   return layout(data,{title:'Minoxidil en CDMX | Catálogo y tienda en Plaza Guelatao',path:'/',description:'Consulta minoxidil Kirkland y cuidado de barba y cabello en CDMX. Tienda en Plaza Guelatao, Local 76, Pasillo 5. Atención por WhatsApp y entregas bajo cita.',bodyClass:'home-page',body});
@@ -918,7 +924,7 @@ const categoryContent = {
     description: "Comprar minoxidil en CDMX: líquido y espuma al 5%, Kirkland y bálsamos Maximus. Tienda en Plaza Guelatao, Iztapalapa; recogida bajo cita y envíos a todo México.",
     intro: "Todas las presentaciones de minoxidil del catálogo en un solo lugar: líquido con gotero, espuma sin propilenglicol y bálsamos en crema. Compara formato, concentración y precio antes de decidir.",
     extra: `<h2>Tienda de minoxidil en CDMX, con dirección real</h2>
-<p>Atendemos en Plaza Guelatao, Local 76, Pasillo 5 (Metro Guelatao, Línea A), de martes a sábado. Antes de venir, confirma existencia y precio por WhatsApp: las presentaciones se agotan y se reponen, y preferimos que no des la vuelta en balde. También enviamos a todo México, cotizando costo y plazo con tu código postal.</p>
+<p>Atendemos en Plaza Guelatao, Local 76, Pasillo 5 (Metro Guelatao, Línea A), de martes a sábado, de 12:30 a 4:30 pm. Antes de venir, confirma existencia y precio por WhatsApp: las presentaciones se agotan y se reponen, y preferimos que no des la vuelta en balde. También enviamos a todo México, cotizando costo y plazo con tu código postal.</p>
 <p>¿No sabes qué formato te conviene? La guía <a href="/guias/minoxidil-liquido-vs-espuma/">líquido vs espuma</a> compara aplicación, ingredientes y costo por mes sin marketing, y la de <a href="/guias/comprar-minoxidil-cdmx/">comprar minoxidil en CDMX</a> trae el checklist de compra segura.</p>`
   },
   "minoxidil-foam-espuma": {
@@ -1193,7 +1199,7 @@ function productPage(product, data) {
           <div class="cdmx-badge">📍 Tienda Física en CDMX</div>
           <h3>¿Cómo comprar este producto en Ciudad de México?</h3>
           <p>
-            Puedes pasar directamente a nuestra sucursal ubicada en <strong>Plaza Guelatao Local 76 (Pasillo 5, Iztapalapa, Metro Guelatao Línea A)</strong> en un horario de martes a sábado, confirmando tu visita por WhatsApp, o acordar entrega personal en puntos de CDMX.
+            Puedes pasar directamente a nuestra sucursal ubicada en <strong>Plaza Guelatao Local 76 (Pasillo 5, Iztapalapa, Metro Guelatao Línea A)</strong> en horario de martes a sábado, de 12:30 a 4:30 pm, confirmando tu visita por WhatsApp, o acordar entrega personal en puntos de CDMX.
           </p>
           <a class="btn btn-primary" href="${whatsappLink(data, product.name)}">
             Confirmar existencia y entrega por WhatsApp
@@ -1627,7 +1633,7 @@ function locationsPage(data) {
               <span class="loc-icon">🕒</span>
               <div>
                 <strong>Horario de Atención:</strong>
-                <p>Martes a sábado. Confirma el horario por WhatsApp.</p>
+                <p>Martes a sábado, de 12:30 a 4:30 pm. Confirma tu visita por WhatsApp.</p>
               </div>
             </div>
 
@@ -1689,7 +1695,7 @@ function contactPage(data, route = "/contact/") {
           <h3>WhatsApp Directo</h3>
           <p>La forma más rápida de consultar precios, existencias y coordinar una visita o entrega bajo cita:</p>
           <a class="contact-link" href="${whatsappLink(data)}">55 6938 0408</a>
-          <p class="contact-time">Atención de martes a sábado. Las entregas se acuerdan bajo cita.</p>
+          <p class="contact-time">Atención de martes a sábado, de 12:30 a 4:30 pm. Las entregas se acuerdan bajo cita.</p>
         </div>
 
         <div class="contact-card">
@@ -1719,8 +1725,8 @@ function contactPage(data, route = "/contact/") {
 }
 
 const trustPages = {
- "/quienes-somos/": {title:"Quiénes somos | Minoxidil en CDMX",description:"Conoce la tienda Minoxidil en CDMX, en Plaza Guelatao Local 76, Pasillo 5, y cómo confirmar presentaciones, visitas y pedidos por WhatsApp.",eyebrow:"ATENCIÓN LOCAL",lead:"Una tienda física y un catálogo para consultar antes de comprar.",sections:[["Nuestra tienda","Atendemos en Plaza Guelatao, Local 76, Pasillo 5, Ciudad de México. Consulta presentaciones y existencia antes de tu visita. No somos un consultorio médico."],["Información para decidir","El catálogo describe productos y las guías enlazan fuentes de salud. La respuesta a un tratamiento depende del diagnóstico; no prometemos resultados ni sustituimos una consulta dermatológica."],["Visitas y contacto","Atención de martes a sábado. Las entregas personales se acuerdan bajo cita por WhatsApp al 55 6938 0408."]]},
- "/envios-a-todo-mexico/": {title:"Envíos y recogida | Minoxidil en CDMX",description:"Consulta costo de envío, cobertura y plazo para tu código postal, o coordina una recogida en Plaza Guelatao antes de confirmar tu pedido.",eyebrow:"ELIGE TU ENTREGA",lead:"Confirma las condiciones antes de pagar.",sections:[["Recogida en CDMX","Puedes acordar una visita a Plaza Guelatao, Local 76, Pasillo 5. Confirma existencia y horario por WhatsApp. Las entregas personales son bajo cita."],["Cotización de envío","Comparte tu código postal para confirmar cobertura, paquetería, costo y plazo estimado. No publicamos una promesa universal de entrega ni de envío gratis."],["Confirmación del pedido","Antes del pago confirma presentación, cantidad e importe total. No hay pago contra entrega."]]},
+ "/quienes-somos/": {title:"Quiénes somos | Minoxidil en CDMX",description:"Conoce la tienda Minoxidil en CDMX, en Plaza Guelatao Local 76, Pasillo 5, y cómo confirmar presentaciones, visitas y pedidos por WhatsApp.",eyebrow:"ATENCIÓN LOCAL",lead:"Una tienda física y un catálogo para consultar antes de comprar.",sections:[["Nuestra tienda","Atendemos en Plaza Guelatao, Local 76, Pasillo 5, Ciudad de México. Consulta presentaciones y existencia antes de tu visita. No somos un consultorio médico."],["Información para decidir","El catálogo describe productos y las guías enlazan fuentes de salud. La respuesta a un tratamiento depende del diagnóstico; no prometemos resultados ni sustituimos una consulta dermatológica."],["Visitas y contacto","Atención de martes a sábado, de 12:30 a 4:30 pm. Las entregas personales se acuerdan bajo cita por WhatsApp al 55 6938 0408."]]},
+ "/envios-a-todo-mexico/": {title:"Envíos y recogida | Minoxidil en CDMX",description:"Consulta costo de envío, cobertura y plazo para tu código postal, o coordina una recogida en Plaza Guelatao antes de confirmar tu pedido.",eyebrow:"ELIGE TU ENTREGA",lead:"Confirma las condiciones antes de pagar.",sections:[["Recogida en CDMX","Puedes acordar una visita a Plaza Guelatao, Local 76, Pasillo 5. Confirma existencia por WhatsApp; la tienda atiende de martes a sábado, de 12:30 a 4:30 pm. Las entregas personales son bajo cita."],["Cotización de envío","Comparte tu código postal para confirmar cobertura, paquetería, costo y plazo estimado. No publicamos una promesa universal de entrega ni de envío gratis."],["Confirmación del pedido","Antes del pago confirma presentación, cantidad e importe total. No hay pago contra entrega."]]},
  "/devoluciones-y-reembolsos/": {title:"Ayuda con tu pedido | Minoxidil en CDMX",description:"Cómo solicitar atención si recibiste un pedido diferente, incompleto o dañado: datos que ayudan a revisar tu caso sin exponer información bancaria.",eyebrow:"ATENCIÓN POSVENTA",lead:"Si algo no coincide con lo acordado, contacta a la tienda.",sections:[["Qué información compartir","Escribe al WhatsApp de la tienda con tu referencia de compra, fecha y una descripción del problema. Si hay daños o diferencias, conserva empaque y fotografías del producto."],["Revisión de tu caso","La tienda revisará la compra y te informará las opciones aplicables conforme a lo acordado y a tus derechos como consumidor. No envíes datos de tarjeta, contraseñas ni documentos sensibles por este sitio."]]},
  "/politicas-de-privacidad/": {title:"Privacidad y contacto | Minoxidil en CDMX",description:"Información sobre el catálogo de Minoxidil en CDMX, las consultas por WhatsApp y el uso de datos necesarios para coordinar pedidos y entregas.",eyebrow:"TUS DATOS",lead:"Este catálogo no solicita pagos ni datos de tarjeta.",sections:[["Consultas y pedidos","Al contactarnos por WhatsApp o correo puedes compartir los datos necesarios para atender tu consulta y coordinar una entrega. No envíes contraseñas ni datos bancarios sensibles."],["Servicios externos","Los enlaces de WhatsApp y los mapas de Google llevan a servicios con sus propias políticas. Puedes consultar el catálogo sin enviar datos personales a la tienda."],["Aclaraciones","Para consultar sobre el manejo de tus datos o solicitar una aclaración, utiliza el correo o WhatsApp publicados en la sección Contacto."]]},
  "/terminos-y-condiciones/": {title:"Condiciones de consulta y compra | Minoxidil CDMX",description:"Consulta las condiciones del catálogo de Minoxidil en CDMX: confirmación de precio y existencia, entregas bajo cita y límites de la información de salud.",eyebrow:"ANTES DE COMPRAR",lead:"El pedido se confirma directamente con la tienda.",sections:[["Catálogo informativo","Confirma precio vigente, existencia, importe total y condiciones de entrega antes de pagar. El sitio no tiene checkout ni cobra en línea; no hay pago contra entrega."],["Uso responsable","Las guías son información general, no una receta ni un diagnóstico. Lee la etiqueta y consulta a un profesional de salud. No se garantizan resultados; una presentación distinta puede requerir indicaciones distintas."]]},
