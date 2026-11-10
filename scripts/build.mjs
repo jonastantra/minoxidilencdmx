@@ -9,7 +9,7 @@ const DATA_FILE = path.join(ROOT, "content", "site-data.json");
 const DIST = path.join(ROOT, "dist");
 const SITE_URL = "https://www.minoxidilencdmx.com";
 const SITE_RELEASE_DATE = "2026-11-10";
-const SITE_RELEASE = "cdmx-20261027-03";
+const SITE_RELEASE = "cdmx-20261110-01";
 const GTM_ID = "GTM-5HCGBGWL";
 const META_PIXEL_ID = "1103563572544229";
 const BUSINESS_WHATSAPP_PHONE = "5215641989504";
@@ -499,6 +499,14 @@ function layout(data, page) {
       <span>🕒 <strong>Horario:</strong> Martes a sábado · confirma tu visita</span>
     </div>
   </div>
+  <div class="bf-promo" id="bf-promo-strip">
+    <span class="bf-spark s1" aria-hidden="true">✦</span>
+    <span class="bf-spark s2" aria-hidden="true">✦</span>
+    <span class="bf-spark s3" aria-hidden="true">✦</span>
+    <span class="bf-spark s4" aria-hidden="true">✦</span>
+    <a class="bf-promo-link" href="https://maximus-inc.com.mx/collections/balsamo-20-kits" target="_blank" rel="noopener"><strong>Buen Fin en Maximus Inc:</strong> kit de bálsamo Minoxidil 20% a $996 en la tienda en línea — hasta el 17 de noviembre</a>
+  </div>
+  <script>(function(){var el=document.getElementById('bf-promo-strip');if(el&&Date.now()>=Date.UTC(2026,10,18,6,0,0)){el.style.display='none';}})();</script>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="/">
@@ -3382,7 +3390,7 @@ async function main() {
   console.log("Optimizando imágenes...");
   await optimizeImageAssets();
 
-  await writeFile(path.join(DIST, "assets", "site.css"), (css+"\n"+designCss+"\n.mc-wordmark{display:flex;flex-direction:column;font-size:21px;line-height:1.1;letter-spacing:.08em;font-weight:850;color:inherit}.mc-wordmark span{font-size:11px;letter-spacing:.25em;margin-top:5px}.mc-hero-copy em{font-style:normal;color:#685326}.guide-toc{padding:1.3rem;border:1px solid #ddd3c0;border-radius:12px;margin-bottom:2rem;background:#faf8f2}.guide-toc a{display:block;padding:.35rem 0}.article-prose section{scroll-margin-top:110px}.editorial-meta{font-size:.9rem;color:#555;padding:1rem 0}.product-price-note{font-size:.85rem;color:#555}").trim(), "utf8");
+  await writeFile(path.join(DIST, "assets", "site.css"), (css+"\n"+designCss+"\n.mc-wordmark{display:flex;flex-direction:column;font-size:21px;line-height:1.1;letter-spacing:.08em;font-weight:850;color:inherit}.mc-wordmark span{font-size:11px;letter-spacing:.25em;margin-top:5px}.mc-hero-copy em{font-style:normal;color:#685326}.guide-toc{padding:1.3rem;border:1px solid #ddd3c0;border-radius:12px;margin-bottom:2rem;background:#faf8f2}.guide-toc a{display:block;padding:.35rem 0}.article-prose section{scroll-margin-top:110px}.editorial-meta{font-size:.9rem;color:#555;padding:1rem 0}.product-price-note{font-size:.85rem;color:#555}.bf-promo{position:relative;overflow:hidden;background:linear-gradient(120deg,#7f1d1d,#991b1b 55%,#7f1d1d);color:#fff;text-align:center;padding:9px 16px;font-size:15px;line-height:1.45}.bf-promo-link{color:#fff;text-decoration:none}.bf-promo-link:hover{text-decoration:underline}.bf-promo .bf-spark{position:absolute;color:#fde68a;pointer-events:none;animation:bfTwinkle 2.6s ease-in-out infinite alternate}.bf-promo .bf-spark.s1{top:3px;left:10%;font-size:10px}.bf-promo .bf-spark.s2{top:4px;right:12%;font-size:8px;animation-delay:.7s}.bf-promo .bf-spark.s3{bottom:3px;left:26%;font-size:8px;animation-delay:1.3s}.bf-promo .bf-spark.s4{bottom:4px;right:28%;font-size:9px;animation-delay:1.9s}@keyframes bfTwinkle{from{opacity:.25;transform:scale(.7) rotate(0deg)}to{opacity:1;transform:scale(1.15) rotate(20deg)}}@media (prefers-reduced-motion:reduce){.bf-promo .bf-spark{animation:none;opacity:.65}}").trim(), "utf8");
   await writeFile(path.join(DIST, "assets", "site.js"), js.trim(), "utf8");
   await writeFile(path.join(DIST, ".nojekyll"), "", "utf8");
 
