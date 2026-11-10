@@ -442,7 +442,7 @@ function layout(data, page) {
   const pageTitle = page.seoTitle || page.title || data.siteTitle;
   const alreadyBranded = normalizeText(pageTitle).includes("minoxidil en cdmx");
   const titleCandidate = page.path === "/"
-    ? "Minoxidil en CDMX | Catálogo y tienda en Plaza Guelatao"
+    ? "Minoxidil en CDMX | Kirkland Original y Tienda en Plaza Guelatao"
     : pageTitle.length > 45 || alreadyBranded ? pageTitle : `${pageTitle} | Minoxidil en CDMX`;
   const title = metaText(titleCandidate, 70);
   const description = metaText(page.description || data.description);
@@ -665,6 +665,18 @@ function breadcrumbSchema(items) {
   };
 }
 
+function faqSchema(faqs) {
+  if (!faqs?.length) return null;
+  return {
+    "@type": "FAQPage",
+    mainEntity: faqs.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: stripTags(answer) }
+    }))
+  };
+}
+
 function productSchema(product, data) {
   const numericPrice = parseFloat(String(product.price || "").replace(/[^0-9.]/g, ""));
   return {
@@ -827,13 +839,15 @@ function homePage(data) {
     ["¿Dónde está la tienda?", "En Plaza Guelatao, Local 76, Pasillo 5, en Ciudad de México, cerca de Metro Guelatao. Atendemos de martes a sábado, de 12:30 a 4:30 pm; confirma tu visita por WhatsApp."],
     ["¿Puedo recoger mi pedido?", "Sí. Consulta primero existencia y precio vigente, y acuerda tu visita o entrega bajo cita. No salgas hacia un punto de entrega sin confirmación."],
     ["¿Cómo se confirma una compra?", "Este sitio es un catálogo, no cobra ni solicita datos bancarios. Por WhatsApp te confirmamos presentación, importe total, forma de pago y entrega antes de realizar tu pedido. No hay pago contra entrega."],
-    ["¿Qué debo revisar antes de usar minoxidil?", "La etiqueta de la presentación y la indicación de tu profesional de salud. El uso en barba está fuera de la indicación habitual para el cuero cabelludo; no podemos garantizar resultados ni recomendar una dosis personal por este sitio."]
+    ["¿Qué debo revisar antes de usar minoxidil?", "La etiqueta de la presentación y la indicación de tu profesional de salud. El uso en barba está fuera de la indicación habitual para el cuero cabelludo; no podemos garantizar resultados ni recomendar una dosis personal por este sitio."],
+    ["¿Cuánto cuesta el minoxidil Kirkland?", "Depende de la presentación: el precio por frasco baja en los paquetes de 2, 3, 6 y 12 meses frente al frasco suelto. La existencia cambia, así que confirma el precio vigente de la presentación exacta por WhatsApp antes de venir."],
+    ["¿Venden minoxidil oral o en pastillas?", "No. Solo vendemos minoxidil tópico: líquido, espuma y bálsamo. El minoxidil oral es un medicamento sistémico que requiere prescripción y supervisión médica; no lo vendemos ni lo recomendamos por este medio."]
   ];
   const body = `
   <section class="mc-hero"><div class="container mc-hero-grid">
     <div class="mc-hero-copy"><span class="mc-eyebrow">PLAZA GUELATAO · CIUDAD DE MÉXICO</span>
       <h1>Minoxidil en CDMX.<br><em>Compra con información.</em></h1>
-      <p>Explora minoxidil Kirkland y productos para el cuidado de barba y cabello. Consulta la presentación que buscas y acuerda tu visita a nuestra tienda.</p>
+      <p>Explora minoxidil Kirkland y productos para el cuidado de barba y cabello. Consulta la presentación que buscas y acuerda tu visita a nuestra tienda. ¿Lo buscas para la barba? Empieza por la <a href="/guias/minoxidil-para-barba/">guía de minoxidil para barba</a> y la <a href="/categoria-producto/barba-y-bigote/crecimiento-de-barba/">categoría de crecimiento de barba</a>.</p>
       <div class="hero-ctas"><a class="btn btn-primary" href="/shop/">Explorar catálogo <span aria-hidden="true">↗</span></a><a class="btn btn-dark" href="${whatsappLink(data,'Quiero consultar una presentación y agendar mi visita a Plaza Guelatao')}">Consultar por WhatsApp</a></div>
       <div class="mc-proof"><span>Tienda física · Local 76, Pasillo 5</span><span>Martes a sábado · Entregas bajo cita</span></div>
     </div>
@@ -852,9 +866,9 @@ function homePage(data) {
     <p class="mc-mini-note">Los precios del catálogo deben confirmarse antes del pago. La disponibilidad y el costo de envío se acuerdan por WhatsApp; no hay pago contra entrega.</p>
   </div></section>
   <section class="section mc-visit" id="sucursales"><div class="container mc-visit-grid"><div><span class="mc-eyebrow">CERCA DE METRO GUELATAO</span><h2>Nos vemos en<br>Plaza Guelatao.</h2><p>Local 76 · Pasillo 5<br>Colonia Juan Escutia, Ciudad de México.</p><p>Sobre Calzada Ignacio Zaragoza, en el límite de Iztapalapa con Nezahualcóyotl y a unos pasos del Metro Guelatao. Atención de martes a sábado, de 12:30 a 4:30 pm. Confirma tu visita para revisar existencia y recibir indicaciones de llegada.</p><a class="btn btn-primary" href="/sucursales-y-entregas/">Cómo llegar a la tienda ↗</a></div><div class="sidebar-box"><h3>Tu compra, paso a paso.</h3><ol><li>Elige una presentación del catálogo.</li><li>Confirma precio vigente y disponibilidad por WhatsApp.</li><li>Acuerda recogida, entrega bajo cita o envío.</li></ol><a class="btn btn-dark" href="${whatsappLink(data,'Quiero confirmar una visita al Local 76, Pasillo 5 de Plaza Guelatao')}">Agendar una visita</a><p class="mc-mini-note">Para envíos, comparte tu código postal y consulta costo y plazo antes de pagar.</p></div></div></section>
-  <section class="section"><div class="container"><div class="mc-section-head"><div><span class="mc-eyebrow">INFORMACIÓN SIN MITOS</span><h2>Lee primero. Decide mejor.</h2></div><a class="btn btn-outline" href="/blog/">Todas las guías ↗</a></div><div class="blog-grid">${editorialGuides.filter(g=>['autenticidad','aplicacion','seguridad'].includes(g.topic)).map(g=>guideCard(g,data)).join('')}</div></div></section>
+  <section class="section"><div class="container"><div class="mc-section-head"><div><span class="mc-eyebrow">INFORMACIÓN SIN MITOS</span><h2>Lee primero. Decide mejor.</h2></div><a class="btn btn-outline" href="/blog/">Todas las guías ↗</a></div><div class="blog-grid">${editorialGuides.filter(g=>['autenticidad','aplicacion','seguridad'].includes(g.topic)).map(g=>guideCard(g,data)).join('')}</div><p class="mc-mini-note">También en las guías: <a href="/guias/minoxidil-para-barba/">minoxidil para barba, explicado sin promesas</a> · <a href="/guias/minoxidil-topico/">Kirkland frente a genéricos y otras marcas: qué cambia y qué no</a></p></div></section>
   <section class="section section-faq"><div class="container faq-container"><span class="mc-eyebrow">ANTES DE TU VISITA</span><h2>Lo que conviene saber.</h2><div class="faq-list">${faqs.map(([q,a])=>`<details class="faq-item"><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></div></section>`;
-  return layout(data,{title:'Minoxidil en CDMX | Catálogo y tienda en Plaza Guelatao',path:'/',description:'Consulta minoxidil Kirkland y cuidado de barba y cabello en CDMX. Tienda en Plaza Guelatao, Local 76, Pasillo 5. Atención por WhatsApp y entregas bajo cita.',bodyClass:'home-page',body});
+  return layout(data,{title:'Minoxidil en CDMX | Kirkland Original y Tienda en Plaza Guelatao',path:'/',description:'Tienda de minoxidil en CDMX (no es Costco): Kirkland original líquido y en espuma, bálsamos Maximus y cuidado de barba. Plaza Guelatao y envíos a México.',schema:[faqSchema(faqs)].filter(Boolean),bodyClass:'home-page',body});
 }
 
 function shopPage(data) {
@@ -917,7 +931,7 @@ const categoryContent = {
     intro: "Kirkland Signature es la marca de Costco en Estados Unidos. Aquí vendemos el minoxidil líquido al 5% en todas sus presentaciones, de un frasco a la caja de doce, con el precio por frasco bajando conforme crece el paquete.",
     extra: `<h2>Comprar minoxidil Kirkland en CDMX, sin intermediarios raros</h2>
 <p>Somos una tienda física en Plaza Guelatao, Local 76, Pasillo 5, en Iztapalapa, a unos pasos del Metro Guelatao y en el límite con Nezahualcóyotl. Puedes venir, ver la caja cerrada, revisar lote, caducidad y el panel Drug Facts impreso antes de pagar. Si compras por envío, te mandamos fotos del producto real por WhatsApp.</p>
-<p>Para elegir presentación: un frasco rinde alrededor de un mes a la dosis de la etiqueta. La caja de 6 meses es la que más conviene por precio si ya lo usas de forma continua. En la guía de <a href="/guias/minoxidil-kirkland-original-vs-clon/">Kirkland original</a> explicamos qué revisar de la caja y qué no demuestra autenticidad.</p>`
+<p>Para elegir presentación: un frasco rinde alrededor de un mes a la dosis de la etiqueta. La caja de 6 meses es la que más conviene por precio si ya lo usas de forma continua. En la guía de <a href="/guias/minoxidil-kirkland-original-vs-clon/">Kirkland original</a> explicamos qué revisar de la caja y qué no demuestra autenticidad, y en la de <a href="/guias/minoxidil-topico/">minoxidil tópico</a> comparamos Kirkland frente a genéricos y otras marcas de farmacia.</p>`
   },
   "minoxidil": {
     title: "Comprar Minoxidil en CDMX | Líquido y Espuma al 5%",
@@ -928,11 +942,11 @@ const categoryContent = {
 <p>¿No sabes qué formato te conviene? La guía <a href="/guias/minoxidil-liquido-vs-espuma/">líquido vs espuma</a> compara aplicación, ingredientes y costo por mes sin marketing, y la de <a href="/guias/comprar-minoxidil-cdmx/">comprar minoxidil en CDMX</a> trae el checklist de compra segura.</p>`
   },
   "minoxidil-foam-espuma": {
-    title: "Minoxidil en Espuma (Foam) en CDMX | Kirkland 5%",
-    description: "Minoxidil en espuma al 5% en CDMX: sin propilenglicol y de secado rápido. Kirkland foam en Plaza Guelatao; recoge en tienda o pide envío.",
-    intro: "La versión en espuma del minoxidil al 5%: se aplica con los dedos, seca rápido y no contiene el propilenglicol de las fórmulas líquidas.",
+    title: "Minoxidil en Espuma Kirkland 5% en CDMX | Sin Propilenglicol",
+    description: "Minoxidil en espuma Kirkland al 5% en CDMX: foam sin propilenglicol y de secado rápido. De 1 a 6 meses; recoge en Plaza Guelatao o pide envío a México.",
+    intro: "La espuma de minoxidil (foam) al 5% de Kirkland: se aplica con los dedos, seca rápido y no contiene el propilenglicol de las fórmulas líquidas, la causa más común de irritación con el líquido.",
     extra: `<h2>¿Para quién es la espuma?</h2>
-<p>Sobre todo para quienes el líquido les irritó la piel: la espuma Kirkland no lleva propilenglicol. No funciona más rápido —la concentración es la misma, 5%— y cuesta más por mes que el líquido; su ventaja es la tolerancia y la aplicación sin escurrimientos. Compara ambas en la guía <a href="/guias/minoxidil-liquido-vs-espuma/">minoxidil líquido vs espuma</a>.</p>`
+<p>Sobre todo para quienes el líquido les irritó la piel: la espuma Kirkland no lleva propilenglicol. No funciona más rápido —la concentración es la misma, 5%— y cuesta más por mes que el líquido; su ventaja es la tolerancia y la aplicación sin escurrimientos. La presentación directa es la <a href="/producto/minoxidil-kirkland-5-foam-espuma-tratamiento-100-importado/">lata de espuma Kirkland de un mes</a>, y también está en paquetes de 6 meses dentro de la categoría <a href="/categoria-producto/minoxidil/minoxidil-kirkland/">Minoxidil Kirkland</a>. Compara ambas en la guía <a href="/guias/minoxidil-liquido-vs-espuma/">minoxidil líquido vs espuma</a>.</p>`
   },
   "barba-y-bigote": {
     title: "Minoxidil y Productos para Barba y Bigote en CDMX",
@@ -942,11 +956,11 @@ const categoryContent = {
 <p>El minoxidil se etiqueta para el cuero cabelludo; su uso en barba es un uso fuera de indicación y en esta tienda lo explicamos así, sin prometer crecimiento ni plazos. Lo que sí hacemos es mostrarte cada presentación con su etiqueta completa para que decidas informado. Lee la guía de <a href="/guias/minoxidil-para-barba/">minoxidil para barba</a> antes de comprar.</p>`
   },
   "crecimiento-de-barba": {
-    title: "Minoxidil para Crecimiento de Barba en CDMX | Catálogo",
-    description: "Minoxidil para crecimiento de barba en CDMX: Kirkland líquido y espuma, bálsamos Maximus y dermaroller. Revisa etiqueta y caducidad antes de comprar.",
-    intro: "Las presentaciones que la gente busca para la barba: minoxidil Kirkland líquido y en espuma, bálsamos de minoxidil en crema y accesorios como el dermaroller.",
+    title: "Minoxidil para Barba en CDMX | Kirkland, Bálsamos y Dermaroller",
+    description: "Minoxidil para barba en CDMX: Kirkland líquido y en espuma, bálsamos Maximus en crema y dermaroller. Lee la guía de uso fuera de indicación antes de comprar.",
+    intro: "Las presentaciones que la gente busca al escribir «minoxidil barba»: minoxidil Kirkland líquido y en espuma, bálsamos de minoxidil en crema y accesorios como el dermaroller.",
     extra: `<h2>Lo que conviene saber antes de comprar</h2>
-<p>Las etiquetas del minoxidil se refieren al cuero cabelludo; la barba es un uso fuera de indicación. No prometemos que se llene una zona ni damos plazos: te mostramos el producto real, su concentración y su etiqueta para que decidas con información. La guía de <a href="/guias/minoxidil-para-barba/">minoxidil para barba</a> explica los límites y riesgos con claridad.</p>`
+<p>Las etiquetas del minoxidil se refieren al cuero cabelludo; la barba es un uso fuera de indicación. No prometemos que se llene una zona ni damos plazos: te mostramos el producto real, su concentración y su etiqueta para que decidas con información. La guía de <a href="/guias/minoxidil-para-barba/">minoxidil para barba</a> explica los límites y riesgos con claridad, y si prefieres el formato en crema, revisa los <a href="/categoria-producto/barba-y-bigote/balsamos/">bálsamos de minoxidil</a>.</p>`
   },
   "cabello": {
     title: "Minoxidil para Cabello en CDMX | Kirkland y Cuidado Capilar",
@@ -990,9 +1004,10 @@ const categoryContent = {
 <p>Sirve para la barba que ya tienes: la deja más suave, más fácil de peinar y con mejor aspecto, y ayuda a que la piel debajo no se reseque. No hace crecer vello nuevo y no sustituye ningún tratamiento. En el catálogo hay dos perfiles: el <a href="/producto/aceite-tonico-bergamota-para-barbba-y-bigote-citrix-30-ml-maximus/">aceite de bergamota Maximus</a>, con el aroma cítrico de la casa, y el <a href="/producto/aceite-para-la-barba-30-ml/">aceite básico de 30 ml</a>. La dosis correcta son gotas, no chorros: con demasiado aceite cualquier barba se ve grasosa.</p>`
   },
   "ceras-para-barba-y-bigote": {
-    title: "Cera para Barba y Bigote en CDMX | Peinado y Forma",
-    description: "Cera para barba y bigote en CDMX: peina, define y mantiene la forma todo el día. Cera Maximus de bergamota y cera Quioco en Plaza Guelatao.",
-    intro: "Las ceras de peinado del catálogo: el paso final de la rutina, para dar forma a la barba y definir el bigote sin geles de cabello.",
+    title: "Cera para Bigote y Barba en CDMX | Maximus y Quioco",
+    h1: "Cera para Bigote y Barba",
+    description: "Cera para bigote y barba en CDMX: define, peina y mantiene la forma todo el día sin resecar. Cera Maximus de bergamota y cera Quioco en Plaza Guelatao.",
+    intro: "La cera para bigote es el paso final de la rutina: define el bigote, da forma a la barba y mantiene el peinado todo el día sin recurrir a geles de cabello, que resecan y dejan residuos.",
     extra: `<h2>Cera, bálsamo o gel: no son lo mismo</h2>
 <p>La cera da forma y fijación; el bálsamo acondiciona; el gel de cabello reseca y deja residuos, por eso no lo recomendamos para la barba. Aquí hay dos ceras: la <a href="/producto/cera-con-bergamota-marca-propia/">Maximus con bergamota, jojoba y karité</a> y la <a href="/producto/cera-para-barba-y-bigote-quioco/">cera Quioco</a>. En tienda puedes ver la consistencia y el aroma de ambas antes de elegir: con las ceras, esa prueba vale más que cualquier descripción.</p>`
   },
@@ -1004,9 +1019,10 @@ const categoryContent = {
 <p>Sobre una barba sucia se acumulan grasa, sudor y residuos de cera y aceite; cualquier producto que apliques encima trabaja sobre eso. Por eso el jabón, aunque sea el producto más simple del catálogo, es el que más se repone. Cada barra cuesta $100 suelta y baja a $90 u $80 por pieza en los <a href="/categoria-producto/kit-jabones/">kits de jabones</a>. Ningún jabón hace crecer vello: su trabajo es dejar la barba limpia y manejable, y en eso sí se nota la diferencia entre un jabón pensado para barba y el de manos.</p>`
   },
   "peines": {
-    title: "Peines y Delineador de Barba en CDMX | Accesorios",
-    description: "Peines y delineador de barba en CDMX: la plantilla Beardbro para marcar el contorno al afeitar y accesorios de arreglo en Plaza Guelatao.",
-    intro: "Accesorios de arreglo: peines y la plantilla delineadora para marcar el contorno de la barba con precisión al afeitar.",
+    title: "Peine para Barba y Delineador en CDMX | Beardbro y Accesorios",
+    h1: "Peine para Barba y Delineador",
+    description: "Peine para barba en CDMX: plantilla delineadora Beardbro para marcar el contorno al afeitar, peines y accesorios de arreglo. Plaza Guelatao y envíos.",
+    intro: "El peine para barba y la plantilla delineadora: accesorios para peinar y desenredar el vello, y para marcar el contorno de mejillas y cuello con precisión al afeitar.",
     extra: `<h2>El contorno marca la diferencia</h2>
 <p>Entre una barba cuidada y una descuidada, la diferencia visible suele ser el borde: mejillas y cuello delineados parejo. La plantilla <a href="/producto/beardpro-peine-y-delineador-de-barba/">Beardbro</a> sirve de guía para afeitar ese contorno simétrico sin medir a ojo. Es un accesorio reutilizable, sin consumibles: se compra una vez y acompaña cualquier rutina.</p>`
   },
@@ -1097,7 +1113,7 @@ function categoryPage(category, data) {
     <section class="page-title-banner">
       <div class="container">
         <span class="eyebrow-tag">CATEGORÍA</span>
-        <h1>${escapeHtml(category.name)}</h1>
+        <h1>${escapeHtml(content.h1 || category.name)}</h1>
         <p>${content.intro ? escapeHtml(content.intro) : `Explora nuestras opciones disponibles de ${escapeHtml(category.name.toLowerCase())} para recoger bajo cita en CDMX o consultar envío a tu código postal.`}</p>
       </div>
     </section>
@@ -1589,8 +1605,9 @@ function guidePage(guide, data) {
         { name: "Inicio", path: "/" },
         { name: "Blog", path: "/blog/" },
         { name: guide.title, path: guide.path }
-      ])
-    ],
+      ]),
+      faqSchema(guide.faqs)
+    ].filter(Boolean),
     body
   });
 }
