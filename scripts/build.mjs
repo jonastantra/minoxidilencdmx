@@ -8,7 +8,7 @@ const ROOT = process.cwd();
 const DATA_FILE = path.join(ROOT, "content", "site-data.json");
 const DIST = path.join(ROOT, "dist");
 const SITE_URL = "https://www.minoxidilencdmx.com";
-const SITE_RELEASE_DATE = "2026-10-27";
+const SITE_RELEASE_DATE = "2026-11-10";
 const SITE_RELEASE = "cdmx-20261027-03";
 const GTM_ID = "GTM-5HCGBGWL";
 const META_PIXEL_ID = "1103563572544229";
@@ -607,8 +607,15 @@ function organizationSchema(data) {
       postalCode: "09100",
       addressCountry: "MX"
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 19.3861,
+      longitude: -99.0363
+    },
+    hasMap: "https://www.google.com/maps/search/?api=1&query=Plaza+Guelatao+Local+76+Pasillo+5+Iztapalapa+Ciudad+de+Mexico",
     areaServed: [
       { "@type": "City", name: "Ciudad de México" },
+      { "@type": "City", name: "Nezahualcóyotl" },
       { "@type": "State", name: "Estado de México" },
       { "@type": "Country", name: "México" }
     ],
@@ -662,6 +669,9 @@ function productSchema(product, data) {
       url: `${SITE_URL}${product.path}`,
       priceCurrency: "MXN",
       price: numericPrice,
+      ...(String(product.inStock).toLowerCase() === "true"
+        ? { availability: "https://schema.org/InStock" }
+        : {}),
       seller: { "@id": `${SITE_URL}/#localbusiness` }
     }
   };
@@ -827,7 +837,7 @@ function homePage(data) {
     <div class="product-grid">${featured.map(p=>productCard(p,data)).join('')}</div>
     <p class="mc-mini-note">Los precios del catálogo deben confirmarse antes del pago. La disponibilidad y el costo de envío se acuerdan por WhatsApp; no hay pago contra entrega.</p>
   </div></section>
-  <section class="section mc-visit" id="sucursales"><div class="container mc-visit-grid"><div><span class="mc-eyebrow">CERCA DE METRO GUELATAO</span><h2>Nos vemos en<br>Plaza Guelatao.</h2><p>Local 76 · Pasillo 5<br>Colonia Juan Escutia, Ciudad de México.</p><p>Atención de martes a sábado. Confirma tu visita para revisar existencia y recibir indicaciones de llegada.</p><a class="btn btn-primary" href="/sucursales-y-entregas/">Cómo llegar a la tienda ↗</a></div><div class="sidebar-box"><h3>Tu compra, paso a paso.</h3><ol><li>Elige una presentación del catálogo.</li><li>Confirma precio vigente y disponibilidad por WhatsApp.</li><li>Acuerda recogida, entrega bajo cita o envío.</li></ol><a class="btn btn-dark" href="${whatsappLink(data,'Quiero confirmar una visita al Local 76, Pasillo 5 de Plaza Guelatao')}">Agendar una visita</a><p class="mc-mini-note">Para envíos, comparte tu código postal y consulta costo y plazo antes de pagar.</p></div></div></section>
+  <section class="section mc-visit" id="sucursales"><div class="container mc-visit-grid"><div><span class="mc-eyebrow">CERCA DE METRO GUELATAO</span><h2>Nos vemos en<br>Plaza Guelatao.</h2><p>Local 76 · Pasillo 5<br>Colonia Juan Escutia, Ciudad de México.</p><p>Sobre Calzada Ignacio Zaragoza, en el límite de Iztapalapa con Nezahualcóyotl y a unos pasos del Metro Guelatao. Atención de martes a sábado. Confirma tu visita para revisar existencia y recibir indicaciones de llegada.</p><a class="btn btn-primary" href="/sucursales-y-entregas/">Cómo llegar a la tienda ↗</a></div><div class="sidebar-box"><h3>Tu compra, paso a paso.</h3><ol><li>Elige una presentación del catálogo.</li><li>Confirma precio vigente y disponibilidad por WhatsApp.</li><li>Acuerda recogida, entrega bajo cita o envío.</li></ol><a class="btn btn-dark" href="${whatsappLink(data,'Quiero confirmar una visita al Local 76, Pasillo 5 de Plaza Guelatao')}">Agendar una visita</a><p class="mc-mini-note">Para envíos, comparte tu código postal y consulta costo y plazo antes de pagar.</p></div></div></section>
   <section class="section"><div class="container"><div class="mc-section-head"><div><span class="mc-eyebrow">INFORMACIÓN SIN MITOS</span><h2>Lee primero. Decide mejor.</h2></div><a class="btn btn-outline" href="/blog/">Todas las guías ↗</a></div><div class="blog-grid">${editorialGuides.filter(g=>['autenticidad','aplicacion','seguridad'].includes(g.topic)).map(g=>guideCard(g,data)).join('')}</div></div></section>
   <section class="section section-faq"><div class="container faq-container"><span class="mc-eyebrow">ANTES DE TU VISITA</span><h2>Lo que conviene saber.</h2><div class="faq-list">${faqs.map(([q,a])=>`<details class="faq-item"><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></div></section>`;
   return layout(data,{title:'Minoxidil en CDMX | Catálogo y tienda en Plaza Guelatao',path:'/',description:'Consulta minoxidil Kirkland y cuidado de barba y cabello en CDMX. Tienda en Plaza Guelatao, Local 76, Pasillo 5. Atención por WhatsApp y entregas bajo cita.',bodyClass:'home-page',body});
@@ -884,15 +894,92 @@ function shopPage(data) {
   });
 }
 
+// Contenido único por categoría (SEO local): una intención de búsqueda principal por página.
+// Las categorías sin entrada usan la descripción genérica mejorada de categoryPage.
+const categoryContent = {
+  "minoxidil-kirkland": {
+    title: "Minoxidil Kirkland en CDMX | Líquido 5%, 1 a 12 Meses",
+    description: "Minoxidil Kirkland original en CDMX: líquido al 5% en presentaciones de 1, 2, 3, 6 y 12 meses. Recoge en Plaza Guelatao (Metro Guelatao) o pide envío.",
+    intro: "Kirkland Signature es la marca de Costco en Estados Unidos. Aquí vendemos el minoxidil líquido al 5% en todas sus presentaciones, de un frasco a la caja de doce, con el precio por frasco bajando conforme crece el paquete.",
+    extra: `<h2>Comprar minoxidil Kirkland en CDMX, sin intermediarios raros</h2>
+<p>Somos una tienda física en Plaza Guelatao, Local 76, Pasillo 5, en Iztapalapa, a unos pasos del Metro Guelatao y en el límite con Nezahualcóyotl. Puedes venir, ver la caja cerrada, revisar lote, caducidad y el panel Drug Facts impreso antes de pagar. Si compras por envío, te mandamos fotos del producto real por WhatsApp.</p>
+<p>Para elegir presentación: un frasco rinde alrededor de un mes a la dosis de la etiqueta. La caja de 6 meses es la que más conviene por precio si ya lo usas de forma continua. En la guía de <a href="/guias/minoxidil-kirkland-original-vs-clon/">Kirkland original</a> explicamos qué revisar de la caja y qué no demuestra autenticidad.</p>`
+  },
+  "minoxidil": {
+    title: "Comprar Minoxidil en CDMX | Líquido y Espuma al 5%",
+    description: "Comprar minoxidil en CDMX: líquido y espuma al 5%, Kirkland y bálsamos Maximus. Tienda en Plaza Guelatao, Iztapalapa; recogida bajo cita y envíos a todo México.",
+    intro: "Todas las presentaciones de minoxidil del catálogo en un solo lugar: líquido con gotero, espuma sin propilenglicol y bálsamos en crema. Compara formato, concentración y precio antes de decidir.",
+    extra: `<h2>Tienda de minoxidil en CDMX, con dirección real</h2>
+<p>Atendemos en Plaza Guelatao, Local 76, Pasillo 5 (Metro Guelatao, Línea A), de martes a sábado. Antes de venir, confirma existencia y precio por WhatsApp: las presentaciones se agotan y se reponen, y preferimos que no des la vuelta en balde. También enviamos a todo México, cotizando costo y plazo con tu código postal.</p>
+<p>¿No sabes qué formato te conviene? La guía <a href="/guias/minoxidil-liquido-vs-espuma/">líquido vs espuma</a> compara aplicación, ingredientes y costo por mes sin marketing, y la de <a href="/guias/comprar-minoxidil-cdmx/">comprar minoxidil en CDMX</a> trae el checklist de compra segura.</p>`
+  },
+  "minoxidil-foam-espuma": {
+    title: "Minoxidil en Espuma (Foam) en CDMX | Kirkland 5%",
+    description: "Minoxidil en espuma al 5% en CDMX: sin propilenglicol y de secado rápido. Kirkland foam en Plaza Guelatao; recoge en tienda o pide envío.",
+    intro: "La versión en espuma del minoxidil al 5%: se aplica con los dedos, seca rápido y no contiene el propilenglicol de las fórmulas líquidas.",
+    extra: `<h2>¿Para quién es la espuma?</h2>
+<p>Sobre todo para quienes el líquido les irritó la piel: la espuma Kirkland no lleva propilenglicol. No funciona más rápido —la concentración es la misma, 5%— y cuesta más por mes que el líquido; su ventaja es la tolerancia y la aplicación sin escurrimientos. Compara ambas en la guía <a href="/guias/minoxidil-liquido-vs-espuma/">minoxidil líquido vs espuma</a>.</p>`
+  },
+  "barba-y-bigote": {
+    title: "Minoxidil y Productos para Barba y Bigote en CDMX",
+    description: "Productos para barba y bigote en CDMX: minoxidil, bálsamos, aceites, ceras y jabones de bergamota. Catálogo en Plaza Guelatao y envíos a todo México.",
+    intro: "Todo lo del cuidado de la barba y el bigote en un solo catálogo: minoxidil en líquido, espuma y bálsamo, más aceites, ceras, jabones y accesorios para el arreglo diario.",
+    extra: `<h2>Barba y bigote: información antes que promesas</h2>
+<p>El minoxidil se etiqueta para el cuero cabelludo; su uso en barba es un uso fuera de indicación y en esta tienda lo explicamos así, sin prometer crecimiento ni plazos. Lo que sí hacemos es mostrarte cada presentación con su etiqueta completa para que decidas informado. Lee la guía de <a href="/guias/minoxidil-para-barba/">minoxidil para barba</a> antes de comprar.</p>`
+  },
+  "crecimiento-de-barba": {
+    title: "Minoxidil para Crecimiento de Barba en CDMX | Catálogo",
+    description: "Minoxidil para crecimiento de barba en CDMX: Kirkland líquido y espuma, bálsamos Maximus y dermaroller. Revisa etiqueta y caducidad antes de comprar.",
+    intro: "Las presentaciones que la gente busca para la barba: minoxidil Kirkland líquido y en espuma, bálsamos de minoxidil en crema y accesorios como el dermaroller.",
+    extra: `<h2>Lo que conviene saber antes de comprar</h2>
+<p>Las etiquetas del minoxidil se refieren al cuero cabelludo; la barba es un uso fuera de indicación. No prometemos que se llene una zona ni damos plazos: te mostramos el producto real, su concentración y su etiqueta para que decidas con información. La guía de <a href="/guias/minoxidil-para-barba/">minoxidil para barba</a> explica los límites y riesgos con claridad.</p>`
+  },
+  "cabello": {
+    title: "Minoxidil para Cabello en CDMX | Kirkland y Cuidado Capilar",
+    description: "Minoxidil para cabello en CDMX: líquido y espuma Kirkland al 5%, shampoos y cuidado capilar. Tienda en Plaza Guelatao; envíos a todo México.",
+    intro: "Productos para el cabello del catálogo: minoxidil líquido y en espuma —la indicación original de su etiqueta— y shampoos de apoyo para la rutina.",
+    extra: `<h2>Minoxidil para cabello, con la etiqueta por delante</h2>
+<p>El minoxidil tópico al 5% está etiquetado para ciertos casos de pérdida de cabello en el cuero cabelludo. Antes de comprar, vale más saber si tu caso es de esos: la guía <a href="/guias/caida-cabello-cuando-dermatologo/">cuándo ir primero con dermatología</a> ayuda a distinguir una compra razonable de un problema que necesita diagnóstico.</p>`
+  },
+  "kirkland": {
+    title: "Kirkland Signature en CDMX | Minoxidil Líquido y Espuma",
+    description: "Marca Kirkland Signature en CDMX: minoxidil líquido y en espuma importado de EE. UU. Presentaciones de 1 a 12 meses en Plaza Guelatao.",
+    intro: "Kirkland Signature es la marca propia de Costco. En esta tienda la trabajamos en minoxidil líquido al 5% (de 1 a 12 frascos) y en espuma, con empaque cerrado y caducidad visible."
+  },
+  "balsamos": {
+    title: "Bálsamo de Minoxidil para Barba en CDMX | Maximus",
+    description: "Bálsamo de minoxidil para barba y bigote en CDMX: formato en crema al 5% y al 12%, sin gotero. Recoge en Plaza Guelatao o pide envío.",
+    intro: "Los bálsamos en crema del catálogo: minoxidil al 5% y al 12% en tarro, para aplicar con los dedos sobre la barba y el bigote, además de bálsamos de cuidado como el de bergamota.",
+    extra: `<h2>Bálsamo o gotero: la diferencia práctica</h2>
+<p>El bálsamo se aplica como una crema, sin medir mililitros ni escurrimientos; el líquido Kirkland se dosifica con gotero y su etiqueta está pensada para el cuero cabelludo. Revisa la concentración y los ingredientes de cada tarro antes de elegir, y no asumas que un porcentaje mayor es automáticamente mejor para tu piel.</p>`
+  },
+  "kits": {
+    title: "Kits de Minoxidil y Barba en CDMX | Paquetes del Catálogo",
+    description: "Kits en CDMX: paquetes de minoxidil con bálsamo, jabones y biotina a mejor precio por pieza. Recoge en Plaza Guelatao o pide envío.",
+    intro: "Paquetes que combinan varias piezas del catálogo —minoxidil con bálsamo, jabones o biotina— para quien prefiere comprar la rutina completa de una vez."
+  },
+  "mujer": {
+    title: "Productos para Mujer en CDMX | Cabello, Pestañas y Cejas",
+    description: "Productos para mujer en CDMX: cuidado de cabello, pestañas y cejas del catálogo. Lee la etiqueta de cada presentación antes de comprar.",
+    intro: "La selección para mujer del catálogo. En minoxidil, la presentación y la etiqueta importan: existen productos dirigidos a hombres que no deben trasladarse sin más."
+  },
+  "promociones": {
+    title: "Promociones en CDMX | Presentaciones con Mejor Precio",
+    description: "Promociones del catálogo en CDMX: presentaciones con mejor precio por pieza. Confirma vigencia y existencia por WhatsApp antes de pagar.",
+    intro: "Presentaciones con precio especial o mejor costo por pieza. La vigencia se confirma por WhatsApp antes de pagar: no publicamos promociones sin existencia."
+  }
+};
+
 function categoryPage(category, data) {
   const products = productsForCategory(category, data);
+  const content = categoryContent[category.slug] || {};
 
   const body = `
     <section class="page-title-banner">
       <div class="container">
         <span class="eyebrow-tag">CATEGORÍA</span>
         <h1>${escapeHtml(category.name)}</h1>
-        <p>Explora nuestras opciones disponibles de ${escapeHtml(category.name.toLowerCase())} para recoger bajo cita en CDMX o consultar envío a tu código postal.</p>
+        <p>${content.intro ? escapeHtml(content.intro) : `Explora nuestras opciones disponibles de ${escapeHtml(category.name.toLowerCase())} para recoger bajo cita en CDMX o consultar envío a tu código postal.`}</p>
       </div>
     </section>
     <section class="section shop-section">
@@ -912,12 +999,19 @@ function categoryPage(category, data) {
           </div>
         </div>
       </div>
-    </section>`;
+    </section>${content.extra ? `
+    <section class="section">
+      <div class="container article-body-wrap">
+        <div class="article-prose">
+          ${content.extra}
+        </div>
+      </div>
+    </section>` : ""}`;
 
   return layout(data, {
-    title: `${category.name} | Minoxidil en CDMX`,
+    title: content.title || `${category.name} | Minoxidil en CDMX`,
     path: category.path,
-    description: `Productos de ${category.name} disponibles en CDMX con entrega en sucursal Plaza Guelatao o envío a todo México.`,
+    description: content.description || `Productos de ${category.name} en CDMX: presentaciones, precios y disponibilidad. Recoge en Plaza Guelatao (Iztapalapa) o pide envío a todo México.`,
     robots: products.length < 2 ? "noindex, follow" : "index, follow, max-image-preview:large",
     schema: [
       itemListSchema(`Productos de ${category.name}`, category.path, products),

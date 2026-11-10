@@ -1,6 +1,6 @@
 # Auditoría SEO del HTML final
 
-Fecha: 2026-10-27T18:12:54.472Z
+Fecha: 2026-11-10T19:26:34.290Z
 
 - URLs indexables revisadas: 87
 - Bloques JSON-LD válidos: 87

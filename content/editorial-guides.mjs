@@ -2,6 +2,7 @@ export const editorialGuides = [
   {
     path: "/guias/minoxidil-topico/",
     topic: "fundamentos",
+    dateModified: "2026-11-10",
     title: "Minoxidil tópico: qué hace, qué no hace y antes de empezar",
     description: "Guía clara sobre minoxidil tópico, expectativas, constancia y límites del tratamiento para la caída hereditaria del cabello.",
     image: "/assets/images/aplicacion-de-minoxidil-en-el-cuero-cabelludo-1024x585.jpg",
@@ -22,6 +23,7 @@ export const editorialGuides = [
   {
     path: "/guias/como-aplicar-minoxidil/",
     topic: "aplicacion",
+    dateModified: "2026-11-10",
     title: "Cómo aplicar minoxidil tópico sin improvisar la rutina",
     description: "Rutina práctica para aplicar minoxidil tópico en cuero cabelludo siguiendo la etiqueta del producto y cuidando la piel.",
     image: "/assets/images/aplicacion-optima-de-minoxidil-1024x585.jpg",
@@ -42,6 +44,7 @@ export const editorialGuides = [
   {
     path: "/guias/efectos-secundarios-minoxidil/",
     topic: "seguridad",
+    dateModified: "2026-11-10",
     title: "Efectos secundarios del minoxidil tópico y señales para suspender",
     description: "Diferencia molestias locales de señales de alarma y conoce cuándo pausar minoxidil tópico y consultar.",
     image: "/assets/images/efectos-secundarios-del-minoxidil-1024x585.jpg",
@@ -62,6 +65,7 @@ export const editorialGuides = [
   {
     path: "/guias/resultados-minoxidil-shedding/",
     topic: "resultados",
+    dateModified: "2026-11-10",
     title: "Resultados con minoxidil: tiempos, shedding y fotos que sí comparan",
     description: "Cómo evaluar cambios con minoxidil durante varios meses sin caer en fotos engañosas ni promesas rápidas.",
     image: "/assets/images/resultados-del-uso-de-minoxidil-1024x585.jpg",
@@ -82,16 +86,18 @@ export const editorialGuides = [
   {
     path: "/guias/minoxidil-para-barba/",
     topic: "barba",
+    dateModified: "2026-11-10",
     title: "Minoxidil para barba: qué significa que sea un uso fuera de indicación",
     description: "Información responsable sobre el uso de minoxidil en barba, sus límites, riesgos y preguntas que conviene resolver antes.",
     image: "/assets/images/aplicacion-en-barba-1024x585.jpg",
     summary: "Las presentaciones comerciales para crecimiento capilar se etiquetan para el cuero cabelludo. Usarlas en la barba es una decisión distinta y debe explicarse como uso fuera de indicación.",
     sections: [
-      ["Lo que cambia al hablar de barba", "No basta con trasladar la dosis y rutina del cuero cabelludo a la cara. Las etiquetas de minoxidil tópico citadas se refieren al cuero cabelludo, no a barba, cejas o pestañas. La piel facial, el contacto con labios, el afeitado y otros productos cambian el contexto. Por eso esta guía no prescribe una cantidad ni una frecuencia para barba: esa decisión requiere una valoración profesional."],
-      ["Expectativas reales", "La densidad y el patrón de barba dependen mucho de genética, edad y folículos presentes. Ningún vendedor puede prometer que se llenará una zona concreta ni fijar una fecha exacta. Las fotos comerciales no predicen el resultado individual. Tampoco es responsable garantizar una barba permanente después de seis o doce meses o asegurar que suspenderlo conservará el resultado."],
-      ["Riesgos prácticos", "La piel puede resecarse o irritarse. Debe evitarse el contacto con ojos y boca, piel lesionada y transferencia a otras personas. Si aparecen palpitaciones, mareo, hinchazón o dificultad para respirar, suspende y busca atención."],
-      ["Antes de decidir", "Revisa la etiqueta, antecedentes de piel y corazón, medicamentos actuales y si realmente tienes una duda cosmética o un cambio repentino que requiere diagnóstico. Un dermatólogo puede explicar riesgos y alternativas para tu caso."],
-      ["Cómo hablamos del producto en tienda", "Podemos confirmar concentración, presentación, lote, precio y disponibilidad. No sustituimos consulta médica, no garantizamos crecimiento y no recomendamos duplicar dosis. Esa diferencia es una señal de una tienda seria."]
+      ["Lo que cambia al hablar de barba", "No basta con trasladar la dosis y la rutina del cuero cabelludo a la cara. Las etiquetas del minoxidil líquido y en espuma que vendemos se refieren al cuero cabelludo, no a barba, cejas o pestañas. La piel de la cara es otra: hay contacto con labios y ojos, afeitado de por medio y otros productos (bálsamos, aceites, cera) que cambian el contexto. Por eso esta guía no prescribe una cantidad ni una frecuencia para barba o bigote: esa decisión requiere una valoración profesional, no el consejo de una tienda."],
+      ["La pregunta que más nos hacen", "En tienda y por WhatsApp, la pregunta número uno no es qué presentación comprar, sino «¿en cuánto tiempo se me llena la barba?». La respuesta honesta es que nadie puede saberlo ni prometerlo: la densidad y el patrón de la barba dependen de la genética, la edad y los folículos presentes. Si un vendedor te da una fecha exacta o te muestra una foto como si fuera tu pronóstico, te está vendiendo humo. Lo que sí puedes controlar es la información: saber qué producto es, qué contiene y qué riesgos tiene."],
+      ["Expectativas reales", "Ningún vendedor puede prometer que se llenará una zona concreta ni fijar un plazo. Las fotos comerciales no predicen el resultado individual. Tampoco es responsable garantizar una barba permanente después de seis o doce meses, ni asegurar que el resultado se conserva al suspender el producto."],
+      ["Riesgos prácticos", "La piel de la cara puede resecarse o irritarse, sobre todo recién afeitada. Debe evitarse el contacto con ojos y boca, la piel lesionada y la transferencia a otras personas (incluidos niños y mascotas). Si aparecen palpitaciones, mareo, hinchazón o dificultad para respirar, suspende y busca atención médica."],
+      ["Antes de decidir", "Revisa la etiqueta, tus antecedentes de piel y corazón, los medicamentos que uses y si lo tuyo es una duda cosmética o un cambio repentino que requiere diagnóstico. Un dermatólogo puede explicar riesgos y alternativas para tu caso concreto; nosotros no."],
+      ["Cómo hablamos del producto en tienda", "De minoxidil para barba y bigote podemos confirmar lo verificable: concentración, presentación, lote, caducidad, precio y disponibilidad, y mostrarte el producto real antes de que pagues. No sustituimos una consulta médica, no garantizamos crecimiento y no recomendamos duplicar dosis ni combinar productos por cuenta propia. Esa diferencia, aunque a veces no sea lo que el cliente quiere oír, es la señal de una tienda seria."]
     ],
     faqs: [
       ["¿Está aprobado específicamente para barba?", "Las etiquetas citadas en esta guía se refieren al cuero cabelludo; barba es un uso fuera de indicación."],
@@ -102,6 +108,7 @@ export const editorialGuides = [
   {
     path: "/guias/minoxidil-mujeres/",
     topic: "mujeres",
+    dateModified: "2026-11-10",
     title: "Minoxidil en mujeres: presentación, embarazo y cuándo consultar",
     description: "Puntos clave para mujeres que consideran minoxidil tópico: etiqueta, tipo de caída, embarazo, lactancia y señales de alarma.",
     image: "/assets/images/minoxidil-para-mujeres.jpg",
@@ -122,47 +129,52 @@ export const editorialGuides = [
   {
     path: "/guias/minoxidil-liquido-vs-espuma/",
     topic: "comparativa",
+    dateModified: "2026-11-10",
     title: "Minoxidil líquido vs espuma: diferencias para elegir sin marketing",
     description: "Compara minoxidil líquido y espuma por aplicación, secado, ingredientes, precio y tolerancia, no por promesas exageradas.",
     image: "/assets/images/minoxidil-liquido-vs-espuma.jpg",
     summary: "La mejor presentación no es la más llamativa: es la que coincide con la etiqueta adecuada, toleras y puedes usar con constancia.",
     sections: [
-      ["La diferencia visible", "El líquido suele aplicarse con gotero y la espuma se distribuye con los dedos. Cambian la sensación, el tiempo de secado y los excipientes. La concentración impresa no cuenta toda la historia."],
-      ["Tolerancia", "Algunas personas encuentran irritante una fórmula y toleran mejor otra, pero una reacción persistente no debe resolverse a ciegas. Compara la lista de ingredientes y consulta si la piel está inflamada o lesionada."],
-      ["Precisión de la dosis", "Usa el medidor o las instrucciones de la presentación. Un tapón de espuma y un gotero no son medidas intercambiables. Aplicar más no compensa una mala técnica."],
-      ["Costo real", "Compara contenido, duración estimada según etiqueta, precio por mes y disponibilidad. Un producto barato que no toleras o no puedes reponer no es una buena compra."],
-      ["Cómo elegir", "Prioriza indicación correcta, autenticidad del empaque, tolerancia, rutina y presupuesto. Si ya tuviste una reacción, lleva el nombre exacto y los ingredientes a consulta en vez de comprar otra variante al azar."],
-      ["Una comparación útil en tienda", "Pide ver ambas etiquetas y anota contenido, ingredientes, cantidad indicada y precio por mes. Esa tabla sencilla permite elegir con datos y evita asumir que espuma significa mejor o que líquido significa más fuerte."]
+      ["La diferencia visible", "El líquido se aplica con el gotero que trae el frasco (la marca es 1 ml) y la espuma se toma con los dedos (la etiqueta indica medio tapón). Cambian la sensación, el tiempo de secado y la forma de distribuirlo: con el cabello largo, el gotero llega mejor a la piel entre el pelo; la espuma se queda donde la pones y no escurre, pero cuesta más repartirla en zonas amplias. La concentración es la misma en ambas: 5%."],
+      ["El ingrediente que cambia: propilenglicol", "La diferencia de fondo está en los excipientes. El líquido Kirkland usa propilenglicol para disolver el minoxidil, y es el ingrediente que más reportes de resequedad e irritación acumula. La espuma no lo contiene. Si el líquido te irrita, la espuma es la alternativa lógica a comentar con tu profesional de salud, sin asumir que a ti no te va a irritar nada: también puede resecar, y una reacción persistente no debe resolverse cambiando de producto a ciegas."],
+      ["Precisión de la dosis", "Usa el medidor de cada presentación: el gotero del líquido viene marcado y el tapón de la espuma es la medida indicada. Un tapón de espuma y un mililitro de gotero no son intercambiables. Aplicar más cantidad no compensa una mala técnica ni acelera nada; sólo aumenta la irritación posible."],
+      ["Costo real en nuestro catálogo", "El líquido cuesta menos por mes: el frasco de 60 ml está en $250 y baja a unos $183 por frasco en la caja de seis. La lata de espuma de 60 g está en $480 y rinde aproximadamente un mes. Es decir, la espuma sale al doble o más por mes. Si toleras bien el líquido y el presupuesto manda, el líquido conviene; si tu piel no lo tolera, la espuma puede ser la diferencia entre usar el producto con constancia y abandonarlo."],
+      ["Cómo elegir", "Prioriza la indicación correcta, la autenticidad del empaque, tu tolerancia, tu rutina y tu presupuesto. Si ya tuviste una reacción, lleva el nombre exacto y los ingredientes a consulta en vez de comprar otra variante al azar."],
+      ["Una comparación útil en tienda", "Aquí vendemos las dos presentaciones, así que puedes ver ambas etiquetas en persona: contenido, ingredientes, cantidad indicada y precio por mes. Esa comparación con el producto en la mano evita asumir que espuma significa mejor o que líquido significa más fuerte."]
     ],
     faqs: [
-      ["¿La espuma funciona más rápido?", "La forma cosmética por sí sola no permite prometer un resultado más rápido."],
-      ["¿El líquido siempre irrita?", "No. La tolerancia es individual y depende de la fórmula completa."],
-      ["¿Puedo alternarlos?", "No mezcles rutinas sin revisar la dosis total y la indicación del producto."]
+      ["¿La espuma funciona más rápido?", "No hay base para prometer eso: la forma cosmética no cambia la concentración ni el plazo de evaluación de la etiqueta."],
+      ["¿El líquido siempre irrita?", "No. La tolerancia es individual y depende de la fórmula completa, no sólo del minoxidil."],
+      ["¿Puedo alternarlos?", "No mezcles rutinas sin revisar la dosis total y la indicación de cada producto."]
     ]
   },
   {
     path: "/guias/comprar-minoxidil-cdmx/",
     topic: "compra",
+    dateModified: "2026-11-10",
     title: "Dónde comprar minoxidil en CDMX: checklist de producto, precio y entrega",
     description: "Checklist local para comprar minoxidil en CDMX o por envío: empaque, lote, precio, sucursal y comprobación antes de pagar.",
     image: "/assets/images/diseno-sin-titulo-2.jpg",
     summary: "Una compra confiable se puede comprobar: producto exacto, fotos actuales, lote, caducidad, precio total, dirección y condiciones de entrega.",
     sections: [
-      ["Antes de salir de casa", "Confirma existencia y precio por WhatsApp al 55 6938 0408. Pide el nombre exacto, concentración, líquido o espuma y número de piezas. La tienda está en Plaza Guelatao, Local 76, Pasillo 5, CDMX. La atención es de martes a sábado y las entregas son bajo cita; acuerda tu visita antes de trasladarte."],
-      ["Al revisar el producto", "Observa que el empaque esté cerrado y sin alteraciones. Revisa lote y caducidad, impresión legible y coincidencia entre caja y frascos. Desconfía de quien evita mostrar el producto real o sólo usa imágenes de catálogo."],
-      ["Precio total", "Solicita una cotización del producto exacto y del total con envío, si corresponde. Pregunta cuántas piezas contiene, cuál es la condición del empaque y qué procedimiento aplica si el paquete llega dañado. Conserva la conversación y el comprobante. No des por hecho envío gratis, pago contra entrega ni una promoción que no haya sido confirmada."],
-      ["Sucursal y entrega", "Publicamos dirección y horario verificables. Para entrega acordada, confirma punto, nombre de contacto y forma de pago antes de trasladarte. No envíes datos sensibles que no sean necesarios para la entrega."],
-      ["Lo que una tienda responsable no promete", "No garantizamos resultados, no diagnosticamos la causa de caída y no inventamos porcentajes de satisfacción. Sí podemos mostrar el inventario disponible, explicar la presentación y orientarte para leer la etiqueta."]
+      ["Antes de salir de casa", "Confirma existencia y precio por WhatsApp al 55 6938 0408. Pide el nombre exacto, concentración, líquido o espuma y número de piezas: no es lo mismo un frasco suelto de Kirkland que la caja de seis, y el precio por pieza cambia mucho. La atención es de martes a sábado y las visitas se confirman antes, para que no des la vuelta en balde."],
+      ["Cómo llegar a la tienda", "Estamos dentro de Plaza Guelatao, Local 76, Pasillo 5, sobre Calzada Ignacio Zaragoza, en Iztapalapa. La forma más fácil de llegar es el Metro: estación Guelatao de la Línea A (la morada, Pantitlán–La Paz), y la plaza está a unos pasos de la estación. Ya dentro, pregunta por el Pasillo 5. Si vienes de Nezahualcóyotl, la plaza está sobre la misma calzada Zaragoza, en el límite entre Iztapalapa y Neza, así que es una de las opciones más cercanas sin cruzar la ciudad. En auto, la referencia es Zaragoza a la altura del Metro Guelatao."],
+      ["Al revisar el producto", "Observa que el empaque esté cerrado y sin alteraciones. Revisa lote y caducidad, impresión legible y que lo que dice la caja coincida con los frascos. En productos importados como Kirkland, la caja trae el panel de información del medicamento (Drug Facts) completo y en inglés: un empaque genérico, sin ese panel, es una mala señal. Desconfía de quien evita mostrar el producto real y sólo manda imágenes de catálogo bajadas de internet."],
+      ["Precio total", "Pide la cotización del producto exacto y, si es envío, del total ya con paquetería. Compara el precio por frasco, no sólo el total: en el Kirkland líquido, el frasco suelto cuesta $250 y en la caja de seis baja a unos $183 por frasco. Pregunta qué procedimiento aplica si el paquete llega dañado y conserva la conversación y el comprobante. No des por hecho envío gratis, pago contra entrega ni una promoción que no haya sido confirmada."],
+      ["Sucursal y entrega", "Publicamos una dirección real y verificable: Plaza Guelatao, Local 76, Pasillo 5, Iztapalapa, CDMX. Para entregas acordadas fuera de la tienda, confirma punto, nombre de contacto y forma de pago antes de trasladarte. No envíes datos sensibles que no sean necesarios para la entrega."],
+      ["Lo que una tienda responsable no promete", "No garantizamos resultados, no diagnosticamos la causa de la caída y no inventamos porcentajes de satisfacción ni testimonios. Lo que sí hacemos: mostrarte el inventario disponible, dejarte revisar el empaque antes de pagar y orientarte para leer la etiqueta. Una tienda que te promete la barba llena en un mes te está vendiendo humo."]
     ],
     faqs: [
-      ["¿Puedo recoger en CDMX?", "Sí, sujeto a disponibilidad y cita confirmada por WhatsApp en Plaza Guelatao, Local 76, Pasillo 5. La atención es de martes a sábado."],
-      ["¿Hacen envíos?", "Consulta disponibilidad, costo, paquetería y plazo para tu código postal antes de pagar. No se promete una fecha o una tarifa sin cotización."],
-      ["¿Cómo sé si es original?", "No existe una sola prueba casera concluyente. Revisa trazabilidad, empaque, lote, vendedor y procedencia en conjunto."]
+      ["¿Puedo recoger en CDMX?", "Sí, sujeto a disponibilidad y visita confirmada por WhatsApp en Plaza Guelatao, Local 76, Pasillo 5. La atención es de martes a sábado."],
+      ["¿Cómo llego en Metro?", "Estación Guelatao, Línea A. La plaza está a unos pasos de la estación, sobre Calzada Ignacio Zaragoza; adentro busca el Pasillo 5, Local 76."],
+      ["¿Hacen envíos?", "Sí, a todo México. Consulta disponibilidad, costo, paquetería y plazo para tu código postal antes de pagar. No se promete una fecha o una tarifa sin cotización."],
+      ["¿Cómo sé si es original?", "No existe una sola prueba casera concluyente. Revisa procedencia, empaque completo, lote, caducidad y que el vendedor tenga una dirección real, todo en conjunto."]
     ]
   },
   {
     path: "/guias/caida-cabello-cuando-dermatologo/",
     topic: "diagnostico",
+    dateModified: "2026-11-10",
     title: "Caída de cabello: cuándo comprar y cuándo ir primero con dermatología",
     description: "Señales que orientan a una compra informada o a buscar diagnóstico antes de usar minoxidil.",
     image: "/assets/images/consulta-con-dermatologo-1024x585.jpg",
@@ -184,6 +196,7 @@ export const editorialGuides = [
   {
     path: "/guias/minoxidil-kirkland-original-vs-clon/",
     topic: "autenticidad",
+    dateModified: "2026-11-10",
     title: "Minoxidil Kirkland original: qué revisar y qué no demuestra autenticidad",
     description: "Revisa procedencia, empaque, lote y caducidad del minoxidil. El color, el olor, el gotero o una prueba con cloro no certifican su autenticidad.",
     image: "/assets/images/diseno-sin-titulo-1.jpg",
@@ -191,6 +204,7 @@ export const editorialGuides = [
     sections: [
       ["Empieza por la procedencia, no por el color", "La FDA advierte que los medicamentos falsificados pueden tener ingredientes equivocados, demasiado, muy poco o nada de principio activo. Por eso conviene comprar en un establecimiento identificable, conservar el comprobante y preguntar por la procedencia. El aspecto del frasco por sí solo no resuelve esa comprobación. La información de la FDA es una referencia de seguridad, no una certificación de esta tienda ni un registro sanitario mexicano."],
       ["Qué revisar en caja y frasco", "Antes de pagar, comprueba el nombre exacto, concentración, presentación, contenido, instrucciones, lote y caducidad legibles. Observa si el cierre o el empaque tienen daños o señales de manipulación. Si compras piezas separadas, pregunta cómo se entregan y qué información de la caja conservan. Una diferencia merece aclaración, pero una impresión bonita o un número de lote visible tampoco garantizan autenticidad."],
+      ["El panel Drug Facts: la parte difícil de copiar", "La caja original de Kirkland trae impreso el panel «Drug Facts» completo, en inglés: ingrediente activo y su concentración, usos, advertencias, instrucciones de uso, otros ingredientes y el distribuidor en Estados Unidos. Es mucha información regulada, y es donde los empaques genéricos suelen fallar: panel incompleto, textos recortados o faltas de ortografía. Revisar que ese panel exista y esté completo no certifica el contenido del frasco, pero es una de las comprobaciones más útiles que puedes hacer antes de pagar."],
       ["Color, olor, gotero y cristalización no son certificados", "No uses una tonalidad, un aroma, una rosca, un grabado o la formación de cristales como prueba definitiva. Tampoco raspes, calientes ni añadas sustancias al producto para validarlo. Aquí no afirmamos que todos los lotes auténticos tengan un diseño único ni que un cambio de color sea inocuo: esas dudas deben revisarse con el fabricante o un profesional y el producto exacto."],
       ["No hagas pruebas con cloro", "Mezclar una solución con cloro u otros limpiadores no es un método de control de calidad y puede exponerte a sustancias irritantes. Aunque aparezca un cambio de color, eso no mide concentración, pureza o contaminación. No apliques en la piel una mezcla de prueba ni regreses líquido manipulado al frasco."],
       ["Qué hacer si algo no coincide", "No uses el producto sospechoso. Guarda el envase, lote, comprobante y fotos; pide una aclaración al vendedor y, cuando sea posible, al fabricante. Puedes consultar los canales oficiales de COFEPRIS para una denuncia sanitaria. Si ya lo usaste y tuviste una reacción, busca atención médica e informa qué producto fue y cuándo apareció."],
