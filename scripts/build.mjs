@@ -504,9 +504,9 @@ function layout(data, page) {
     <span class="bf-spark s2" aria-hidden="true">✦</span>
     <span class="bf-spark s3" aria-hidden="true">✦</span>
     <span class="bf-spark s4" aria-hidden="true">✦</span>
-    <a class="bf-promo-link" href="https://maximus-inc.com.mx/collections/balsamo-20-kits" target="_blank" rel="noopener"><strong>Buen Fin en Maximus Inc:</strong> kit de bálsamo Minoxidil 20% a $996 en la tienda en línea — hasta el 17 de noviembre</a>
+    <a class="bf-promo-link" href="https://maximus-inc.com.mx/collections/balsamo-20-kits" target="_blank" rel="noopener"><strong>Buen Fin en Maximus Inc:</strong> kit de bálsamo Minoxidil 20% a $996 en la tienda en línea — hasta el 19 de noviembre</a>
   </div>
-  <script>(function(){var el=document.getElementById('bf-promo-strip');if(el&&Date.now()>=Date.UTC(2026,10,18,6,0,0)){el.style.display='none';}})();</script>
+  <script>(function(){var el=document.getElementById('bf-promo-strip');if(el&&Date.now()>=Date.UTC(2026,10,20,6,0,0)){el.style.display='none';}})();</script>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="/">
