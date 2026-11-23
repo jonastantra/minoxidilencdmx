@@ -499,6 +499,14 @@ function layout(data, page) {
       <span>🕒 <strong>Horario:</strong> Martes a sábado · 12:30 a 4:30 pm</span>
     </div>
   </div>
+  <div class="bf-promo" id="bf-promo-strip">
+    <span class="bf-spark s1" aria-hidden="true">✦</span>
+    <span class="bf-spark s2" aria-hidden="true">✦</span>
+    <span class="bf-spark s3" aria-hidden="true">✦</span>
+    <span class="bf-spark s4" aria-hidden="true">✦</span>
+    <a class="bf-promo-link" href="https://maximus-inc.com.mx/products/1-balsamo-de-minoxidil-al-20-4-oz-crecimiento-de-barba-y-bigote-extra-fuerte-cierra-huecos?variant=47619198222498&utm_source=minoxidilencdmx&utm_medium=banner_top&utm_campaign=bf_doble" target="_blank" rel="noopener"><strong>Black Friday en tienda en línea Maximus Inc:</strong> Bálsamo Minoxidil 20% — Paga 2, llévate 4 ($1,099) · Paga 3, llévate 6 + Tónico GRATIS ($1,299) · Envío gratis →</a>
+  </div>
+  <script>(function(){var el=document.getElementById('bf-promo-strip');if(el&&Date.now()>=Date.UTC(2026,11,1,6,0,0)){el.style.display='none';}})();</script>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="/">
