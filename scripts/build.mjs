@@ -12,7 +12,7 @@ const SITE_RELEASE_DATE = "2026-11-10";
 const SITE_RELEASE = "cdmx-20261110-01";
 const GTM_ID = "GTM-5HCGBGWL";
 const META_PIXEL_ID = "1103563572544229";
-const BUSINESS_WHATSAPP_PHONE = "5215641989504";
+const BUSINESS_WHATSAPP_PHONE = "525569380408";
 const CATEGORY_REDIRECTS = new Map([
   ["/categoria-producto/kits-2/", "/categoria-producto/barba-y-bigote/kits/"]
 ]);
