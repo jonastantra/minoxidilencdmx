@@ -527,6 +527,16 @@ function layout(data, page) {
     </div>
   </header>
   <main id="contenido">${page.body}</main>
+  <section class="libro-band" aria-label="Libro gratis">
+    <div class="container libro-inner">
+      <div>
+        <p class="libro-eyebrow">Libro gratis · John Barbas</p>
+        <h2>Barba con Método</h2>
+        <p>Cómo elegir tu kit de minoxidil y usarlo bien, sin tirar dinero. Déjanos tu correo y te llega el PDF.</p>
+      </div>
+      <a class="libro-btn" href="https://libro.johnbarbas.com/?utm_source=minoxidilencdmx&amp;utm_medium=sitio&amp;utm_campaign=libro-gratis">Quiero el libro gratis</a>
+    </div>
+  </section>
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col brand-col">
@@ -3383,6 +3393,32 @@ a { color: inherit; text-decoration: none; }
 .not-found-code { font-size: 6rem; font-weight: 900; color: var(--brand); line-height: 1; margin-bottom: 1rem; }
 
 /* Footer */
+.libro-band {
+  background: var(--dark-slate);
+  color: #fff;
+  padding: 36px 0;
+}
+.libro-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.libro-band h2 { margin: 0 0 6px; font-size: 1.6rem; color: #fff; }
+.libro-band p { margin: 0; color: #e7e5e4; max-width: 56ch; line-height: 1.5; }
+.libro-band .libro-eyebrow { color: var(--brand-light-border); font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; }
+.libro-btn {
+  display: inline-block;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 800;
+  padding: 15px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.libro-btn:hover { background: var(--brand-hover); }
 .site-footer {
   background: var(--dark-slate);
   color: #D6D3D1;
